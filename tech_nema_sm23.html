@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 810px;
+            /* border: 3px solid blue; */
+        }
+
+        td {
+            padding: 5px;
+            border: 1px solid #666;
+        }
+
+        body {
+            height: 80vh;
+            display: grid;
+            justify-content: center;
+            /* align-items: center; */
+            background: #f3f1f5;
+            /* border: 3px solid blue; */
+        }
+
+        .item_name {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>NEMA SM-23 GUIDE LINE CHECK</h1>
+        <p> NEMA SM-23 GUIDE LINE은 스팀터빈의 노즐에서 허용하는 FORCE 및 MOMENT를 CHECK하기 위한 GUIDE LINE 입니다.</p>
+        <H2>1. Result of Stress Analysis</H2>
+        <h2>1) Force and Moment</h2>
+        <h3>(1) Pipe and Turbine Direction Conversion</h3>
+        <p> 응력해석 결과후 Pipe Line의 Direction은 Turbine의 Direction과 다를 수 있으며, 일반적으로 아래의 기준을 따른다
+            터빈의 Vendor Printer의 Turbine의 Direction 기준을 면밀히 살펴보고 Conversion을 하여야 한다.
+        </p>
+        <img src="./image/tbn_direction.jpg" alt="ara_ship" width="400" height="600">
+
+        <h4>INLET NOZZLE </h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="200px">
+                    PIPE DIRECTION
+                </td>
+                <td width="200px">
+                    FORCE(kgf)
+                </td>
+                <td width="200px">
+                    MOMENT(kgf.cm)
+                </td>
+                <td class="item_name" width="200px">
+                    TURBINE DIRECTION
+                </td>
+            <tr>
+                <td class="item_name">
+                    X
+                </td>
+                <td>
+                    23
+                </td>
+                <td>
+                    -11,754
+                </td>
+                <td>
+                    Z
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Y
+                </td>
+                <td>
+                    -75
+                </td>
+                <td>
+                    3402
+                </td>
+                <td>
+                    Y
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Z
+                </td>
+                <td>
+                    -263
+                </td>
+                <td>
+                    2,653
+                </td>
+                <td>
+                    -X
+                </td>
+            </tr>
+            </tr>
+        </table>
+        <h4>OUTLET STEAM NOZZLE</h4>
+        <table>
+            <tr>
+                <td class="item_name" width="200px">
+                    PIPE DIRECTION
+                </td>
+                <td width="200px" align="center">
+                    FORCE(kgf)
+                </td>
+                <td width="200px" align="center">
+                    MOMENT(kgf.cm)
+                </td>
+                <td class="item_name" width="200px" align="center">
+                    TURBINE DIRECTION
+                </td>
+            <tr>
+                <td class="item_name">
+                    X
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    Z
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Y
+                </td>
+                <td align="center">
+                    64
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    Y
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Z
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    -X
+                </td>
+            </tr>
+            </tr>
+        </table>
+    </div>
+
+    <h3>(2) Conversion 후의 Trubine FORCE and MOMENT</h3>
+    <h4>INLET NOZZLE</h4>
+    <div>
+        <table>
+            <tr>
+                <td class="item_name" width="200px" rowspan="2">
+                    PIPE DIRECTION
+                </td>
+                <td class="item_name" width="200px" colspan="2">
+                    FORCE
+                </td>
+                <td class="item_name" width="200px" colspan="2">
+                    MOMENT
+                </td>
+            </tr>
+            <tr>
+
+
+                <td width="150px" align="center">
+                    (kgf)
+                </td>
+                <td width="150px" align="center">
+                    (lb)
+                </td>
+                <td width="150px" align="center">
+                    (kgf.cm)
+                </td>
+                <td width="150px" align="center">
+                    (lb.ft)
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    X
+                </td>
+                <td align="center">
+                    263
+                </td>
+                <td align="center">
+                    580
+                </td>
+                <td align="center">
+                    -2,653
+                </td>
+                <td align="center">
+                    -192
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Y
+                </td>
+                <td align="center">
+                    -75
+                </td>
+                <td align="center">
+                    -165
+                </td>
+                <td align="center">
+                    3,402
+                </td>
+                <td align="center">
+                    246
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Z
+                </td>
+                <td align="center">
+                    23
+                </td>
+                <td align="center">
+                    51
+                </td>
+                <td align="center">
+                    -11,754
+                </td>
+                <td align="center">
+                    -850
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    COMB
+                </td>
+                <td align="center">
+                    274
+                </td>
+                <td align="center">
+                    605
+                </td>
+                <td align="center">
+                    12,521
+                </td>
+                <td align="center">
+                    906
+                </td>
+            </tr>
+        </table>
+        <h4>OUTLET NOZZLE</h4>
+        <table>
+            <tr>
+                <td class="item_name" width="200px" rowspan="2">
+                    PIPE DIRECTION
+                </td>
+                <td class="item_name" width="200px" colspan="2">
+                    FORCE
+                </td>
+                <td class="item_name" width="200px" colspan="2">
+                    MOMENT
+                </td>
+            </tr>
+            <tr>
+
+                <td width="150px" align="center">
+                    (kgf)
+                </td>
+                <td width="150px" align="center">
+                    (lb)
+                </td>
+                <td width="150px" align="center">
+                    (kgf.cm)
+                </td>
+                <td width="150px" align="center">
+                    (lb.ft)
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    X
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Y
+                </td>
+                <td align="center">
+                    64
+                </td>
+                <td align="center">
+                    141.9
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Z
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    COMB
+                </td>
+                <td align="center">
+                    64
+                </td>
+                <td align="center">
+                    141.9
+                </td>
+                <td align="center">
+                    0
+                </td>
+                <td align="center">
+                    0
+                </td>
+            </tr>
+        </table>
+        <P>Note1) Y-Direction Force is calculatd from bellows Axial spring Force. <br>
+            Y-Direction Force = Spring force(Axial Direction) x Thermal Expansion displacement <br>
+            = 339.5 N/mm x 1.86 mm <br>
+            = 631.4 N <br>
+            = 64.4 kg/f <br>
+        </P>
+
+
+        <H2>2. Connection Data</H2>
+        <h3> 1) NOZZLE DATA</h3>
+
+        <table>
+            <tr>
+                <td class="item_name" width="200px" rowspan="2">
+                    NOZZLE DATA
+                </td>
+                <td class="item_name" width="200px" colspan="2">
+                    INLET NOZZLE
+                </td>
+                <td class="item_name" width="200px" colspan="2">
+                    EXHAUST NOZZLE
+                </td>
+            </tr>
+
+            <tr>
+                <td width="150px" align="center">
+                    MM UNIT
+                </td>
+                <td width="150px" align="center">
+                    INCH UNIT
+                </td>
+                <td width="150px" align="center">
+                    MM UNIT
+                </td>
+                <td width="150px" align="center">
+                    INCH UNIT
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    DN
+                </td>
+                <td align="center">
+                    150
+                </td>
+                <td align="center">
+                    6
+                </td>
+                <td align="center">
+                    600
+                </td>
+                <td align="center">
+                    24
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    AREA
+                </td>
+                <td align="center">
+                    17662.5
+                </td>
+                <td align="center">
+                    28.3
+                </td>
+                <td align="center">
+                    282600.0
+                </td>
+                <td align="center">
+                    452.2
+                </td>
+            </tr>
+        </TAble>
+        <h3> 2) EXPANSION JOINT DATA</h3>
+        <h3> (1) PRESSURE FORCE FROM FULL VACUUM IN THE EXPANSION JOINT</h3>
+
+        <table>
+            <tr>
+                <td class="item_name" width="200px">
+                    FORMULA
+                </td>
+                <td class="item_name" width="650px" colspan="2">
+                    14.7 (lb/sq inch) x bellows area (sq inch)
+                </td>
+            </tr>
+
+            <tr>
+                <td width="150px" align="center" rowspan="2">
+                    CALCULATION
+                </td>
+                <td width="150px" align="center">
+                    FORCE
+                </td>
+                <td width="150px" align="center">
+                    6646.8 lb
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    BELLOWS AREA
+                </td>
+                <td align="center">
+                    452.2 sq inch
+                </td>
+            </tr>
+        </TAble>
+        <H2>3. NEMA GUIDE CHECK</H2>
+        <h3> 1) CHECK RESULTANT FORCE AND MOMENTS ON INDIVISUAL FORCE AGAINST LIMIT 1</h3>
+        <h4> (1) INLET FLANGE</h4>
+        <h4> - CHECK DATA CALCULATION</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="300px">
+                    INLET FLANGE
+                </td>
+                <td class="item_name" width="270px">
+                    CALCULATION
+                </td>
+                <td class="item_name" width="270px">
+                    REMARKS
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center">
+                    FR
+                </td>
+                <td align="center">
+                    605 lb
+                </td>
+                <td align="center">
+
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    MR
+                </td>
+                <td align="center">
+                    906 lb.ft
+                </td>
+                <td align="center">
+
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    De
+                </td>
+                <td align="center">
+                    6 in
+                </td>
+                <td align="center">
+                    Note 1
+                </td>
+            </tr>
+        </TAble>
+        <p>Note1) No correction need for flange 8" and smaller</p>
+
+        <h4> - GUIDE LINE CHECK</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="300px">
+                    FORMULA
+                </td>
+                <td class="item_name" width="550px" colspan="4">
+                    3FR + MR ≤ 500 De
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center" rowspan="2">
+                    LIMIT 1 CHECK
+                </td>
+                <td align="center">
+                    3FR + MR
+                </td>
+                <td align="center">
+                    500 x De
+                </td>
+                <td align="center" rowspan="2">
+                    RESULT
+                </td>
+                <td align="center" rowspan="2">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    2,721
+                </td>
+                <td align="center">
+                    3000
+                </td>
+
+            </tr>
+        </TAble>
+
+        <h4> (2) EXHAUST FLANGE</h4>
+        <h4> - CHECK DATA CALCULATION</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="300px">
+                    EXHAUST FLANGE
+                </td>
+                <td class="item_name" width="270px">
+                    CALCULATION
+                </td>
+                <td class="item_name" width="270px">
+                    REMARKS
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center">
+                    FR
+                </td>
+                <td align="center">
+                    142 lb
+                </td>
+                <td align="center">
+
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    MR
+                </td>
+                <td align="center">
+                    0 lb.ft
+                </td>
+                <td align="center">
+
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    De
+                </td>
+                <td align="center">
+                    13.33 in
+                </td>
+                <td align="center">
+                    Note 1
+                </td>
+            </tr>
+        </TAble>
+        <p>Note1) No correction need for flange 8" and , De = (16+Nd)/3</p>
+
+        <h4> - GUIDE LINE CHECK</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="300px">
+                    FORMULA
+                </td>
+                <td class="item_name" width="550px" colspan="4">
+                    3FR + MR ≤ 500 De
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center" rowspan="2">
+                    LIMIT 1 CHECK
+                </td>
+                <td align="center">
+                    3FR + MR
+                </td>
+                <td align="center">
+                    500 x De
+                </td>
+                <td align="center" rowspan="2">
+                    RESULT
+                </td>
+                <td align="center" rowspan="2">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    426
+                </td>
+                <td align="center">
+                    6667
+                </td>
+
+            </tr>
+        </TAble>
+
+        <h3> 2) CHECK COMBIND RESULTANT FORCE AND MOMENT ON THE TRUBINE AGAINST LIMIT 2</h3>
+        <h4> (1) SUM OF NOZZLE AND MOMENT</h4>
+        <h4> - FORCE</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="150px" rowspan="2">
+                    FORCE
+                </td>
+                <td class="item_name" width="260px" colspan="3">
+                    FORCE
+                </td>
+                <td class="item_name" width="180px" rowspan="2">
+                    REMARKS
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center" width="160px">
+                    INLET NOZZLE
+                </td>
+                <td align="center" width="160px">
+                    EXHAUST NOZZLE
+                </td>
+                <td align="center" width="160px">
+                    COMBIND
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    X
+                </td>
+                <td align="center">
+                    580
+                </td>
+                <td align="center">
+                    -
+                </td>
+                <td align="center">
+                    579.8
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Y
+                </td>
+                <td align="center">
+                    -165
+                </td>
+                <td align="center">
+                    142
+                </td>
+                <td align="center">
+                    23.5
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Z
+                </td>
+                <td align="center">
+                    51
+                </td>
+                <td align="center">
+                    -
+                </td>
+                <td align="center">
+                    50.7
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    COMB
+                </td>
+                <td align="center">
+                    605
+                </td>
+                <td align="center">
+                    142
+                </td>
+                <td align="center">
+                    582.5
+                </td>
+                <td align="center">
+                    FC
+                </td>
+            </tr>
+        </TAble>
+
+        <h4> - MOMENT</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="150px" rowspan="2">
+                    MOMENT
+                </td>
+                <td class="item_name" width="260px" colspan="3">
+                    MOMENT
+                </td>
+                <td class="item_name" width="180px" rowspan="2">
+                    REMARKS
+                </td>
+            </tr>
+
+            <tr>
+                <td align="center" width="160px">
+                    INLET NOZZLE
+                </td>
+                <td align="center" width="160px">
+                    EXHAUST NOZZLE
+                </td>
+                <td align="center" width="160px">
+                    COMBIND
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    X
+                </td>
+                <td align="center">
+                    -192
+                </td>
+                <td align="center">
+                    -
+                </td>
+                <td align="center">
+                    -191.9
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Y
+                </td>
+                <td align="center">
+                    246
+                </td>
+                <td align="center">
+                    -
+                </td>
+                <td align="center">
+                    246.1
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    Z
+                </td>
+                <td align="center">
+                    -850
+                </td>
+                <td align="center">
+                    -
+                </td>
+                <td align="center">
+                    -850.2
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    COMB
+                </td>
+                <td align="center">
+                    906
+                </td>
+                <td align="center">
+                    -
+                </td>
+                <td align="center">
+                    905.6
+                </td>
+                <td align="center">
+                    MC
+                </td>
+            </tr>
+        </TAble>
+
+        <h4> (2) COMBIND EQUIVALENT DIAMETER</h4>
+        <h4> - EQUIVALENT DIAMETER</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="280px">
+                    EQUIV.DIAMETER
+                </td>
+                <td class="item_name" width="280px">
+                    AREA
+                </td>
+                <td class="item_name" width="280px">
+                    REMARKS
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    INLET
+                </td>
+                <td align="center">
+                    28.26 sq in
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    EXHAUST
+                </td>
+                <td align="center">
+                    452.16 sq in
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    TOTAL
+                </td>
+                <td align="center">
+                    480.42 sq in
+                </td>
+                <td align="center">
+                    -
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    EQUIV.DIA
+                </td>
+                <td align="center">
+                    24.74 sq in
+                </td>
+                <td align="center">
+                    Dc = (18+EQUIV.DIA)/3
+                </td>
+            </tr>
+
+        </TAble>
+        <h4> - COMBIND EQUIVALENT DIAMETER(Dc)</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="280px">
+                    COMB.EQUIV.DIAMETER
+                </td>
+                <td class="item_name" width="280px">
+                    CALCULATION
+                </td>
+                <td class="item_name" width="280px">
+                    REMARKS
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    Dc
+                </td>
+                <td align="center">
+                    14.2 in
+                </td>
+                <td align="center">
+                    Note 1
+                </td>
+            </tr>
+            <tr>
+        </TAble>
+        NOte 1) Correction need for larger then flange 9", Dc = (18+EQUIV.DIA)/3
+
+        <h4> - GUIDE LINE CHECK</h4>
+        <table>
+            <tr>
+                <td class="item_name" width="280px">
+                    FORMULA
+                </td>
+                <td class="item_name" colspan="4">
+                    2FC + MC ≤ 250 Dc
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item_name" rowspan="2">
+                    Limit 2
+                    Check
+                </td>
+                <td align="center" width="140">
+                    2Fc + MC
+                </td>
+                <td align="center" width="140">
+                    250 Dc
+                </td>
+                <td align="center" width="130" rowspan="2">
+                    RESULT
+                </td>
+                <td align="center" width="130" rowspan="2">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name">
+                    2,701
+                </td>
+                <td align="center">
+                    3,562
+                </td>
+
+            </tr>
+        </TAble>
+
+        <h4> 3) CHECK THE COMPONENTS OF THE COMBINED FORCE AND MOMENT ON THE TURBINE</h4>
+        <h4> (1) COMPONENTS OF THE COBINED FORCE</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="280px" rowspan="2">
+                    FORCE DIRECTION
+                </td>
+                <td class="item_name" colspan="2">
+                    COMPONENTS FORCE
+                </td>
+                <td class="item_name" width="140px">
+                    CINBUBED FORCE
+                </td>
+                <td class="item_name" idth="140px" rowspan="2">
+                    REMARKS
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name" width="135px">
+                    FORMULA
+                </td>
+                <td class="item_name" width="135px">
+                    lb
+                </td>
+                <td class="item_name" width="135px">
+                    lb
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    FX
+                </td>
+                <td align="center">
+                    50 x Dc
+                </td>
+                <td align="center">
+                    712
+                </td>
+                <td align="center">
+                    580
+                </td>
+                <td align="center" width="135px">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    FY
+                </td>
+                <td align="center">
+                    125 x Dc
+                </td>
+                <td align="center">
+                    1,781
+                </td>
+                <td align="center">
+                    -23
+                </td>
+                <td align="center">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    FZ
+                </td>
+                <td align="center">
+                    100 x Dc
+                </td>
+                <td align="center">
+                    1,425
+                </td>
+                <td align="center">
+                    51
+                </td>
+                <td align="center">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+        </TAble>
+
+        <h4> (2) COMPONENTS OF THE COBINED MOMENT</h4>
+
+        <table>
+            <tr>
+                <td class="item_name" width="280px" rowspan="2">
+                    FORCE DIRECTION
+                </td>
+                <td class="item_name" colspan="2">
+                    COMPONENTS FORCE
+                </td>
+                <td class="item_name" width="140px">
+                    CINBUBED FORCE
+                </td>
+                <td class="item_name" idth="140px" rowspan="2">
+                    REMARKS
+                </td>
+            </tr>
+            <tr>
+                <td class="item_name" width="135px">
+                    FORMULA
+                </td>
+                <td class="item_name" width="135px">
+                    lb-ft
+                </td>
+                <td class="item_name" width="135px">
+                    lb-ft
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    FX
+                </td>
+                <td align="center">
+                    250 x Dc
+                </td>
+                <td align="center">
+                    3,562
+                </td>
+                <td align="center">
+                    -192
+                </td>
+                <td align="center" width="135px">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    FY
+                </td>
+                <td align="center">
+                    125 x Dc
+                </td>
+                <td align="center">
+                    1,781
+                </td>
+                <td align="center">
+                    246
+                </td>
+                <td align="center">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    FZ
+                </td>
+                <td align="center">
+                    125 x Dc
+                </td>
+                <td align="center">
+                    1,781
+                </td>
+                <td align="center">
+                    -850
+                </td>
+                <td align="center">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+        </TAble>
+
+        <p>Magnitudes of actual force and moments calculated in part 2 of this problem are lower then the allowable
+            magnitudes calculated above.<br>
+            Therefore, the component of the combined force and moments on the turbine are within NEMA guidelines</p>
+
+        <H2>4. CHECK TOTAL FORCE ON THE TURBINE EXHAUST FLANGE</H2>
+        <P>FORCE ON THE EXHAUST FLANGE EXCEED NOT 15-1/2 TIMES THE NORMAL EXHAUST</P>
+
+        <table>
+            <tr>
+                <td class="item_name" width="280px">
+                    FORMULA
+                </td>
+                <td class="item_name" colspan="4">
+                    TOTAL FORCE < 15.5 x NORMAL EXHAUST AREA </td>
+            </tr>
+
+            <tr>
+                <td align="center" rowspan="2">
+                    Total Force Check
+                </td>
+                <td align="center" width="140px">
+                    TOTAL FORCE
+                </td>
+                <td align="center" width="140px">
+                    15.5 X NEA
+                </td>
+                <td align="center" width="135px" rowspan="2">
+                    RESULT
+                </td>
+                <td align="center" width="135px" rowspan="2">
+                    <font color="red">OK</font>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="item_name">
+                    -6504.86
+                </td>
+                <td align="center">
+                    7008.48
+                </td>
+            </tr>
+        </TAble>
+        <p>Note1) TOTAL FORCE : Exhaust Nozzle Y-Direction Force + Bellows Pressure Force</p>
+
+    </div>
+</body>
+
+</html>
