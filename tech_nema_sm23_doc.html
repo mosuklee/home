@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 80vh;
+            display: grid;
+            justify-content: center;
+            /* align-items: center; */
+            background: #f3f1f5;
+            /* border: 3px solid blue; */
+        }
+
+        #form_width {
+            width: 810px;
+            /* border: 3px solid blue; */
+        }
+
+        #formula {
+            width: 400px;
+            border-style: dashed;
+            text-align: center;
+            border: 1px solid gray;
+        }
+
+        #formula1 {
+            width: 360px;
+            border-style: dashed;
+            text-align: left;
+            border: 1px solid gray;
+            padding: 20px;
+        }
+
+        #formula3 {
+            width: 780px;
+            border-style: dashed;
+            text-align: left;
+            border: 1px solid gray;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form_width">
+        <h1>NEMA-SM23</h1>
+
+        <p id="formula3">
+            본 페이지는 NEMA-SM23중 배관의 허용응력 부분(8.4.6)을 발췌하여 정리한 자료이며, 실제 계산은 <a href="./sm23.html" target="pages">SM-23
+                Calculation</a>을
+            참고하시기 바랍니다.
+        </p>
+
+        <h3>8.4.6 Allowable Forces and Moments on Steam Turbines</h3>
+        <p>
+            The Force and moments action on steam turbines due to the steam inlet, extraction, and exhaust connections
+            should be limited by the following; <br>
+
+            ( 흡입구(inlet), 배출구(Extraction), 배기구(Exhaust)에 의하여  증기터빈에에서 작용하는 힘과 모우멘트는 다음과 같이 제한되어야 한다. ) <br><br>
+
+            <b>8.4.6.1 The total resultant force and total resultant moment imposed on the turbine at any connection
+                should
+                not exceed the values per Limit 1. </b> <br>
+
+            ( 어떠한 연결에서도 스팀터빈에 가해지는 힘의 합과 모우멘트의 합은 Limit 1을 초과해서는 안된다. )<br> <br>
+
+        <div id="formula">
+            <b> 3FR+MR ≤ 500 De     &nbsp;&nbsp;&nbsp;&nbsp;  (Limit 1) </b> <br>
+        </div>
+        <br>
+        where: <br>
+        FR = Resultant force (pounds) at the connection. This includes pressure force where unrestrained expansion
+        joint are used except on vertical down exhausts.
+        ( 구속되지 않은 Expansion Jount가 수직하향에 이용된 것을 제외한 압력에의한 힘은 포함됩니다. )<br>
+        Full vacuum load is allowd on vertical down
+        exhaust flanges. It is not included as part of the piping load from Figure 8-15.
+        ( 수직하향 방향의  Exahaust Flange는  Full Vacuum이 걸리는 것으로 적용하며, 그림 8-15의 Piping Load에는포함하지 않습니다. )<br><br>
+        <div id="formula">
+            <b> FR = √ (Fx² + Fy² + Fz²) </b>
+        </div>
+        <br>
+
+        MR = Resultant moment (foot-pounds) at the connection from Figure 8-15. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( 그림 8-15과 같이 연결부분에서의 모우먼트의 합(foot-pounss) )<br><br>
+
+        <div id="formula">
+            <b> MR = √ (Mx² + My² + Mz²) </b>
+        </div>
+        <br>
+
+        De = Normal pip size of the connection in inches up to eight inches in diameter. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( 직경이  8인치 까지는 Normal Pipe size. )<br><br>
+
+        <div id="formula">
+            <b> De = Normal Diameter </b>
+        </div>
+        <br>
+        For size grather than this, use a value of <br>
+        ( 이보다 클 경우는 다음 수식을 적용한다. ) <br>
+        <br>
+        <div id="formula">
+            <b> De = (16 + Nominal Diameter) / 3 </b>
+        </div>
+        <br>
+
+        </p>
+
+        <img src="./image/sm23_comp_direction.jpg" alt="ara_center" width="400" height="300">
+
+        <p>
+            8.6.2 The combined resultants of the forces and moments of the inlet, extraction, and exhaust commections.
+            resolved at the centrlines of exhaust connection should not exceed the values per Limit 2.
+            <br>
+
+            ( 흡입구(Inlet), 배출구(Extraction), 배기구(Exhaust)들의 힘과 모우먼트의 조합에 의한 결과는 배기구(extraction connection)에서 해소되어야 하며, 이는
+            Limit 2. 값을 초과해서는 안된다. )<br><br>
+
+        <div id="formula1">
+            <b> FCx = Fx_in - Fx_ex <br>
+                FCy = Fy_in - Fy_ex <br>
+                FCz = Fz_in - Fz_ex <br><br>
+                FC = √(FCx² + FCy² + FCz²) <br>
+            </b>
+        </div>
+        <br>
+
+        <div id="formula1">
+            <b> MCx = Mx_in - Mx_ex <br>
+                MCy = My_in - My_ex <br>
+                MCz = Mz_in - Mz_ex <br><br>
+                MC = √(MCx² + MCy² + MCz²) <br>
+            </b>
+        </div>
+
+        <br>
+        <b>a. These resultant should not exceed: <br></b>
+        &nbsp;&nbsp;&nbsp;( 이들은 다음 계산된 결과를 초과해서는 안된다. )<br><br>
+
+        <div id="formula">
+            <b> 2Fc + Mc ≤ 250 Dc     &nbsp;&nbsp;&nbsp;&nbsp;  (Limit 2) </b> <br>
+        </div>
+
+        <br>
+        where: <br>
+        Fc = Combined resultant of inlet, extraction, and exhaust forces, in pounds.
+        ( 흡입구, 배출구, 배기구에 걸리는 힘의 조합 결과 (lb) )<br>
+
+        Mc = Combined resultant of inlet, extraction, and exhaust moments, and moments resulting from force,
+        pound-feet.( 흡입구, 배출구, 배기구에 걸리는 모우먼트의 조합 결과 (lb-ft) )<br>
+        Dc = Diameter (in inches) of a circulator opening equal to the total areas of the inlet, extraction, and
+        exhaust openings up to a value of 9 inches in diameter.
+        ( 등가직경의 크기가 9인치까지는 흡입구, 배출구, 배기구의 등가직경을 적용 ) <br>
+        <br>
+        <div id="formula">
+            <b> Dc = Equivalent Diameter </b>
+        </div>
+        <br>
+
+        For values beyond this, use a value of Dc equal to : (
+        등가직경의 크기가 9인치보다 클경우 다음 수식을 이용 보정한다. )<br>
+        <br>
+        <div id="formula">
+            <b> Dc = (18+Equivalent diameter) / 3 </b>
+        </div>
+        <br>
+
+        b. The components (Figure 8-15) of these resultants should not exceed:
+        ( 그림 8-15의 계산결과에 따른 힘과 모우먼트들은 다음 조건을 넘어서는 안된다. )<br>
+        <br>
+        <div id="formula">
+            <b>
+                <table>
+                    <tr>
+                        <td width="200px">Fx =   50 Dc</td>
+                        <td width="200px">Mx = 250 Dc</td>
+                    </tr>
+                    <tr>
+                        <td>Fy = 125 Dc</td>
+                        <td>My = 125 Dc</td>
+                    </tr>
+                    <tr>
+                        <td>Fz = 100 Dc</td>
+                        <td>Mz = 125 Dc</td>
+                    </tr>
+                </table>
+            </b>
+        </div>
+        <br>
+
+        The components are as follows:
+        ( 구성 요소는 다음과 같다. )<br><br>
+
+        Fx = Horizontal components of Fc Parallel to the turbine shaft. (터빈 Shaft에 평행한 Fc의 수평 구성요소 )<br>
+        Fy = Vertical component of Fc. ( Fc의 수직 구성요소 ) <br>
+        Fz = Horizontal component of Fc at right angles to the turbine shaft. ( 터빈 Shaft에 직각인 Fc의 수평성분 ) <br>
+        <br>
+
+        Mx = Component of Mc around the horizontal axis paralled to the turbine shaft. ( 터빈 축과 평행한 수평축 주위의 Mc 성분 ) <br>
+        My = Component of Mc around the vertical axis. ( 수직축을 중심으로 한 Mc의 성분 )<br>
+        Mz = Component of Mc around the horizontal axis at right angles to the turbine shaft. ( 터빈 Shaft에 직각인 수평축 주위의 Mc
+        성분 )<br>      
+
+        <br>
+        Allowable forces and moments for turbines with various inlet and exhaust sizes are shown on table 9-3
+        <br>
+        ( 다양한 입구 및 배기크기의 터빈에 대한 허용 가능한 힘과 모우멘트는 표 9-3에 나와 있습니다. )<br>
+        <br>
+        8.4.6.3 For installation of condensing turbines with a vertical down exhaust and unrestrained expansion
+        joint at
+        the exhaust, an additional amount of force caused by pressure loading is allowd. (This additional force
+        is
+        perpendicular to the face of the ehaust flange and central) <br>
+
+        ( 수직하양 배기 및 배기부에 구속되지 않는 팽창조인트가 있는 Condensing turbine 설치의 경우 압력부하로 인한 추가 힘이 허용됩니다.(이 추가힘은 배기 플랜지의
+        면과 중앙에
+        수직입니다.) ) <br><br>
+        For this type of application, calulate the vertical force component on the exhaust connection excluding
+        pressure
+        loading. Use this number for vertical force component on the exhaust connection in making calculations
+        outlined
+        in the 8.4.6.1 and 8.4.6.2 <br>
+        ( 이러한 유형의 적용에서는 합력부하를 제외하고 배기 연결부의 수직력 성분만을 계산합니다. <br>
+
+        8.4.6.1 및 8.4.6.2에 설명된 계산을 할 때 배기 연결부의 수직력 성분에 이 숫자를 사용하십시오. )<br>
+        <br>
+        The force caused by the pressure loading fon the exhaust is allowed in addition to the values
+        established by the
+        foregoing up to maximum value of vertical force in pounds on the exhaust connection (including pressure
+        loading)
+        of 15.5 times the exhaust area in square inches.<br>
+        ( 배기에 대한 압력 부하로 인해 발생하는 힘은 배기 연결(압력 부하 포함)에 대한 수직 힘(압력 부하 포함)의 최대값에 의해 설정된 값 외에 배기 면적(제곱인치)의 15.5배까지
+        허용됩니다. )<br><br>
+
+        <b>
+            8.4.6.4 Thest values of allowable forces and moments pertain to turbine structure only. They do not
+            pertain to
+            the forces and moments in the connection piping, flange, and flange bolting, which should not exceed the
+            allowable stress as defined by applicable code and regulatory bodies. <br>
+        </b>
+        ( 허용 가능한 힘과 모멘트의 가장 큰 값은 터빈 구조에만 해당됩니다. 그것들은 연결 배관, 플랜지 및 플랜지 볼트의 힘과 모멘트와 관련이 없으며 해당 코드 및 규제 기관에서
+        정의한 허용응력을 초과해서는 안 됩니다. )<br><br>
+
+
+
+        </p>
+
+
+    </div>
+
+</body>
+
+</html>

@@ -33,1166 +33,1269 @@
 </head>
 
 <body>
-    <div>
-        <h1>NEMA SM-23 GUIDE LINE CHECK</h1>
-        <p> NEMA SM-23 GUIDE LINE은 스팀터빈의 노즐에서 허용하는 FORCE 및 MOMENT를 CHECK하기 위한 GUIDE LINE 입니다.</p>
-        <H2>1. Result of Stress Analysis</H2>
-        <h2>1) Force and Moment</h2>
-        <h3>(1) Pipe and Turbine Direction Conversion</h3>
-        <p> 응력해석 결과후 Pipe Line의 Direction은 Turbine의 Direction과 다를 수 있으며, 일반적으로 아래의 기준을 따른다
-            터빈의 Vendor Printer의 Turbine의 Direction 기준을 면밀히 살펴보고 Conversion을 하여야 한다.
-        </p>
-        <img src="./image/tbn_direction.jpg" alt="ara_ship" width="400" height="600">
+    <h1> NEMA SM-23 GUIDE LINE CHECK</h1>
+    <h3> 1. Result of Stress Analysis</h3>
+    <h4> 1) TURBINE FORCE AND MOMENT DIRECTION </h4>
 
-        <h4>INLET NOZZLE </h4>
+    <span id="radio_button">
+        <div id="direction">
+            <img src="./image/sm23_comp_direction.jpg" alt="ara_center" width="400" height="300">
+        </div>
+        <div id="turbine_kind">
+            <br>
+            <h4>Select Turbine Type </h4>
+        </div>
+        <input type='radio' name='turbine_kind' value='condensing' onclick='turbine_kind(event)' />CONDENSING
+        TURBINE
+        <input type='radio' name='turbine_kind' value='non_condensing' onclick='turbine_kind(event)' />NONCONDENSING
+        TURBINE
+        <!-- <div id='result'></div> -->
+    </span>
+    <br>
+    <h4> 2) TURBINE FORCE AND MOMENT INPUT </h4>
 
-        <table>
-            <tr>
-                <td class="item_name" width="200px">
-                    PIPE DIRECTION
-                </td>
-                <td width="200px">
-                    FORCE(kgf)
-                </td>
-                <td width="200px">
-                    MOMENT(kgf.cm)
-                </td>
-                <td class="item_name" width="200px">
-                    TURBINE DIRECTION
-                </td>
-            <tr>
-                <td class="item_name">
-                    X
-                </td>
-                <td>
-                    23
-                </td>
-                <td>
-                    -11,754
-                </td>
-                <td>
-                    Z
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Y
-                </td>
-                <td>
-                    -75
-                </td>
-                <td>
-                    3402
-                </td>
-                <td>
-                    Y
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Z
-                </td>
-                <td>
-                    -263
-                </td>
-                <td>
-                    2,653
-                </td>
-                <td>
-                    -X
-                </td>
-            </tr>
-            </tr>
-        </table>
-        <h4>OUTLET STEAM NOZZLE</h4>
-        <table>
-            <tr>
-                <td class="item_name" width="200px">
-                    PIPE DIRECTION
-                </td>
-                <td width="200px" align="center">
-                    FORCE(kgf)
-                </td>
-                <td width="200px" align="center">
-                    MOMENT(kgf.cm)
-                </td>
-                <td class="item_name" width="200px" align="center">
-                    TURBINE DIRECTION
-                </td>
-            <tr>
-                <td class="item_name">
-                    X
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    Z
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Y
-                </td>
-                <td align="center">
-                    64
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    Y
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Z
-                </td>
-                <td>
-                    0
-                </td>
-                <td>
-                    0
-                </td>
-                <td>
-                    -X
-                </td>
-            </tr>
-            </tr>
-        </table>
-    </div>
+    <!-- Inlet Nozzle 입력 테이블 -->
+    <h4> (1) Inlet Steam Nozzle</h4>
+    <p>Enter the force and moment results calculated by the pipe stress analysis in the form below.</p>
+    <table>
+        <tr>
+            <td align="center"> DIRECTION </td>
+            <td align="center"> FORCE(kgf) </td>
+            <td align="center"> MOMENT(kgf.cm) </td>
+            <td align="center"> REMARKS </td>
+        </tr>
 
-    <h3>(2) Conversion 후의 Trubine FORCE and MOMENT</h3>
+        <td align="center"> X </td>
+        <td align="center"> <input type="text" id="x_inlet_force" input value="18.14"> </td>
+        <td align="center"> <input type="text" id="x_inlet_moment" input value="2765.12"> </td>
+        <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center"> Y </td>
+            <td align="center"> <input type="text" id="y_inlet_force" input value="-45.36"> </td>
+            <td align="center"> <input type="text" id="y_inlet_moment" input value="2073.8"> </td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center"> Z </td>
+            <td align="center"> <input type="text" id="z_inlet_force" input value="-31.75"> </td>
+            <td align="center"> <input type="text" id="z_inlet_moment" input value="-1659.08"> </td>
+            <td align="center"> </td>
+
+        </tr>
+        <tr>
+            <td align="center"> COMB </td>
+            <td id="comb_inlet_force_kg_1" align="center">
+            </td>
+            <td id="comb_inlet_moment_kg_1" align="center">
+            </td>
+            <td>
+
+            </td>
+
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <!-- Exhaust Nozzle 입력 테이블 -->
+    <h4> (2) Exhaust Nozzle</h4>
+
+    <table>
+        <tr>
+            <td align="center"> DIRECTION </td>
+            <td align="center"> FORCE(kgf) </td>
+            <td align="center"> MOMENT(kgf.cm) </td>
+            <td align="center"> REMARKS </td>
+        </tr>
+        <tr>
+            <td align="center"> X </td>
+            <td align="center"> <input type="text" id="x_exhaust_force" input value="-49.9"> </td>
+            <td align="center"> <input type="text" id="x_exhaust_moment" input value="6912.83"> </td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center"> Y </td>
+            <td align="center"> <input type="text" id="y_exhaust_force" input value="-113.4"> </td>
+            <td align="center"> <input type="text" id="y_exhaust_moment" input value="4147.7"> </td>
+            <td align="center">Note1) </td>
+        </tr>
+        <tr>
+            <td align="center"> Z </td>
+            <td align="center"> <input type="text" id="z_exhaust_force" input value="81.64"> </td>
+            <td align="center"> <input type="text" id="z_exhaust_moment" input value="4839.5"> </td>
+            <td align="center"> </td>
+
+        </tr>
+        <tr>
+            <td align="center"> COMB </td>
+            <td id="comb_exhaust_force_kg_1" align="center"> </td>
+            <td id="comb_exhaust_moment_kg_1" align="center"> </td>
+            <td> </td>
+        </tr>
+    </table>
+
+    <!-- Note1 추가 -->
+    <p>Note1) <br>
+        If the pipe with bellows is connected to the exhaust pipe of the condensing turbine the addtional force must be
+        added in the -Y direction as follows. <br>
+        [Example] <br>
+        Bellows area for the expansion joint(obtained from expansion joint manufacturer) is 1030 squre inches. <br>
+        Pressure force developed by full vacuum in the expansion joint is:<br>
+        (14.7 lb/sq.in)(1,030 sq.in) = 15,141 lb <br>
+        This is additional Fore in the -Y direction <br> </p>
+    <!-- Note1 END -->
+
+    <!-- 계산 Button 추가 -->
+    <br>
+    <button onclick="calculate()"> FORCE AND MOMENT INPUT </button>
+
+    <h3>(2) Trubine FORCE and MOMENT input Result</h3>
+
+    <!-- 입력데이터 단위변환 후 양식에 입력하기 -->
+
+    <!-- Inlet Nozzle 양식 -->
     <h4>INLET NOZZLE</h4>
-    <div>
-        <table>
-            <tr>
-                <td class="item_name" width="200px" rowspan="2">
-                    PIPE DIRECTION
-                </td>
-                <td class="item_name" width="200px" colspan="2">
-                    FORCE
-                </td>
-                <td class="item_name" width="200px" colspan="2">
-                    MOMENT
-                </td>
-            </tr>
-            <tr>
+    <table>
+        <tr>
+            <td class="item_name" width="200px" rowspan="2">
+                PIPE DIRECTION
+            </td>
+            <td class="item_name" width="200px" colspan="2">
+                FORCE
+            </td>
+            <td class="item_name" width="200px" colspan="2">
+                MOMENT
+            </td>
+        </tr>
+        <tr>
+            <td width="150px" align="center">
+                (kgf)
+            </td>
+            <td width="150px" align="center">
+                (lb)
+            </td>
+            <td width="150px" align="center">
+                (kgf.cm)
+            </td>
+            <td width="150px" align="center">
+                (lb.ft)
+            </td>
+        </tr>
 
+        <tr>
+            <td class="item_name">
+                X
+            </td>
+            <td id="x_inlet_force_kg" align="center">
+                -
+            </td>
+            <td id="x_inlet_force_en" align="center">
+                -
+            </td>
+            <td id="x_inlet_moment_kg" align="center">
+                -
+            </td>
+            <td id="x_inlet_moment_en" align="center">
+                -
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                Y
+            </td>
+            <td id="y_inlet_force_kg" align="center">
+                -
+            </td>
+            <td id="y_inlet_force_en" align="center">
+                -
+            </td>
+            <td id="y_inlet_moment_kg" align="center">
+                -
+            </td>
+            <td id="y_inlet_moment_en" align="center">
+                -
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                Z
+            </td>
+            <td id="z_inlet_force_kg" align="center">
+                -
+            </td>
+            <td id="z_inlet_force_en" align="center">
+                -
+            </td>
+            <td id="z_inlet_moment_kg" align="center">
+                -
+            </td>
+            <td id="z_inlet_moment_en" align="center">
+                -
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                COMB
+            </td>
+            <td id="comb_inlet_force_kg" align="center">
+                -
+            </td>
+            <td id="comb_inlet_force_en" align="center">
+                -
+            </td>
+            <td id="comb_inlet_moment_kg" align="center">
+                -
+            </td>
+            <td id="comb_inlet_moment_en" align="center">
+                -
+            </td>
+        </tr>
+    </table>
 
-                <td width="150px" align="center">
-                    (kgf)
-                </td>
-                <td width="150px" align="center">
-                    (lb)
-                </td>
-                <td width="150px" align="center">
-                    (kgf.cm)
-                </td>
-                <td width="150px" align="center">
-                    (lb.ft)
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    X
-                </td>
-                <td align="center">
-                    263
-                </td>
-                <td align="center">
-                    580
-                </td>
-                <td align="center">
-                    -2,653
-                </td>
-                <td align="center">
-                    -192
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Y
-                </td>
-                <td align="center">
-                    -75
-                </td>
-                <td align="center">
-                    -165
-                </td>
-                <td align="center">
-                    3,402
-                </td>
-                <td align="center">
-                    246
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Z
-                </td>
-                <td align="center">
-                    23
-                </td>
-                <td align="center">
-                    51
-                </td>
-                <td align="center">
-                    -11,754
-                </td>
-                <td align="center">
-                    -850
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    COMB
-                </td>
-                <td align="center">
-                    274
-                </td>
-                <td align="center">
-                    605
-                </td>
-                <td align="center">
-                    12,521
-                </td>
-                <td align="center">
-                    906
-                </td>
-            </tr>
-        </table>
-        <h4>OUTLET NOZZLE</h4>
-        <table>
-            <tr>
-                <td class="item_name" width="200px" rowspan="2">
-                    PIPE DIRECTION
-                </td>
-                <td class="item_name" width="200px" colspan="2">
-                    FORCE
-                </td>
-                <td class="item_name" width="200px" colspan="2">
-                    MOMENT
-                </td>
-            </tr>
-            <tr>
+    <!-- Exhaust Nozzle 양식 -->
+    <h4>EXHAUST NOZZLE</h4>
+    <table>
+        <tr>
+            <td class="item_name" width="200px" rowspan="2">
+                PIPE DIRECTION
+            </td>
+            <td class="item_name" width="200px" colspan="2">
+                FORCE
+            </td>
+            <td class="item_name" width="200px" colspan="2">
+                MOMENT
+            </td>
+        </tr>
+        <tr>
+            <td width="150px" align="center">
+                (kgf)
+            </td>
+            <td width="150px" align="center">
+                (lb)
+            </td>
+            <td width="150px" align="center">
+                (kgf.cm)
+            </td>
+            <td width="150px" align="center">
+                (lb.ft)
+            </td>
+        </tr>
 
-                <td width="150px" align="center">
-                    (kgf)
-                </td>
-                <td width="150px" align="center">
-                    (lb)
-                </td>
-                <td width="150px" align="center">
-                    (kgf.cm)
-                </td>
-                <td width="150px" align="center">
-                    (lb.ft)
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    X
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Y
-                </td>
-                <td align="center">
-                    64
-                </td>
-                <td align="center">
-                    141.9
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Z
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    COMB
-                </td>
-                <td align="center">
-                    64
-                </td>
-                <td align="center">
-                    141.9
-                </td>
-                <td align="center">
-                    0
-                </td>
-                <td align="center">
-                    0
-                </td>
-            </tr>
-        </table>
-        <P>Note1) Y-Direction Force is calculatd from bellows Axial spring Force. <br>
-            Y-Direction Force = Spring force(Axial Direction) x Thermal Expansion displacement <br>
-            = 339.5 N/mm x 1.86 mm <br>
-            = 631.4 N <br>
-            = 64.4 kg/f <br>
-        </P>
+        <tr>
+            <td class="item_name">
+                X
+            </td>
+            <td id="x_exhaust_force_kg" align="center">
+                -
+            </td>
+            <td id="x_exhaust_force_en" align="center">
+                -
+            </td>
+            <td id="x_exhaust_moment_kg" align="center">
+                -
+            </td>
+            <td id="x_exhaust_moment_en" align="center">
+                -
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                Y
+            </td>
+            <td id="y_exhaust_force_kg" align="center">
+                -
+            </td>
+            <td id="y_exhaust_force_en" align="center">
+                -
+            </td>
+            <td id="y_exhaust_moment_kg" align="center">
+                -
+            </td>
+            <td id="y_exhaust_moment_en" align="center">
+                -
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                Z
+            </td>
+            <td id="z_exhaust_force_kg" align="center">
+                -
+            </td>
+            <td id="z_exhaust_force_en" align="center">
+                -
+            </td>
+            <td id="z_exhaust_moment_kg" align="center">
+                -
+            </td>
+            <td id="z_exhaust_moment_en" align="center">
+                -
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                COMB
+            </td>
+            <td id="comb_exhaust_force_kg" align="center">
+                -
+            </td>
+            <td id="comb_exhaust_force_en" align="center">
+                -
+            </td>
+            <td id="comb_exhaust_moment_kg" align="center">
+                -
+            </td>
+            <td id="comb_exhaust_moment_en" align="center">
+                -
+            </td>
+        </tr>
+    </table>
 
+    <!-- 2. Connection Data -->
+    <h3> 2. CONNECTION DATA</h3>
 
-        <H2>2. Connection Data</H2>
-        <h3> 1) NOZZLE DATA</h3>
+    <!-- Inlet Nozzle 입력 테이블 -->
+    <h4> 1) NOZZLE DATA</h4>
+    <table>
+        <tr>
+            <td align="center" rowspan="2"> NOZZLE DATA </td>
+            <td align="center" colspan="2"> INLET NOZZLE </td>
+            <td align="center" colspan="2"> EXHAUST NOZZLE </td>
+        </tr>
+        <tr>
+            <td align="center"> MM UNIT </td>
+            <td align="center"> INCH UNIT </td>
+            <td align="center"> MM UNIT </td>
+            <td align="center"> INCH UNIT </td>
+        </tr>
+        <tr>
+            <td align="center"> ND </td>
+            <td align="center" id="nd_in_nozzle_mm"> - </td>
+            <td align="center"><input type="text" id="nd_in_nozzle_inch" input value="4"></td>
+            <td align="center" id="nd_ex_nozzle_mm"> - </td>
+            <td align="center"><input type="text" id="nd_ex_nozzle_inch" input value="8"></td>
+        </tr>
+        <tr>
+            <td align="center"> AREA </td>
+            <td align="center" id="area_in_nozzle_mm"> - </td>
+            <td align="center" id="area_in_nozzle_inch"> - </td>
+            <td align="center" id="area_ex_nozzle_mm"> - </td>
+            <td align="center" id="area_ex_nozzle_inch">- </td>
+        </tr>
 
-        <table>
-            <tr>
-                <td class="item_name" width="200px" rowspan="2">
-                    NOZZLE DATA
-                </td>
-                <td class="item_name" width="200px" colspan="2">
-                    INLET NOZZLE
-                </td>
-                <td class="item_name" width="200px" colspan="2">
-                    EXHAUST NOZZLE
-                </td>
-            </tr>
+    </table>
 
-            <tr>
-                <td width="150px" align="center">
-                    MM UNIT
-                </td>
-                <td width="150px" align="center">
-                    INCH UNIT
-                </td>
-                <td width="150px" align="center">
-                    MM UNIT
-                </td>
-                <td width="150px" align="center">
-                    INCH UNIT
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    DN
-                </td>
-                <td align="center">
-                    150
-                </td>
-                <td align="center">
-                    6
-                </td>
-                <td align="center">
-                    600
-                </td>
-                <td align="center">
-                    24
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    AREA
-                </td>
-                <td align="center">
-                    17662.5
-                </td>
-                <td align="center">
-                    28.3
-                </td>
-                <td align="center">
-                    282600.0
-                </td>
-                <td align="center">
-                    452.2
-                </td>
-            </tr>
-        </TAble>
-        <h3> 2) EXPANSION JOINT DATA</h3>
-        <h3> (1) PRESSURE FORCE FROM FULL VACUUM IN THE EXPANSION JOINT</h3>
+    <!-- 계산 Button 추가 -->
+    <br>
+    <button onclick="calculate_1()"> NOZZLE DATA INPUT </button>
 
-        <table>
-            <tr>
-                <td class="item_name" width="200px">
-                    FORMULA
-                </td>
-                <td class="item_name" width="650px" colspan="2">
-                    14.7 (lb/sq inch) x bellows area (sq inch)
-                </td>
-            </tr>
+    <!-- Expansion Joint Data -->
+    <h4> 2) EXPANSION JOINT DATA</h4>
+    <h4> (1) PRESSURE RORCE FROM FULL VACUUM IN THE EXPANSION JOINT</h4>
+    <table>
+        <tr>
+            <td align="center"> FORMULA </td>
+            <td align="center" colspan="2"> 14.7 (lb/sq inch) x bellows area(sq inch) </td>
+        </tr>
+        <tr>
+            <td align="center" rowspan="2"> CALCULATION </td>
+            <td align="center"> FORCE </td>
+            <td align="center" id="calc_bellows_force"> - </td>
+        </tr>
+        <tr>
+            <td align="center"> BELLOWS AREA </td>
+            <td align="center" id="calc_bellows_area"> - </td>
+        </tr>
+    </table>
 
-            <tr>
-                <td width="150px" align="center" rowspan="2">
-                    CALCULATION
-                </td>
-                <td width="150px" align="center">
-                    FORCE
-                </td>
-                <td width="150px" align="center">
-                    6646.8 lb
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    BELLOWS AREA
-                </td>
-                <td align="center">
-                    452.2 sq inch
-                </td>
-            </tr>
-        </TAble>
-        <H2>3. NEMA GUIDE CHECK</H2>
-        <h3> 1) CHECK RESULTANT FORCE AND MOMENTS ON INDIVISUAL FORCE AGAINST LIMIT 1</h3>
-        <h4> (1) INLET FLANGE</h4>
-        <h4> - CHECK DATA CALCULATION</h4>
+    <!-- NEMA GUIDE CHECK -->
+    <h3> 3. NEMA GUIDE CHECK</h3>
+    <h4> 1) CHECK RESULTANT FORCE AND MOMENTS ON INDIVISUAL FORCE <br> &nbsp;&nbsp; AGAINST LIMIT 1</h4>
+    <h4> (1) INLET FLANGE</h4>
+    <h4> - CHECK DATA Calculation </h4>
 
-        <table>
-            <tr>
-                <td class="item_name" width="300px">
-                    INLET FLANGE
-                </td>
-                <td class="item_name" width="270px">
-                    CALCULATION
-                </td>
-                <td class="item_name" width="270px">
-                    REMARKS
-                </td>
-            </tr>
+    <table>
+        <tr>
+            <td align="center"> DATA CHECK </td>
+            <td align="center"> CALCULATION </td>
+            <td align="center"> REMARKS </td>
+        </tr>
+        <tr>
+            <td align="center"> FR </td>
+            <td align="center" id="in_check_calc_fr"> - </td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center"> MR </td>
+            <td align="center" id="in_check_calc_mr"> - </td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center"> De </td>
+            <td align="center" id="in_check_calc_de"> -</td>
+            <td align="center"> Note 1</td>
+        </tr>
+    </table>
+    <p id="in_check_note"> </p>
 
-            <tr>
-                <td align="center">
-                    FR
-                </td>
-                <td align="center">
-                    605 lb
-                </td>
-                <td align="center">
+    <h4> - GUIDE LINE CHECK </h4>
 
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    MR
-                </td>
-                <td align="center">
-                    906 lb.ft
-                </td>
-                <td align="center">
+    <table>
+        <tr>
+            <td align="center"> FORMULA </td>
+            <td align="center" colspan="4"> 3FR + MR ≤ 500 De</td>
+        </tr>
+        <tr>
+            <td align="center" rowspan="2"> Limit1 CHECK </td>
+            <td align="center">3FR + MR </td>
+            <td align="center">500 x De </td>
+            <td align="center" rowspan="2">RESULT </td>
+            <td align="center" rowspan="2" id="in_guide_check_3"> - </td>
+        </tr>
+        <tr>
+            <td align="center" id="in_guide_check_1">426</td>
+            <td align="center" id="in_guide_check_2">6667</td>
+        </tr>
+    </table>
+    <p id="in_check_note"> </p>
 
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    De
-                </td>
-                <td align="center">
-                    6 in
-                </td>
-                <td align="center">
-                    Note 1
-                </td>
-            </tr>
-        </TAble>
-        <p>Note1) No correction need for flange 8" and smaller</p>
+    <!-- Exhaust Flange -->
 
-        <h4> - GUIDE LINE CHECK</h4>
+    <h4> (2) EXHAUST FLANGE</h4>
+    <h4> - CHECK DATA Calculation </h4>
 
-        <table>
-            <tr>
-                <td class="item_name" width="300px">
-                    FORMULA
-                </td>
-                <td class="item_name" width="550px" colspan="4">
-                    3FR + MR ≤ 500 De
-                </td>
-            </tr>
+    <table>
+        <tr>
+            <td align="center"> DATA CHECK </td>
+            <td align="center"> CALCULATION </td>
+            <td align="center"> REMARKS </td>
+        </tr>
+        <tr>
+            <td align="center"> FR </td>
+            <td align="center" id="exhaust_check_calc_fr"> - </td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center"> MR </td>
+            <td align="center" id="exhaust_check_calc_mr"> - </td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center"> De </td>
+            <td align="center" id="exhaust_check_calc_de"> -</td>
+            <td align="center"> Note 1</td>
+        </tr>
+    </table>
+    <p id="exhaust_check_note"> </p>
 
-            <tr>
-                <td align="center" rowspan="2">
-                    LIMIT 1 CHECK
-                </td>
-                <td align="center">
-                    3FR + MR
-                </td>
-                <td align="center">
-                    500 x De
-                </td>
-                <td align="center" rowspan="2">
-                    RESULT
-                </td>
-                <td align="center" rowspan="2">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    2,721
-                </td>
-                <td align="center">
-                    3000
-                </td>
+    <h4> - GUIDE LINE CHECK </h4>
 
-            </tr>
-        </TAble>
+    <table>
+        <tr>
+            <td align="center"> FORMULA </td>
+            <td align="center" colspan="4"> 3FR + MR ≤ 500 De</td>
+        </tr>
+        <tr>
+            <td align="center" rowspan="2"> Limit1 CHECK </td>
+            <td align="center">3FR + MR </td>
+            <td align="center">500 x De </td>
+            <td align="center" rowspan="2">RESULT </td>
+            <td align="center" rowspan="2" id="exhaust_guide_check_3"> - </td>
+        </tr>
+        <tr>
+            <td align="center" id="exhaust_guide_check_1">426</td>
+            <td align="center" id="exhaust_guide_check_2">6667</td>
+        </tr>
+    </table>
+    <p id="exhaust_check_note"> </p>
 
-        <h4> (2) EXHAUST FLANGE</h4>
-        <h4> - CHECK DATA CALCULATION</h4>
+    <h4> 2) CHECK COMBIND RESULTANT FORCE AND MOMENT ON THE TURBINE AGAINST <br> &nbsp;&nbsp; LIMIT 2</h4>
+    <h4> (1) SUM OF NOZZLE FORCE AND MOMENT</h4>
+    <h4> - FORCE </h4>
 
-        <table>
-            <tr>
-                <td class="item_name" width="300px">
-                    EXHAUST FLANGE
-                </td>
-                <td class="item_name" width="270px">
-                    CALCULATION
-                </td>
-                <td class="item_name" width="270px">
-                    REMARKS
-                </td>
-            </tr>
+    <table>
+        <tr>
+            <td align="center" rowspan="2"> </td>
+            <td align="center" colspan="3">FORCE</td>
+            <td align="center" rowspan="2">REMARKS</td>
+        </tr>
+        <tr>
+            <td align="center">INLET NOZZLE</td>
+            <td align="center">EXHAUST NOZZLE</td>
+            <td align="center">COMBIND</td>
+        </tr>
+        <tr>
+            <td align="center">X</td>
+            <td align="center" id="sum_force_inlet_x">580</td>
+            <td align="center" id="sum_force_exhaust_x">-</td>
+            <td align="center" id="sum_force_comb_x">579.8</td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center">Y</td>
+            <td align="center" id="sum_force_inlet_y">-165</td>
+            <td align="center" id="sum_force_exhaust_y">142</td>
+            <td align="center" id="sum_force_comb_y">-23.5</td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center">Z</td>
+            <td align="center" id="sum_force_inlet_z">51</td>
+            <td align="center" id="sum_force_exhaust_z">-</td>
+            <td align="center" id="sum_force_comb_z">50.7</td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center">COMB</td>
+            <td align="center" id="sum_force_inlet_comb">605</td>
+            <td align="center" id="sum_force_exhaust_comb">142</td>
+            <td align="center" id="sum_force_comb_comb">582.5</td>
+            <td align="center">FC</td>
+        </tr>
+    </table>
 
-            <tr>
-                <td align="center">
-                    FR
-                </td>
-                <td align="center">
-                    142 lb
-                </td>
-                <td align="center">
+    <!-- Moment -->
+    <h4> - MOMENT </h4>
 
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    MR
-                </td>
-                <td align="center">
-                    0 lb.ft
-                </td>
-                <td align="center">
+    <table>
+        <tr>
+            <td align="center" rowspan="2"> </td>
+            <td align="center" colspan="3">FORCE</td>
+            <td align="center" rowspan="2">REMARKS</td>
+        </tr>
+        <tr>
+            <td align="center">INLET NOZZLE</td>
+            <td align="center">EXHAUST NOZZLE</td>
+            <td align="center">COMBIND</td>
+        </tr>
+        <tr>
+            <td align="center">X</td>
+            <td align="center" id="sum_moment_inlet_x">192</td>
+            <td align="center" id="sum_moment_exhaust_x">-</td>
+            <td align="center" id="sum_moment_comb_x">-191.9</td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center">Y</td>
+            <td align="center" id="sum_moment_inlet_y">246</td>
+            <td align="center" id="sum_moment_exhaust_y">-</td>
+            <td align="center" id="sum_moment_comb_y">246.1</td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center">Z</td>
+            <td align="center" id="sum_moment_inlet_z">-850</td>
+            <td align="center" id="sum_moment_exhaust_z">-</td>
+            <td align="center" id="sum_moment_comb_z">-850.2</td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center">COMB</td>
+            <td align="center" id="sum_moment_inlet_comb">906</td>
+            <td align="center" id="sum_moment_exhaust_comb">-</td>
+            <td align="center" id="sum_moment_comb_comb">906</td>
+            <td align="center">MC</td>
+        </tr>
+    </table>
 
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    De
-                </td>
-                <td align="center">
-                    13.33 in
-                </td>
-                <td align="center">
-                    Note 1
-                </td>
-            </tr>
-        </TAble>
-        <p>Note1) No correction need for flange 8" and , De = (16+Nd)/3</p>
+    <h4> (2) COMBIND EQUIPMENT DIAMETER</h4>
+    <h4> - EQUIPMENT DIAMETER </h4>
 
-        <h4> - GUIDE LINE CHECK</h4>
+    <table>
+        <tr>
+            <td align="center"> </td>
+            <td align="center">AREA</td>
+            <td align="center">REMARKS</td>
+        </tr>
+        <tr>
+            <td align="center">INLET</td>
+            <td align="center" id="eqdia_area_inlet">28.26 sq in</td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center">EXHAUST</td>
+            <td align="center" id="eqdia_area_exhaust">452.16 sq in</td>
+            <td align="center"> </td>
+        </tr>
+        <tr>
+            <td align="center">TOTAL</td>
+            <td align="center" id="eqdia_area_total">480.42 sq in</td>
+            <td align=" center"> </td>
+        </tr>
+        <tr>
+            <td align="center">EQUIV.DIA</td>
+            <td align="center" id="eqdia_area_eqdia">24.74 sq in</td>
+            <td align="center"> </td>
+        </tr>
+    </table>
 
-        <table>
-            <tr>
-                <td class="item_name" width="300px">
-                    FORMULA
-                </td>
-                <td class="item_name" width="550px" colspan="4">
-                    3FR + MR ≤ 500 De
-                </td>
-            </tr>
+    <h4> - COMBIND EQUIVALENT DIAMETER(Dc) </h4>
 
-            <tr>
-                <td align="center" rowspan="2">
-                    LIMIT 1 CHECK
-                </td>
-                <td align="center">
-                    3FR + MR
-                </td>
-                <td align="center">
-                    500 x De
-                </td>
-                <td align="center" rowspan="2">
-                    RESULT
-                </td>
-                <td align="center" rowspan="2">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    426
-                </td>
-                <td align="center">
-                    6667
-                </td>
+    <table>
+        <tr>
+            <td align="center"></td>
+            <td align="center">CALCULATION</td>
+            <td align="center">REMARKS</td>
+        </tr>
+        <tr>
+            <td align="center">Dc</td>
+            <td align="center" id="codia_calc_dc">14.2 in</td>
+            <td align="center">Note 1</td>
+        </tr>
+    </table>
+    <p id="eqdia_check_note"> </p>
 
-            </tr>
-        </TAble>
+    <h4> - GUIDE LINE CHECK </h4>
 
-        <h3> 2) CHECK COMBIND RESULTANT FORCE AND MOMENT ON THE TRUBINE AGAINST LIMIT 2</h3>
-        <h4> (1) SUM OF NOZZLE AND MOMENT</h4>
-        <h4> - FORCE</h4>
+    <table>
+        <tr>
+            <td align="center"> FORMULA </td>
+            <td align="center" colspan="4"> 2FC + MC ≤ 250 Dc</td>
+        </tr>
+        <tr>
+            <td align="center" rowspan="2"> Limit2 CHECK </td>
+            <td align="center">2Fc + MC </td>
+            <td align="center">250 x Dc </td>
+            <td align="center" rowspan="2">RESULT </td>
+            <td align="center" rowspan="2" id="comb_guide_check_3"> - </td>
+        </tr>
+        <tr>
+            <td align="center" id="comb_guide_check_1">426</td>
+            <td align="center" id="comb_guide_check_2">6667</td>
+        </tr>
+    </table>
 
-        <table>
-            <tr>
-                <td class="item_name" width="150px" rowspan="2">
-                    FORCE
-                </td>
-                <td class="item_name" width="260px" colspan="3">
-                    FORCE
-                </td>
-                <td class="item_name" width="180px" rowspan="2">
-                    REMARKS
-                </td>
-            </tr>
+    <h4> 3) CHECK THE COMPONENTS OF THE COMBINED FORCE AND MOMENT <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;ON THE TURBINE</h4>
+    <h4> (1) COMPONENTS OF THE COMBINED FORCE</h4>
 
-            <tr>
-                <td align="center" width="160px">
-                    INLET NOZZLE
-                </td>
-                <td align="center" width="160px">
-                    EXHAUST NOZZLE
-                </td>
-                <td align="center" width="160px">
-                    COMBIND
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    X
-                </td>
-                <td align="center">
-                    580
-                </td>
-                <td align="center">
-                    -
-                </td>
-                <td align="center">
-                    579.8
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Y
-                </td>
-                <td align="center">
-                    -165
-                </td>
-                <td align="center">
-                    142
-                </td>
-                <td align="center">
-                    23.5
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Z
-                </td>
-                <td align="center">
-                    51
-                </td>
-                <td align="center">
-                    -
-                </td>
-                <td align="center">
-                    50.7
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    COMB
-                </td>
-                <td align="center">
-                    605
-                </td>
-                <td align="center">
-                    142
-                </td>
-                <td align="center">
-                    582.5
-                </td>
-                <td align="center">
-                    FC
-                </td>
-            </tr>
-        </TAble>
+    <table>
+        <tr>
+            <td align="center" rowspan="2"> </td>
+            <td align="center" colspan="2">COMPONENTS FORCE</td>
+            <td align="center">COMBIND FORCE</td>
+            <td align="center" rowspan="2">REMARKS</td>
+        </tr>
+        <tr>
+            <td align="center">FORMULA</td>
+            <td align="center">lb</td>
+            <td align="center">lb</td>
+        </tr>
+        <tr>
+            <td align="center">FX</td>
+            <td align="center">50 x Dc</td>
+            <td align="center" id="comp_comp_force_lb_fx">712</td>
+            <td align="center" id="comp_comb_force_lb_fx">580</td>
+            <td align="center" id="comp_result_fx">OK</td>
+        </tr>
+        <tr>
+            <td align="center">FY</td>
+            <td align="center">125 x Dc</td>
+            <td align="center" id="comp_comp_force_lb_fy">1781</td>
+            <td align="center" id="comp_comb_force_lb_fy">-23</td>
+            <td align="center" id="comp_result_fy">OK</td>
+        </tr>
+        <tr>
+            <td align="center">FZ</td>
+            <td align="center">100 x Dc</td>
+            <td align="center" id="comp_comp_force_lb_fz">1425</td>
+            <td align="center" id="comp_comb_force_lb_fz">51</td>
+            <td align="center" id="comp_result_fz">OK</td>
+        </tr>
+    </table>
 
-        <h4> - MOMENT</h4>
+    <h4> (2) COMPONENTS OF THE COMBINED MOMENT</h4>
 
-        <table>
-            <tr>
-                <td class="item_name" width="150px" rowspan="2">
-                    MOMENT
-                </td>
-                <td class="item_name" width="260px" colspan="3">
-                    MOMENT
-                </td>
-                <td class="item_name" width="180px" rowspan="2">
-                    REMARKS
-                </td>
-            </tr>
+    <table>
+        <tr>
+            <td align="center" rowspan="2"> </td>
+            <td align="center" colspan="2">COMPONENTS MOMENT</td>
+            <td align="center">COMBIND MOMNT</td>
+            <td align="center" rowspan="2">REMARKS</td>
+        </tr>
+        <tr>
+            <td align="center">FORMULA</td>
+            <td align="center">lb</td>
+            <td align="center">lb</td>
+        </tr>
+        <tr>
+            <td align="center">MX</td>
+            <td align="center">250 x Dc</td>
+            <td align="center" id="comp_comp_moment_lb_mx">3562</td>
+            <td align="center" id="comp_comb_moment_lb_mx">-192</td>
+            <td align="center" id="comp_result_mx">OK</td>
+        </tr>
+        <tr>
+            <td align="center">MY</td>
+            <td align="center">125 x Dc</td>
+            <td align="center" id="comp_comp_moment_lb_my">1781</td>
+            <td align="center" id="comp_comb_moment_lb_my">246</td>
+            <td align="center" id="comp_result_my">OK</td>
+        </tr>
+        <tr>
+            <td align="center">MZ</td>
+            <td align="center">125 x Dc</td>
+            <td align="center" id="comp_comp_moment_lb_mz">1781</td>
+            <td align="center" id="comp_comb_moment_lb_mz">-850</td>
+            <td align="center" id="comp_result_mz">OK</td>
+        </tr>
+    </table>
+    <p>Magnitudes of actual force and moments calculated in part2 of this problem are lower then the allowable
+        magnitudes calculated aobve. <br>
+        Therefore, the component of the combined force and moments on the turbine are within NEMA guidelines.
+    </p>
 
-            <tr>
-                <td align="center" width="160px">
-                    INLET NOZZLE
-                </td>
-                <td align="center" width="160px">
-                    EXHAUST NOZZLE
-                </td>
-                <td align="center" width="160px">
-                    COMBIND
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    X
-                </td>
-                <td align="center">
-                    -192
-                </td>
-                <td align="center">
-                    -
-                </td>
-                <td align="center">
-                    -191.9
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Y
-                </td>
-                <td align="center">
-                    246
-                </td>
-                <td align="center">
-                    -
-                </td>
-                <td align="center">
-                    246.1
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    Z
-                </td>
-                <td align="center">
-                    -850
-                </td>
-                <td align="center">
-                    -
-                </td>
-                <td align="center">
-                    -850.2
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    COMB
-                </td>
-                <td align="center">
-                    906
-                </td>
-                <td align="center">
-                    -
-                </td>
-                <td align="center">
-                    905.6
-                </td>
-                <td align="center">
-                    MC
-                </td>
-            </tr>
-        </TAble>
+    <h3> 4. CHECK TOTAL FORCE ON THE TURBINE EXHAUST FLANGE</h3>
+    <p>Force on the exhaust flange exceed not 15-1/2 times the normal exhaust</p>
 
-        <h4> (2) COMBIND EQUIVALENT DIAMETER</h4>
-        <h4> - EQUIVALENT DIAMETER</h4>
+    <table>
+        <tr>
+            <td align="center"> FORMULA</td>
+            <td align="center" colspan="4"> TOTAL FORCE < 15.5 x NORMAL EXHAUST AREA</td>
+        </tr>
+        <tr>
+            <td align="center" rowspan="2"> Total Force Check</td>
+            <td align="center"> TOTAL FORCE</td>
+            <td align="center"> 15.5 x NEA</td>
+            <td align="center" rowspan="2"> RESULT</td>
+            <td align="center" rowspan="2" id="limit2_rusult_total"> -</td>
+        </tr>
+        <tr>
+            <td align="center" id=total_force_1> -</td>
+            <td align="center" id=total_force_2> -</td>
+        </tr>
+    </table>
+    <p id="exhaust_flange_total_force"></p>
+    <br>
+    <br>
 
-        <table>
-            <tr>
-                <td class="item_name" width="280px">
-                    EQUIV.DIAMETER
-                </td>
-                <td class="item_name" width="280px">
-                    AREA
-                </td>
-                <td class="item_name" width="280px">
-                    REMARKS
-                </td>
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    INLET
-                </td>
-                <td align="center">
-                    28.26 sq in
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    EXHAUST
-                </td>
-                <td align="center">
-                    452.16 sq in
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    TOTAL
-                </td>
-                <td align="center">
-                    480.42 sq in
-                </td>
-                <td align="center">
-                    -
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    EQUIV.DIA
-                </td>
-                <td align="center">
-                    24.74 sq in
-                </td>
-                <td align="center">
-                    Dc = (18+EQUIV.DIA)/3
-                </td>
-            </tr>
-
-        </TAble>
-        <h4> - COMBIND EQUIVALENT DIAMETER(Dc)</h4>
-
-        <table>
-            <tr>
-                <td class="item_name" width="280px">
-                    COMB.EQUIV.DIAMETER
-                </td>
-                <td class="item_name" width="280px">
-                    CALCULATION
-                </td>
-                <td class="item_name" width="280px">
-                    REMARKS
-                </td>
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    Dc
-                </td>
-                <td align="center">
-                    14.2 in
-                </td>
-                <td align="center">
-                    Note 1
-                </td>
-            </tr>
-            <tr>
-        </TAble>
-        NOte 1) Correction need for larger then flange 9", Dc = (18+EQUIV.DIA)/3
-
-        <h4> - GUIDE LINE CHECK</h4>
-        <table>
-            <tr>
-                <td class="item_name" width="280px">
-                    FORMULA
-                </td>
-                <td class="item_name" colspan="4">
-                    2FC + MC ≤ 250 Dc
-                </td>
-            </tr>
-
-            <tr>
-                <td class="item_name" rowspan="2">
-                    Limit 2
-                    Check
-                </td>
-                <td align="center" width="140">
-                    2Fc + MC
-                </td>
-                <td align="center" width="140">
-                    250 Dc
-                </td>
-                <td align="center" width="130" rowspan="2">
-                    RESULT
-                </td>
-                <td align="center" width="130" rowspan="2">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    2,701
-                </td>
-                <td align="center">
-                    3,562
-                </td>
-
-            </tr>
-        </TAble>
-
-        <h4> 3) CHECK THE COMPONENTS OF THE COMBINED FORCE AND MOMENT ON THE TURBINE</h4>
-        <h4> (1) COMPONENTS OF THE COBINED FORCE</h4>
-
-        <table>
-            <tr>
-                <td class="item_name" width="280px" rowspan="2">
-                    FORCE DIRECTION
-                </td>
-                <td class="item_name" colspan="2">
-                    COMPONENTS FORCE
-                </td>
-                <td class="item_name" width="140px">
-                    CINBUBED FORCE
-                </td>
-                <td class="item_name" idth="140px" rowspan="2">
-                    REMARKS
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name" width="135px">
-                    FORMULA
-                </td>
-                <td class="item_name" width="135px">
-                    lb
-                </td>
-                <td class="item_name" width="135px">
-                    lb
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    FX
-                </td>
-                <td align="center">
-                    50 x Dc
-                </td>
-                <td align="center">
-                    712
-                </td>
-                <td align="center">
-                    580
-                </td>
-                <td align="center" width="135px">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    FY
-                </td>
-                <td align="center">
-                    125 x Dc
-                </td>
-                <td align="center">
-                    1,781
-                </td>
-                <td align="center">
-                    -23
-                </td>
-                <td align="center">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    FZ
-                </td>
-                <td align="center">
-                    100 x Dc
-                </td>
-                <td align="center">
-                    1,425
-                </td>
-                <td align="center">
-                    51
-                </td>
-                <td align="center">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-        </TAble>
-
-        <h4> (2) COMPONENTS OF THE COBINED MOMENT</h4>
-
-        <table>
-            <tr>
-                <td class="item_name" width="280px" rowspan="2">
-                    FORCE DIRECTION
-                </td>
-                <td class="item_name" colspan="2">
-                    COMPONENTS FORCE
-                </td>
-                <td class="item_name" width="140px">
-                    CINBUBED FORCE
-                </td>
-                <td class="item_name" idth="140px" rowspan="2">
-                    REMARKS
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name" width="135px">
-                    FORMULA
-                </td>
-                <td class="item_name" width="135px">
-                    lb-ft
-                </td>
-                <td class="item_name" width="135px">
-                    lb-ft
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    FX
-                </td>
-                <td align="center">
-                    250 x Dc
-                </td>
-                <td align="center">
-                    3,562
-                </td>
-                <td align="center">
-                    -192
-                </td>
-                <td align="center" width="135px">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    FY
-                </td>
-                <td align="center">
-                    125 x Dc
-                </td>
-                <td align="center">
-                    1,781
-                </td>
-                <td align="center">
-                    246
-                </td>
-                <td align="center">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    FZ
-                </td>
-                <td align="center">
-                    125 x Dc
-                </td>
-                <td align="center">
-                    1,781
-                </td>
-                <td align="center">
-                    -850
-                </td>
-                <td align="center">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-        </TAble>
-
-        <p>Magnitudes of actual force and moments calculated in part 2 of this problem are lower then the allowable
-            magnitudes calculated above.<br>
-            Therefore, the component of the combined force and moments on the turbine are within NEMA guidelines</p>
-
-        <H2>4. CHECK TOTAL FORCE ON THE TURBINE EXHAUST FLANGE</H2>
-        <P>FORCE ON THE EXHAUST FLANGE EXCEED NOT 15-1/2 TIMES THE NORMAL EXHAUST</P>
-
-        <table>
-            <tr>
-                <td class="item_name" width="280px">
-                    FORMULA
-                </td>
-                <td class="item_name" colspan="4">
-                    TOTAL FORCE < 15.5 x NORMAL EXHAUST AREA </td>
-            </tr>
-
-            <tr>
-                <td align="center" rowspan="2">
-                    Total Force Check
-                </td>
-                <td align="center" width="140px">
-                    TOTAL FORCE
-                </td>
-                <td align="center" width="140px">
-                    15.5 X NEA
-                </td>
-                <td align="center" width="135px" rowspan="2">
-                    RESULT
-                </td>
-                <td align="center" width="135px" rowspan="2">
-                    <font color="red">OK</font>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="item_name">
-                    -6504.86
-                </td>
-                <td align="center">
-                    7008.48
-                </td>
-            </tr>
-        </TAble>
-        <p>Note1) TOTAL FORCE : Exhaust Nozzle Y-Direction Force + Bellows Pressure Force</p>
-
+    <div id="exhaust_nozzle_check">
     </div>
+
+
+    <!-- Java Script 작성하기-->
+    <script>
+
+        // 전역변수 정의
+        var x_inlet_force_en;
+        var y_inlet_force_en;
+        var z_inlet_force_en;
+        var y_exhaust_force_en;
+
+        var x_inlet_moment_en;
+        var y_inlet_moment_en;
+        var z_inlet_moment_en;
+        var y_exhaust_moment_en;
+
+        var inlet_force_comb_en;
+        var inlet_moment_comb_en;
+
+        var in_check_clac_de;
+        var nd_in_nozzle_inch;
+
+
+
+        var exhaust_force_comb_en;
+        var exhaust_moment_comb_en;
+        var exhaust_check_calc_mr;
+
+        var area_in_nozzle_inch;
+        var area_ex_nozzle_inch;
+        var area_total_nozzle_inch;
+
+        var bellows_force;
+        var tbn_kind;
+
+        // 첫번째 버튼 프로그램
+
+        function calculate() {
+
+            // 1. Result of Stress Analysis
+            // 1) Force and Moment
+            // (1)inlet steam Nozzle //
+
+            // Id Tag를 이용하여 값을 가져와 변수에 입력하기
+            var x_inlet_force_kg = parseFloat(document.getElementById("x_inlet_force").value);
+            var y_inlet_force_kg = parseFloat(document.getElementById("y_inlet_force").value);
+            var z_inlet_force_kg = parseFloat(document.getElementById("z_inlet_force").value);
+
+            var x_inlet_moment_kg = parseFloat(document.getElementById("x_inlet_moment").value);
+            var y_inlet_moment_kg = parseFloat(document.getElementById("y_inlet_moment").value);
+            var z_inlet_moment_kg = parseFloat(document.getElementById("z_inlet_moment").value);
+
+            // 가져온 변수를 이용하여 좌표 합성값 계산하기 comb = sqrt( x^2 + y^2 + z^2)
+            var inlet_force_comb_kg = Math.sqrt(Math.pow(x_inlet_force_kg, 2) + Math.pow(y_inlet_force_kg, 2) + Math.pow(z_inlet_force_kg, 2))
+            var inlet_moment_comb_kg = Math.sqrt(Math.pow(x_inlet_moment_kg, 2) + Math.pow(y_inlet_moment_kg, 2) + Math.pow(z_inlet_moment_kg, 2))
+
+            // 좌표별 Force 값을 kgf에서 lbf로 단위를 변환
+            x_inlet_force_en = x_inlet_force_kg * 2.204623
+            y_inlet_force_en = y_inlet_force_kg * 2.204623
+            z_inlet_force_en = z_inlet_force_kg * 2.204623
+            inlet_force_comb_en = inlet_force_comb_kg * 2.204623
+
+            // 좌표별 Moment 값을 kgf.m에서 lbf.ft로 단위를 변환
+            x_inlet_moment_en = x_inlet_moment_kg * 2.204623 * 0.032808
+            y_inlet_moment_en = y_inlet_moment_kg * 2.204623 * 0.032808
+            z_inlet_moment_en = z_inlet_moment_kg * 2.204623 * 0.032808
+            inlet_moment_comb_en = inlet_moment_comb_kg * 2.204623 * 0.032808
+
+            // 입력이 완료되었으면(comb 값이 에러없이 값이 생성되면)
+            if (!isNaN(inlet_force_comb_kg)) {
+                // 입력창의 force_comb 양식에 comb된 force 값 입력
+                document.getElementById("comb_inlet_force_kg_1").innerHTML = inlet_force_comb_kg.toFixed(1);
+
+                // 위에서 단위 계산된 x force 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("x_inlet_force_kg").innerHTML = x_inlet_force_kg.toFixed(1);
+                document.getElementById("x_inlet_force_en").innerHTML = x_inlet_force_en.toFixed(1);
+
+                // 위에서 단위 계산된 y force 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("y_inlet_force_kg").innerHTML = y_inlet_force_kg.toFixed(1);
+                document.getElementById("y_inlet_force_en").innerHTML = y_inlet_force_en.toFixed(1);
+
+                // 위에서 단위 계산된 z force 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("z_inlet_force_kg").innerHTML = z_inlet_force_kg.toFixed(1);
+                document.getElementById("z_inlet_force_en").innerHTML = z_inlet_force_en.toFixed(1);
+
+                // 위에서 단위 계산된 comb force 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("comb_inlet_force_kg").innerHTML = inlet_force_comb_kg.toFixed(1);
+                document.getElementById("comb_inlet_force_en").innerHTML = inlet_force_comb_en.toFixed(1);
+            }
+
+            // 입력이 완료되었으면(comb 값이 에러없이 값이 생성되면)
+            if (!isNaN(inlet_moment_comb_kg)) {
+                // 입력창의 moment_comb 양식에 comb된 moment 값 입력
+                document.getElementById("comb_inlet_moment_kg_1").innerHTML = inlet_moment_comb_kg.toFixed(1);
+
+                // 위에서 단위 계산된 x moment 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("x_inlet_moment_kg").innerHTML = x_inlet_moment_kg.toFixed(1);
+                document.getElementById("x_inlet_moment_en").innerHTML = x_inlet_moment_en.toFixed(1);
+
+                // 위에서 단위 계산된 y moment 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("y_inlet_moment_kg").innerHTML = y_inlet_moment_kg.toFixed(1);
+                document.getElementById("y_inlet_moment_en").innerHTML = y_inlet_moment_en.toFixed(1);
+
+                // 위에서 단위 계산된 z moment 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("z_inlet_moment_kg").innerHTML = z_inlet_moment_kg.toFixed(1);
+                document.getElementById("z_inlet_moment_en").innerHTML = z_inlet_moment_en.toFixed(1);
+
+                // 위에서 단위 계산된 comb moment 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("comb_inlet_moment_kg").innerHTML = inlet_moment_comb_kg.toFixed(1);
+                document.getElementById("comb_inlet_moment_en").innerHTML = inlet_moment_comb_en.toFixed(1);
+
+            }
+
+
+            // 2) Exhaust Nozzle
+            var x_exhaust_force_kg = parseFloat(document.getElementById("x_exhaust_force").value);
+            var y_exhaust_force_kg = parseFloat(document.getElementById("y_exhaust_force").value);
+            var z_exhaust_force_kg = parseFloat(document.getElementById("z_exhaust_force").value);
+
+            var x_exhaust_moment_kg = parseFloat(document.getElementById("x_exhaust_moment").value);
+            var y_exhaust_moment_kg = parseFloat(document.getElementById("y_exhaust_moment").value);
+            var z_exhaust_moment_kg = parseFloat(document.getElementById("z_exhaust_moment").value);
+
+            // 가져온 변수를 이용하여 좌표 합성값 계산하기 comb = sqrt( x^2 + y^2 + z^2)
+            var exhaust_force_comb_kg = Math.sqrt(Math.pow(x_exhaust_force_kg, 2) + Math.pow(y_exhaust_force_kg, 2) + Math.pow(z_exhaust_force_kg, 2))
+            var exhaust_moment_comb_kg = Math.sqrt(Math.pow(x_exhaust_moment_kg, 2) + Math.pow(y_exhaust_moment_kg, 2) + Math.pow(z_exhaust_moment_kg, 2))
+
+
+
+            // 좌표별 Force 값을 kgf에서 lbf로 단위를 변환
+            x_exhaust_force_en = x_exhaust_force_kg * 2.204623
+            y_exhaust_force_en = y_exhaust_force_kg * 2.204623
+            z_exhaust_force_en = z_exhaust_force_kg * 2.204623
+            exhaust_force_comb_en = exhaust_force_comb_kg * 2.204623
+
+            // 좌표별 Moment 값을 kgf.m에서 lbf.ft로 단위를 변환
+            x_exhaust_moment_en = x_exhaust_moment_kg * 2.204623 * 0.032808
+            y_exhaust_moment_en = y_exhaust_moment_kg * 2.204623 * 0.032808
+            z_exhaust_moment_en = z_exhaust_moment_kg * 2.204623 * 0.032808
+            exhaust_moment_comb_en = exhaust_moment_comb_kg * 2.204623 * 0.032808
+
+            // 입력이 완료되었으면(comb 값이 에러없이 값이 생성되면)
+            if (!isNaN(exhaust_force_comb_kg)) {
+                // 입력창의 force_comb 양식에 comb된 force 값 입력
+                document.getElementById("comb_exhaust_force_kg_1").innerHTML = exhaust_force_comb_kg.toFixed(1);
+
+                // 위에서 단위 계산된 x force 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("x_exhaust_force_kg").innerHTML = x_exhaust_force_kg.toFixed(1);
+                document.getElementById("x_exhaust_force_en").innerHTML = x_exhaust_force_en.toFixed(1);
+
+                // 위에서 단위 계산된 y force 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("y_exhaust_force_kg").innerHTML = y_exhaust_force_kg.toFixed(1);
+                document.getElementById("y_exhaust_force_en").innerHTML = y_exhaust_force_en.toFixed(1);
+
+                // 위에서 단위 계산된 z force 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("z_exhaust_force_kg").innerHTML = z_exhaust_force_kg.toFixed(1);
+                document.getElementById("z_exhaust_force_en").innerHTML = z_exhaust_force_en.toFixed(1);
+
+                // 위에서 단위 계산된 comb force 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("comb_exhaust_force_kg").innerHTML = exhaust_force_comb_kg.toFixed(1);
+                document.getElementById("comb_exhaust_force_en").innerHTML = exhaust_force_comb_en.toFixed(1);
+            }
+
+            // 입력이 완료되었으면(comb 값이 에러없이 값이 생성되면)
+            if (!isNaN(exhaust_moment_comb_kg)) {
+                // 입력창의 moment_comb 양식에 comb된 moment 값 입력
+                document.getElementById("comb_exhaust_moment_kg_1").innerHTML = exhaust_moment_comb_kg.toFixed(1);
+
+                // 위에서 단위 계산된 x moment 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("x_exhaust_moment_kg").innerHTML = x_exhaust_moment_kg.toFixed(1);
+                document.getElementById("x_exhaust_moment_en").innerHTML = x_exhaust_moment_en.toFixed(1);
+
+                // 위에서 단위 계산된 y moment 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("y_exhaust_moment_kg").innerHTML = y_exhaust_moment_kg.toFixed(1);
+                document.getElementById("y_exhaust_moment_en").innerHTML = y_exhaust_moment_en.toFixed(1);
+
+                // 위에서 단위 계산된 z moment 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("z_exhaust_moment_kg").innerHTML = z_exhaust_moment_kg.toFixed(1);
+                document.getElementById("z_exhaust_moment_en").innerHTML = z_exhaust_moment_en.toFixed(1);
+
+                // 위에서 단위 계산된 comb moment 값을 입력 (metric 단위, english unit단위) 
+                document.getElementById("comb_exhaust_moment_kg").innerHTML = exhaust_moment_comb_kg.toFixed(1);
+                document.getElementById("comb_exhaust_moment_en").innerHTML = exhaust_moment_comb_en.toFixed(1);
+
+            }
+        }
+
+        function calculate_1() {
+            // 2. Connection Data
+            // 1) Nozzle Data
+
+            // Inlet Nozzle
+            // Id Tag를 이용하여 값을 가져와 변수에 입력하기
+            nd_in_nozzle_inch = parseFloat(document.getElementById("nd_in_nozzle_inch").value);
+
+            // nd_in_nozzle_inch 데이터(Nozzle Inch관경)을 mm 관경으로 변경하기
+            var nd_in_nozzle_mm = nd_in_nozzle_inch * 25.0
+
+            // 위에서 단위 계산된 nd_in_nozzle_mm를 mm 양식에 입력하기. 
+            document.getElementById("nd_in_nozzle_mm").innerHTML = nd_in_nozzle_mm.toFixed(1);
+
+            // Exhaust NOzzle
+            // Id Tag를 이용하여 값을 가져와 변수에 입력하기
+            var nd_ex_nozzle_inch = parseFloat(document.getElementById("nd_ex_nozzle_inch").value);
+
+            // nd_in_nozzle_inch 데이터(Nozzle Inch관경)을 mm 관경으로 변경하기
+            var nd_ex_nozzle_mm = nd_ex_nozzle_inch * 25.0
+
+            // 위에서 단위 계산된 nd_in_nozzle_mm를 mm 양식에 입력하기. 
+            document.getElementById("nd_ex_nozzle_mm").innerHTML = nd_ex_nozzle_mm.toFixed(1);
+
+
+            // Inlet Area
+            // Inlet 배관 단면적을 계산한다.
+            var area_in_nozzle_mm = (3.14 * nd_in_nozzle_mm ** 2 / 4)
+            area_in_nozzle_inch = (3.14 * nd_in_nozzle_inch ** 2 / 4)
+
+            // 위에서 단위 계산된 area_in_nozzle_mm를 mm 양식에 입력하고 inch도 입력하기. 
+            document.getElementById("area_in_nozzle_mm").innerHTML = area_in_nozzle_mm.toFixed(1);
+            document.getElementById("area_in_nozzle_inch").innerHTML = area_in_nozzle_inch.toFixed(1);
+
+            // Exhaust Area
+            // Inlet 배관 단면적을 계산한다.
+            var area_ex_nozzle_mm = (3.14 * nd_ex_nozzle_mm ** 2 / 4)
+            area_ex_nozzle_inch = (3.14 * nd_ex_nozzle_inch ** 2 / 4)
+
+            // 위에서 단위 계산된 area_in_nozzle_mm를 mm 양식에 입력하고 inch도 입력하기. 
+            document.getElementById("area_ex_nozzle_mm").innerHTML = area_ex_nozzle_mm.toFixed(1);
+            document.getElementById("area_ex_nozzle_inch").innerHTML = area_ex_nozzle_inch.toFixed(1);
+
+            // 2) Expansion Joint Data
+            // (1) Pressure Force from full vacuum in the expansion joint
+
+            // Bellows Area 계산하기
+            bellows_force = area_ex_nozzle_inch * 14.7
+
+            // 위에서 단위 계산된 bellows area를 양식에 입력하기 
+            document.getElementById("calc_bellows_force").innerHTML = bellows_force.toFixed(1) + " lb";
+            document.getElementById("calc_bellows_area").innerHTML = area_ex_nozzle_inch.toFixed(1) + ' sq inch';
+
+            // 3. NEMA Guide Check
+            // 1) Check resultant force and moments on indivisual force anginst Limit 1
+            // (1) Inlet Flange
+            // - Check Data Calaulation
+
+            // Nema Guide Check
+            // Inlet Flange
+            // Check Data 입력하기 
+            document.getElementById("in_check_calc_fr").innerHTML = inlet_force_comb_en.toFixed(1) + " lb";
+            document.getElementById("in_check_calc_mr").innerHTML = inlet_moment_comb_en.toFixed(1) + " lb.ft";
+            // in_check_calc_de 계산
+            if (nd_in_nozzle_inch > 8) {
+                in_check_clac_de = (16 + nd_in_nozzle_inch) / 3
+                in_check_note = 'Note1) Correction need for larger then flange 8", De = (16+Nd)/3'
+            } else {
+                in_check_clac_de = nd_in_nozzle_inch
+                in_check_note = 'Note 1) No correction need for flange 8" and smaller'
+            }
+
+            document.getElementById("in_check_calc_de").innerHTML = in_check_clac_de.toFixed(1) + " in";
+            document.getElementById("in_check_note").innerHTML = in_check_note;
+
+            // - Guide Line heck
+
+            // Inlet Nozzle Guide Line check
+            in_guide_check_1 = (3.0 * inlet_force_comb_en) + inlet_moment_comb_en
+            in_guide_check_2 = 500 * in_check_clac_de
+
+            document.getElementById("in_guide_check_1").innerHTML = in_guide_check_1.toFixed(1);
+            document.getElementById("in_guide_check_2").innerHTML = in_guide_check_2.toFixed(1);
+
+            if (in_guide_check_1 > in_guide_check_2) {
+                in_guide_check_3 = "Re Calculation"
+            } else {
+                in_guide_check_3 = "OK"
+            }
+            document.getElementById("in_guide_check_3").innerHTML = in_guide_check_3;
+
+            // (2) Exhaust Flange
+            // - Check Data Calauclaiton
+
+            // Check Data 입력하기 
+
+            var data_check_clac_fr = Math.sqrt(Math.pow(x_exhaust_force_en, 2) + Math.pow(y_exhaust_force_en, 2) + Math.pow(z_exhaust_force_en, 2))
+            var data_check_clac_mr = Math.sqrt(Math.pow(x_exhaust_moment_en, 2) + Math.pow(y_exhaust_moment_en, 2) + Math.pow(z_exhaust_moment_en, 2))
+
+            document.getElementById("exhaust_check_calc_fr").innerHTML = data_check_clac_fr.toFixed(1) + " lb";
+            document.getElementById("exhaust_check_calc_mr").innerHTML = data_check_clac_mr.toFixed(1) + " lb";
+
+            // in_check_calc_de 계산
+            if (nd_ex_nozzle_inch > 8) {
+                exhaust_check_clac_de = (16 + nd_ex_nozzle_inch) / 3
+                exhaust_check_note = 'Note1) Correction need for larger then flange 8", De = (16+Nd)/3'
+            } else {
+                exhaust_check_clac_de = nd_ex_nozzle_inch
+                exhaust_check_note = 'Note 1) No correction need for flange 8" and smaller'
+            }
+
+            document.getElementById("exhaust_check_calc_de").innerHTML = exhaust_check_clac_de.toFixed(1) + " in";
+            document.getElementById("exhaust_check_note").innerHTML = exhaust_check_note;
+
+            // - Guide Line Check
+
+            // Inlet Nozzle Guide Line check
+            exhaust_guide_check_1 = (3.0 * exhaust_force_comb_en) //+ exhaust_moment_comb_en
+            exhaust_guide_check_2 = 500 * exhaust_check_clac_de
+
+            document.getElementById("exhaust_guide_check_1").innerHTML = exhaust_guide_check_1.toFixed(1);
+            document.getElementById("exhaust_guide_check_2").innerHTML = exhaust_guide_check_2.toFixed(1);
+
+            if (exhaust_guide_check_1 > exhaust_guide_check_2) {
+                exhaust_guide_check_3 = "Re Calculation"
+            } else {
+                exhaust_guide_check_3 = "OK"
+            }
+            document.getElementById("exhaust_guide_check_3").innerHTML = exhaust_guide_check_3;
+
+            // 2) Check combind resultant force and moment on the turbine against LIMIT 2
+            // (1) Sum of Nozzle force and moment
+            // - Force
+            document.getElementById("sum_force_inlet_x").innerHTML = x_inlet_force_en.toFixed(1);
+            document.getElementById("sum_force_inlet_y").innerHTML = y_inlet_force_en.toFixed(1);
+            document.getElementById("sum_force_inlet_z").innerHTML = z_inlet_force_en.toFixed(1);
+            document.getElementById("sum_force_inlet_comb").innerHTML = inlet_force_comb_en.toFixed(1);
+
+            document.getElementById("sum_force_exhaust_x").innerHTML = x_exhaust_force_en.toFixed(1);
+            document.getElementById("sum_force_exhaust_y").innerHTML = y_exhaust_force_en.toFixed(1);
+            document.getElementById("sum_force_exhaust_z").innerHTML = z_exhaust_force_en.toFixed(1);
+            document.getElementById("sum_force_exhaust_comb").innerHTML = exhaust_force_comb_en.toFixed(1);
+
+            sum_force_exhaust_comb_x = x_inlet_force_en + x_exhaust_force_en
+            sum_force_exhaust_comb_y = y_inlet_force_en + y_exhaust_force_en
+            sum_force_exhaust_comb_z = z_inlet_force_en + z_exhaust_force_en
+
+            document.getElementById("sum_force_comb_x").innerHTML = sum_force_exhaust_comb_x.toFixed(1);
+            document.getElementById("sum_force_comb_y").innerHTML = sum_force_exhaust_comb_y.toFixed(1);
+            document.getElementById("sum_force_comb_z").innerHTML = sum_force_exhaust_comb_z.toFixed(1);
+            sum_force_exhaust_comb_comb = nlet_force_comb_kg = Math.sqrt(Math.pow(sum_force_exhaust_comb_x, 2) + Math.pow(sum_force_exhaust_comb_y, 2) + Math.pow(sum_force_exhaust_comb_z, 2))
+            document.getElementById("sum_force_comb_comb").innerHTML = sum_force_exhaust_comb_comb.toFixed(1);
+
+            // - Moment
+            document.getElementById("sum_moment_inlet_x").innerHTML = x_inlet_moment_en.toFixed(1);
+            document.getElementById("sum_moment_inlet_y").innerHTML = y_inlet_moment_en.toFixed(1);
+            document.getElementById("sum_moment_inlet_z").innerHTML = z_inlet_moment_en.toFixed(1);
+            document.getElementById("sum_moment_inlet_comb").innerHTML = inlet_moment_comb_en.toFixed(1);
+
+            document.getElementById("sum_moment_exhaust_x").innerHTML = x_exhaust_moment_en.toFixed(1);
+            document.getElementById("sum_moment_exhaust_y").innerHTML = y_exhaust_moment_en.toFixed(1);
+            document.getElementById("sum_moment_exhaust_z").innerHTML = z_exhaust_moment_en.toFixed(1);
+            document.getElementById("sum_moment_exhaust_comb").innerHTML = exhaust_moment_comb_en.toFixed(1);
+
+            sum_moment_exhaust_comb_x = x_inlet_moment_en + x_exhaust_moment_en
+            sum_moment_exhaust_comb_y = y_inlet_moment_en + y_exhaust_moment_en
+            sum_moment_exhaust_comb_z = z_inlet_moment_en + z_exhaust_moment_en
+
+
+            // document.getElementById("sum_moment_exhaust_y").innerHTML = y_exhaust_moment_en.toFixed(1);
+            // document.getElementById("sum_moment_exhaust_comb").innerHTML = exhaust_moment_comb_en.toFixed(1);
+
+            sum_moment_exhaust_comb_x = x_inlet_moment_en + x_exhaust_moment_en
+            sum_moment_exhaust_comb_y = y_inlet_moment_en + y_exhaust_moment_en
+            sum_moment_exhaust_comb_z = z_inlet_moment_en + z_exhaust_moment_en
+
+            document.getElementById("sum_moment_comb_x").innerHTML = sum_moment_exhaust_comb_x.toFixed(1);
+            document.getElementById("sum_moment_comb_y").innerHTML = sum_moment_exhaust_comb_y.toFixed(1);
+            document.getElementById("sum_moment_comb_z").innerHTML = sum_moment_exhaust_comb_z.toFixed(1);
+            sum_moment_exhaust_comb_comb = nlet_moment_comb_kg = Math.sqrt(Math.pow(sum_moment_exhaust_comb_x, 2) + Math.pow(sum_moment_exhaust_comb_y, 2) + Math.pow(sum_moment_exhaust_comb_z, 2))
+
+            document.getElementById("sum_moment_comb_comb").innerHTML = sum_moment_exhaust_comb_comb.toFixed(1);
+
+
+            // (2) Combind Equivlent Diameter
+            // - Equivalent Diameter
+
+            document.getElementById("eqdia_area_inlet").innerHTML = area_in_nozzle_inch.toFixed(1) + " sq in";
+            document.getElementById("eqdia_area_exhaust").innerHTML = area_ex_nozzle_inch.toFixed(1) + " sq in";
+            area_total_nozzle_inch = area_in_nozzle_inch + area_ex_nozzle_inch
+            document.getElementById("eqdia_area_total").innerHTML = area_total_nozzle_inch.toFixed(1) + " sq in";
+            var eqdia_area_eqdia = Math.sqrt(4 * area_total_nozzle_inch / 3.14)
+            document.getElementById("eqdia_area_eqdia").innerHTML = eqdia_area_eqdia.toFixed(1) + " sq in";
+
+            // - Combined Equivalent Diameter (Dc)
+
+            // eqiv.dia 계산(limit 2)
+            if (eqdia_area_eqdia > 9) {
+                eqdia_check_clac_de = (18 + eqdia_area_eqdia) / 3
+                eqdia_check_note = 'Note1) Correction need for larger then flange 9", De = (18+EQUIV.DIA)/3'
+            } else {
+                eqdia_check_clac_de = eqdia_area_eqdia
+                eqdia_check_note = 'Note 1) No correction need for flange 9" and smaller'
+            }
+            document.getElementById("eqdia_check_note").innerHTML = eqdia_check_note;
+            document.getElementById("codia_calc_dc").innerHTML = eqdia_check_clac_de.toFixed(1) + " sq in";
+
+            // - Guide Line Check
+
+            // Combind Equivalent Diameter Guide Line check (Limit 2)
+            comb_guide_check_1 = (2.0 * sum_force_exhaust_comb_comb) + sum_moment_exhaust_comb_comb
+            comb_guide_check_2 = 250 * eqdia_check_clac_de
+
+            document.getElementById("comb_guide_check_1").innerHTML = comb_guide_check_1.toFixed(1);
+            document.getElementById("comb_guide_check_2").innerHTML = comb_guide_check_2.toFixed(1);
+
+            if (comb_guide_check_1 > comb_guide_check_2) {
+                comb_guide_check_3 = "Re Calculation"
+            } else {
+                comb_guide_check_3 = "OK"
+            }
+            document.getElementById("comb_guide_check_3").innerHTML = comb_guide_check_3;
+
+            //3. Check the components of the combined force and moment on the turbine
+            // (1) Components of the combined Force
+
+            // Components force 계산
+            comp_comp_force_lb_fx = 50 * eqdia_check_clac_de
+            comp_comp_force_lb_fy = 125 * eqdia_check_clac_de
+            comp_comp_force_lb_fz = 100 * eqdia_check_clac_de
+
+            document.getElementById("comp_comp_force_lb_fx").innerHTML = comp_comp_force_lb_fx.toFixed(1);
+            document.getElementById("comp_comp_force_lb_fy").innerHTML = comp_comp_force_lb_fy.toFixed(1);
+            document.getElementById("comp_comp_force_lb_fz").innerHTML = comp_comp_force_lb_fz.toFixed(1);
+
+            // Combind Force 계산
+            document.getElementById("comp_comb_force_lb_fx").innerHTML = sum_force_exhaust_comb_x.toFixed(1);
+            document.getElementById("comp_comb_force_lb_fy").innerHTML = sum_force_exhaust_comb_y.toFixed(1);
+            document.getElementById("comp_comb_force_lb_fz").innerHTML = sum_force_exhaust_comb_z.toFixed(1);
+
+            if (comp_comp_force_lb_fx > sum_force_exhaust_comb_x) {
+                limit2_rusult_fx = "OK"
+            } else {
+                limit2_rusult_fx = "Re Calculation"
+            }
+            if (comp_comp_force_lb_fy > sum_force_exhaust_comb_y) {
+                limit2_rusult_fy = "OK"
+            } else {
+                limit2_rusult_fy = "Re Calculation"
+            }
+            if (comp_comp_force_lb_fz > sum_force_exhaust_comb_z) {
+                limit2_rusult_fz = "OK"
+            } else {
+                limit2_rusult_fz = "Re Calculation"
+            }
+
+            document.getElementById("comp_result_fx").innerHTML = limit2_rusult_fx;
+            document.getElementById("comp_result_fy").innerHTML = limit2_rusult_fy;
+            document.getElementById("comp_result_fz").innerHTML = limit2_rusult_fz;
+
+            // (2) Components of the combined Moment
+
+            // Components Moment 계산
+            comp_comp_moment_lb_mx = 250 * eqdia_check_clac_de
+            comp_comp_moment_lb_my = 125 * eqdia_check_clac_de
+            comp_comp_moment_lb_mz = 125 * eqdia_check_clac_de
+
+            document.getElementById("comp_comp_moment_lb_mx").innerHTML = comp_comp_moment_lb_mx.toFixed(1);
+            document.getElementById("comp_comp_moment_lb_my").innerHTML = comp_comp_moment_lb_my.toFixed(1);
+            document.getElementById("comp_comp_moment_lb_mz").innerHTML = comp_comp_moment_lb_mz.toFixed(1);
+
+
+            // Combind Moment 계산
+            document.getElementById("comp_comb_moment_lb_mx").innerHTML = sum_moment_exhaust_comb_x.toFixed(1);
+            document.getElementById("comp_comb_moment_lb_my").innerHTML = sum_moment_exhaust_comb_y.toFixed(1);
+            document.getElementById("comp_comb_moment_lb_mz").innerHTML = sum_moment_exhaust_comb_z.toFixed(1);
+
+            if (comp_comp_moment_lb_mx > sum_moment_exhaust_comb_x) {
+                limit2_rusult_mx = "OK"
+            } else {
+                limit2_rusult_mx = "Re Calculation"
+            }
+            if (comp_comp_moment_lb_my > sum_moment_exhaust_comb_y) {
+                limit2_rusult_my = "OK"
+            } else {
+                limit2_rusult_my = "Re Calculation"
+            }
+            if (comp_comp_moment_lb_mz > sum_moment_exhaust_comb_z) {
+                limit2_rusult_mz = "OK"
+            } else {
+                limit2_rusult_mz = "Re Calculation"
+            }
+
+            document.getElementById("comp_result_mx").innerHTML = limit2_rusult_mx;
+            document.getElementById("comp_result_my").innerHTML = limit2_rusult_my;
+            document.getElementById("comp_result_mz").innerHTML = limit2_rusult_mz;
+
+            // 4. Check total force on the turbine exhaust flange
+
+            if (tbn_kind == "condensing") {
+                total_force_check_1 = Math.abs(y_exhaust_force_en - bellows_force)
+                total_force_check_2 = 15.5 * area_ex_nozzle_inch
+
+                exhaust_flange_total_force = "Note1) TOTAL FORCE : Exhaust Nozzle Y-Direction Force + Bellows Pressure Force"
+                document.getElementById("total_force_1").innerHTML = total_force_check_1.toFixed(1);
+                document.getElementById("total_force_2").innerHTML = total_force_check_2.toFixed(1);
+
+                document.getElementById("exhaust_flange_total_force").innerHTML = exhaust_flange_total_force;
+
+
+                if (total_force_check_1 < total_force_check_2) {
+                    limit2_rusult_total = "OK"
+                } else {
+                    limit2_rusult_total = "Re Calculation"
+                }
+                document.getElementById("limit2_rusult_total").innerHTML = limit2_rusult_total;
+            } else {
+
+                document.getElementById("total_force_1").innerHTML = "-";
+                document.getElementById("total_force_2").innerHTML = "-";
+                document.getElementById("limit2_rusult_total").innerHTML = "-";
+                exhaust_flange_total_force = "Note1) The TOTAL FORCE is calculated only for the condensing type."
+                document.getElementById("exhaust_flange_total_force").innerHTML = exhaust_flange_total_force;
+            }
+
+        }
+
+        // 발전기 종류 라이오버튼 선택하기
+        function turbine_kind(event) {
+            tbn_kind = event.target.value;
+            //document.getElementById('result').innerText = tbn_kind;
+        }
+
+
+
+
+    </script>
 </body>
 
 </html>
