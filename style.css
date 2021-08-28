@@ -23,9 +23,9 @@ body {
 }
 
 .menu-bar ul li {
-    width : 150px;
-    margin : 15px;
-    padding: 15px;
+    width : 10vw;
+    margin : 0.7vw;
+    padding: 0.7vw;
 }
 
 .menu-bar ul li a {
@@ -47,8 +47,8 @@ body {
     display: block;
     position : absolute;
     background:rgb(0,100,0);
-    margin-top : 15px;
-    margin-left: -15px;
+    margin-top : 0.5vw;   /* 주메뉴와 부메뉴사이 거리 */
+    margin-left: -.9vw;
 }
 
 .menu-bar ul li:hover .sub-menu-1 ul {
@@ -57,8 +57,8 @@ body {
 }    
 
 .menu-bar ul li:hover .sub-menu-1 ul li {
-    width : 200px;
-    padding:10px;
+    width : 13vw;
+    padding:0.5vw;
     border-bottom: 1px dotted #fff;
     background: transparent;
     border-radius: 0;
@@ -80,8 +80,8 @@ body {
 .hover-me:hover .sub-menu-2 {
     position: absolute;
     display: block;
-    margin-top: -40px;
-    margin-left: 190px;
+    margin-top: -2.5vw;
+    margin-left: 10vw;
     background-color: rgba(0,100,0);
 }
 
