@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PV Test</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <td width="250">Property</td>
+            <td width="150">Value</td>
+            <td>Remarks</td>
+        </tr>
+        <tr>
+            <td>Pressure (kg/cm2.a)</td>
+            <td><input style="width:80px; text-align:center" type="text" id="input_p" input value="10"></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Temperature (℃)</td>
+            <td><input style="width:80px; text-align:center" type="text" id="input_t" input value="300"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Specific enthalpy (kcal/kg)</td>
+            <td id="result_h"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Specific entropy (kcal/kg.℃)</td>
+            <td id="result_s"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Specific volume (m3/kg)</td>
+            <td id="result_v"></td>
+            <td></td>
+        </tr>
+
+    </table>
+
+    <button onclick="calculate()"> Calculation </button>
+
+
+
+
+
+    <!-- <div>
+        <a href="https://github.com/NativeDynamics/NeutriumJS.thermo.IAPWS97">click me!</a>
+    </div> -->
+
+    <script>
+
+        function calculate() {
+
+            var input_p
+            var input_t
+            var input_h
+            var input_s
+            var input_v
+            var result
+            var result_p
+            var result_t
+            var result_h
+            var result_s
+            var result_v
+
+            // input 상자에서 data 가져오기
+            input_p = parseFloat(document.getElementById("input_p").value);
+            input_t = parseFloat(document.getElementById("input_t").value);
+
+            input_p = input_p * 0.0980665
+            input_t = input_t + 273.15
+
+            result = NeutriumJS.thermo.IAPWS97.PT.solve(input_p, input_t);
+
+            result_p = result.p / 0.0980665
+            result_t = result.t - 273.15
+            result_h = result.h / 4.184
+            result_s = result.s / 4.184
+            result_v = result.v
+
+            // 계산된 결과를 web에 뿌리기
+            if (!isNaN(input_p)) {
+                // 입력창의 force_comb 양식에 comb된 force 값 입력
+                // document.getElementById("result_p").innerHTML = result_p.toFixed(2);
+                // document.getElementById("result_t").innerHTML = result_t.toFixed(2);
+                document.getElementById("result_h").innerHTML = result_h.toFixed(2);
+                document.getElementById("result_s").innerHTML = result_s.toFixed(2);
+                document.getElementById("result_v").innerHTML = result_v.toFixed(2);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

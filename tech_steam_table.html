@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Steam Table</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.js"></script>
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.PT.js"></script>
+    <style>
+        body {
+            height: 80vh;
+            display: grid;
+            justify-content: center;
+            /* align-items: center; */
+            background: #f3f1f5;
+            /* border: 3px solid blue; */
+            */
+        }
+
+        #doc_wide {
+            width: 810px;
+            /* border: 3px solid blue; */
+        }
+
+        #outline_form {
+            width: 810px;
+            /* border: 3px solid blue; */
+        }
+
+        #outline_table {
+            padding: 5px;
+            border: 1px solid #666;
+        }
+
+        td {
+            /* text-align: center; */
+            padding: 5px;
+            border: 1px solid #666;
+        }
+
+        .hr_1 {
+            width: 100%;
+            border: 2px double green;
+            aligh: right;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        #formula {
+            width: 500px;
+            border-style: dashed;
+            text-align: center;
+            border: 1px solid gray;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>STEAM TABLE (IAPWS97)</h1>
+
+    <h3>[INPUT Property]</h3>
+    <table>
+        <tr>
+            <td align="center" width="300">Property</td>
+            <td align="center" width="200">Value</td>
+            <td align="center" width="250">Remarks</td>
+        </tr>
+        <tr>
+            <td>Pressure (kg/cm2.a)</td>
+            <td align="center"><input style="width:80px; text-align:center" type="text" id="input_w_s_p" input value="">
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Temperature (℃)</td>
+            <td align="center"><input style="width:80px; text-align:center" type="text" id="input_w_s_t" input value="">
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <button onclick="calculate_water_superheated()"> Calculation </button>
+
+    <br><br>
+    <h3>[OUTPUT Property]</h3>
+    <table>
+        <tr>
+            <td align="center" width="300">Property</td>
+            <td align="center" width="200">Value</td>
+            <td align="center" width="250">Remarks</td>
+        </tr>
+        <tr>
+            <td>Pressure (kg/cm2.a)</td>
+            <td align="center" id="result_w_s_p"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Temperature (℃)</td>
+            <td align="center" id="result_w_s_t"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Specific enthalpy (kcal/kg)</td>
+            <td align="center" id="result_w_s_h"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Specific entropy (kcal/kg.℃)</td>
+            <td align="center" id="result_w_s_s"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Specific volume (m3/kg)</td>
+            <td align="center" id="result_w_s_v"></td>
+            <td></td>
+        </tr>
+
+    </table>
+    <br>
+    <br>
+
+
+
+
+
+    <!-- <div>
+        <a href="https://github.com/NativeDynamics/NeutriumJS.thermo.IAPWS97">click me!</a>
+    </div> -->
+
+    <script>
+
+        function calculate_water_superheated() {
+
+            var input_p;
+            var input_t;
+            var input_h;
+            var input_s;
+            var input_v;
+            var result_w_s;
+            var result_w_s_p;
+            var result_w_s_t;
+            var result_w_s_h;
+            var result_w_s_s;
+            var resultW_w_s_v;
+
+            // input 상자에서 data 가져오기
+            input_w_s_p = parseFloat(document.getElementById("input_w_s_p").value);
+            input_w_s_t = parseFloat(document.getElementById("input_w_s_t").value);
+
+            if (!isNaN(input_w_s_p) & input_w_s_t > 0) {
+                input_w_s_t = input_w_s_t + 273.15;
+                input_w_s_p = input_w_s_p * 0.0980665;
+            } else {
+                input_w_s_p = input_w_s_p * 0.0980665;
+                input_w_s_t = NeutriumJS.thermo.IAPWS97.PT.r4_P_Tsat(input_w_s_p);
+            }
+
+            // 스팀 상태값 계산
+            result_w_s = NeutriumJS.thermo.IAPWS97.PT.solve(input_w_s_p, input_w_s_t);
+
+            // 스팀 상태값의 Object 추출(h: 엔탈피, s : 엔트로피, v : 비체적)
+            result_w_s_p = result_w_s.p / 0.0980665;
+            result_w_s_t = result_w_s.t - 273.15;
+            result_w_s_h = result_w_s.h / 4.184;
+            result_w_s_s = result_w_s.s / 4.184;
+            result_w_s_v = result_w_s.v;
+
+            // 계산된 결과를 web에 뿌리기
+            if (!isNaN(input_w_s_p)) {
+                document.getElementById("result_w_s_p").innerHTML = result_w_s_p.toFixed(2);
+                document.getElementById("result_w_s_t").innerHTML = result_w_s_t.toFixed(2);
+                document.getElementById("result_w_s_h").innerHTML = result_w_s_h.toFixed(2);
+                document.getElementById("result_w_s_s").innerHTML = result_w_s_s.toFixed(2);
+                document.getElementById("result_w_s_v").innerHTML = result_w_s_v.toFixed(5);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
