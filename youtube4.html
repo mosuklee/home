@@ -5,21 +5,70 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flex box 이해</title>
     <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
         body {
-            display: grid;
-            justify-content: center;
-            /*align-items: center; */
+            font-size: 0.96vw;
             background: white;
-            min-height: 100vh;
-            /* border: 3px solid green; */
-            padding: 50px;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            padding-left: 1vw;
+
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            width: 100px;
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
         }
 
         hr {
             width: 100%;
-            border: 2px double green;
+            color: dimgray;
+            border-style: dotted;
         }
 
         #foot {
@@ -28,81 +77,127 @@
 
         td {
             padding: 10px;
-            border: 1px solid #666;
-            height: 300px;
+            border: 1px solid #e70a0a17;
+            height: 15vmax;
             margin: 0px;
         }
 
-        .sub_explain {
+        /* .sub_explain {
             width: 800px;
-        }
+        } */
     </style>
 </head>
 
 <body>
-    <h3> 4. Tutorial</h3>
-    <p> 본 Tutorial은 실제 업무에 적상할 수 있는 각각의 시스템별 Tutorial 입니다. <br>
-        실제 업무에 적용하여 사용하시길 바랍니다.
-    </p>
-    <table>
-        <tr>
-            <td>
-                <ul>
-                    <li>Steam Turbine</li>
-                </ul>
-            </td>
-            <td>
-                <iframe width="600" height="350" src="https://www.youtube.com/embed/vwlZxwPC8NI"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </td>
-        </tr>
 
+    <div id="container">
+        <div class="subject">
 
-        <tr>
-            <td>
-                <ul>
-                    <li>진공복수기의 높이는 <br>
-                        어떻게 선정할까?</li>
-                </ul>
-            </td>
-            <td>
-                <iframe width="600" height="350" src="https://www.youtube.com/embed/46_iiF7dcfc"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </td>
-        </tr>
+        </div>
+        <div class="subject main-subject">
 
-        <tr>
-            <td>
-                <ul>
-                    <li>MVR System Design</li>
-            </td>
-            <td>
-                <iframe width="600" height="350" src="https://www.youtube.com/embed/R-Iy2bNWXaA"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </td>
-        </tr>
+        </div>
 
-    </table>
-    <div>
-        <h5>
-            <li>상기 동영상은 영상을 실행시키고 화면 우측에서 최대화면을 클릭하시면 화면 전체로 시청하실 수 있습니다.
-        </h5>
+        <div class="subject">
+
+        </div>
     </div>
+    <div id="container">
+        <div class="flex-box">
 
-    <div>
-        <h5>
-            <br>
-            <br>
-            <hr>
-            <h6 id="foot"><a href="chatt.html" target="pages"> >> Discuss with Me</a> </h6>
-        </h5>
+        </div>
+
+
+        <div class="flex-box content">
+            <div>
+
+                <h3> 4. Tutorial</h3>
+                <div class="sub_explain">
+                    <p> 본 Tutorial은 실제 업무에 적상할 수 있는 각각의 시스템별 Tutorial 입니다. <br>
+                        실제 업무에 적용하여 사용하시길 바랍니다.
+                    </p>
+                </div>
+                <table>
+                    <tr>
+                        <td width="250vw">
+                            <ul>
+                                <li>Steam Turbine</li>
+                            </ul>
+                        </td>
+                        <td width="500vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/vwlZxwPC8NI"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <table>
+                    <tr>
+                        <td width="250vw">
+                            <ul>
+                                <li>진공복수기의 높이는 <br>
+                                    어떻게 선정할까?</li>
+                            </ul>
+                        </td>
+                        <td width="500vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/46_iiF7dcfc"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+                <table>
+                    <tr>
+                        <td width="250vw">
+                            <ul>
+                                <li>MVR System Design</li>
+                            </ul>
+                        </td>
+                        <td width="500vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/R-Iy2bNWXaA"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+                <div>
+                    <h5>
+                        <li>상기 동영상은 영상을 실행시키고 화면 우측에서 최대화면을 클릭하시면 화면 전체로 시청하실 수 있습니다.
+                    </h5>
+                </div>
+
+                <div>
+                    <h5>
+                        <br>
+                        <br>
+                        <hr>
+                        <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a> </h6>
+                    </h5>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
     </div>
+    <br>
+
+
+
 
 
 </body>

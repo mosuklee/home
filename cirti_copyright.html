@@ -5,45 +5,68 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flex box 이해</title>
     <style>
-        div {
-            /* border: 3px solid red; */
-            margin: 30px;
-            height: 600px;
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
         }
 
-        div #my_picture {
-            height: 500px;
-        }
-
-        .container {
-            width: 60vw;
-            height: 65vh;
-            display: flex;
-            justify-content: center;
-            /*align-items: center; */
-            margin: 0%;
-            padding: 0%;
-            background: white;
-            /* border: 3px solid blue; */
-        }
 
         body {
-            display: grid;
-            justify-content: center;
-            align-items: center;
+            font-size: 0.96vw;
             background: white;
-            min-height: 100vh;
         }
 
-        #s_title {
-            height: 50px;
-            text-indent: 140px;
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            padding-left: 1vw;
+
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            width: 100px;
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
         }
 
         hr {
-            width: 75%;
+            width: 100%;
             color: dimgray;
             border-style: dotted;
         }
@@ -51,78 +74,134 @@
 </head>
 
 <body>
-    <div id="s_title">
-        <h1><u>나의 저작권</u></h1>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+            <h1><u> 나의 저작권</u></h1>
+        </div>
+        <div class="subject main-subject">
+
+        </div>
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+        <div class="flex-box content picture">
+            <div style="text-align:center;">
+                <img src="./image/scoba.jpg" alt="MY Picture">
+            </div>
+        </div>
+
+        <div class="flex-box content">
+            <div>
+                <h2> SCOBA</h2>
+                <p><br>
+                    <br>
+                    프로그램 명칭 : 스코바(SCOBA) <br>
+                    저작권자 &nbsp &nbsp &nbsp &nbsp: 이모석 <br>
+                    등록년월일 &nbsp &nbsp : 2016년 5월 20일 <br>
+                    <br>
+                    [프로그램 용도] <br>
+                    - 연소설비 : 고형연료 및 소각로등 열 및 Mass Balance <br>
+                    - 후단설비 : SDR,Back-Filter, SDR등 Mass Balance
+                </p>
+                <img src="./image/scoba_flow.jpg" alt="Scoba" width="500" height="300">
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
     </div>
 
-    <div class="container">
-        <div id="my_picture">
-            <h2> SCOBA</h2>
-            <img src="./image/scoba.jpg" alt="Scoba" width="300" height="400">
-        </div>
-        <div>
-            <p><br>
-                <br>
-                프로그램 명칭 : 스코바(SCOBA) <br>
-                저작권자 &nbsp &nbsp &nbsp &nbsp: 이모석 <br>
-                등록년월일 &nbsp &nbsp : 2016년 5월 20일 <br>
-                <br>
-                [프로그램 용도] <br>
-                - 연소설비 : 고형연료 및 소각로등 열 및 Mass Balance <br>
-                - 후단설비 : SDR,Back-Filter, SDR등 Mass Balance
-            </p>
-            <img src="./image/scoba_flow.jpg" alt="Scoba" width="500" height="300">
-        </div>
-    </div>
+
+    <br>
     <hr>
-    <div class="container">
-        <div id="my_picture">
-            <h2> PipeFLOW</h2>
-            <img src="./image/pipe_flow.jpg" alt="PipeFlow" width="300" height="400">
+    <br>
+
+
+    <div id="container">
+        <div class="flex-box">
+
         </div>
-        <div>
-            <p><br>
-                <br>
-                프로그램 명칭 : 파이프를로우(PipeFlow) <br>
-                저작권자 &nbsp &nbsp &nbsp &nbsp: 이모석 <br>
-                등록년월일 &nbsp &nbsp : 2013년 7월 02일 <br>
-                <br>
-                [프로그램 용도] <br>
-                - Water 및 Steam 배관의 유동해석 (Hydraulic Analysis) <br>
-                - Pipe Network 해석 (지역난방, 수도배관, 기타 공정수등)
-            </p>
-            <img src="./image/pipe_flow_flow.jpg" alt="Pipeflow" width="500" height="300">
+
+        <div class="flex-box content picture">
+            <div style="text-align:center;">
+                <img src="./image/pipe_flow.jpg" alt="Pipe_Flow">
+            </div>
+        </div>
+
+        <div class="flex-box content">
+            <div>
+                <h2> PipeFLOW</h2>
+                <p><br>
+                    <br>
+                    프로그램 명칭 : 파이프를로우(PipeFlow) <br>
+                    저작권자 &nbsp &nbsp &nbsp &nbsp: 이모석 <br>
+                    등록년월일 &nbsp &nbsp : 2013년 7월 02일 <br>
+                    <br>
+                    [프로그램 용도] <br>
+                    - Water 및 Steam 배관의 유동해석 (Hydraulic Analysis) <br>
+                    - Pipe Network 해석 (지역난방, 수도배관, 기타 공정수등)
+                </p>
+                <img src="./image/pipe_flow_flow.jpg" alt="Pipeflow" width="500" height="300">
+            </div>
+        </div>
+        <div class="flex-box">
+
         </div>
     </div>
 
+
+    <br>
     <hr>
+    <br>
 
-    <div id="s_title">
-        <h2>개발중인 프로그램</h2>
+
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+        <div class="flex-box content picture">
+            <div style="text-align:center;">
+                <img src="./image/coading.jpg" alt="Pipe_Flow">
+            </div>
+        </div>
+
+        <div class="flex-box content">
+            <div>
+                <h2> 공부중인 프로그램</h2>
+                <p>
+                <ul>
+                    <h4><u>Visual Basic</u></h4>
+                    <li> TGDS : 스팀터빈 및 냉각탑 해석 프로그램</li>
+                    <li> STEAM TABLE : 스팀테이블 프로그램 </li>
+                    <h4><u>Python / R</u></h4>
+                    <li> 에너지단가 시스템분석 : Python을 이용한 Data Crawling</li>
+                    <li> GAS TURBINE DATA 분석프로그램 </li>
+                    <li> SCR 약품 계산 분석프로그램 </li>
+                    <li> Data Analysis </li>
+                    - 회귀분석 <br>
+                    - Machine learning/Deep learning <br>
+                </ul>
+                </p>
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
     </div>
 
-    <div class="container">
-        <div id="my_picture">
-            <img src="./image/coading.jpg" alt="Scoba" width="300" height="400">
-        </div>
-        <div>
-            <p>
-            <ul>
-                <h4><u>Visual Basic</u></h4>
-                <li> TGDS : 스팀터빈 및 냉각탑 해석 프로그램</li>
-                <li> STEAM TABLE : 스팀테이블 프로그램 </li>
-                <h4><u>Python / R</u></h4>
-                <li> 에너지단가 시스템분석 : Python을 이용한 Data Crawling</li>
-                <li> GAS TURBINE DATA 분석프로그램 </li>
-                <li> SCR 약품 계산 분석프로그램 </li>
-                <li> Data Analysis </li>
-                - 회귀분석 <br>
-                - Machine learning/Deep learning <br>
-            </ul>
-            </p>
+    <br>
 
-
-        </div>
 </body>
 
 </html>
