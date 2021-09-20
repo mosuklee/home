@@ -2,359 +2,417 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>STEAM TABLE</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
     <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.0vw;
+            }
+        }
+
+
         body {
-            height: 80vh;
-            display: grid;
-            justify-content: center;
-            /* align-items: center; */
-            background: #f3f1f5;
-            /* border: 3px solid blue; */
-            */
+            font-size: 0.90vw;
+            background: white;
         }
 
-        #doc_wide {
-            width: 810px;
-            /* border: 3px solid blue; */
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
         }
 
-        #outline_form {
-            width: 810px;
-            /* border: 3px solid blue; */
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
         }
 
-        #outline_table {
-            padding: 5px;
-            border: 1px solid #666;
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
         }
 
-        td {
-            /* text-align: center; */
-            padding: 5px;
-            border: 1px solid #666;
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
         }
 
-        .hr_1 {
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
             width: 100%;
-            border: 2px double green;
-            aligh: right;
+            color: dimgray;
+            border-style: dotted;
         }
 
         #foot {
             text-align: right;
         }
 
-        #formula {
-            width: 500px;
-            border-style: dashed;
-            text-align: center;
-            border: 1px solid gray;
+        td {
+            /* text-align: center; */
+            padding: 10px;
+            border: 1px solid black;
+            /* height: 15vmax; */
+            margin: 0px;
         }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
     </style>
 </head>
 
 <body>
-    <div id="doc_wide">
 
-        <h1>전기안전공사 사용전검사 (용접검사)</h1>
+    <div id="container">
+        <div class="subject">
 
-        <h3>1. 신청시기 : 배관시공 후 수압시험 완료 </h3>
+        </div>
+        <div class="subject main-subject">
 
-        <h3>2. 용접부 사용전 검사 대상 기준 </h3>
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
 
 
-        <table>
-            <tr>
-                <td align="center" width="220px">기계,기구</td>
-                <td align="center" width="100px">유체</td>
-                <td align="center" width="110px">설계온도</td>
-                <td>대상 및 설계압력</td>
-            </tr>
-            <tr>
-                <td align="center">보일러 <br> (보조보일러, 압력용기, 헤더)</td>
-                <td align="center">관계없음</td>
-                <td align="center">관계없음</td>
-                <td>절탄기 입구 헤더 첫번째 용접부 부터 최종 과열기 출구 헤더 첫번째 용접부 까지 </td>
-            </tr>
-            <tr>
-                <td rowspan="4" align="center">외경 150mm이상의 압력용기 <br> (열교환기 포함)</td>
-                <td rowspan="2" align="center">물</td>
-                <td align="center">100도 미만</td>
-                <td>20kg/cm2 이상 (설계압력) </td>
-            </tr>
-            <tr>
+        <div class="flex-box content">
+
+
+            <h1>전기안전공사 사용전검사 (용접검사)</h1>
+
+            <h3>1. 신청시기 : 배관시공 후 수압시험 완료 </h3>
+
+            <h3>2. 용접부 사용전 검사 대상 기준 </h3>
+
+
+            <table>
+                <tr>
+                    <td align="center" width="220vw">기계,기구</td>
+                    <td align="center" width="100vw">유체</td>
+                    <td align="center" width="110vw">설계온도</td>
+                    <td width="500vw">대상 및 설계압력</td>
+                </tr>
+                <tr>
+                    <td align="center">보일러 <br> (보조보일러, 압력용기, 헤더)</td>
+                    <td align="center">관계없음</td>
+                    <td align="center">관계없음</td>
+                    <td>절탄기 입구 헤더 첫번째 용접부 부터 최종 과열기 출구 헤더 첫번째 용접부 까지 </td>
+                </tr>
+                <tr>
+                    <td rowspan="4" align="center">외경 150mm이상의 압력용기 <br> (열교환기 포함)</td>
+                    <td rowspan="2" align="center">물</td>
+                    <td align="center">100도 미만</td>
+                    <td>20kg/cm2 이상 (설계압력) </td>
+                </tr>
+                <tr>
+                    <td align="center">100도 이상</td>
+                    <td>1kg/cm2 이상</td>
+                </tr>
+                <tr>
+                    <td align="center">액화가스용</td>
+                    <td align="center">관계없음</td>
+                    <td>0kg/cm2 이상</td>
+                </tr>
+                <tr>
+                    <td align="center">기타</td>
+                    <td align="center">관계없음</td>
+                    <td>1kg/cm2 이상</td>
+                </tr>
+                <tr>
+                    <td rowspan="4">외경 150mm이상의 관 <br> (헤더포함)</td>
+                    <td align="center" rowspan="2">물</td>
+                    <td align="center">100도 미만</td>
+                    <td>20kg/cm2 이상 (설계압력)</td>
+                </tr>
                 <td align="center">100도 이상</td>
-                <td>1kg/cm2 이상</td>
-            </tr>
-            <tr>
-                <td align="center">액화가스용</td>
-                <td align="center">관계없음</td>
-                <td>0kg/cm2 이상</td>
-            </tr>
-            <tr>
-                <td align="center">기타</td>
-                <td align="center">관계없음</td>
-                <td>1kg/cm2 이상</td>
-            </tr>
-            <tr>
-                <td rowspan="4">외경 150mm이상의 관 <br> (헤더포함)</td>
-                <td align="center" rowspan="2">물</td>
-                <td align="center">100도 미만</td>
-                <td>20kg/cm2 이상 (설계압력)</td>
-            </tr>
-            <td align="center">100도 이상</td>
-            <td>10kg/cm2 이상 (설계압력)</td>
-            </td>
-            <tr>
-                <td align="center">액화가스용</td>
-                <td align="center">관계없음</td>
-                <td>0kg/cm2 이상 (설계압력)</td>
-            </tr>
-            <tr>
-                <td align="center">기 타</td>
-                <td align="center">관계없음</td>
-                <td>10kg/cm2 이상 (설계압력) <br>단, 축방향 용접부는 5kg/cm2 이상</td>
-            </tr>
-        </table>
-        주) 상기 내용중 1가지라도 충족될 경우 사용전 검사 대상임
-        <br><br>
-        <h3>3. 비파괴검사 요구사항 </h3>
-        <table>
-            <tr>
-                <td rowspan="3" width="150px" align="center">맞대기 용접형식</td>
-                <td colspan="3" align="center">압력부품 운전조건(설계)</td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">복사열을 받는 부품</td>
-                <td align="center">복사열을 받지 않는 부품</td>
-            </tr>
-            <tr>
-                <td width="200px" align="center">증기 또는 물함유</td>
-                <td width="200px" align="center">물함유</td>
-                <td width="200px" align="center">증기함유</td>
-            </tr>
-            <tr>
-                <td align="center">길이방향 용접</td>
-                <td align="center">모든 크기 및 두께</td>
-                <td align="center">모든 크기 및 두께</td>
-                <td align="center">모든 크기 및 두께</td>
-            </tr>
-            <tr>
-                <td align="center">드럼 및 동체의 <br>원주방향 용접</td>
-                <td>DN 250초과 <br>또는 두께 29mm 초과</td>
-                <td>DN 250초과 <br>또는 두께 29mm 초과</td>
-                <td>DN 250초과 <br>또는 두께 29mm 초과</td>
-            </tr>
-            <tr>
-                <td align="center">파이프, 튜브 및 <br>헤더의 원주용접</td>
-                <td>DN 100초과 <br>또는 두께 13mm 초과</td>
-                <td>DN 250초과 <br>또는 두께 29mm 초과</td>
-                <td>DN 400초과 <br>또는 두께 41mm 초과</td>
-            </tr>
-        </table>
-        <br><br>
-        <h3>4. 배관설계조건에 따른 비파괴검사 </h3>
-        <table>
-            <tr>
-                <td rowspan="2" colspan="2" align="center">용접부 형태</td>
-                <td colspan="3" align="center">배관설계 조건에 따른 비피괴 검사</td>
-            </tr>
-            <tr>
-                <td width="230px">모든 압력에서 400도를 초과하는 온도</td>
-                <td width="230px">175~400도의 온도와 7100kPa(72.4 kg/cm3)을 최고하는 압력</td>
-                <td width="150" align="center">기 타</td>
-            </tr>
-            <tr>
-                <td rowspan="3" width="120px">맞대기용접 <br>(원주방향 및 길이방향) </td>
-                <td align="center" width="50px">RT</td>
-                <td>외경 150mm 이상인 경우</td>
-                <td>외경 150mm 이상이고 두께가 19mm를 최고하는 경우</td>
-                <td align="center">해당없음</td>
-            </tr>
-            <tr>
-                <td align="center">MT/PT</td>
-                <td>DN 50이하인 경우</td>
-                <td>두께가 19mm 이하의 모든 크기</td>
-                <td align="center">해당없음</td>
-            </tr>
-            <tr>
-                <td align="center">VT</td>
-                <td></td>
-                <td>두께 19mm 이하 모든 크기</td>
-                <td align="center">모든 크기 및 두께</td>
-            </tr>
-            <tr>
-                <td rowspan="3">필릿, 소켓, 부착물 및 누설방지 용접부</td>
-                <td align="center">RT</td>
-                <td align="center">해당없음</td>
-                <td align="center">해당없음</td>
-                <td align="center">해당없음</td>
-            </tr>
-            <tr>
-                <td align="center">MT/PT</td>
-                <td align="center">모든 크기 및 두께</td>
-                <td align="center">해당없음</td>
-                <td align="center">해당없음</td>
-            </tr>
-            <tr>
-                <td align="center">VT</td>
-                <td></td>
-                <td align="center">모든 크기 및 두께</td>
-                <td align="center">모든 크기 및 두께</td>
-            </tr>
-        </table>
-        <br><br>
+                <td>10kg/cm2 이상 (설계압력)</td>
+                </td>
+                <tr>
+                    <td align="center">액화가스용</td>
+                    <td align="center">관계없음</td>
+                    <td>0kg/cm2 이상 (설계압력)</td>
+                </tr>
+                <tr>
+                    <td align="center">기 타</td>
+                    <td align="center">관계없음</td>
+                    <td>10kg/cm2 이상 (설계압력) <br>단, 축방향 용접부는 5kg/cm2 이상</td>
+                </tr>
+            </table>
+            주) 상기 내용중 1가지라도 충족될 경우 사용전 검사 대상임
+            <br><br>
+            <h3>3. 비파괴검사 요구사항 </h3>
+            <table>
+                <tr>
+                    <td rowspan="3" width="180vw" align="center">맞대기 용접형식</td>
+                    <td colspan="3" align="center">압력부품 운전조건(설계)</td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">복사열을 받는 부품</td>
+                    <td align="center">복사열을 받지 않는 부품</td>
+                </tr>
+                <tr>
+                    <td width="250vw" align="center">증기 또는 물함유</td>
+                    <td width="250vw" align="center">물함유</td>
+                    <td width="250vw" align="center">증기함유</td>
+                </tr>
+                <tr>
+                    <td align="center">길이방향 용접</td>
+                    <td align="center">모든 크기 및 두께</td>
+                    <td align="center">모든 크기 및 두께</td>
+                    <td align="center">모든 크기 및 두께</td>
+                </tr>
+                <tr>
+                    <td align="center">드럼 및 동체의 <br>원주방향 용접</td>
+                    <td>DN 250초과 <br>또는 두께 29mm 초과</td>
+                    <td>DN 250초과 <br>또는 두께 29mm 초과</td>
+                    <td>DN 250초과 <br>또는 두께 29mm 초과</td>
+                </tr>
+                <tr>
+                    <td align="center">파이프, 튜브 및 <br>헤더의 원주용접</td>
+                    <td>DN 100초과 <br>또는 두께 13mm 초과</td>
+                    <td>DN 250초과 <br>또는 두께 29mm 초과</td>
+                    <td>DN 400초과 <br>또는 두께 41mm 초과</td>
+                </tr>
+            </table>
+            <br><br>
+            <h3>4. 배관설계조건에 따른 비파괴검사 </h3>
+            <table>
+                <tr>
+                    <td rowspan="2" colspan="2" align="center">용접부 형태</td>
+                    <td colspan="3" align="center">배관설계 조건에 따른 비피괴 검사</td>
+                </tr>
+                <tr>
+                    <td width="230vw">모든 압력에서 400도를 초과하는 온도</td>
+                    <td width="250vw">175~400도의 온도와 7100kPa(72.4 kg/cm3)을 최고하는 압력</td>
+                    <td width="190vw" align="center">기 타</td>
+                </tr>
+                <tr>
+                    <td rowspan="3" width="120px">맞대기용접 <br>(원주방향 및 길이방향) </td>
+                    <td align="center" width="50px">RT</td>
+                    <td>외경 150mm 이상인 경우</td>
+                    <td>외경 150mm 이상이고 두께가 19mm를 최고하는 경우</td>
+                    <td align="center">해당없음</td>
+                </tr>
+                <tr>
+                    <td align="center">MT/PT</td>
+                    <td>DN 50이하인 경우</td>
+                    <td>두께가 19mm 이하의 모든 크기</td>
+                    <td align="center">해당없음</td>
+                </tr>
+                <tr>
+                    <td align="center">VT</td>
+                    <td></td>
+                    <td>두께 19mm 이하 모든 크기</td>
+                    <td align="center">모든 크기 및 두께</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">필릿, 소켓, 부착물 및 누설방지 용접부</td>
+                    <td align="center">RT</td>
+                    <td align="center">해당없음</td>
+                    <td align="center">해당없음</td>
+                    <td align="center">해당없음</td>
+                </tr>
+                <tr>
+                    <td align="center">MT/PT</td>
+                    <td align="center">모든 크기 및 두께</td>
+                    <td align="center">해당없음</td>
+                    <td align="center">해당없음</td>
+                </tr>
+                <tr>
+                    <td align="center">VT</td>
+                    <td></td>
+                    <td align="center">모든 크기 및 두께</td>
+                    <td align="center">모든 크기 및 두께</td>
+                </tr>
+            </table>
+            <br><br>
 
-        <h3>5. 준비서류 </h3>
-        <table>
-            <tr>
-                <td colspan="2" align="center">검사항목</td>
-                <td align="center" width="230px">세부검사내용</td>
-                <td align="center" width="230px">수검자 준비자료</td>
-            </tr>
-            <tr>
-                <td rowspan="2" align="center" width="100px">공통사항</td>
-                <td align="center" width="200px">일반사항</td>
-                <td>
-                    - 규격 <br>
-                    - 용접시공법 <br>
-                    - 자재확인 <br>
-                    . 화학성분 <br>
-                    . 기계적성질 <br>
-                    . 모재사양 <br>
-                    - 용접부 외관 <br>
-                    . 용접부 어긋남 <br>
-                    . 용접덧살 <br>
-                    . 용접부 표면상태 <br>
-                </td>
-                <td>
-                    - 계통도 및 제작도면 <br>
-                    - 자재성적서 (Mill Sheet) <br>
-                    - 용접절차 시방서(WPS) <br>
-                    - 용접절차인정기록(PQR) <br>
-                    - 용접사 검정시험 기록서 <br>
-                    - 모재 및 용접부 강도 계산서 <br>
-                    - 용접검사 관리대장 <br>
-                </td>
-            </tr>
-            <tr>
-                <td align="center">용접후 열처리</td>
-                <td>
-                    - 용접후 열처리방법 <br>
-                    - 예열 및 중간온도 <br>
-                    - 가열율 및 냉각율 <br>
-                    - 유지온도 <br>
-                    - 유지시간 <br>
-                </td>
-                <td>
-                    - 용접후 열처리 부위표시 도면 <br>
-                    - 용접후 열처리 절차서 <br>
-                    - 열전대 및 기록계 교정시험 성적서 <br>
-                    - 예열 및 중간온도 보고서 <br>
-                    - 용접후 열처리 보고서 <br>
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="2">비파괴검사 (비파괴검사를 할 수 있는 상태가 된 때)</td>
-                <td align="center">방사선투과검사 (RT)</td>
-                <td>
-                    - 시험방법 <br>
-                    - 탐상 및 평가 <br>
-                </td>
-                <td rowspan="2">
-                    - 비피괴검사 부위 표시도면 <br>
-                    - 비피괴검사 국가 기술자격 <br>
-                    - 비피괴검사 절차서 <br>
-                    - 방사선투과 사진 <br>
-                    - 시험기기 교정시험 성적서 <br>
-                    - 비피괴검사 보고서 <br>
-                    - 초음파탐상검사 품질계획 <br>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    - 초음파탐상검사 (UT) <br>
-                    - 자분탐상검사 (MT) <br>
-                    - 침투탐상검사 (PT) <br>
-                </td>
-                <td>
-                    - 시험방법 <br>
-                    - 탐상 및 평가 <br>
-                </td>
-            </tr>
+            <h3>5. 준비서류 </h3>
+            <table>
+                <tr>
+                    <td colspan="2" align="center">검사항목</td>
+                    <td align="center" width="270vw">세부검사내용</td>
+                    <td align="center" width="300vw">수검자 준비자료</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" align="center" width="100vw">공통사항</td>
+                    <td align="center" width="200vw">일반사항</td>
+                    <td>
+                        - 규격 <br>
+                        - 용접시공법 <br>
+                        - 자재확인 <br>
+                        . 화학성분 <br>
+                        . 기계적성질 <br>
+                        . 모재사양 <br>
+                        - 용접부 외관 <br>
+                        . 용접부 어긋남 <br>
+                        . 용접덧살 <br>
+                        . 용접부 표면상태 <br>
+                    </td>
+                    <td>
+                        - 계통도 및 제작도면 <br>
+                        - 자재성적서 (Mill Sheet) <br>
+                        - 용접절차 시방서(WPS) <br>
+                        - 용접절차인정기록(PQR) <br>
+                        - 용접사 검정시험 기록서 <br>
+                        - 모재 및 용접부 강도 계산서 <br>
+                        - 용접검사 관리대장 <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">용접후 열처리</td>
+                    <td>
+                        - 용접후 열처리방법 <br>
+                        - 예열 및 중간온도 <br>
+                        - 가열율 및 냉각율 <br>
+                        - 유지온도 <br>
+                        - 유지시간 <br>
+                    </td>
+                    <td>
+                        - 용접후 열처리 부위표시 도면 <br>
+                        - 용접후 열처리 절차서 <br>
+                        - 열전대 및 기록계 교정시험 성적서 <br>
+                        - 예열 및 중간온도 보고서 <br>
+                        - 용접후 열처리 보고서 <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">비파괴검사 (비파괴검사를 할 수 있는 상태가 된 때)</td>
+                    <td align="center">방사선투과검사 (RT)</td>
+                    <td>
+                        - 시험방법 <br>
+                        - 탐상 및 평가 <br>
+                    </td>
+                    <td rowspan="2">
+                        - 비피괴검사 부위 표시도면 <br>
+                        - 비피괴검사 국가 기술자격 <br>
+                        - 비피괴검사 절차서 <br>
+                        - 방사선투과 사진 <br>
+                        - 시험기기 교정시험 성적서 <br>
+                        - 비피괴검사 보고서 <br>
+                        - 초음파탐상검사 품질계획 <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        - 초음파탐상검사 (UT) <br>
+                        - 자분탐상검사 (MT) <br>
+                        - 침투탐상검사 (PT) <br>
+                    </td>
+                    <td>
+                        - 시험방법 <br>
+                        - 탐상 및 평가 <br>
+                    </td>
+                </tr>
 
-            <tr>
-                <td rowspan="4">기계검사 <br>(기계검사를 할 수 있는 상태가 된 때</td>
-                <td align="center">시험판 각인</td>
-                <td align="center">시험판의 형상 및 치수</td>
-                <td rowspan="4">
-                    - 기계검사부위 표시도면 <br>
-                    - 기계검사 절차서 <br>
-                    - 시험기기 교정시험 성적서 <br>
-                    - 기계검사 결과 보고서 <br>
-                    - 시험편 각인 및 사진 <br>
-                </td>
-            </tr>
-            <tr>
-                <td>이음부 및 용착금속 <br>인장시험</td>
-                <td>
-                    - 시험편 형상, 치수 및 수량 <br>
-                    - 인장강도 <br>
-                    - 연신율 <br>
-                </td>
-            </tr>
-            <tr>
-                <td>굽힘시험(측면, 표면, 루트)</td>
-                <td>
-                    - 시험편 형상, 치수 및 수량 <br>
-                    - 굽힘각도 <br>
-                    - 표면상태 (균열, 불연속부) <br>
-                </td>
-            <tr>
-                <td>충격시험(용접금속부 및 열 영향부</td>
-                <td>
-                    - 시험편 형상, 치수 및 수량 <br>
-                    - 흡수에너지 <br>
-                </td>
-            </tr>
-            <tr>
-                <td>내압검사 <br>(내압검사를 할 수 있는상태가 된 때)</td>
-                <td>
-                    - 수압시험 <br>
-                    - 기압시험 <br>
-                </td>
-                <td>
-                    - 압력계 수량 용량 및 위치 <br>
-                    - 시험매체 <br>
-                    - 시험압력 <br>
-                    - 시험온도 <br>
-                    - 유지시간 <br>
-                    - 누설 및 변경 <br>
-                </td>
-                <td>
-                    - 내압검사 부위 표시도면 <br>
-                    - 내압검사 절차서 <br>
-                    - 내압검사 보고서 <br>
-                    - 압력계 교정시험 성적서 <br>
-                    - 내압대체 (비파괴 검사,<br>
-                    &nbsp;&nbsp;내압검사 할 수 없는 부위) <br>
-                </td>
-            </tr>
-        </table>
-        <br><br>
-    </div>
-    <div>
-        <h5>
+                <tr>
+                    <td rowspan="4">기계검사 <br>(기계검사를 할 수 있는 상태가 된 때</td>
+                    <td align="center">시험판 각인</td>
+                    <td align="center">시험판의 형상 및 치수</td>
+                    <td rowspan="4">
+                        - 기계검사부위 표시도면 <br>
+                        - 기계검사 절차서 <br>
+                        - 시험기기 교정시험 성적서 <br>
+                        - 기계검사 결과 보고서 <br>
+                        - 시험편 각인 및 사진 <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>이음부 및 용착금속 <br>인장시험</td>
+                    <td>
+                        - 시험편 형상, 치수 및 수량 <br>
+                        - 인장강도 <br>
+                        - 연신율 <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>굽힘시험(측면, 표면, 루트)</td>
+                    <td>
+                        - 시험편 형상, 치수 및 수량 <br>
+                        - 굽힘각도 <br>
+                        - 표면상태 (균열, 불연속부) <br>
+                    </td>
+                <tr>
+                    <td>충격시험(용접금속부 및 열 영향부</td>
+                    <td>
+                        - 시험편 형상, 치수 및 수량 <br>
+                        - 흡수에너지 <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>내압검사 <br>(내압검사를 할 수 있는상태가 된 때)</td>
+                    <td>
+                        - 수압시험 <br>
+                        - 기압시험 <br>
+                    </td>
+                    <td>
+                        - 압력계 수량 용량 및 위치 <br>
+                        - 시험매체 <br>
+                        - 시험압력 <br>
+                        - 시험온도 <br>
+                        - 유지시간 <br>
+                        - 누설 및 변경 <br>
+                    </td>
+                    <td>
+                        - 내압검사 부위 표시도면 <br>
+                        - 내압검사 절차서 <br>
+                        - 내압검사 보고서 <br>
+                        - 압력계 교정시험 성적서 <br>
+                        - 내압대체 (비파괴 검사,<br>
+                        &nbsp;&nbsp;내압검사 할 수 없는 부위) <br>
+                    </td>
+                </tr>
+            </table>
+
             <br>
             <br>
-            <hr class="hr_1">
-            <h6 id="foot"><a href="chatt.html" target="pages"> >> Discuss with Me</a> </h6>
-        </h5>
-    </div>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+
 </body>
 
 </html>

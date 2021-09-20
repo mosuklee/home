@@ -2,106 +2,183 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <title>STEAM TABLE</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
     <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
         body {
-            height: 80vh;
-            display: grid;
-            justify-content: center;
-            /* align-items: center; */
-            background: #f3f1f5;
-            /* border: 3px solid blue; */
-            */
+            font-size: 0.96vw;
+            background: white;
         }
 
-        #doc_wide {
-            width: 810px;
-            /* border: 3px solid blue; */
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
         }
 
-        #outline_form {
-            width: 810px;
-            /* border: 3px solid blue; */
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
         }
 
-        #outline_table {
-            padding: 5px;
-            border: 1px solid #666;
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: dimgray;
+            border-style: dotted;
+        }
+
+        #foot {
+            text-align: right;
         }
 
         td {
-            /* text-align: center; */
-            padding: 5px;
-            border: 1px solid #666;
+            padding: 10px;
+            border: 1px solid black;
+            /* height: 15vmax; */
+            margin: 0px;
         }
 
-        #formula {
-            width: 500px;
-            border-style: dashed;
-            text-align: center;
-            border: 1px solid gray;
-        }
+        /* .sub_explain {
+            width: 800px;
+        } */
     </style>
 </head>
 
 <body>
-    <div id="doc_wide">
-        <h1>한국산업안전보건 공단(PSM 검사)</h1>
 
-        <h3>1. 검사기준 </h3>
-        <table>
-            <tr>
-                <td align="center" width="300">구 분</td>
-                <td align="center" width="400">사용량 (kg/일)</td>
-                <td align="center" width="200">비 고</td>
-            </tr>
-            <tr>
-                <td align="center">LNG</td>
-                <td align="center">50,000</td>
-                <td align="center"></td>
-            </tr>
-            <tr>
-                <td align="center">LPG</td>
-                <td align="center">5,000</td>
-                <td align="center"></td>
-            </tr>
-        </table>
-        <br><br>
-        <h3>2.검사단계 </h3>
+    <div id="container">
+        <div class="subject">
 
-        <table>
-            <tr>
-                <td align="center" width="100">번 호</td>
-                <td align="center" width="400">검사단계</td>
-                <td align="center" width="300">비 고</td>
-            </tr>
-            <tr>
-                <td align="center">1</td>
-                <td>공정안전보고서 심사</td>
-                <td>설치 90일전까지 자체 심사 통과후 신청</td>
-            </tr>
-            <tr>
-                <td align="center">2</td>
-                <td>공정안전보고서(설치과정중) 확인심사</td>
-                <td>시운전전 심사</td>
-            </tr>
-            <tr>
-                <td align="center">3</td>
-                <td>공정안전보고서 확인(시운전)</td>
-                <td>시운전시 심사</td>
-            </tr>
+        </div>
+        <div class="subject main-subject">
 
-        </table>
-        <br><br>
 
-        <h3>3.검사주체 </h3>
-        검사의 주체는 고용노동부이며, 고용노동부에서 위탁을 받아서 한국산업안전보건 공단에서 심사를 진행한다. <br>
-        또한 모든 검사가 완료되면 고용노동부로 모든 서류가 이관된다.
+        </div>
 
+        <div class="subject">
+
+        </div>
     </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+
+            <h1>한국산업안전보건 공단(PSM 검사)</h1>
+
+            <h3>1. 검사기준 </h3>
+            <table>
+                <tr>
+                    <td align="center" width="300vw">구 분</td>
+                    <td align="center" width="400vw">사용량 (kg/일)</td>
+                    <td align="center" width="200vw">비 고</td>
+                </tr>
+                <tr>
+                    <td align="center">LNG</td>
+                    <td align="center">50,000</td>
+                    <td align="center"></td>
+                </tr>
+                <tr>
+                    <td align="center">LPG</td>
+                    <td align="center">5,000</td>
+                    <td align="center"></td>
+                </tr>
+            </table>
+            <br><br>
+            <h3>2.검사단계 </h3>
+
+            <table>
+                <tr>
+                    <td align="center" width="140vw">번 호</td>
+                    <td align="center" width="350vw">검사단계</td>
+                    <td align="center" width="400vw">비 고</td>
+                </tr>
+                <tr>
+                    <td align="center">1</td>
+                    <td>공정안전보고서 심사</td>
+                    <td>설치 90일전까지 자체 심사 통과후 신청</td>
+                </tr>
+                <tr>
+                    <td align="center">2</td>
+                    <td>공정안전보고서(설치과정중) 확인심사</td>
+                    <td>시운전전 심사</td>
+                </tr>
+                <tr>
+                    <td align="center">3</td>
+                    <td>공정안전보고서 확인(시운전)</td>
+                    <td>시운전시 심사</td>
+                </tr>
+
+            </table>
+            <br><br>
+
+            <h3>3.검사주체 </h3>
+            <p> 검사의 주체는 고용노동부이며, 고용노동부에서 위탁을 받아서 한국산업안전보건 공단에서 심사를 진행한다. <br>
+                또한 모든 검사가 완료되면 고용노동부로 모든 서류가 이관된다. </p>
+
+            <br>
+            <br>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a> </h6>
+                </h5>
+            </div>
+
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+
+
 </body>
 
 </html>

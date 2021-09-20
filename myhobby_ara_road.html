@@ -5,24 +5,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flex box 이해</title>
     <style>
-        td {
-            padding: 5px;
-            border: 1px solid #666;
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
         }
+
 
         body {
-            height: 80vh;
-            display: grid;
-            justify-content: center;
-            /* align-items: center; */
-            background: #f3f1f5;
-            /* border: 3px solid blue; */
+            font-size: 0.90vw;
+            background: white;
         }
 
-        .item_name {
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
             text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
         }
 
         hr {
@@ -31,109 +71,142 @@
             border-style: dotted;
         }
 
-        .hr_1 {
-            width: 100%;
-            border: 2px double green;
-        }
-
         #foot {
             text-align: right;
         }
 
-        .picture {
-            display: grid;
-            justify-content: center;
+        td {
+            padding: 10px;
+            border: 1px solid #e70a0a17;
+            /* height: 15vmax; */
+            margin: 0px;
         }
 
-        .note {
-            width: 810px;
-            border: 1px solid dimgray;
-            padding: 5px;
-        }
+        /* .sub_explain {
+            width: 800px;
+        } */
     </style>
 </head>
 
 <body>
-    <div align="center">
-        <h1><u>아라 자전거길</u></h1>
-    </div>
-    <div>
-        <table>
-            <tr>
-                <td class="item_name" width="200px">
-                    코스명
-                </td>
-                <td width="600px">
-                    아라 자전거길
-                </td>
-            <tr>
-                <td class="item_name">
-                    코 &nbsp 스
-                </td>
-                <td>
-                    아라서해갑문~아라한강갑문
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    거 &nbsp 리
-                </td>
-                <td>
-                    21km
-                </td>
-            </tr>
-            <tr>
-                <td class="item_name">
-                    시 &nbsp 간
-                </td>
-                <td>
-                    1시간 30분
-                </td>
-            </tr>
-            </tr>
-        </table>
-    </div>
-    <br>
-    <div id="road_map">
-        <img src="./image/road_ara.jpg" alt="road map" width="830" height="500">
-    </div>
-    <br>
-    <hr>
-    <br>
 
-    <h2>아라갑문 (2021년 6월 5일)</h2>
-    <div class="picture">
-        <div>
-            <img src="./image/ara_center.jpg" alt="ara_center" width="400" height="300">
-            <img src="./image/ara_start.jpg" alt="ara_start" width="400" height="300">
+    <div id="container">
+        <div class="subject">
+
         </div>
-        <div>
-            <img src="./image/ara_sea.jpg" alt="ara_sea" width="400" height="300">
-            <img src="./image/ara_ship.jpg" alt="ara_ship" width="400" height="300">
+        <div class="subject main-subject">
+            <h1><u>아라 자전거길</u></h1>
+
+        </div>
+
+        <div class="subject">
+
         </div>
     </div>
+    <div id="container">
+        <div class="flex-box">
 
-    <div>
-        <h4>즐거운길에서 남기고 싶은말..</h4>
+        </div>
+
+
+        <div class="flex-box content">
+            <div style="padding : 3%">
+                <table>
+                    <tr>
+                        <td class="item_name" width="300px">
+                            코스명
+                        </td>
+                        <td width="600px">
+                            아라 자전거길
+                        </td>
+                    <tr>
+                        <td class="item_name">
+                            코 &nbsp 스
+                        </td>
+                        <td>
+                            아라서해갑문~아라한강갑문
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item_name">
+                            거 &nbsp 리
+                        </td>
+                        <td>
+                            21km
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item_name">
+                            시 &nbsp 간
+                        </td>
+                        <td>
+                            1시간 30분
+                        </td>
+                    </tr>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div id="road_map">
+                <img src="./image/road_ara.jpg" alt="road map" width="100%" height="100%">
+            </div>
+            <br>
+            <hr>
+            <br>
+            <h2>아라갑문 (2021년 6월 5일)</h2>
+            <div class="picture flex-box">
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="./image/ara_center.jpg" alt="ara_center" width="50%" height="50%">
+                            </td>
+                            <td>
+                                <img src="./image/ara_start.jpg" alt="ara_start" width="50%" height="50%">
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="./image/ara_sea.jpg" alt="ara_sea" width="50%" height="50%">
+                            </td>
+                            <td>
+                                <img src="./image/ara_ship.jpg" alt="ara_ship" width="50%" height="50%">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h4>즐거운길에서 남기고 싶은말..</h4>
+            </div>
+
+            <div class="note">
+                <p>다소 지루할 수는 있지만 깔끔한 강가의 라이딩 코스 좋았습니다. 연인들끼리 자전거 빌려서 가기에도 좋은 코스 입니다.<br>
+                    끝자락 서해갑문 마지막 국토종주의 시발점과 끝을 알리는 아치도 멋있었고 그리고 가장 좋은 점은 눈앞에 펼쳐지는 바다와 갯벌이 아름다웠습니다.<br>
+                    솔술 부는 바람을 맞으면서 않아 있으니 시간가는줄 몰랐습니다. <br>
+                    초보자가 라이딩하게에는 너무나 좋은 코스 입니다.</p>
+            </div>
+            <div>
+                <h5>
+                    <br>
+                    <br>
+                    <hr>
+                    <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a> </h6>
+                </h5>
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
     </div>
-
-    <div class="note">
-        <p>다소 지루할 수는 있지만 깔끔한 강가의 라이딩 코스 좋았습니다. 연인들끼리 자전거 빌려서 가기에도 좋은 코스 입니다.<br>
-            끝자락 서해갑문 마지막 국토종주의 시발점과 끝을 알리는 아치도 멋있었고 그리고 가장 좋은 점은 눈앞에 펼쳐지는 바다와 갯벌이 아름다웠습니다.<br>
-            솔술 부는 바람을 맞으면서 않아 있으니 시간가는줄 몰랐습니다. <br>
-            초보자가 라이딩하게에는 너무나 좋은 코스 입니다.</p>
-    </div>
-
     <br>
-
-    <div>
-        <h5>
-            <br>
-            <br>
-            <hr class="hr_1">
-            <h6 id="foot"><a href="chatt.html" target="pages"> >> Discuss with Me</a> </h6>
-        </h5>
-    </div>
 
 </body>
 

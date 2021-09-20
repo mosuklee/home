@@ -2,246 +2,317 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIPE THICKNESS CALCULATION</title>
+    <meta charset="utf-8">
+    <title>STEAM TABLE</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
     <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.0vw;
+            }
+        }
+
+
         body {
-            height: 80vh;
-            display: grid;
-            justify-content: center;
-            /* align-items: center; */
-            background: #f3f1f5;
-            /* border: 3px solid blue; */
-            */
+            font-size: 0.90vw;
+            background: white;
         }
 
-        #doc_wide {
-            width: 810px;
-            /* border: 3px solid blue; */
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
         }
 
-        #outline_form {
-            width: 810px;
-            /* border: 3px solid blue; */
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
         }
 
-        #outline_table {
-            padding: 5px;
-            border: 1px solid #666;
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: dimgray;
+            border-style: dotted;
+        }
+
+        #foot {
+            text-align: right;
         }
 
         td {
             /* text-align: center; */
-            padding: 5px;
-            border: 1px solid #666;
+            padding: 10px;
+            border: 1px solid black;
+            /* height: 15vmax; */
+            margin: 0px;
         }
 
-        #formula {
-            width: 500px;
-            border-style: dashed;
-            text-align: center;
-            border: 1px solid gray;
-        }
+        /* .sub_explain {
+            width: 800px;
+        } */
     </style>
 </head>
 
 <body>
-    <div id="doc_wide">
-        <h1>
-            PIPE THICKNESS CALCULATION
-        </h1>
-        <h3>1. 배관의 두께 계산식</h3>
-        <p>설계온도 및 설계압력하에서 최소 관벽 두께는 ASME Code 기준에 의하여 아래와 같은 공식으로 계산한다. <br> </p>
 
-        <div id="formula">
-            <br>
-            <b> tm = [ (P x Do) / (2 x (SE + Py)) ] + A </b>
-            <br><br>
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
         </div>
 
-        <br>
-        여기에서<br>
-        tm = 최소관벽 두께 (mm) <br>
-        P : 설계압력 (kg/cm2.g) <br>
-        Do : 관 외경 (mm) <br>
-        S : 설계온도에서의 최대 허용응력 (kg/cm2.g) <br>
-        E : 용접효율 (ASME Section 8 : SMLS의 경우 1로 적용) <br>
-        y : 계수(ANSI/SAME B31.1 Table 104.1.2(A)) <br>
-        A : 부식여유 (ASME B31G : 1.6mm) <br>
-        <br>
+        <div class="subject">
 
-        <h4>1.1 배관지잴의 온도에 따른 보정계수 (y-coefficient) </h4>
-        <table>
-            <tr>
-                <td align="center" rowspan="2" width="260">재질</td>
-                <td align="center" colspan="8">온도</td>
-            </tr>
-            <tr>
-                <td align="center" width="110">482℃ 이하</tdㅁ>
-                <td align="center" width="75">510℃</td>
-                <td align=" center" width="75">538℃</td>
-                <td align=" center" width="75">566℃</td>
-                <td align=" center" width="75">593℃</td>
-                <td align=" center" width="75">621℃</td>
-                <td align=" center" width="75">649℃</td>
-                <td align=" center" width="110">677℃이상</td>
-            </tr>
-            <tr>
-                <td align=" center">페라이트강</td>
-                <td align="center">0.4</td>
-                <td align="center">0.5</td>
-                <td align="center">0.7</td>
-                <td align="center">0.7</td>
-                <td align="center">0.7</td>
-                <td align="center">0.7</td>
-                <td align="center">0.7</td>
-                <td align="center">0.7</td>
-            </tr>
-            <tr>
-                <td align="center">오스테나이트강</td>
-                <td align="center">0.4</td>
-                <td align="center">0.4</td>
-                <td align="center">0.4</td>
-                <td align="center">0.4</td>
-                <td align="center">0.5</td>
-                <td align="center">0.7</td>
-                <td align="center">0.7</td>
-                <td align="center">0.7</td>
-            </tr>
-            <tr>
-                <td align="center">니켈합금 및 다른재질</td>
-                <td align="center">0.4</td>
-                <td align="center">0.4</td>
-                <td align="center">0.4</td>
-                <td align="center">0.4</td>
-                <td align="center">0.4</td>
-                <td align="center">0.4</td>
-                <td align="center">0.5</td>
-                <td align="center">0.7</td>
-            </tr>
-        </table>
-        <p>
-            * 1) Y 값은 보간법에 의해 구마며 주철 및 비철금속 재료의 Y 값은 0.4이다. <br>
-            &nbsp; 2) Do/tm 값이 6보다 작은관에 대하여 482℃ 이하 온도에서 설계된 페라이트강 및 오스테나이트강의 Y값은 <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아래와 같이 구한다.
-            <br>
-
-        <div id="formula">
-            <br>
-            <b> Y = Di / (Di + Do) </b>
-            <br><br>
         </div>
-        <br>
-        <div>
-            여기서&nbsp;&nbsp;&nbsp; Di : 배관의 안지름, mm
-        </div>
-        </p>
-
-        <h4>1.2 이음매 있는 배관의 용접 이음계수 </h4>
-        <table>
-            <tr>
-                <td align="center" width="700">이음형태</td>
-                <td align="center" width="150">용접이음 계수</td>
-            </tr>
-            <tr>
-                <td>. 전기 또는 가스 용융용접 <br>
-                    - 용가제를 사용한 한쪽면 맞대기 용접 <br>
-                    - 용가제를 사용하지 않는 한쪽면 맞대기 용접 <br>
-                    - 용가재 사용유무에 관계없이 양쪽면 맞대기 용접 <br>
-                    - 용가제 사용유무에 관계없이 한쪽면 또는 양쪽면 맞대기 용접의 100% 방사선 투과시험 <br>
-                    &nbsp;&nbsp;검사를 할 경우 <br>
-                    . 전기 저항 용접 <br>
-                </td>
-                <td align="center"> <br>
-                    0.8 <br>
-                    0.85 <br>
-                    0.90 <br>
-                    1.00 <br>
-                    <br>
-                    0.85 <br>
-                </td>
-            </tr>
-        </table>
-
-        <p>주) SMLS 배관의 용접이음 계수 : 1.0</p>
-
-        <h4>1.3 배관이 허용응력 (ANSI B31.3) </h4>
-
-        <div id="formula">
-            <br>
-            <b> 허용응력 = 배관의 허용응력(ksi) x 70.31 (ksi)/(kg/cm3) <br></b>
-            <br>
-        </div>
-        <p>주) 배관의 허용응력은 <a href="./tech_asme31_3_tableA_1.html">ANSI B31.3 Allowable Stress SE,ksi Metal Temperature</a>
-            참조</p>
-
-
     </div>
+    <div id="container">
+        <div class="flex-box">
 
-    <h3>2. 배관 두께 계산</h3>
+        </div>
 
-    <table>
-        <tr>
-            <td align="center">Press <br> (kg/cm2.g)</td>
-            <td align="center">Do<br> (mm)</td>
-            <td align="center">S<br> (ksi)</td>
-            <td align="center">E</td>
-            <td align="center">y</td>
-            <td align="center">A<br> (mm)</td>
-            <td align="center" width=90px>tm</td>
 
-        </tr>
-        <tr>
-            <td><input style="width:80px; text-align:center" type="text" id="input_p" input value="10"></td>
-            <td><input style="width:80px; text-align:center" type="text" id="input_do" input value="114.3"></td>
-            <td><input style="width:80px; text-align:center" type="text" id="input_s" input value="16"></td>
-            <td><input style="width:80px; text-align:center" type="text" id="input_e" input value="0.85"></td>
-            <td><input style="width:80px; text-align:center" type="text" id="input_y" input value="0.4"></td>
-            <td><input style="width:80px; text-align:center" type="text" id="input_a" input value="1.6"></td>
-            <td id="calc_tm" align="center">-</td>
-        </tr>
-    </table>
-    <br>
-    <button onclick="calculate()"> PIPE Thickness Calculation </button>
+        <div class="flex-box content">
+            <h1>
+                PIPE THICKNESS CALCULATION
+            </h1>
+            <h3>1. 배관의 두께 계산식</h3>
+            <p>설계온도 및 설계압력하에서 최소 관벽 두께는 ASME Code 기준에 의하여 아래와 같은 공식으로 계산한다. <br> </p>
 
-    <br>
-    <br>
+            <div id="formula">
+                <br>
+                <b> tm = [ (P x Do) / (2 x (SE + Py)) ] + A </b>
+                <br><br>
+            </div>
 
-    <script>
-        function calculate() {
+            <br>
+            여기에서<br>
+            tm = 최소관벽 두께 (mm) <br>
+            P : 설계압력 (kg/cm2.g) <br>
+            Do : 관 외경 (mm) <br>
+            S : 설계온도에서의 최대 허용응력 (kg/cm2.g) <br>
+            E : 용접효율 (ASME Section 8 : SMLS의 경우 1로 적용) <br>
+            y : 계수(ANSI/SAME B31.1 Table 104.1.2(A)) <br>
+            A : 부식여유 (ASME B31G : 1.6mm) <br>
+            <br>
 
-            // tm 계산
-            // 계산 수식
-            // tm = [(p x Do) / (2 x (SE+Py))]+A
-            var input_p
-            var input_do
-            var input_s
-            var input_e
-            var input_y
-            var input_a
-            var calc_tm
+            <h4>1.1 배관지잴의 온도에 따른 보정계수 (y-coefficient) </h4>
+            <table>
+                <tr>
+                    <td align="center" rowspan="2" width="300">재질</td>
+                    <td align="center" colspan="8">온도</td>
+                </tr>
+                <tr>
+                    <td align="center" width="110">482℃ 이하</tdㅁ>
+                    <td align="center" width="75">510℃</td>
+                    <td align=" center" width="75">538℃</td>
+                    <td align=" center" width="75">566℃</td>
+                    <td align=" center" width="75">593℃</td>
+                    <td align=" center" width="75">621℃</td>
+                    <td align=" center" width="75">649℃</td>
+                    <td align=" center" width="110">677℃이상</td>
+                </tr>
+                <tr>
+                    <td>페라이트강</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.5</td>
+                    <td align="center">0.7</td>
+                    <td align="center">0.7</td>
+                    <td align="center">0.7</td>
+                    <td align="center">0.7</td>
+                    <td align="center">0.7</td>
+                    <td align="center">0.7</td>
+                </tr>
+                <tr>
+                    <td>오스테나이트강</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.5</td>
+                    <td align="center">0.7</td>
+                    <td align="center">0.7</td>
+                    <td align="center">0.7</td>
+                </tr>
+                <tr>
+                    <td>니켈합금 및 다른재질</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.4</td>
+                    <td align="center">0.5</td>
+                    <td align="center">0.7</td>
+                </tr>
+            </table>
+            <p>
+                * 1) Y 값은 보간법에 의해 구마며 주철 및 비철금속 재료의 Y 값은 0.4이다. <br>
+                &nbsp; 2) Do/tm 값이 6보다 작은관에 대하여 482℃ 이하 온도에서 설계된 페라이트강 및 오스테나이트강의 Y값은 <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아래와 같이 구한다.
+                <br>
 
-            // input 상자에서 data 가져오기
-            input_p = parseFloat(document.getElementById("input_p").value);
-            input_do = parseFloat(document.getElementById("input_do").value);
-            input_s = parseFloat(document.getElementById("input_s").value);
-            input_e = parseFloat(document.getElementById("input_e").value);
-            input_y = parseFloat(document.getElementById("input_y").value);
-            input_a = parseFloat(document.getElementById("input_a").value);
+            <div id="formula">
+                <br>
+                <b> Y = Di / (Di + Do) </b>
+                <br><br>
+            </div>
+            <br>
+            <div>
+                여기서&nbsp;&nbsp;&nbsp; Di : 배관의 안지름, mm
+            </div>
+            </p>
 
-            // 두께 계산
-            calc_tm = ((input_p * input_do) / (2 * ((input_s * 70.31 * input_e) + (input_p * input_y)))) + input_a
+            <h4>1.2 이음매 있는 배관의 용접 이음계수 </h4>
+            <table>
+                <tr>
+                    <td align="center" width="800">이음형태</td>
+                    <td align="center" width="150">용접이음 계수</td>
+                </tr>
+                <tr>
+                    <td>. 전기 또는 가스 용융용접 <br>
+                        - 용가제를 사용한 한쪽면 맞대기 용접 <br>
+                        - 용가제를 사용하지 않는 한쪽면 맞대기 용접 <br>
+                        - 용가재 사용유무에 관계없이 양쪽면 맞대기 용접 <br>
+                        - 용가제 사용유무에 관계없이 한쪽면 또는 양쪽면 맞대기 용접의 100% 방사선 투과시험 <br>
+                        &nbsp;&nbsp;검사를 할 경우 <br>
+                        . 전기 저항 용접 <br>
+                    </td>
+                    <td align="center"> <br>
+                        0.8 <br>
+                        0.85 <br>
+                        0.90 <br>
+                        1.00 <br>
+                        <br>
+                        0.85 <br>
+                    </td>
+                </tr>
+            </table>
 
-            // 계산된 결과를 web에 뿌리기
-            if (!isNaN(input_p)) {
-                // 입력창의 force_comb 양식에 comb된 force 값 입력
-                document.getElementById("calc_tm").innerHTML = calc_tm.toFixed(2);
+            <p>주) SMLS 배관의 용접이음 계수 : 1.0</p>
+
+            <h4>1.3 배관이 허용응력 (ANSI B31.3) </h4>
+
+            <div id="formula">
+                <br>
+                <b> 허용응력 = 배관의 허용응력(ksi) x 70.31 (ksi)/(kg/cm3) <br></b>
+                <br>
+            </div>
+            <p>주) 배관의 허용응력은 <a href="./tech_asme31_3_tableA_1.html">ANSI B31.3 Allowable Stress SE,ksi Metal
+                    Temperature</a>
+                참조</p>
+
+
+            <h3>2. 배관 두께 계산</h3>
+
+            <table>
+                <tr>
+                    <td align="center">Press <br> (kg/cm2.g)</td>
+                    <td align="center">Do<br> (mm)</td>
+                    <td align="center">S<br> (ksi)</td>
+                    <td align="center">E</td>
+                    <td align="center">y</td>
+                    <td align="center">A<br> (mm)</td>
+                    <td align="center" width=90px>tm</td>
+
+                </tr>
+                <tr>
+                    <td><input style="width:5.5vw; text-align:center" type="text" id="input_p" input value="10"></td>
+                    <td><input style="width:5.5vw; text-align:center" type="text" id="input_do" input value="114.3">
+                    </td>
+                    <td><input style="width:5.5vw; text-align:center" type="text" id="input_s" input value="16"></td>
+                    <td><input style="width:5.5vw; text-align:center" type="text" id="input_e" input value="0.85"></td>
+                    <td><input style="width:5.5vw; text-align:center" type="text" id="input_y" input value="0.4"></td>
+                    <td><input style="width:5.5vw; text-align:center" type="text" id="input_a" input value="1.6"></td>
+                    <td id="calc_tm" align="center">-</td>
+                </tr>
+            </table>
+            <br>
+            <button onclick="calculate()"> PIPE Thickness Calculation </button>
+
+            <br>
+            <br>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+        <script>
+            function calculate() {
+
+                // tm 계산
+                // 계산 수식
+                // tm = [(p x Do) / (2 x (SE+Py))]+A
+                var input_p
+                var input_do
+                var input_s
+                var input_e
+                var input_y
+                var input_a
+                var calc_tm
+
+                // input 상자에서 data 가져오기
+                input_p = parseFloat(document.getElementById("input_p").value);
+                input_do = parseFloat(document.getElementById("input_do").value);
+                input_s = parseFloat(document.getElementById("input_s").value);
+                input_e = parseFloat(document.getElementById("input_e").value);
+                input_y = parseFloat(document.getElementById("input_y").value);
+                input_a = parseFloat(document.getElementById("input_a").value);
+
+                // 두께 계산
+                calc_tm = ((input_p * input_do) / (2 * ((input_s * 70.31 * input_e) + (input_p * input_y)))) + input_a
+
+                // 계산된 결과를 web에 뿌리기
+                if (!isNaN(input_p)) {
+                    // 입력창의 force_comb 양식에 comb된 force 값 입력
+                    document.getElementById("calc_tm").innerHTML = calc_tm.toFixed(2);
+                }
             }
-        }
-    </script>
-
+        </script>
 
 
 </body>

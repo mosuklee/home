@@ -2,369 +2,455 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIPE THICKNESS (KS)</title>
+    <meta charset="utf-8">
+    <title>STEAM TABLE</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
     <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.0vw;
+            }
+        }
+
+
         body {
-            height: 80vh;
-            display: grid;
-            justify-content: center;
-            /* align-items: center; */
-            background: #f3f1f5;
-            /* border: 3px solid blue; */
-            */
+            font-size: 0.96vw;
+            background: white;
         }
 
-        #doc_wide {
-            width: 810px;
-            /* border: 3px solid blue; */
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
         }
 
-        #outline_form {
-            width: 810px;
-            /* border: 3px solid blue; */
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: dimgray;
+            border-style: dotted;
+        }
+
+        #foot {
+            text-align: right;
         }
 
         td {
             text-align: center;
-            border: 1px solid #666;
-            padding: 5px;
+            padding: 10px;
+            border: 1px solid black;
+            /* height: 15vmax; */
+            margin: 0px;
         }
 
-        table {
-            border-collapse: collapse;
-        }
+        /* .sub_explain {
+            width: 800px;
+        } */
     </style>
 </head>
 
 <body>
-    <div id="doc_wide"></div>
-    <h1>PIPE THKNESS (KS) </h1>
-    <table>
 
-        <tr>
-            <td rowspan="3">호칭지름(A)</td>
-            <td rowspan="3">바깥지름(mm)</td>
-            <td colspan="7">호칭두께(mm)</td>
-        </tr>
-        <tr>
-            <td rowspan="2">KSD3507(SPP)</td>
-            <td colspan="6">KSD3562 (SPPS38)</td>
-        </tr>
-        <tr>
-            <td>SCH.10</td>
-            <td>SCH.20</td>
-            <td>SCH.30</td>
-            <td>SCH.40</td>
-            <td>SCH.60</td>
-            <td>SCH.80</td>
-        </tr>
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
 
 
-        <tr class="row4">
-            <td>6</td>
-            <td>10.5</td>
-            <td>2</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>1.7</td>
-            <td>2.2</td>
-            <td>2.4</td>
-        </tr>
-        <tr class="row5">
-            <td>8</td>
-            <td>13.8</td>
-            <td>2.35</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>2.2</td>
-            <td>2.4</td>
-            <td>3</td>
-        </tr>
-        <tr class="row6">
-            <td>10</td>
-            <td>17.3</td>
-            <td>2.35</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>2.3</td>
-            <td>2.8</td>
-            <td>3.2</td>
-        </tr>
-        <tr class="row7">
-            <td>15</td>
-            <td>21.7</td>
-            <td>2.65</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>2.8</td>
-            <td>3.2</td>
-            <td>3.7</td>
-        </tr>
-        <tr class="row8">
-            <td>20</td>
-            <td>27.2</td>
-            <td>2.65</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>2.9</td>
-            <td>3.4</td>
-            <td>3.9</td>
-        </tr>
-        <tr class="row9">
-            <td>25</td>
-            <td>34</td>
-            <td>3.25</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>3.4</td>
-            <td>3.9</td>
-            <td>4.5</td>
-        </tr>
-        <tr class="row10">
-            <td>32</td>
-            <td>42.7</td>
-            <td>3.25</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>3.6</td>
-            <td>4.5</td>
-            <td>4.9</td>
-        </tr>
-        <tr class="row11">
-            <td>40</td>
-            <td>48.6</td>
-            <td>3.25</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>3.7</td>
-            <td>4.5</td>
-            <td>5.1</td>
-        </tr>
-        <tr class="row12">
-            <td>50</td>
-            <td>60.5</td>
-            <td>3.65</td>
-            <td></td>
-            <td>3.2</td>
-            <td></td>
-            <td>3.9</td>
-            <td>4.9</td>
-            <td>5.5</td>
-        </tr>
-        <tr class="row13">
-            <td>65</td>
-            <td>76.3</td>
-            <td>3.65</td>
-            <td></td>
-            <td>4.5</td>
-            <td></td>
-            <td>5.2</td>
-            <td>6</td>
-            <td>7</td>
-        </tr>
-        <tr class="row14">
-            <td>80</td>
-            <td>89.1</td>
-            <td>4.05</td>
-            <td></td>
-            <td>4.5</td>
-            <td></td>
-            <td>5.5</td>
-            <td>6.6</td>
-            <td>7.6</td>
-        </tr>
-        <tr class="row15">
-            <td>90</td>
-            <td>101.6</td>
-            <td>4.05</td>
-            <td></td>
-            <td>4.5</td>
-            <td></td>
-            <td>5.7</td>
-            <td>7</td>
-            <td>8.1</td>
-        </tr>
-        <tr class="row16">
-            <td>100</td>
-            <td>114.3</td>
-            <td>4.5</td>
-            <td></td>
-            <td>4.9</td>
-            <td></td>
-            <td>6</td>
-            <td>7.1</td>
-            <td>8.6</td>
-        </tr>
-        <tr class="row17">
-            <td>125</td>
-            <td>139.8</td>
-            <td>4.85</td>
-            <td></td>
-            <td>5.1</td>
-            <td></td>
-            <td>6.6</td>
-            <td>8.1</td>
-            <td>9.5</td>
-        </tr>
-        <tr class="row18">
-            <td>150</td>
-            <td>165.2</td>
-            <td>4.85</td>
-            <td></td>
-            <td>5.5</td>
-            <td></td>
-            <td>7.1</td>
-            <td>9.3</td>
-            <td>11</td>
-        </tr>
-        <tr class="row19">
-            <td>175</td>
-            <td>190.7</td>
-            <td>5.3</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="row20">
-            <td>200</td>
-            <td>216.3</td>
-            <td>5.85</td>
-            <td></td>
-            <td>6.4</td>
-            <td>7</td>
-            <td>8.2</td>
-            <td>10.3</td>
-            <td>12.7</td>
-        </tr>
-        <tr class="row21">
-            <td>225</td>
-            <td>241.8</td>
-            <td>6.2</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr class="row22">
-            <td>250</td>
-            <td>267.4</td>
-            <td>6.4</td>
-            <td></td>
-            <td>6.4</td>
-            <td>7.8</td>
-            <td>9.3</td>
-            <td>12.7</td>
-            <td>15.1</td>
-        </tr>
-        <tr class="row23">
-            <td>300</td>
-            <td>318.5</td>
-            <td>7</td>
-            <td></td>
-            <td>6.4</td>
-            <td>8.4</td>
-            <td>10.3</td>
-            <td>14.3</td>
-            <td>17.4</td>
-        </tr>
-        <tr class="row24">
-            <td>350</td>
-            <td>355.6</td>
-            <td>7.6</td>
-            <td>6.4</td>
-            <td>7.9</td>
-            <td>9.5</td>
-            <td>11.1</td>
-            <td>15.1</td>
-            <td>19</td>
-        </tr>
-        <tr class="row25">
-            <td>400</td>
-            <td>406.4</td>
-            <td>7.9</td>
-            <td>6.4</td>
-            <td>7.9</td>
-            <td>9.5</td>
-            <td>12.7</td>
-            <td>16.7</td>
-            <td>21.4</td>
-        </tr>
-        <tr class="row26">
-            <td>450</td>
-            <td>457.2</td>
-            <td>7.9</td>
-            <td>6.4</td>
-            <td>7.9</td>
-            <td>11.1</td>
-            <td>14.3</td>
-            <td>19</td>
-            <td>23.8</td>
-        </tr>
-        <tr class="row27">
-            <td>500</td>
-            <td>508</td>
-            <td>7.9</td>
-            <td>6.4</td>
-            <td>117</td>
-            <td>12.7</td>
-            <td>15.1</td>
-            <td>20.6</td>
-            <td>26.2</td>
-        </tr>
-        <tr class="row28">
-            <td>558.8</td>
-            <td>7.9</td>
-            <td>6.4</td>
-            <td>129</td>
-            <td>12.7</td>
-            <td>15.9</td>
-            <td>-</td>
-            <td>550</td>
-            <td>-</td>
-        </tr>
-        <tr class="row29">
-            <td>600</td>
-            <td>609.6</td>
-            <td>7.9</td>
-            <td>6.4</td>
-            <td>141</td>
-            <td>14.3</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-        </tr>
-        <tr class="row30">
-            <td>650</td>
-            <td>660.4</td>
-            <td></td>
-            <td>7.9</td>
-            <td>203</td>
-            <td>-</td>
-            <td>-</td>
-            <td></td>
-            <td></td>
-        </tr>
+        </div>
 
-    </table>
+        <div class="subject">
+
+        </div>
     </div>
+    <div id="container">
+        <div class="flex-box">
 
-    <br>
+        </div>
+
+
+        <div class="flex-box content">
+
+            <h1>PIPE THKNESS (KS) </h1>
+            <table>
+
+                <tr>
+                    <td rowspan="3" align=>호칭지름(A)</td>
+                    <td rowspan="3">바깥지름(mm)</td>
+                    <td colspan="7">호칭두께(mm)</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">KSD3507(SPP)</td>
+                    <td colspan="6">KSD3562 (SPPS38)</td>
+                </tr>
+                <tr>
+                    <td>SCH.10</td>
+                    <td>SCH.20</td>
+                    <td>SCH.30</td>
+                    <td>SCH.40</td>
+                    <td>SCH.60</td>
+                    <td>SCH.80</td>
+                </tr>
+
+
+                <tr class="row4">
+                    <td>6</td>
+                    <td>10.5</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1.7</td>
+                    <td>2.2</td>
+                    <td>2.4</td>
+                </tr>
+                <tr class="row5">
+                    <td>8</td>
+                    <td>13.8</td>
+                    <td>2.35</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>2.2</td>
+                    <td>2.4</td>
+                    <td>3</td>
+                </tr>
+                <tr class="row6">
+                    <td>10</td>
+                    <td>17.3</td>
+                    <td>2.35</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>2.3</td>
+                    <td>2.8</td>
+                    <td>3.2</td>
+                </tr>
+                <tr class="row7">
+                    <td>15</td>
+                    <td>21.7</td>
+                    <td>2.65</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>2.8</td>
+                    <td>3.2</td>
+                    <td>3.7</td>
+                </tr>
+                <tr class="row8">
+                    <td>20</td>
+                    <td>27.2</td>
+                    <td>2.65</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>2.9</td>
+                    <td>3.4</td>
+                    <td>3.9</td>
+                </tr>
+                <tr class="row9">
+                    <td>25</td>
+                    <td>34</td>
+                    <td>3.25</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>3.4</td>
+                    <td>3.9</td>
+                    <td>4.5</td>
+                </tr>
+                <tr class="row10">
+                    <td>32</td>
+                    <td>42.7</td>
+                    <td>3.25</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>3.6</td>
+                    <td>4.5</td>
+                    <td>4.9</td>
+                </tr>
+                <tr class="row11">
+                    <td>40</td>
+                    <td>48.6</td>
+                    <td>3.25</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>3.7</td>
+                    <td>4.5</td>
+                    <td>5.1</td>
+                </tr>
+                <tr class="row12">
+                    <td>50</td>
+                    <td>60.5</td>
+                    <td>3.65</td>
+                    <td></td>
+                    <td>3.2</td>
+                    <td></td>
+                    <td>3.9</td>
+                    <td>4.9</td>
+                    <td>5.5</td>
+                </tr>
+                <tr class="row13">
+                    <td>65</td>
+                    <td>76.3</td>
+                    <td>3.65</td>
+                    <td></td>
+                    <td>4.5</td>
+                    <td></td>
+                    <td>5.2</td>
+                    <td>6</td>
+                    <td>7</td>
+                </tr>
+                <tr class="row14">
+                    <td>80</td>
+                    <td>89.1</td>
+                    <td>4.05</td>
+                    <td></td>
+                    <td>4.5</td>
+                    <td></td>
+                    <td>5.5</td>
+                    <td>6.6</td>
+                    <td>7.6</td>
+                </tr>
+                <tr class="row15">
+                    <td>90</td>
+                    <td>101.6</td>
+                    <td>4.05</td>
+                    <td></td>
+                    <td>4.5</td>
+                    <td></td>
+                    <td>5.7</td>
+                    <td>7</td>
+                    <td>8.1</td>
+                </tr>
+                <tr class="row16">
+                    <td>100</td>
+                    <td>114.3</td>
+                    <td>4.5</td>
+                    <td></td>
+                    <td>4.9</td>
+                    <td></td>
+                    <td>6</td>
+                    <td>7.1</td>
+                    <td>8.6</td>
+                </tr>
+                <tr class="row17">
+                    <td>125</td>
+                    <td>139.8</td>
+                    <td>4.85</td>
+                    <td></td>
+                    <td>5.1</td>
+                    <td></td>
+                    <td>6.6</td>
+                    <td>8.1</td>
+                    <td>9.5</td>
+                </tr>
+                <tr class="row18">
+                    <td>150</td>
+                    <td>165.2</td>
+                    <td>4.85</td>
+                    <td></td>
+                    <td>5.5</td>
+                    <td></td>
+                    <td>7.1</td>
+                    <td>9.3</td>
+                    <td>11</td>
+                </tr>
+                <tr class="row19">
+                    <td>175</td>
+                    <td>190.7</td>
+                    <td>5.3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row20">
+                    <td>200</td>
+                    <td>216.3</td>
+                    <td>5.85</td>
+                    <td></td>
+                    <td>6.4</td>
+                    <td>7</td>
+                    <td>8.2</td>
+                    <td>10.3</td>
+                    <td>12.7</td>
+                </tr>
+                <tr class="row21">
+                    <td>225</td>
+                    <td>241.8</td>
+                    <td>6.2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row22">
+                    <td>250</td>
+                    <td>267.4</td>
+                    <td>6.4</td>
+                    <td></td>
+                    <td>6.4</td>
+                    <td>7.8</td>
+                    <td>9.3</td>
+                    <td>12.7</td>
+                    <td>15.1</td>
+                </tr>
+                <tr class="row23">
+                    <td>300</td>
+                    <td>318.5</td>
+                    <td>7</td>
+                    <td></td>
+                    <td>6.4</td>
+                    <td>8.4</td>
+                    <td>10.3</td>
+                    <td>14.3</td>
+                    <td>17.4</td>
+                </tr>
+                <tr class="row24">
+                    <td>350</td>
+                    <td>355.6</td>
+                    <td>7.6</td>
+                    <td>6.4</td>
+                    <td>7.9</td>
+                    <td>9.5</td>
+                    <td>11.1</td>
+                    <td>15.1</td>
+                    <td>19</td>
+                </tr>
+                <tr class="row25">
+                    <td>400</td>
+                    <td>406.4</td>
+                    <td>7.9</td>
+                    <td>6.4</td>
+                    <td>7.9</td>
+                    <td>9.5</td>
+                    <td>12.7</td>
+                    <td>16.7</td>
+                    <td>21.4</td>
+                </tr>
+                <tr class="row26">
+                    <td>450</td>
+                    <td>457.2</td>
+                    <td>7.9</td>
+                    <td>6.4</td>
+                    <td>7.9</td>
+                    <td>11.1</td>
+                    <td>14.3</td>
+                    <td>19</td>
+                    <td>23.8</td>
+                </tr>
+                <tr class="row27">
+                    <td>500</td>
+                    <td>508</td>
+                    <td>7.9</td>
+                    <td>6.4</td>
+                    <td>117</td>
+                    <td>12.7</td>
+                    <td>15.1</td>
+                    <td>20.6</td>
+                    <td>26.2</td>
+                </tr>
+                <tr class="row28">
+                    <td>550</td>
+                    <td>558.8</td>
+                    <td>7.9</td>
+                    <td>6.4</td>
+                    <td>129</td>
+                    <td>12.7</td>
+                    <td>15.9</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr class="row29">
+                    <td>600</td>
+                    <td>609.6</td>
+                    <td>7.9</td>
+                    <td>6.4</td>
+                    <td>141</td>
+                    <td>14.3</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr class="row30">
+                    <td>650</td>
+                    <td>660.4</td>
+                    <td></td>
+                    <td>7.9</td>
+                    <td>203</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </table>
+
+            <br>
+            <br>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+
+
+
+        <div class="flex-box">
+
+        </div>
+
 
 </body>
 
