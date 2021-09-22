@@ -7,188 +7,241 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
         body {
-            height: 80vh;
-            display: grid;
-            justify-content: center;
-            /* align-items: center; */
-            background: #f3f1f5;
-            /* border: 3px solid blue; */
-            */
+            font-size: 0.90vw;
+            background: white;
         }
 
-        #doc_wide {
-            width: 810px;
-            /* border: 3px solid blue; */
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
         }
 
-        #outline_form {
-            width: 810px;
-            /* border: 3px solid blue; */
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
         }
 
-        #outline_table {
-            padding: 5px;
-            border: 1px solid #666;
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
         }
 
-        td {
-            /* text-align: center; */
-            padding: 5px;
-            border: 1px solid #666;
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
         }
 
-        #formula {
-            width: 500px;
-            border-style: dashed;
+        .main-subject {
+            /* width: 100px; */
             text-align: center;
-            border: 1px solid gray;
         }
 
-        .hr_1 {
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
             width: 100%;
-            border: 2px double green;
-            aligh: right;
+            color: dimgray;
+            border-style: dotted;
         }
 
         #foot {
             text-align: right;
         }
+
+        td {
+            /* text-align: center; */
+            padding: 10px;
+            border: 1px solid black;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
     </style>
 </head>
 
 <body>
-    <div id="doc_wide">
+    <div id="container">
+        <div class="subject">
 
-        <h1>전기분야 정밀안전진단/사용전검사</h1>
+        </div>
+        <div class="subject main-subject">
 
-        <h3>1. 신청시기 : 전기판넬 설치 및 단동/Loop 테스트 후 </h3>
 
-        <h3>2. 준비서류 </h3>
+        </div>
 
-        <table>
-            <tr>
-                <td align="center" width="100">번호</td>
-                <td align="center" width="500">준비서류</td>
-                <td align="center" width="200">비 고</td>
-            </tr>
-            <tr>
-                <td style="padding-left: 40px;background-color: #e3f2fd;">1</td>
-                <td style="background-color: #e3f2fd;">설계도면</td>
-                <td style="background-color: #e3f2fd;"></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">1.1</td>
-                <td>&nbsp;&nbsp;&nbsp;Key Single Line Diagram</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">1.2</td>
-                <td>&nbsp;&nbsp;&nbsp;Logic diagram</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">1.3</td>
-                <td>&nbsp;&nbsp;&nbsp;Schemetic Diagram</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">1.4</td>
-                <td>&nbsp;&nbsp;&nbsp;Cable Tray Layout</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">1.5</td>
-                <td>&nbsp;&nbsp;&nbsp;Electric Room Layout</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">1.6</td>
-                <td>&nbsp;&nbsp;&nbsp;Power Layout</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">1.7</td>
-                <td>&nbsp;&nbsp;&nbsp;Grounding and Liting Layout</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 40px; background-color: #e3f2fd;"">2</td>
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+
+            <h1>전기분야 정밀안전진단/사용전검사</h1>
+
+            <h3>1. 신청시기 : 전기판넬 설치 및 단동/Loop 테스트 후 </h3>
+
+            <h3>2. 준비서류 </h3>
+
+            <table>
+                <tr>
+                    <td align="center" width="100">번호</td>
+                    <td align="center" width="500">준비서류</td>
+                    <td align="center" width="200">비 고</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 40px;background-color: #e3f2fd;">1</td>
+                    <td style="background-color: #e3f2fd;">설계도면</td>
+                    <td style="background-color: #e3f2fd;"></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">1.1</td>
+                    <td>&nbsp;&nbsp;&nbsp;Key Single Line Diagram</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">1.2</td>
+                    <td>&nbsp;&nbsp;&nbsp;Logic diagram</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">1.3</td>
+                    <td>&nbsp;&nbsp;&nbsp;Schemetic Diagram</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">1.4</td>
+                    <td>&nbsp;&nbsp;&nbsp;Cable Tray Layout</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">1.5</td>
+                    <td>&nbsp;&nbsp;&nbsp;Electric Room Layout</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">1.6</td>
+                    <td>&nbsp;&nbsp;&nbsp;Power Layout</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">1.7</td>
+                    <td>&nbsp;&nbsp;&nbsp;Grounding and Liting Layout</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 40px; background-color: #e3f2fd;"">2</td>
                 <td style=" background-color: #e3f2fd;">Panel 제작도면</td>
-                <td style="background-color: #e3f2fd;"></td>
-            </tr>
-            <tr>
-                <td style=" padding-left: 50px;">2.1</td>
-                <td>&nbsp;&nbsp;&nbsp;HV Panel 제작도면</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">2.2</td>
-                <td>&nbsp;&nbsp;&nbsp;ALTS 제작도면</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">2.3</td>
-                <td>&nbsp;&nbsp;&nbsp;BAT Panel 제작도면</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">2.4</td>
-                <td>&nbsp;&nbsp;&nbsp;UPS 제작도면</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 40px;background-color: #e3f2fd;">3</td>
-                <td style="background-color: #e3f2fd;">계전기 정정치</td>
-                <td style="background-color: #e3f2fd;"></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">3.1</td>
-                <td>&nbsp;&nbsp;&nbsp;보호계전기 정정값 계산</td>
-                <td></td>
-            <tr></tr>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">3.2</td>
-                <td>&nbsp;&nbsp;&nbsp;고장전류 계산서</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 40px;background-color: #e3f2fd;">4</td>
-                <td style="background-color: #e3f2fd;">성적서</td>
-                <td style="background-color: #e3f2fd;"></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">4.1</td>
-                <td>&nbsp;&nbsp;&nbsp;보호계전기 성적서</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">4.2</td>
-                <td>&nbsp;&nbsp;&nbsp;VCB 및 각종 Panel 시험성적서</td>
-                <td>정밀안전진단 보고서</td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">4.3</td>
-                <td>&nbsp;&nbsp;&nbsp;Cable 성적서</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="padding-left: 50px;">4.4</td>
-                <td>&nbsp;&nbsp;&nbsp;Cable 성적서 </td>
-                <td></td>
-            </tr>
-        </table>
-        <br><br>
-    </div>
-    <div>
-        <h5>
+                    <td style="background-color: #e3f2fd;"></td>
+                </tr>
+                <tr>
+                    <td style=" padding-left: 50px;">2.1</td>
+                    <td>&nbsp;&nbsp;&nbsp;HV Panel 제작도면</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">2.2</td>
+                    <td>&nbsp;&nbsp;&nbsp;ALTS 제작도면</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">2.3</td>
+                    <td>&nbsp;&nbsp;&nbsp;BAT Panel 제작도면</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">2.4</td>
+                    <td>&nbsp;&nbsp;&nbsp;UPS 제작도면</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 40px;background-color: #e3f2fd;">3</td>
+                    <td style="background-color: #e3f2fd;">계전기 정정치</td>
+                    <td style="background-color: #e3f2fd;"></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">3.1</td>
+                    <td>&nbsp;&nbsp;&nbsp;보호계전기 정정값 계산</td>
+                    <td></td>
+                <tr></tr>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">3.2</td>
+                    <td>&nbsp;&nbsp;&nbsp;고장전류 계산서</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 40px;background-color: #e3f2fd;">4</td>
+                    <td style="background-color: #e3f2fd;">성적서</td>
+                    <td style="background-color: #e3f2fd;"></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">4.1</td>
+                    <td>&nbsp;&nbsp;&nbsp;보호계전기 성적서</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">4.2</td>
+                    <td>&nbsp;&nbsp;&nbsp;VCB 및 각종 Panel 시험성적서</td>
+                    <td>정밀안전진단 보고서</td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">4.3</td>
+                    <td>&nbsp;&nbsp;&nbsp;Cable 성적서</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 50px;">4.4</td>
+                    <td>&nbsp;&nbsp;&nbsp;Cable 성적서 </td>
+                    <td></td>
+                </tr>
+            </table>
             <br>
             <br>
-            <hr class="hr_1">
-            <h6 id="foot"><a href="chatt.html" target="pages"> >> Discuss with Me</a> </h6>
-        </h5>
-    </div>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
 </body>
 
 </html>
