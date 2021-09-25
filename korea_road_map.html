@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex box 이해</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.90vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            padding-left: 1vw;
+
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            width: 100px;
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: dimgray;
+            border-style: dotted;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #000000;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <div>
+
+                <h3> 국토종주 진행현황</h3>
+                <table>
+                    <tr>
+                        <td width=150px align="center">
+                            라이딩 날짜
+                        </td>
+                        <td width=180px align="center">
+                            코스
+                        </td>
+                        <td width=420px align="center">
+                            인증센터
+                        </td>
+                        <td width=150px align="center">
+                            비 고
+                        </td>
+                    <tr>
+                        <td align="center">
+                            2021년 4월 17일
+                        </td>
+                        <td align="center">
+                            한강 자전거길
+                        </td>
+                        <td>
+                            여의도-뚝섬-강나루-팔당
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            2021년 5월 22일
+                        </td>
+                        <td align="center">
+                            아라 자전거길
+                        </td>
+                        <td>
+                            아라한강갑문-아라서해갑문
+                        </td>
+                        <td>
+
+                        </td>
+                    <tr>
+                        <td align="center">
+                            2021년 5월 8일
+                        </td>
+                        <td align="center">
+                            북한강 자전거길
+                        </td>
+                        <td>
+                            밝은광장-샛터삼거리-경각교-신매대교
+                        </td>
+                        <td>
+
+                        </td>
+                    <tr>
+                        <td align="center">
+                            2021년 6월 5일
+                        </td>
+                        <td align="center">
+                            남한강 자전거길
+                        </td>
+                        <td>
+                            팔당-능내역-양평군립미술관-이포보-여주보-강천보-비내섬-목행교-충주탄금대
+                        </td>
+                        <td>
+
+                        </td>
+                    <tr>
+                        <td align="center">
+                            2021년 9월 4일
+                        </td>
+                        <td align="center">
+                            새재 자전거길
+                        </td>
+                        <td>
+                            충주탄금대-수안보온천-이화령휴게소-문경불정역-상주상풍교
+                        </td>
+                        <td>
+
+                        </td>
+                    <tr>
+                        <td align="center">
+                            2021년 9월 11일
+                        </td>
+                        <td align="center">
+                            오천 자전거길
+                        </td>
+                        <td>
+                            괴강교-백로공원-행촌교차로-무심천교-합강공원
+                        </td>
+                        <td>
+
+                        </td>
+                </table>
+                <br>
+                <br>
+
+                <h3> 국토종주 지도</h3>
+                <div id="road_map" style="border: 1px solid black;">
+                    <img src="./image/korea_bicycle_road.jpg" alt="road map">
+                </div>
+                <br>
+                <a href="https://www.bike.go.kr/map/roadMap.do?roadSn=1&roadType=1&xp=37.570595&yp=126.699981&key=2008148358544&zm=12#none"
+                    target="pages">자전거 국토종주지도 자세히 보기＞</a>
+
+                <div>
+                    <h5>
+                        <br>
+                        <br>
+                        <hr>
+                        <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a>
+                        </h6>
+                    </h5>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+
+
+    <br>
+
+</body>
+
+</html>
