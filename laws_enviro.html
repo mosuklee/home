@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>STEAM TABLE</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+
+        hr {
+            width: 100%;
+            color: dimgray;
+            border-style: dotted;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        td {
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid black;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>환경관련 법령</h1>
+
+            <table>
+                <tr>
+                    <td width="60" align="center">번호</td>
+                    <td align="center" colspan="1">관련법규</td>
+                    <td align="center" colspan="1">세부조항</td>
+                    <td align="center">관련내용</td>
+
+                <tr>
+                    <td align="center" rowspan="2">1</td>
+                    <td width="400" rowspan="2">
+                        <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=157488&efYd=20140722#AJAX">자원의 절약과 재활용촉진에 관한 법률
+                            시행규칙</a>
+                    </td>
+                    <td width="100">별표 7</a></td>
+                    <td width="330">고형연료제품의 품질기준 <br><br></td>
+                </tr>
+                <tr>
+                    <td>20조의10, ②</td>
+                    <td>고형연료제품의 사용자 준수사항<br><br></td>
+                </tr>
+                <tr>
+                    <td align="center">2</td>
+                    <td><a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=165622&efYd=20150101#AJAX">대기환경 보전법 시행규칙</a>
+                    </td>
+                    <td>별표 8</td>
+                    <td>대기오업물질의 배출허용 기준<br>(제15조 관련)<br></td>
+                </tr>
+                <tr>
+                    <td align="center">3</td>
+                    <td><a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=153569&efYd=20140430#AJAX">수도권 대기환경개선에 관한 특별법
+                            시행규칙</a>
+                    </td>
+                    <td>별표 1</td>
+                    <td>대기오염물질별 최적방지시설의 종류 및 기준(제2조의2 관련)</td>
+                </tr>
+                <tr>
+                    <td align="center">4</td>
+                    <td><a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=171823&efYd=20150610#0000">폐기물관리법 시행규칙</a></td>
+                    <td>제29조</td>
+                    <td>최대사용량 <br><br></td>
+                </tr>
+                <tr>
+                    <td align="center">6</td>
+                    <td><a
+                            href="https://www.law.go.kr/%ED%96%89%EC%A0%95%EA%B7%9C%EC%B9%99/%EA%B3%A0%ED%98%95%EC%97%B0%EB%A3%8C%EC%A0%9C%ED%92%88%EC%A0%9C%EC%A1%B0%EC%8B%9C%EC%84%A4%EB%B0%8F%EC%82%AC%EC%9A%A9%EC%8B%9C%EC%84%A4%EC%9D%98%EC%A0%95%EA%B8%B0%EA%B2%80%EC%82%AC%EC%A0%88%EC%B0%A8%EB%B0%8F%EB%B0%A9%EB%B2%95%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EA%B3%A0%EC%8B%9C">고형연료제품
+                            제조시설 및 사용시설의 정기검사 절차 및 방법등에 관한 고시</a></td>
+                    <td>환경부 고시2014-132</td>
+                    <td>고형연료 제조시설 및 사용시설의 정기검사등</td>
+                </tr>
+            </table>
+
+            <br>
+            <br>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+
+</body>
+
+</html>
