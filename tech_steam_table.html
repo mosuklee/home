@@ -68,7 +68,7 @@
 
         hr {
             width: 100%;
-            color: dimgray;
+            color: #2bab0d;
             border-style: dotted;
         }
 
@@ -78,9 +78,28 @@
 
         td {
             padding: 10px;
-            border: 1px solid black;
+            border: 1px solid #2bab0d;
             /* height: 15vmax; */
             margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            border-bottom: 1px solid #2bab0d;
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
         }
 
         /* .sub_explain {
@@ -109,11 +128,10 @@
 
         </div>
 
-
         <div class="flex-box content">
             <h1>STEAM TABLE (IAPWS97)</h1>
-
-            <h3>[INPUT Property]</h3>
+            <br>
+            <h3>INPUT PROPERTY</h3>
             <table>
                 <tr>
                     <td align="center" width="300">Property</td>
@@ -140,7 +158,7 @@
             <button onclick="calculate_water_superheated()"> Calculation </button>
 
             <br><br>
-            <h3>[OUTPUT Property]</h3>
+            <h3>OUTPUT PROPERTY</h3>
             <table>
                 <tr>
                     <td align="center" width="300">Property</td>
