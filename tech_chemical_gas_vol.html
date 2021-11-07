@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>GAS VOLUME / WEIGHT CALCULATION</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: dotted;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        td {
+            padding: 6px;
+            border: 1px solid #2bab0d;
+
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        .table_head {
+            background: rgb(214, 252, 158);
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            border-bottom: 1px solid #2bab0d;
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>GAS VOLUME / WEIGHT CALCULATION</h1>
+
+            <p id="formula3">
+                본 페이지는 GAS의 Volume Flow을 Mass Flow로 환산하기 위한 페이지 입니다.
+            </p>
+            <select name="language" onchange="handleOnChange(this)">
+                <option value="">선 택</option>
+                <option value="LNG">LNG</option>
+                <option value="LPG">LPG</option>
+                <option value="FLUE_GAS">FLUE GAS</option>
+                <option value="AIR">AIR</option>
+                <option value="OTHERS">기 타</option>
+            </select>
+            <br>
+            <h3>분자(molecule)의 분자량(molecular weight) 계산</h3>
+            <table>
+                <tr>
+                    <td width="120vw" class="table_head" align="center">FOUMLA</td>
+                    <td width="120vw" class="table_head" align="center">C</td>
+                    <td width="120vw" class="table_head" align="center">H</td>
+                    <td width="120vw" class="table_head" align="center">O</td>
+                    <td width="120vw" class="table_head" align="center">N</td>
+                    <td width="120vw" class="table_head" align="center">S</td>
+                    <td width="120vw" class="table_head" align="center">Cl</td>
+                    <td width="120vw" class="table_head" align="center">Ar</td>
+
+                    <td width="120vw" class="table_head" align="center">TOTAL</td>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_formula">
+                    </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_c"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_h"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_o"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_n"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_s"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_cl"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_ar"></td>
+                    <td align="center" id="input_1_tot"></td>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_formula">
+                    </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_c"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_h" </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_o" </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_n" </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_s" </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_cl" </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_ar" </td>
+                    <td align="center" id="input_2_tot"></td>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_formula">
+                    </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_c"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_h"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_o"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_n"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_s"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_cl"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_ar"></td>
+                    <td align="center" id="input_3_tot"></td>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_formula">
+                    </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_c"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_h"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_o"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_n"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_s"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_cl"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_ar"></td>
+                    <td align="center" id="input_4_tot"></td>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_formula">
+                    </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_c"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_h"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_o"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_n"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_s"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_cl"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_ar"></td>
+                    <td align="center" id="input_5_tot"></td>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_formula">
+                    </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_c"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_h"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_o"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_n"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_s"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_cl"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_ar"></td>
+                    <td align="center" id="input_6_tot"></td>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_formula">
+                    </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_c"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_h"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_o"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_n"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_s"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_cl"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_ar"></td>
+                    <td align="center" id="input_7_tot"></td>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_formula">
+                    </td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_c"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_h"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_o"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_n"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_s"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_cl"></td>
+                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_ar"></td>
+                    <td align="center" id="input_8_tot"></td>
+                </tr>
+            </table>
+            <button onclick="calculate()" style="WIDTH: 150px;"> 분자량 계산 </button>
+            <br>
+            <br>
+
+
+
+
+
+            <h3>분자별 질량분율(Mass Fraction) 계산</h3>
+            <table>
+                <tr>
+                    <td width="170vw" class="table_head" align="center">FOUMLA</td>
+                    <td width="170vw" class="table_head" align="center">Volume(%)</td>
+                    <td width="170vw" class="table_head" align="center">Weight(kg/mol)</td>
+                    <td width="170vw" class="table_head" align="center">Partial Weight</td>
+                    <td width="170vw" class="table_head" align="center">Weight(%)</td>
+
+
+                </tr>
+                <tr>
+                    <td align="center" id="result_1_formula"></td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="result_1_volume">
+                    </td>
+                    <td align="center" id="result_1_weight"></td>
+                    <td align="center" id="result_1_partial_weight"></td>
+                    <td align="center" id="result_1_weight_ratio">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id="result_2_formula"></td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="result_2_volume">
+                    </td>
+                    <td align="center" id="result_2_weight"></td>
+                    <td align="center" id="result_2_partial_weight"></td>
+                    <td align="center" id="result_2_weight_ratio">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id="result_3_formula"></td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="result_3_volume">
+                    </td>
+                    <td align="center" id="result_3_weight"></td>
+                    <td align="center" id="result_3_partial_weight"></td>
+                    <td align="center" id="result_3_weight_ratio">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id="result_4_formula"></td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="result_4_volume">
+                    </td>
+                    <td align="center" id="result_4_weight"></td>
+                    <td align="center" id="result_4_partial_weight"></td>
+                    <td align="center" id="result_4_weight_ratio">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id="result_5_formula"></td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="result_5_volume">
+                    </td>
+                    <td align="center" id="result_5_weight"></td>
+                    <td align="center" id="result_5_partial_weight"></td>
+                    <td align="center" id="result_5_weight_ratio">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id="result_6_formula"></td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="result_6_volume">
+                    </td>
+                    <td align="center" id="result_6_weight"> </td>
+                    <td align="center" id="result_6_partial_weight"></td>
+                    <td align="center" id="result_6_weight_ratio">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id="result_7_formula"></td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="result_7_volume">
+                    </td>
+                    <td align="center" id="result_7_weight"> </td>
+                    <td align="center" id="result_7_partial_weight"></td>
+                    <td align="center" id="result_7_weight_ratio">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" id="result_8_formula"></td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="result_8_volume">
+                    </td>
+                    <td align="center" id="result_8_weight"> </td>
+                    <td align="center" id="result_8_partial_weight"></td>
+                    <td align="center" id="result_8_weight_ratio">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">TOTAL</td>
+                    <td align="center" id="result_tot_volume">
+                    </td>
+                    <td align="center" id="result_tot_weight">
+                    </td>
+                    <td align="center" id="result_tot_partial_weight"></td>
+                    <td align="center" id="result_tot_weight_ratio">
+                    </td>
+                </tr>
+
+            </table>
+            <button onclick="calculate1()" style="WIDTH: 150px;"> 질량분율 계산 </button>
+            <br>
+            <br>
+            <table>
+                <tr>
+                    <td width="200vw" class="table_head" align="center">구 분</td>
+                    <td width="450vw" class="table_head" align="center">
+                        Volume Flow Rate (Nm3/h)
+                    </td>
+                    <td width="450vw" class="table_head" align="center">
+                        Mass Flow Rate (kg/h)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"> <button onclick="calculate2()"> Calculation </button></td>
+                    <td align="center"><input style="width:8vw; text-align:center" type="text" id="volume_flow_rate">
+                    </td>
+                    <td align="center" id="mass_flow_rate">
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <br>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+
+
+
+        <script>
+            // 전역변수로 지정
+            let formula_1 = "CH4";
+            let formula_2 = "CO2";
+            let formula_3 = "H2";
+            let formula_4 = "O2";
+            let formula_5 = "N2";
+            let formula_6 = "H2S";
+            let formula_7 = " ";
+            let formula_8 = " ";
+
+            // 원소별 질량 정의하기
+            let mass_c = 12.01;
+            let mass_h = 1.008;
+            let mass_o = 16.0;
+            let mass_n = 14.01;
+            let mass_s = 32.07;
+            let mass_cl = 35.453;
+            let mass_ar = 39.948;
+
+
+
+            let result_tot_partial_weight = 0.0;
+
+
+            function handleOnChange(e) {
+                // 선택된 데이터 가져오기
+                var gas_kind = e.value;
+
+                // 데이터 읽기
+                var req = new XMLHttpRequest();
+
+                req.onreadystatechange = function a() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var gas = JSON.parse(this.response);
+
+                        formula_1 = gas[gas_kind][0].formula;
+                        input_1_c = gas[gas_kind][0].c;
+                        input_1_h = gas[gas_kind][0].h;
+                        input_1_o = gas[gas_kind][0].o;
+                        input_1_n = gas[gas_kind][0].n;
+                        input_1_s = gas[gas_kind][0].s;
+                        input_1_cl = gas[gas_kind][0].cl;
+                        input_1_ar = gas[gas_kind][0].ar;
+                        input_1_f = gas[gas_kind][0].f;
+
+                        formula_2 = gas[gas_kind][1].formula;
+                        input_2_c = gas[gas_kind][1].c;
+                        input_2_h = gas[gas_kind][1].h;
+                        input_2_o = gas[gas_kind][1].o;
+                        input_2_n = gas[gas_kind][1].n;
+                        input_2_s = gas[gas_kind][1].s;
+                        input_2_cl = gas[gas_kind][1].cl;
+                        input_2_ar = gas[gas_kind][1].ar;
+                        input_2_f = gas[gas_kind][1].f;
+
+                        formula_3 = gas[gas_kind][2].formula;
+                        input_3_c = gas[gas_kind][2].c;
+                        input_3_h = gas[gas_kind][2].h;
+                        input_3_o = gas[gas_kind][2].o;
+                        input_3_n = gas[gas_kind][2].n;
+                        input_3_s = gas[gas_kind][2].s;
+                        input_3_cl = gas[gas_kind][2].cl;
+                        input_3_ar = gas[gas_kind][2].ar;
+                        input_3_f = gas[gas_kind][2].f;
+
+                        formula_4 = gas[gas_kind][3].formula;
+                        input_4_c = gas[gas_kind][3].c;
+                        input_4_h = gas[gas_kind][3].h;
+                        input_4_o = gas[gas_kind][3].o;
+                        input_4_n = gas[gas_kind][3].n;
+                        input_4_s = gas[gas_kind][3].s;
+                        input_4_cl = gas[gas_kind][3].cl;
+                        input_4_ar = gas[gas_kind][3].ar;
+                        input_4_f = gas[gas_kind][3].f;
+
+                        formula_5 = gas[gas_kind][4].formula;
+                        input_5_c = gas[gas_kind][4].c;
+                        input_5_h = gas[gas_kind][4].h;
+                        input_5_o = gas[gas_kind][4].o;
+                        input_5_n = gas[gas_kind][4].n;
+                        input_5_s = gas[gas_kind][4].s;
+                        input_5_cl = gas[gas_kind][4].cl;
+                        input_5_ar = gas[gas_kind][4].ar;
+                        input_5_f = gas[gas_kind][4].f;
+
+                        formula_6 = gas[gas_kind][5].formula;
+                        input_6_c = gas[gas_kind][5].c;
+                        input_6_h = gas[gas_kind][5].h;
+                        input_6_o = gas[gas_kind][5].o;
+                        input_6_n = gas[gas_kind][5].n;
+                        input_6_s = gas[gas_kind][5].s;
+                        input_6_cl = gas[gas_kind][5].cl;
+                        input_6_ar = gas[gas_kind][5].ar;
+                        input_6_f = gas[gas_kind][5].f;
+
+                        formula_7 = gas[gas_kind][6].formula;
+                        input_7_c = gas[gas_kind][6].c;
+                        input_7_h = gas[gas_kind][6].h;
+                        input_7_o = gas[gas_kind][6].o;
+                        input_7_n = gas[gas_kind][6].n;
+                        input_7_s = gas[gas_kind][6].s;
+                        input_7_cl = gas[gas_kind][6].cl;
+                        input_7_ar = gas[gas_kind][6].ar;
+                        input_7_f = gas[gas_kind][6].f;
+
+                        formula_8 = gas[gas_kind][7].formula;
+                        input_8_c = gas[gas_kind][7].c;
+                        input_8_h = gas[gas_kind][7].h;
+                        input_8_o = gas[gas_kind][7].o;
+                        input_8_n = gas[gas_kind][7].n;
+                        input_8_s = gas[gas_kind][7].s;
+                        input_8_cl = gas[gas_kind][7].cl;
+                        input_8_ar = gas[gas_kind][7].cl;
+                        input_8_f = gas[gas_kind][7].f;
+                        // 데이터 읽고 기 끝.
+
+                        // 물성값 넣기
+                        document.getElementById("input_1_formula").value = formula_1;
+                        document.getElementById("input_1_c").value = input_1_c;
+                        document.getElementById("input_1_h").value = input_1_h;
+                        document.getElementById("input_1_o").value = input_1_o;
+                        document.getElementById("input_1_n").value = input_1_n;
+                        document.getElementById("input_1_s").value = input_1_s;
+                        document.getElementById("input_1_cl").value = input_1_cl;
+                        document.getElementById("input_1_ar").value = input_1_ar;
+                        document.getElementById("result_1_volume").value = input_1_f;
+
+                        document.getElementById("input_2_formula").value = formula_2;
+                        document.getElementById("input_2_c").value = input_2_c;
+                        document.getElementById("input_2_h").value = input_2_h;
+                        document.getElementById("input_2_o").value = input_2_o;
+                        document.getElementById("input_2_n").value = input_2_n;
+                        document.getElementById("input_2_s").value = input_2_s;
+                        document.getElementById("input_2_cl").value = input_2_cl;
+                        document.getElementById("input_2_ar").value = input_2_ar;
+
+                        document.getElementById("input_3_formula").value = formula_3;
+                        document.getElementById("input_3_c").value = input_3_c;
+                        document.getElementById("input_3_h").value = input_3_h;
+                        document.getElementById("input_3_o").value = input_3_o;
+                        document.getElementById("input_3_n").value = input_3_n;
+                        document.getElementById("input_3_s").value = input_3_s;
+                        document.getElementById("input_3_cl").value = input_3_cl;
+                        document.getElementById("input_3_ar").value = input_3_ar;
+
+                        document.getElementById("input_4_formula").value = formula_4;
+                        document.getElementById("input_4_c").value = input_4_c;
+                        document.getElementById("input_4_h").value = input_4_h;
+                        document.getElementById("input_4_o").value = input_4_o;
+                        document.getElementById("input_4_n").value = input_4_n;
+                        document.getElementById("input_4_s").value = input_4_s;
+                        document.getElementById("input_4_cl").value = input_4_cl;
+                        document.getElementById("input_4_ar").value = input_4_ar;
+
+                        document.getElementById("input_5_formula").value = formula_5;
+                        document.getElementById("input_5_c").value = input_5_c;
+                        document.getElementById("input_5_h").value = input_5_h;
+                        document.getElementById("input_5_o").value = input_5_o;
+                        document.getElementById("input_5_n").value = input_5_n;
+                        document.getElementById("input_5_s").value = input_5_s;
+                        document.getElementById("input_5_cl").value = input_5_cl;
+                        document.getElementById("input_5_ar").value = input_5_ar;
+
+                        document.getElementById("input_6_formula").value = formula_6;
+                        document.getElementById("input_6_c").value = input_6_c;
+                        document.getElementById("input_6_h").value = input_6_h;
+                        document.getElementById("input_6_o").value = input_6_o;
+                        document.getElementById("input_6_n").value = input_6_n;
+                        document.getElementById("input_6_s").value = input_6_s;
+                        document.getElementById("input_6_cl").value = input_6_cl;
+                        document.getElementById("input_6_ar").value = input_6_ar;
+
+                        document.getElementById("input_7_formula").value = formula_7;
+                        document.getElementById("input_7_c").value = input_7_c;
+                        document.getElementById("input_7_h").value = input_7_h;
+                        document.getElementById("input_7_o").value = input_7_o;
+                        document.getElementById("input_7_n").value = input_7_n;
+                        document.getElementById("input_7_s").value = input_7_s;
+                        document.getElementById("input_7_cl").value = input_7_cl;
+                        document.getElementById("input_7_ar").value = input_7_ar;
+
+                        document.getElementById("input_8_formula").value = formula_8;
+                        document.getElementById("input_8_c").value = input_8_c;
+                        document.getElementById("input_8_h").value = input_8_h;
+                        document.getElementById("input_8_o").value = input_8_o;
+                        document.getElementById("input_8_n").value = input_8_n;
+                        document.getElementById("input_8_s").value = input_8_s;
+                        document.getElementById("input_8_cl").value = input_8_cl;
+                        document.getElementById("input_8_ar").value = input_8_ar;
+
+
+                        document.getElementById("result_2_volume").value = input_2_f;
+                        document.getElementById("result_3_volume").value = input_3_f;
+                        document.getElementById("result_4_volume").value = input_4_f;
+                        document.getElementById("result_5_volume").value = input_5_f;
+                        document.getElementById("result_6_volume").value = input_6_f;
+                        document.getElementById("result_7_volume").value = input_7_f;
+                        document.getElementById("result_8_volume").value = input_8_f;
+                    }
+                }
+
+                req.open("GET", "./json/json_mass.json");
+                req.send();
+            }
+
+
+
+            // 질량합계 계산
+            function calculate() {
+                // document.getElementById("input_1_formula").value = formula_1;
+                // document.getElementById("input_2_formula").value = formula_2;
+                // document.getElementById("input_3_formula").value = formula_3;
+                // document.getElementById("input_4_formula").value = formula_4;
+                // document.getElementById("input_5_formula").value = formula_5;
+                // document.getElementById("input_6_formula").value = formula_6;
+                // document.getElementById("input_7_formula").value = formula_7;
+                // document.getElementById("input_8_formula").value = formula_8;
+
+                // document.getElementById("input_1_c").value = input_1_c;
+                // document.getElementById("input_1_h").value = input_1_h;
+                // document.getElementById("input_1_o").value = input_1_o;
+                // document.getElementById("input_1_n").value = input_1_n;
+                // document.getElementById("input_1_s").value = input_1_s;
+
+                // document.getElementById("input_2_c").value = input_2_c;
+                // document.getElementById("input_2_h").value = input_2_h;
+                // document.getElementById("input_2_o").value = input_2_o;
+                // document.getElementById("input_2_n").value = input_2_n;
+                // document.getElementById("input_2_s").value = input_2_s;
+
+                // document.getElementById("input_3_c").value = input_3_c;
+                // document.getElementById("input_3_h").value = input_3_h;
+                // document.getElementById("input_3_o").value = input_3_o;
+                // document.getElementById("input_3_n").value = input_3_n;
+                // document.getElementById("input_3_s").value = input_3_s;
+
+                // document.getElementById("input_4_c").value = input_4_c;
+                // document.getElementById("input_4_h").value = input_4_h;
+                // document.getElementById("input_4_o").value = input_4_o;
+                // document.getElementById("input_4_n").value = input_4_n;
+                // document.getElementById("input_4_s").value = input_4_s;
+
+                // document.getElementById("input_5_c").value = input_5_c;
+                // document.getElementById("input_5_h").value = input_5_h;
+                // document.getElementById("input_5_o").value = input_5_o;
+                // document.getElementById("input_5_n").value = input_5_n;
+                // document.getElementById("input_5_s").value = input_5_s;
+
+                // document.getElementById("input_6_c").value = input_6_c;
+                // document.getElementById("input_6_h").value = input_6_h;
+                // document.getElementById("input_6_o").value = input_6_o;
+                // document.getElementById("input_6_n").value = input_6_n;
+                // document.getElementById("input_6_s").value = input_6_s;
+
+                // document.getElementById("input_7_c").value = input_7_c;
+                // document.getElementById("input_7_h").value = input_7_h;
+                // document.getElementById("input_7_o").value = input_7_o;
+                // document.getElementById("input_7_n").value = input_7_n;
+                // document.getElementById("input_7_s").value = input_7_s;
+
+                // document.getElementById("input_8_c").value = input_8_c;
+                // document.getElementById("input_8_h").value = input_8_h;
+                // document.getElementById("input_8_o").value = input_8_o;
+                // document.getElementById("input_8_n").value = input_8_n;
+                // document.getElementById("input_8_s").value = input_8_s;
+
+
+
+                // input 상자에서 data 가져오기
+
+                input_1_formula = document.getElementById("input_1_formula").value;
+                input_1_c = parseFloat(document.getElementById("input_1_c").value);
+                input_1_h = parseFloat(document.getElementById("input_1_h").value);
+                input_1_o = parseFloat(document.getElementById("input_1_o").value);
+                input_1_n = parseFloat(document.getElementById("input_1_n").value);
+                input_1_s = parseFloat(document.getElementById("input_1_s").value);
+                input_1_cl = parseFloat(document.getElementById("input_1_cl").value);
+                input_1_ar = parseFloat(document.getElementById("input_1_ar").value);
+
+                input_2_formula = document.getElementById("input_2_formula").value;
+                input_2_c = parseFloat(document.getElementById("input_2_c").value);
+                input_2_h = parseFloat(document.getElementById("input_2_h").value);
+                input_2_o = parseFloat(document.getElementById("input_2_o").value);
+                input_2_n = parseFloat(document.getElementById("input_2_n").value);
+                input_2_s = parseFloat(document.getElementById("input_2_s").value);
+                input_2_cl = parseFloat(document.getElementById("input_2_cl").value);
+                input_2_ar = parseFloat(document.getElementById("input_2_ar").value);
+
+                input_3_formula = document.getElementById("input_3_formula").value;
+                input_3_c = parseFloat(document.getElementById("input_3_c").value);
+                input_3_h = parseFloat(document.getElementById("input_3_h").value);
+                input_3_o = parseFloat(document.getElementById("input_3_o").value);
+                input_3_n = parseFloat(document.getElementById("input_3_n").value);
+                input_3_s = parseFloat(document.getElementById("input_3_s").value);
+                input_3_cl = parseFloat(document.getElementById("input_3_cl").value);
+                input_3_ar = parseFloat(document.getElementById("input_3_ar").value);
+
+                input_4_formula = document.getElementById("input_4_formula").value;
+                input_4_c = parseFloat(document.getElementById("input_4_c").value);
+                input_4_h = parseFloat(document.getElementById("input_4_h").value);
+                input_4_o = parseFloat(document.getElementById("input_4_o").value);
+                input_4_n = parseFloat(document.getElementById("input_4_n").value);
+                input_4_s = parseFloat(document.getElementById("input_4_s").value);
+                input_4_cl = parseFloat(document.getElementById("input_4_cl").value);
+                input_4_ar = parseFloat(document.getElementById("input_4_ar").value);
+
+                input_5_formula = document.getElementById("input_5_formula").value;
+                input_5_c = parseFloat(document.getElementById("input_5_c").value);
+                input_5_h = parseFloat(document.getElementById("input_5_h").value);
+                input_5_o = parseFloat(document.getElementById("input_5_o").value);
+                input_5_n = parseFloat(document.getElementById("input_5_n").value);
+                input_5_s = parseFloat(document.getElementById("input_5_s").value);
+                input_5_cl = parseFloat(document.getElementById("input_5_cl").value);
+                input_5_ar = parseFloat(document.getElementById("input_5_ar").value);
+
+                input_6_formula = document.getElementById("input_6_formula").value;
+                input_6_c = parseFloat(document.getElementById("input_6_c").value);
+                input_6_h = parseFloat(document.getElementById("input_6_h").value);
+                input_6_o = parseFloat(document.getElementById("input_6_o").value);
+                input_6_n = parseFloat(document.getElementById("input_6_n").value);
+                input_6_s = parseFloat(document.getElementById("input_6_s").value);
+                input_6_cl = parseFloat(document.getElementById("input_6_cl").value);
+                input_6_ar = parseFloat(document.getElementById("input_6_ar").value);
+
+                input_7_formula = document.getElementById("input_7_formula").value;
+                input_7_c = parseFloat(document.getElementById("input_7_c").value);
+                input_7_h = parseFloat(document.getElementById("input_7_h").value);
+                input_7_o = parseFloat(document.getElementById("input_7_o").value);
+                input_7_n = parseFloat(document.getElementById("input_7_n").value);
+                input_7_s = parseFloat(document.getElementById("input_7_s").value);
+                input_7_cl = parseFloat(document.getElementById("input_7_cl").value);
+                input_7_ar = parseFloat(document.getElementById("input_7_ar").value);
+
+                input_8_formula = document.getElementById("input_8_formula").value;
+                input_8_c = parseFloat(document.getElementById("input_8_c").value);
+                input_8_h = parseFloat(document.getElementById("input_8_h").value);
+                input_8_o = parseFloat(document.getElementById("input_8_o").value);
+                input_8_n = parseFloat(document.getElementById("input_8_n").value);
+                input_8_s = parseFloat(document.getElementById("input_8_s").value);
+                input_8_cl = parseFloat(document.getElementById("input_8_cl").value);
+                input_8_ar = parseFloat(document.getElementById("input_8_ar").value);
+                //console.log(input_1_formula);
+
+                // 합계 계산
+                mass_tot_1 = (input_1_c * mass_c) + (input_1_h * mass_h) + (input_1_o * mass_o) + (input_1_n * mass_n) + (input_1_s * mass_s) + (input_1_cl * mass_cl) + (input_1_ar * mass_ar);
+                mass_tot_2 = (input_2_c * mass_c) + (input_2_h * mass_h) + (input_2_o * mass_o) + (input_2_n * mass_n) + (input_2_s * mass_s) + (input_2_cl * mass_cl) + (input_2_ar * mass_ar);
+                mass_tot_3 = (input_3_c * mass_c) + (input_3_h * mass_h) + (input_3_o * mass_o) + (input_3_n * mass_n) + (input_3_s * mass_s) + (input_3_cl * mass_cl) + (input_3_ar * mass_ar);
+                mass_tot_4 = (input_4_c * mass_c) + (input_4_h * mass_h) + (input_4_o * mass_o) + (input_4_n * mass_n) + (input_4_s * mass_s) + (input_4_cl * mass_cl) + (input_4_ar * mass_ar);
+                mass_tot_5 = (input_5_c * mass_c) + (input_5_h * mass_h) + (input_5_o * mass_o) + (input_5_n * mass_n) + (input_5_s * mass_s) + (input_5_cl * mass_cl) + (input_5_ar * mass_ar);
+                mass_tot_6 = (input_6_c * mass_c) + (input_6_h * mass_h) + (input_6_o * mass_o) + (input_6_n * mass_n) + (input_6_s * mass_s) + (input_6_cl * mass_cl) + (input_6_ar * mass_ar);
+                mass_tot_7 = (input_7_c * mass_c) + (input_7_h * mass_h) + (input_7_o * mass_o) + (input_7_n * mass_n) + (input_7_s * mass_s) + (input_7_cl * mass_cl) + (input_7_ar * mass_ar);
+                mass_tot_8 = (input_8_c * mass_c) + (input_8_h * mass_h) + (input_8_o * mass_o) + (input_8_n * mass_n) + (input_8_s * mass_s) + (input_8_cl * mass_cl) + (input_8_ar * mass_ar);
+
+                // 계산된 결과를 web에 뿌리기
+                if (!isNaN(mass_tot_1)) {
+                    // 입력창의 force_comb 양식에 comb된 force 값 입력
+                    document.getElementById("input_1_tot").innerHTML = mass_tot_1.toFixed(2);
+                    document.getElementById("input_2_tot").innerHTML = mass_tot_2.toFixed(2);
+                    document.getElementById("input_3_tot").innerHTML = mass_tot_3.toFixed(2);
+                    document.getElementById("input_4_tot").innerHTML = mass_tot_4.toFixed(2);
+                    document.getElementById("input_5_tot").innerHTML = mass_tot_5.toFixed(2);
+                    document.getElementById("input_6_tot").innerHTML = mass_tot_6.toFixed(2);
+                    document.getElementById("input_7_tot").innerHTML = mass_tot_7.toFixed(2);
+                    document.getElementById("input_8_tot").innerHTML = mass_tot_8.toFixed(2);
+
+                    document.getElementById("result_1_weight").innerHTML = mass_tot_1.toFixed(2);
+                    document.getElementById("result_2_weight").innerHTML = mass_tot_2.toFixed(2);
+                    document.getElementById("result_3_weight").innerHTML = mass_tot_3.toFixed(2);
+                    document.getElementById("result_4_weight").innerHTML = mass_tot_4.toFixed(2);
+                    document.getElementById("result_5_weight").innerHTML = mass_tot_5.toFixed(2);
+                    document.getElementById("result_6_weight").innerHTML = mass_tot_6.toFixed(2);
+                    document.getElementById("result_7_weight").innerHTML = mass_tot_7.toFixed(2);
+                    document.getElementById("result_8_weight").innerHTML = mass_tot_8.toFixed(2);
+
+                    // 화학식
+                    document.getElementById("result_1_formula").innerHTML = input_1_formula;
+                    document.getElementById("result_2_formula").innerHTML = input_2_formula;
+                    document.getElementById("result_3_formula").innerHTML = input_3_formula;
+                    document.getElementById("result_4_formula").innerHTML = input_4_formula;
+                    document.getElementById("result_5_formula").innerHTML = input_5_formula;
+                    document.getElementById("result_6_formula").innerHTML = input_6_formula;
+                    document.getElementById("result_7_formula").innerHTML = input_7_formula;
+                    document.getElementById("result_8_formula").innerHTML = input_8_formula;
+                }
+            }
+
+
+
+
+            // 체적 계산
+            function calculate1() {
+                // 화학식 result_1_formula 태그에 나타내기
+                // document.getElementById("result_1_formula").value = "formula_1";
+                // document.getElementById("result_2_formula").value = formula_2;
+                // document.getElementById("result_3_formula").value = formula_3;
+                // document.getElementById("result_4_formula").value = formula_4;
+                // document.getElementById("result_5_formula").value = formula_5;
+                // document.getElementById("result_6_formula").value = formula_6;
+                // document.getElementById("result_7_formula").value = formula_7;
+                // document.getElementById("result_8_formula").value = formula_8;
+
+                // Volume 값 result_1_volume 태그에 나타내기
+                // document.getElementById("result_1_volume").value = result_1_volume;
+                // document.getElementById("result_2_volume").value = result_2_volume;
+                // document.getElementById("result_3_volume").value = result_3_volume;
+                // document.getElementById("result_4_volume").value = result_4_volume;
+                // document.getElementById("result_5_volume").value = result_5_volume;
+                // document.getElementById("result_6_volume").value = result_6_volume;
+                // document.getElementById("result_7_volume").value = result_7_volume;
+                // document.getElementById("result_8_volume").value = result_8_volume;
+
+                // input 상자에서 reselt_1_volume data 가져오기
+                result_1_volume = parseFloat(document.getElementById("result_1_volume").value);
+                result_2_volume = parseFloat(document.getElementById("result_2_volume").value);
+                result_3_volume = parseFloat(document.getElementById("result_3_volume").value);
+                result_4_volume = parseFloat(document.getElementById("result_4_volume").value);
+                result_5_volume = parseFloat(document.getElementById("result_5_volume").value);
+                result_6_volume = parseFloat(document.getElementById("result_6_volume").value);
+                result_7_volume = parseFloat(document.getElementById("result_7_volume").value);
+                result_8_volume = parseFloat(document.getElementById("result_8_volume").value);
+
+                // input 상자에서 reselt_1_weight data 가져오기
+                // result_1_weight = parseFloat(document.getElementById("result_1_weight").value);
+                // result_2_weight = parseFloat(document.getElementById("result_2_weight").value);
+                // result_3_weight = parseFloat(document.getElementById("result_3_weight").value);
+                // result_4_weight = parseFloat(document.getElementById("result_4_weight").value);
+                // result_5_weight = parseFloat(document.getElementById("result_5_weight").value);
+                // result_6_weight = parseFloat(document.getElementById("result_6_weight").value);
+                // result_7_weight = parseFloat(document.getElementById("result_7_weight").value);
+                // result_8_weight = parseFloat(document.getElementById("result_8_weight").value);
+
+                // console.log(result_1_volume, result_2_volume, result_3_volume, result_4_volume, result_5_volume, result_6_volume, result_7_volume, result_8_volume);
+
+
+
+
+                // 합계 계산
+                result_tot_volume = (result_1_volume + result_2_volume + result_3_volume + result_4_volume + result_5_volume + result_6_volume + result_7_volume + result_8_volume);
+
+                // partial weight 계산
+                result_1_partial_weight = (result_1_volume / 100) * mass_tot_1
+                result_2_partial_weight = (result_2_volume / 100) * mass_tot_2
+                result_3_partial_weight = (result_3_volume / 100) * mass_tot_3
+                result_4_partial_weight = (result_4_volume / 100) * mass_tot_4
+                result_5_partial_weight = (result_5_volume / 100) * mass_tot_5
+                result_6_partial_weight = (result_6_volume / 100) * mass_tot_6
+                result_7_partial_weight = (result_7_volume / 100) * mass_tot_7
+                result_8_partial_weight = (result_8_volume / 100) * mass_tot_8
+
+                result_tot_partial_weight = result_1_partial_weight + result_2_partial_weight + result_3_partial_weight + result_4_partial_weight + result_5_partial_weight + result_6_partial_weight + result_7_partial_weight + result_8_partial_weight;
+
+
+
+
+                // Weight ratio(%) 계산
+                result_1_weight_ratio = (result_1_partial_weight / result_tot_partial_weight) * 100
+                result_2_weight_ratio = (result_2_partial_weight / result_tot_partial_weight) * 100
+                result_3_weight_ratio = (result_3_partial_weight / result_tot_partial_weight) * 100
+                result_4_weight_ratio = (result_4_partial_weight / result_tot_partial_weight) * 100
+                result_5_weight_ratio = (result_5_partial_weight / result_tot_partial_weight) * 100
+                result_6_weight_ratio = (result_6_partial_weight / result_tot_partial_weight) * 100
+                result_7_weight_ratio = (result_7_partial_weight / result_tot_partial_weight) * 100
+                result_8_weight_ratio = (result_8_partial_weight / result_tot_partial_weight) * 100
+
+                result_tot_weight_ratio = result_1_weight_ratio + result_2_weight_ratio + result_3_weight_ratio + result_4_weight_ratio + result_5_weight_ratio + result_6_weight_ratio + result_7_weight_ratio + result_8_weight_ratio;
+
+                // 계산된 결과를 web에 뿌리기
+                if (!isNaN(result_tot_volume)) {
+                    // 입력창의 force_comb 양식에 comb된 force 값 입력
+
+
+                    // Volume 
+                    document.getElementById("result_1_volume").innerHTML = result_1_volume.toFixed(2);
+                    document.getElementById("result_2_volume").innerHTML = result_2_volume.toFixed(2);
+                    document.getElementById("result_3_volume").innerHTML = result_3_volume.toFixed(2);
+                    document.getElementById("result_4_volume").innerHTML = result_4_volume.toFixed(2);
+                    document.getElementById("result_5_volume").innerHTML = result_5_volume.toFixed(2);
+                    document.getElementById("result_6_volume").innerHTML = result_6_volume.toFixed(2);
+                    document.getElementById("result_7_volume").innerHTML = result_7_volume.toFixed(2);
+                    document.getElementById("result_8_volume").innerHTML = result_8_volume.toFixed(2);
+                    document.getElementById("result_tot_volume").innerHTML = result_tot_volume.toFixed(2);
+
+                    // Partial weight 
+                    document.getElementById("result_1_partial_weight").innerHTML = result_1_partial_weight.toFixed(2);
+                    document.getElementById("result_2_partial_weight").innerHTML = result_2_partial_weight.toFixed(2);
+                    document.getElementById("result_3_partial_weight").innerHTML = result_3_partial_weight.toFixed(2);
+                    document.getElementById("result_4_partial_weight").innerHTML = result_4_partial_weight.toFixed(2);
+                    document.getElementById("result_5_partial_weight").innerHTML = result_5_partial_weight.toFixed(2);
+                    document.getElementById("result_6_partial_weight").innerHTML = result_6_partial_weight.toFixed(2);
+                    document.getElementById("result_7_partial_weight").innerHTML = result_7_partial_weight.toFixed(2);
+                    document.getElementById("result_8_partial_weight").innerHTML = result_8_partial_weight.toFixed(2);
+                    document.getElementById("result_tot_volume").innerHTML = result_tot_volume.toFixed(2);
+
+                    // Weight Ratio(%) 
+                    document.getElementById("result_1_weight_ratio").innerHTML = result_1_weight_ratio.toFixed(2);
+                    document.getElementById("result_2_weight_ratio").innerHTML = result_2_weight_ratio.toFixed(2);
+                    document.getElementById("result_3_weight_ratio").innerHTML = result_3_weight_ratio.toFixed(2);
+                    document.getElementById("result_4_weight_ratio").innerHTML = result_4_weight_ratio.toFixed(2);
+                    document.getElementById("result_5_weight_ratio").innerHTML = result_5_weight_ratio.toFixed(2);
+                    document.getElementById("result_6_weight_ratio").innerHTML = result_6_weight_ratio.toFixed(2);
+                    document.getElementById("result_7_weight_ratio").innerHTML = result_7_weight_ratio.toFixed(2);
+                    document.getElementById("result_8_weight_ratio").innerHTML = result_8_weight_ratio.toFixed(2);
+                    document.getElementById("result_tot_weight_ratio").innerHTML = result_tot_weight_ratio.toFixed(2);
+                }
+            }
+
+            function calculate2() {
+                // input 상자에서 reselt_1_volume data 가져오기
+                vloume_flow_rate = parseFloat(document.getElementById("volume_flow_rate").value);
+
+                // mass flow rate 계산
+                mass_flow_rate = vloume_flow_rate * result_tot_partial_weight / 22.414
+
+                // 계산된 결과를 web에 뿌리기
+                if (!isNaN(mass_flow_rate)) {
+                    // 입력창의 force_comb 양식에 comb된 force 값 입력
+                    // Volume 
+                    document.getElementById("mass_flow_rate").innerHTML = mass_flow_rate.toFixed(2);
+                }
+
+            }
+
+
+
+
+        </script>
+
+
+
+
+</body>
+
+</html>
