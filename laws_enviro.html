@@ -67,11 +67,31 @@
         hr {
             width: 100%;
             color: #2bab0d;
-            border-style: dotted;
+            border-style: solid;
         }
 
         #foot {
             text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
         }
 
         td {
@@ -135,10 +155,10 @@
 
             <table>
                 <tr>
-                    <td width="60" align="center">번호</td>
-                    <td align="center" colspan="1">관련법규</td>
-                    <td align="center" colspan="1">세부조항</td>
-                    <td align="center">관련내용</td>
+                    <th width="60" align="center" height="50">번호</th>
+                    <th align="center" colspan="1">관련법규</th>
+                    <th align="center" colspan="1">세부조항</th>
+                    <th align="center">관련내용</th>
 
                 <tr>
                     <td align="center" rowspan="2">1</td>

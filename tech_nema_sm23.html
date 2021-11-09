@@ -68,12 +68,21 @@
 
         hr {
             width: 100%;
-            color: dimgray;
-            border-style: dotted;
+            color: #2bab0d;
+            border-style: solid;
         }
 
         #foot {
             text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
         }
 
         td {
@@ -165,11 +174,11 @@
             <h4> (1) Inlet Steam Nozzle</h4>
             <p>Enter the force and moment results calculated by the pipe stress analysis in the form below.</p>
             <table>
-                <tr>
-                    <td align="center" width="200vw"> DIRECTION </td>
-                    <td align="center" width="200vw"> FORCE(kgf) </td>
-                    <td align="center" width="200vw"> MOMENT(kgf.cm) </td>
-                    <td align="center" width="230vw"> REMARKS </td>
+                <tr height="50">
+                    <th align="center" width="200vw"> DIRECTION </th>
+                    <th align="center" width="200vw"> FORCE(kgf) </th>
+                    <th align="center" width="200vw"> MOMENT(kgf.cm) </th>
+                    <th align="center" width="300vw"> REMARKS </th>
                 </tr>
 
                 <td align="center"> X </td>
@@ -214,11 +223,11 @@
             <h4> (2) Exhaust Nozzle</h4>
 
             <table>
-                <tr>
-                    <td align="center" width="200vw"> DIRECTION </td>
-                    <td align="center" width="200vw"> FORCE(kgf) </td>
-                    <td align="center" width="200vw"> MOMENT(kgf.cm) </td>
-                    <td align="center" width="230vw"> REMARKS </td>
+                <tr height="50">
+                    <th align="center" width="200vw"> DIRECTION </th>
+                    <th align="center" width="200vw"> FORCE(kgf) </th>
+                    <th align="center" width="200vw"> MOMENT(kgf.cm) </th>
+                    <th align="center" width="300vw"> REMARKS </th>
                 </tr>
                 <tr>
                     <td align="center"> X </td>
@@ -269,7 +278,7 @@
 
             <!-- 계산 Button 추가 -->
             <br>
-            <button onclick="calculate()" style="width:43vw"> FORCE AND MOMENT INPUT </button>
+            <button onclick="calculate()" style="width:46vw"> FORCE AND MOMENT INPUT </button>
 
             <h3>(2) Trubine FORCE and MOMENT input Result</h3>
 
@@ -279,33 +288,33 @@
             <h4>INLET NOZZLE</h4>
             <table>
                 <tr>
-                    <td class="item_name" width="200px" rowspan="2">
+                    <th class="item_name" width="300px" rowspan="2">
                         PIPE DIRECTION
-                    </td>
-                    <td class="item_name" width="200px" colspan="2">
+                    </th>
+                    <th class="item_name" width="300px" colspan="2" height="30">
                         FORCE
-                    </td>
-                    <td class="item_name" width="200px" colspan="2">
+                    </th>
+                    <th class="item_name" width="300px" colspan="2">
                         MOMENT
-                    </td>
+                    </th>
                 </tr>
                 <tr>
-                    <td width="150px" align="center">
+                    <th width="150px" align="center" height="30">
                         (kgf)
-                    </td>
-                    <td width="150px" align="center">
+                    </th>
+                    <th width="150px" align="center">
                         (lb)
-                    </td>
-                    <td width="150px" align="center">
+                    </th>
+                    <th width="150px" align="center">
                         (kgf.cm)
-                    </td>
-                    <td width="150px" align="center">
+                    </th>
+                    <th width="150px" align="center">
                         (lb.ft)
-                    </td>
+                    </th>
                 </tr>
 
                 <tr>
-                    <td class="item_name">
+                    <td class="item_name" align="center">
                         X
                     </td>
                     <td id="x_inlet_force_kg" align="center">
@@ -322,7 +331,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="item_name">
+                    <td class="item_name" align="center">
                         Y
                     </td>
                     <td id="y_inlet_force_kg" align="center">
@@ -339,7 +348,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="item_name">
+                    <td class="item_name" align="center">
                         Z
                     </td>
                     <td id="z_inlet_force_kg" align="center">
@@ -356,7 +365,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="item_name">
+                    <td class="item_name" align="center">
                         COMB
                     </td>
                     <td id="comb_inlet_force_kg" align="center">
@@ -378,33 +387,33 @@
             <h4>EXHAUST NOZZLE</h4>
             <table>
                 <tr>
-                    <td class="item_name" width="200px" rowspan="2">
+                    <th class="item_name" width="300px" rowspan="2">
                         PIPE DIRECTION
-                    </td>
-                    <td class="item_name" width="200px" colspan="2">
+                    </th>
+                    <th class="item_name" width="300px" colspan="2" height="30">
                         FORCE
-                    </td>
-                    <td class="item_name" width="200px" colspan="2">
+                    </th>
+                    <th class="item_name" width="300px" colspan="2">
                         MOMENT
-                    </td>
+                    </th>
                 </tr>
                 <tr>
-                    <td width="150px" align="center">
+                    <th width="150px" align="center" height="30">
                         (kgf)
-                    </td>
-                    <td width="150px" align="center">
+                    </th>
+                    <th width="150px" align="center">
                         (lb)
-                    </td>
-                    <td width="150px" align="center">
+                    </th>
+                    <th width="150px" align="center">
                         (kgf.cm)
-                    </td>
-                    <td width="150px" align="center">
+                    </th>
+                    <th width="150px" align="center">
                         (lb.ft)
-                    </td>
+                    </th>
                 </tr>
 
                 <tr>
-                    <td class="item_name">
+                    <td class="item_name" align="center">
                         X
                     </td>
                     <td id="x_exhaust_force_kg" align="center">
@@ -421,7 +430,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="item_name">
+                    <td class="item_name" align="center">
                         Y
                     </td>
                     <td id="y_exhaust_force_kg" align="center">
@@ -438,7 +447,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="item_name">
+                    <td class="item_name" align="center">
                         Z
                     </td>
                     <td id="z_exhaust_force_kg" align="center">
@@ -455,7 +464,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="item_name">
+                    <td class="item_name" align="center">
                         COMB
                     </td>
                     <td id="comb_exhaust_force_kg" align="center">
@@ -480,15 +489,15 @@
             <h4> 1) NOZZLE DATA</h4>
             <table>
                 <tr>
-                    <td align="center" rowspan="2" width="200vw"> NOZZLE DATA </td>
-                    <td align="center" colspan="2"> INLET NOZZLE </td>
-                    <td align="center" colspan="2"> EXHAUST NOZZLE </td>
+                    <th align="center" rowspan="2" width="200vw"> NOZZLE DATA </th>
+                    <th align="center" colspan="2" height="30"> INLET NOZZLE </th>
+                    <th align="center" colspan="2"> EXHAUST NOZZLE </th>
                 </tr>
                 <tr>
-                    <td align="center" width="150vw"> MM UNIT </td>
-                    <td align="center" width="150vw"> INCH UNIT </td>
-                    <td align="center" width="150vw"> MM UNIT </td>
-                    <td align="center" width="150vw"> INCH UNIT </td>
+                    <th align="center" width="200vw" height="30"> MM UNIT </th>
+                    <th align="center" width="200vw"> INCH UNIT </th>
+                    <th align="center" width="200vw"> MM UNIT </th>
+                    <th align="center" width="200vw"> INCH UNIT </th>
                 </tr>
                 <tr>
                     <td align="center"> ND </td>
@@ -511,15 +520,15 @@
 
             <!-- 계산 Button 추가 -->
             <br>
-            <button onclick="calculate_1()" style="width:43vw"> NOZZLE DATA INPUT </button>
+            <button onclick="calculate_1()" style="width:46vw"> NOZZLE DATA INPUT </button>
 
             <!-- Expansion Joint Data -->
             <h4> 2) EXPANSION JOINT DATA</h4>
             <h4> (1) PRESSURE RORCE FROM FULL VACUUM IN THE EXPANSION JOINT</h4>
             <table>
                 <tr>
-                    <td align="center" width="250ww"> FORMULA </td>
-                    <td align="center" colspan="2"> 14.7 (lb/sq inch) x bellows area(sq inch) </td>
+                    <th align="center" width="250ww" height="50"> FORMULA </th>
+                    <th align="center" colspan="2"> 14.7 (lb/sq inch) x bellows area(sq inch) </th>
                 </tr>
                 <tr>
                     <td align="center" rowspan="2"> CALCULATION </td>
@@ -540,9 +549,9 @@
 
             <table>
                 <tr>
-                    <td align="center" width="250vw"> DATA CHECK </td>
-                    <td align="center" width="300vw"> CALCULATION </td>
-                    <td align="center" width="300vw"> REMARKS </td>
+                    <th align="center" width="250vw" height="50"> DATA CHECK </th>
+                    <th align="center" width="300vw"> CALCULATION </th>
+                    <th align="center" width="350vw"> REMARKS </th>
                 </tr>
                 <tr>
                     <td align="center"> FR </td>
@@ -566,8 +575,8 @@
 
             <table>
                 <tr>
-                    <td align="center"> FORMULA </td>
-                    <td align="center" colspan="4"> 3FR + MR ≤ 500 De</td>
+                    <th align="center" height="50"> FORMULA </th>
+                    <th align="center" colspan="4"> 3FR + MR ≤ 500 De</th>
                 </tr>
                 <tr>
                     <td align="center" rowspan="2" width="205vw"> Limit1 CHECK </td>
@@ -590,9 +599,9 @@
 
             <table>
                 <tr>
-                    <td align="center" width="250vw"> DATA CHECK </td>
-                    <td align="center" width="300vw"> CALCULATION </td>
-                    <td align="center" width="300vw"> REMARKS </td>
+                    <th align="center" width="300vw" height="50"> DATA CHECK </th>
+                    <th align="center" width="300vw"> CALCULATION </th>
+                    <th align="center" width="300vw"> REMARKS </th>
                 </tr>
                 <tr>
                     <td align="center"> FR </td>
@@ -616,15 +625,15 @@
 
             <table>
                 <tr>
-                    <td align="center" width="200vw"> FORMULA </td>
-                    <td align="center" colspan="4"> 3FR + MR ≤ 500 De</td>
+                    <th align="center" width="200vw" height="50"> FORMULA </th>
+                    <th align="center" colspan="4"> 3FR + MR ≤ 500 De</th>
                 </tr>
                 <tr>
                     <td align="center" rowspan="2"> Limit1 CHECK </td>
-                    <td align="center" width="150vw">3FR + MR </td>
-                    <td align="center" width="150vw">500 x De </td>
+                    <td align="center" width="200vw">3FR + MR </td>
+                    <td align="center" width="200vw">500 x De </td>
                     <td align="center" rowspan="2" width="150vw">RESULT </td>
-                    <td align="center" rowspan="2" id="exhaust_guide_check_3" width="150vw"> - </td>
+                    <td align="center" rowspan="2" id="exhaust_guide_check_3" width="200vw"> - </td>
                 </tr>
                 <tr>
                     <td align="center" id="exhaust_guide_check_1">426</td>
@@ -639,17 +648,17 @@
 
             <table>
                 <tr>
-                    <td align="center" rowspan="2"> </td>
-                    <td align="center" colspan="3">FORCE</td>
-                    <td align="center" rowspan="2" width="180vw">REMARKS</td>
+                    <th align="center" rowspan="2"> </th>
+                    <th align="center" colspan="3" height="30">FORCE</th>
+                    <th align="center" rowspan="2" width="230vw">REMARKS</th>
                 </tr>
                 <tr>
-                    <td align="center" width="180vw">INLET NOZZLE</td>
-                    <td align="center" width="180vw">EXHAUST NOZZLE</td>
-                    <td align="center" width="180vw">COMBIND</td>
+                    <th align="center" width="200vw" height="30">INLET NOZZLE</th>
+                    <th align="center" width="200vw">EXHAUST NOZZLE</th>
+                    <th align="center" width="200vw">COMBIND</th>
                 </tr>
                 <tr>
-                    <td align="center" width="80vw">X</td>
+                    <td align="center" width="10vw">X</td>
                     <td align="center" id="sum_force_inlet_x">580</td>
                     <td align="center" id="sum_force_exhaust_x">-</td>
                     <td align="center" id="sum_force_comb_x">579.8</td>
@@ -683,14 +692,14 @@
 
             <table>
                 <tr>
-                    <td align="center" rowspan="2"> </td>
-                    <td align="center" colspan="3">FORCE</td>
-                    <td align="center" rowspan="2" width="180vw">REMARKS</td>
+                    <th align="center" rowspan="2"> </th>
+                    <th align="center" colspan="3" height="30">FORCE</th>
+                    <th align="center" rowspan="2" width="180vw">REMARKS</th>
                 </tr>
                 <tr>
-                    <td align="center" width="180vw">INLET NOZZLE</td>
-                    <td align="center" width="180vw">EXHAUST NOZZLE</td>
-                    <td align="center" width="180vw">COMBIND</td>
+                    <th align="center" width="200vw" height="30">INLET NOZZLE</th>
+                    <th align="center" width="200vw">EXHAUST NOZZLE</th>
+                    <th align="center" width="200vw">COMBIND</th>
                 </tr>
                 <tr>
                     <td align="center" width="80vw">X</td>
@@ -727,9 +736,9 @@
 
             <table>
                 <tr>
-                    <td align="center"> </td>
-                    <td align="center" width="300vw">AREA</td>
-                    <td align="center" width="300vw">REMARKS</td>
+                    <th align="center" width="300vw"> </th>
+                    <th align="center" width="300vw" height="50">AREA</th>
+                    <th align="center" width="300vw">REMARKS</th>
                 </tr>
                 <tr>
                     <td align="center" width="250vw">INLET</td>
@@ -757,9 +766,9 @@
 
             <table>
                 <tr>
-                    <td align="center"></td>
-                    <td align="center" width="300vw">CALCULATION</td>
-                    <td align="center" width="300vw">REMARKS</td>
+                    <th align="center" width="300vw" height="50"></th>
+                    <th align="center" width="300vw">CALCULATION</th>
+                    <th align="center" width="300vw">REMARKS</th>
                 </tr>
                 <tr>
                     <td align="center" width="250vw">Dc</td>
@@ -773,14 +782,14 @@
 
             <table>
                 <tr>
-                    <td align="center" width="200vw"> FORMULA </td>
-                    <td align="center" colspan="4"> 2FC + MC ≤ 250 Dc</td>
+                    <th align="center" width="200vw" height="50"> FORMULA </th>
+                    <th align="center" colspan="4"> 2FC + MC ≤ 250 Dc</th>
                 </tr>
                 <tr>
                     <td align="center" rowspan="2"> Limit2 CHECK </td>
                     <td align="center" width="150vw">2Fc + MC </td>
                     <td align="center" width="150vw">250 x Dc </td>
-                    <td align="center" rowspan="2" width="150vw">RESULT </td>
+                    <td align="center" rowspan="2" width="160vw">RESULT </td>
                     <td align="center" rowspan="2" id="comb_guide_check_3" width="150vw"> - </td>
                 </tr>
                 <tr>
@@ -795,15 +804,15 @@
 
             <table>
                 <tr>
-                    <td align="center" rowspan="2"> </td>
-                    <td align="center" colspan="2">COMPONENTS FORCE</td>
-                    <td align="center">COMBIND FORCE</td>
-                    <td align="center" rowspan="2" width="180vw">REMARKS</td>
+                    <th align="center" rowspan="2" width="200" height="30"> </th>
+                    <th align="center" colspan="2">COMPONENTS FORCE</th>
+                    <th align="center">COMBIND FORCE</th>
+                    <th align="center" rowspan="2" width="180vw">REMARKS</th>
                 </tr>
                 <tr>
-                    <td align="center" width="180vw">FORMULA</td>
-                    <td align="center" width="180vw">lb</td>
-                    <td align="center" width="180vw">lb</td>
+                    <th align="center" width="200vw" height="30">FORMULA</th>
+                    <th align="center" width="200vw">lb</th>
+                    <th align="center" width="200vw">lb</th>
                 </tr>
                 <tr>
                     <td align="center" width="80vw">FX</td>
@@ -832,15 +841,15 @@
 
             <table>
                 <tr>
-                    <td align="center" rowspan="2"> </td>
-                    <td align="center" colspan="2">COMPONENTS MOMENT</td>
-                    <td align="center">COMBIND MOMNT</td>
-                    <td align="center" rowspan="2" width="180vw">REMARKS</td>
+                    <th align="center" rowspan="2"> </th>
+                    <th align="center" colspan="2" height="30">COMPONENTS MOMENT</th>
+                    <th align="center">COMBIND MOMNT</th>
+                    <th align="center" rowspan="2" width="180vw">REMARKS</th>
                 </tr>
                 <tr>
-                    <td align="center" width="180vw">FORMULA</td>
-                    <td align="center" width="180vw">lb</td>
-                    <td align="center" width="180vw">lb</td>
+                    <th align="center" width="200vw" height="30">FORMULA</th>
+                    <th align="center" width="200vw">lb</th>
+                    <th align="center" width="200vw">lb</th>
                 </tr>
                 <tr>
                     <td align="center" width="80vw">MX</td>
@@ -874,8 +883,8 @@
 
             <table>
                 <tr>
-                    <td align="center" width="150vw"> FORMULA</td>
-                    <td align="center" colspan="4"> TOTAL FORCE < 15.5 x NORMAL EXHAUST AREA</td>
+                    <th align="center" width="150vw" height="50"> FORMULA</th>
+                    <th align="center" colspan="4"> TOTAL FORCE < 15.5 x NORMAL EXHAUST AREA</th>
                 </tr>
                 <tr>
                     <td align="center" rowspan="2"> Total Force Check</td>

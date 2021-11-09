@@ -67,11 +67,15 @@
         hr {
             width: 100%;
             color: #2bab0d;
-            border-style: dotted;
+            border-style: solid;
         }
 
         #foot {
             text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
         }
 
         td {
@@ -82,6 +86,16 @@
             border: 1px solid #2bab0d;
             /* height: 15vmax; */
             margin: 0px;
+        }
+
+        tr:hover {
+            cursor: default;
+            background: #ecfafc;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
         }
 
         h2 {
@@ -136,24 +150,24 @@
             <h3>PIPE THKNESS </h3>
             <table>
                 <tr>
-                    <td colspan="2" rowspan="2">NORMAL PIPING SIZE</td>
-                    <td rowspan="3">Outside Diameter</td>
-                    <td colspan="8">Wall Thickness (mm)</td>
+                    <th colspan="2" rowspan="2">NORMAL PIPING SIZE</th>
+                    <th rowspan="3">Outside Diameter (mm)</th>
+                    <th colspan="8">Wall Thickness (mm)</th>
                 </tr>
                 <tr>
-                    <td colspan="8">Carbon Steel</td>
+                    <th colspan="8">Carbon Steel</th>
                 </tr>
                 <tr>
-                    <td width="100vw">DN</td>
-                    <td width="100vw">NPS</td>
-                    <td width="100vw">SCH.10</td>
-                    <td width="100vw">SCH.20</td>
-                    <td width="100vw">SCH.30</td>
-                    <td width="100vw">SCH.40</td>
-                    <td width="100vw">STD</td>
-                    <td width="100vw">SCH.60</td>
-                    <td width="100vw">SCH.80</td>
-                    <td width="100vw">XS</td>
+                    <th width="100vw">DN</th>
+                    <th width="100vw">NPS</th>
+                    <th width="100vw">SCH.10</th>
+                    <th width="100vw">SCH.20</th>
+                    <th width="100vw">SCH.30</th>
+                    <th width="100vw">SCH.40</th>
+                    <th width="100vw">STD</th>
+                    <th width="100vw">SCH.60</th>
+                    <th width="100vw">SCH.80</th>
+                    <th width="100vw">XS</th>
                 </tr>
 
                 <tr class="row3">

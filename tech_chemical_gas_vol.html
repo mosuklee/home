@@ -68,11 +68,20 @@
         hr {
             width: 100%;
             color: #2bab0d;
-            border-style: dotted;
+            border-style: solid;
         }
 
         #foot {
             text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
         }
 
         td {
@@ -83,9 +92,6 @@
             margin: 0px;
         }
 
-        .table_head {
-            background: rgb(214, 252, 158);
-        }
 
         table {
             border-collapse: collapse;
@@ -155,19 +161,18 @@
             <h3>분자(molecule)의 분자량(molecular weight) 계산</h3>
             <table>
                 <tr>
-                    <td width="120vw" class="table_head" align="center">FOUMLA</td>
-                    <td width="120vw" class="table_head" align="center">C</td>
-                    <td width="120vw" class="table_head" align="center">H</td>
-                    <td width="120vw" class="table_head" align="center">O</td>
-                    <td width="120vw" class="table_head" align="center">N</td>
-                    <td width="120vw" class="table_head" align="center">S</td>
-                    <td width="120vw" class="table_head" align="center">Cl</td>
-                    <td width="120vw" class="table_head" align="center">Ar</td>
-
-                    <td width="120vw" class="table_head" align="center">TOTAL</td>
+                    <th width="120vw" class="table_head" align="center" height="40">FOUMLA</th>
+                    <th width="120vw" class="table_head" align="center">C</th>
+                    <th width="120vw" class="table_head" align="center">H</th>
+                    <th width="120vw" class="table_head" align="center">O</th>
+                    <th width="120vw" class="table_head" align="center">N</th>
+                    <th width="120vw" class="table_head" align="center">S</th>
+                    <th width="120vw" class="table_head" align="center">Cl</th>
+                    <th width="120vw" class="table_head" align="center">Ar</th>
+                    <th width="120vw" class="table_head" align="center">TOTAL</th>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_formula">
+                    <td align="center"><input style="width:4vw; text-align:center" type="text" id="input_1_formula">
                     </td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_c"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_h"></td>
@@ -179,7 +184,7 @@
                     <td align="center" id="input_1_tot"></td>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_formula">
+                    <td align="center"><input style="width:4vw; text-align:center" type="text" id="input_2_formula">
                     </td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_c"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_2_h" </td>
@@ -191,7 +196,7 @@
                     <td align="center" id="input_2_tot"></td>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_formula">
+                    <td align="center"><input style="width:4vw; text-align:center" type="text" id="input_3_formula">
                     </td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_c"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_3_h"></td>
@@ -203,7 +208,7 @@
                     <td align="center" id="input_3_tot"></td>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_formula">
+                    <td align="center"><input style="width:4vw; text-align:center" type="text" id="input_4_formula">
                     </td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_c"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_4_h"></td>
@@ -215,7 +220,7 @@
                     <td align="center" id="input_4_tot"></td>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_formula">
+                    <td align="center"><input style="width:4vw; text-align:center" type="text" id="input_5_formula">
                     </td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_c"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_5_h"></td>
@@ -227,7 +232,7 @@
                     <td align="center" id="input_5_tot"></td>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_formula">
+                    <td align="center"><input style="width:4vw; text-align:center" type="text" id="input_6_formula">
                     </td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_c"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_6_h"></td>
@@ -239,7 +244,7 @@
                     <td align="center" id="input_6_tot"></td>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_formula">
+                    <td align="center"><input style="width:4vw; text-align:center" type="text" id="input_7_formula">
                     </td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_c"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_7_h"></td>
@@ -251,7 +256,7 @@
                     <td align="center" id="input_7_tot"></td>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_formula">
+                    <td align="center"><input style="width:4vw; text-align:center" type="text" id="input_8_formula">
                     </td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_c"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_8_h"></td>
@@ -274,11 +279,11 @@
             <h3>분자별 질량분율(Mass Fraction) 계산</h3>
             <table>
                 <tr>
-                    <td width="170vw" class="table_head" align="center">FOUMLA</td>
-                    <td width="170vw" class="table_head" align="center">Volume(%)</td>
-                    <td width="170vw" class="table_head" align="center">Weight(kg/mol)</td>
-                    <td width="170vw" class="table_head" align="center">Partial Weight</td>
-                    <td width="170vw" class="table_head" align="center">Weight(%)</td>
+                    <th width="200vw" class="table_head" align="center" height="40">FOUMLA</th>
+                    <th width="200vw" class="table_head" align="center">Volume(%)</th>
+                    <th width="200vw" class="table_head" align="center">Weight(kg/mol)</th>
+                    <th width="200vw" class="table_head" align="center">Partial Weight</th>
+                    <th width="200vw" class="table_head" align="center">Weight(%)</th>
 
 
                 </tr>
@@ -371,13 +376,13 @@
             <br>
             <table>
                 <tr>
-                    <td width="200vw" class="table_head" align="center">구 분</td>
-                    <td width="450vw" class="table_head" align="center">
+                    <th width="200vw" class="table_head" align="center" height="40">구 분</th>
+                    <th width="450vw" class="table_head" align="center">
                         Volume Flow Rate (Nm3/h)
-                    </td>
-                    <td width="450vw" class="table_head" align="center">
+                    </th>
+                    <th width="450vw" class="table_head" align="center">
                         Mass Flow Rate (kg/h)
-                    </td>
+                    </th>
                 </tr>
                 <tr>
                     <td align="center"> <button onclick="calculate2()"> Calculation </button></td>

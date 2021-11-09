@@ -70,11 +70,20 @@
         hr {
             width: 100%;
             color: #2bab0d;
-            border-style: dotted;
+            border-style: solid;
         }
 
         #foot {
             text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
         }
 
         td {
@@ -157,18 +166,18 @@
             <h4>1.1 배관재질의 온도에 따른 보정계수 (y-coefficient) </h4>
             <table>
                 <tr>
-                    <td align="center" rowspan="2" width="300">재질</td>
-                    <td align="center" colspan="8">온도</td>
+                    <th align="center" rowspan="2" width="300">재질</th>
+                    <th align="center" colspan="8" height="30">온도</th>
                 </tr>
                 <tr>
-                    <td align="center" width="110vw">482℃ 이하</tdㅁ>
-                    <td align="center" width="75vw">510℃</td>
-                    <td align=" center" width="75vw">538℃</td>
-                    <td align=" center" width="75vw">566℃</td>
-                    <td align=" center" width="75vw">593℃</td>
-                    <td align=" center" width="75vw">621℃</td>
-                    <td align=" center" width="75vw">649℃</td>
-                    <td align=" center" width="110vw">677℃이상</td>
+                    <th align="center" width="110vw" height="30">482℃ 이하</th>
+                    <th align="center" width="75vw">510℃</th>
+                    <th align=" center" width="75vw">538℃</th>
+                    <th align=" center" width="75vw">566℃</th>
+                    <th align=" center" width="75vw">593℃</th>
+                    <th align=" center" width="75vw">621℃</th>
+                    <th align=" center" width="75vw">649℃</th>
+                    <th align=" center" width="110vw">677℃이상</th>
                 </tr>
                 <tr>
                     <td>페라이트강</td>
@@ -224,8 +233,8 @@
             <h4>1.2 이음매 있는 배관의 용접 이음계수 </h4>
             <table>
                 <tr>
-                    <td align="center" width="800">이음형태</td>
-                    <td align="center" width="150">용접이음 계수</td>
+                    <th align="center" width="800" height="50">이음형태</th>
+                    <th align="center" width="150">용접이음 계수</th>
                 </tr>
                 <tr>
                     <td><b>. 전기 또는 가스 용융용접 </b> <br>
@@ -265,18 +274,18 @@
 
             <table>
                 <tr>
-                    <td align="center" width="140vw">Press <br> (kg/cm2.g)</td>
-                    <td align="center" width="140vw">Do<br> (mm)</td>
-                    <td align="center" width="140vw">S<br> (ksi)</td>
-                    <td align="center" width="140vw">E</td>
-                    <td align="center" width="140vw">y</td>
-                    <td align="center" width="140vw">A<br> (mm)</td>
-                    <td align="center" width="140vw">tm</td>
+                    <th align="center" width="140vw">Press <br> (kg/cm2.g)</th>
+                    <th align="center" width="140vw">Do<br> (mm)</th>
+                    <th align="center" width="140vw">S<br> (ksi)</th>
+                    <th align="center" width="140vw">E</th>
+                    <th align="center" width="140vw">y</th>
+                    <th align="center" width="140vw">A<br> (mm)</th>
+                    <th align="center" width="140vw">tm</th>
 
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_p" input
-                            value="10"></td>
+                    <td align="center" height="40"><input style="width:3vw; text-align:center" type="text" id="input_p"
+                            input value="10"></td>
                     <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_do" input
                             value="114.3">
                     </td>
