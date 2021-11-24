@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPX LIST</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.90vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            padding-left: 1vw;
+
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            width: 100px;
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <div>
+
+                <h3> GPX LIST</h3>
+                <table>
+                    <tr>
+                        <th width=160px height="50" align="center">
+                            번호
+                        </th>
+                        <th width=300px align="center">
+                            GPX 경로
+                        </th>
+                        <th width=300px align="center">
+                            GPX 파일
+                        </th>
+                        <th width=500px align="center">
+                            비 고
+                        </th>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            1
+                        </td>
+                        <td align="center">
+                            장화코스(서울)
+                        </td>
+                        <td>
+                            <a href="./gpx/장화코스.gpx" download="장화코스.gpx">장화코스.gpx</a>
+                        </td>
+                        <td>
+                            옥수역 ->한강-중랑천-부용천-축석고개-광릉수목원-왕숙천-한강
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            2
+                        <td align="center">
+                            런닝맨코스(서울)
+                        </td>
+                        <td>
+                            <a href="./gpx/runningman_seoul.gpx"
+                                download="runningman_seoul.gpx">runningman_seoul.gpx</a>
+
+                        </td>
+                        <td>
+                            한강공원-여의도(63빌딩)-남산(남산타워)-효창공원(백범김구기념관)-용산전자상가-공덕동-서대문(독립문,서대문형무소)-광화문-북촌한옥마을-청와대-북악
+                            팔각정-성균관대학교-고려대학교-제기동(약령시장)-영휘원-경희대학교-청계천박물관-한강공원
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            3
+                        <td align="center">
+                            가오리코스_시계방향_광진교기점
+                        </td>
+                        <td>
+                            <a href="./gpx/가오리코스_시계방향_광진교기점.gpx"
+                                download="가오리코스_시계방향_광진교기점.gpx">가오리코스_시계방향_광진교기점.gpx</a>
+                        </td>
+                        <td>
+                            검단산주차장-한강자전거길-왕숙천자전거길-경춘선자전거길-북한강자전거길-남한강자전거길-한강자전거길
+                        </td>
+                    </tr>
+                </table>
+
+                <div>
+                    <h5>
+                        <br>
+                        <br>
+                        <hr>
+                        <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a>
+                        </h6>
+                    </h5>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+    <br>
+</body>
+
+</html>
