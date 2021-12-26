@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표준산소농도 환산</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.90vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        .item_name {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+            <h1>표준 산소농도 환산</h1>
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <div style="padding : 3%">
+                <h3>표준 산소농도 환산 수식</h3>
+                <table>
+                    <tr>
+                        <td align="center" class="item_name" width="100px">
+                            수 식
+                        </td>
+                        <td width="800px">
+                            환산농도(ppm) = 실제농도(ppm) x [(21-Os)/(21-Oa)]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="item_name">
+                            참고
+                        </td>
+                        <td>
+                            Os : 표준산소농도(%); &nbsp; &nbsp; &nbsp; &nbsp;
+                            Oa : 실제산소농도(%); <br> <br>
+                            * 표준산소농도 <br>
+                            &nbsp; 폐기물관련설비 : 12%, 발전설비 : 15%
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <br>
+                <h3>표준 산소농도 환산</h3>
+                <table>
+                    <tr>
+                        <td align="center" class="item_name" width="200px">
+                            농도 측정값
+                        </td>
+                        <td align="center">
+                            가스농도(ppm) : <input style="width:5vw; text-align:center" type="text" id="gas_ppm">
+                            &nbsp; &nbsp; &nbsp; &nbsp;
+                            산소농도(%) : <input style="width:5vw; text-align:center" type="text" id="Oa">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="item_name" width="200px">
+                            표준산소농도 (%)
+                        </td>
+                        <td width="800px">
+                            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<input style="width:5vw; text-align:center" input
+                                value="12" type="text" id="Os">
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- 계산 Button 추가 -->
+
+                <button onclick="calculate()" style="width:46vw"> CALCULATION </button>
+                <br>
+                <br>
+                <table>
+                    <tr>
+                        <td align="center" class="item_name" width="200px">
+                            환산농도 (ppm)
+                        </td>
+                        <td width="800px" id="gas_ppm_std">
+                            None
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h5>
+                    <br>
+                    <br>
+                    <hr>
+                    <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+    <br>
+
+    <!-- Java Script 작성하기-->
+    <script>
+
+        // 전역변수 정의
+        var Os;
+        var Oa;
+        var gas_ppm;
+        var gas_ppm_std;
+
+        // 첫번째 버튼 프로그램
+
+        function calculate() {
+            // 계산 수식 
+            // gas_ppm_std = gas_ppm * ((21-Os)/(21-Oa))
+
+            // Id Tag를 이용하여 값을 가져와 변수에 입력하기
+            var Os = parseFloat(document.getElementById("Os").value);
+            var Oa = parseFloat(document.getElementById("Oa").value);
+            var gas_ppm = parseFloat(document.getElementById("gas_ppm").value);
+
+            // 위의 계산수식 계산하기
+            var gas_ppm_std = gas_ppm * ((21.0 - Os) / (21.0 - Oa))
+
+            // 입력이 완료되었으면(gas_ppm_std 값이 에러없이 값이 생성되면)
+            if (!isNaN(gas_ppm_std)) {
+                // 계산된 값을 OutPut입력창에 입력
+                document.getElementById("gas_ppm_std").innerHTML = gas_ppm_std.toFixed(2);
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
