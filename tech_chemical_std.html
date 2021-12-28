@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표준상태 정의</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.90vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        .item_name {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+            <h1>Normal Condition과 Standard Condtion</h1>
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <div style="padding : 3%">
+
+
+                <h3>1. STP -Standard Temperature and Pressure</h3>
+                <p> STP는 일반적으로 화학적 물리적 공정의 측정 및 문서화에 중요한 온도 및 압력의 표준 조건을 정의하는데 사용</p>
+                <h5>1) IUPAC (International Union of Pure and Applied Chemistry)에서 사용하고 있는 STP</h5>
+                <ul>
+                    <li>
+                        0℃ 및 10^5 Passcal(1bar)에서의 공기(Air)
+                    </li>
+                    <li>
+                        이 조건은 부피기준인 Nm3을 정의하는데 가장 많이 사용
+                    </li>
+                    <li>
+                        가스의 1mol의 부피 용량은 22.4136L
+                    </li>
+                </ul>
+                <h5>2) 영국 및 미국에서 사용하고 있는 STP</h5>
+                <ul>
+                    <li>
+                        60F (15.6℃) 및 14.696 psia (1tam, 1.01325 bara)에서의 공기(Air)
+                    </li>
+                    <li>
+                        Standard Atmosphere
+                    </li>
+                    <li>
+                        이 조건은 Sm3 (Standard Cubic meter) 부피(Volume) 용어를 정의하는데 가장 많이 사용
+                    </li>
+                    <li>
+                        가스의 1mol의 부피 용량은 22.6422L
+                    </li>
+                </ul>
+                <h3>2. NTP -Normal Temperature and Pressure</h3>
+                <p> NTP는 일반적으로 팬(FAN) 용량 테스트 및 문서화를 위한 표준 조건으로 사용된다.</p>
+                <h5>1) 기준조건</h5>
+                <ul>
+                    <li>
+                        20℃(68F), 1atm(101.326 kPa, 14.7 psia) 및 밀도 1.20kg/m3에서의 공기(Air)
+                    </li>
+
+                    <li>
+                        가스의 1mol의 부피 용량은 24.0548L
+                    </li>
+                </ul>
+                <h3>3. SATP -Standard Ambient Temperature and Pressure</h3>
+                <p> SATP는 일반적으로 화학분야의 기준으로 사용된다.</p>
+                <h5>1) 기준조건</h5>
+                <ul>
+                    <li>
+                        25℃ 및 101.325 kPa의 기준
+                    </li>
+
+                    <li>
+                        가스의 1mol의 부피 용량은 24.465L
+                    </li>
+                </ul>
+                <h3>4. ISA -International Standard Atomosphere </h3>
+                <p> ISA는 항공기 성능의 기준으로 사용된다.</p>
+                <h5>1) 기준조건</h5>
+                <ul>
+                    <li>
+                        15℃ 및 101.325 kPa, 0% Humidity
+                    </li>
+                </ul>
+                <br>
+
+                <div class="subject main-subject">
+                    <br>
+                    <h1>가스의 유량 측정시 사용되는 용어의 정의</h1>
+                    <br>
+                </div>
+
+                <h3>1. Actual Flow Rates</h3>
+                <p>실제 단위 시간당 특정지점을 통과하는 유체의 실제 부피이다. 그런데 가스는 압축성 유체이므로 가스의 부피는 압력과 온도에 따라 달라질 수 있으므로 일반적으로 설정된 압력 및 온도와
+                    관련된 유량 즉 표준유량과 정상유량으로 표현하는 것이 더 유용하다.</p>
+                <h3>2. 표준 및 정상조건 (Standard and Normal Condition)</h3>
+                <p>표준 유량 및 정상유량은 이상기체 법칙을 이용하여 주어진 온도와 압력에 기초한 실제 유량 측정 수치를 보정한 것이다.
+                    그러나 표준 및 정상조건의 문제는 사용하고 있는 산업분야 및 국가에 따라 다른 정의를 가지고 있다.</p>
+
+                <h5>1) Standard Condition</h5>
+                <p>표준 조건의 경우, 가장 일반적으로 사용하고 있는 것이 ISO정의를 사용하고 있으며, 실제 다음과 같이 사용하고 있다.</p>
+                <table>
+                    <tr>
+                        <td align="center" class="item_name" width="200px">구 분</td>
+                        <td align="center" class="item_name" width="300px">
+                            Base Pressure
+                        </td>
+                        <td align="center" class="item_name" width="300px">
+                            Base Temperature
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="center" class="item_name">
+                            Standard US
+                        </td>
+                        <td align="center">
+                            14.696 psia (101.325 kPa)
+                        </td>
+                        <td align="center">
+                            60F (15.55℃)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="item_name">
+                            Standard ISO
+                        </td>
+                        <td align="center">
+                            101.325 kPa (14.696 psia)
+                        </td>
+                        <td align="center">
+                            15.0℃ (59F)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="item_name">
+                            Standard AGA
+                        </td>
+                        <td align="center">
+                            14.73 psia (101.560 kpa)
+                        </td>
+                        <td align="center">
+                            60F (15.55℃)
+                        </td>
+                    </tr>
+                </table>
+
+                <h5>2) Normal Condition</h5>
+                <p>엔지니어들이 국제표준(SI) 측정 Metric System의 기준 온도로서 0℃ 및 101.4kPa를 사용하고 있다.</p>
+                <table>
+                    <tr>
+                        <td align="center" class="item_name" width="200px">구 분</td>
+                        <td align="center" class="item_name" width="300px">
+                            Base Pressure
+                        </td>
+                        <td align="center" class="item_name" width="300px">
+                            Base Temperature
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="center" class="item_name">
+                            Normal
+                        </td>
+                        <td align="center">
+                            101,325 kPa (14.696 psia)
+                        </td>
+                        <td align="center">
+                            0℃ (32F)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h5>
+                    <br>
+                    <br>
+                    <hr>
+                    <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+    <br>
+
+</body>
+
+</html>
