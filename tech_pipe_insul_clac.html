@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PIPE INSULATION CALCULATION</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>
+                배관 열손실 계산 (Pipe Heat Loss Calculation)
+            </h1>
+            <br>
+            <h3>1. 배관의 열손실 계산식</h3>
+            <p>원형 배관에서의 열손실 계산은 다음수식에 의하여 계산된다.  <br> </p>
+
+            <div id="formula">
+                <br>
+                <b> QL = { 2 x 𝜋 x (Ti - To) } / Σ𝑅 
+                </b>
+                <br>
+            </div>
+
+            <br>
+            여기에서<br>
+            QL : Heat Loss (배관의 단위길이당 열손실 (kcal/h.m)) <br>
+            Ti&nbsp : 배관의 내부 유체온도 (℃) <br>
+            To : 배관의 외부 유체온도 (℃) <br>
+            Σ𝑅 : 배관의 열저항(m.h.℃ / kcal) <br>
+
+            <br>
+
+            <div id="formula">
+                <br>
+                <b> Σ𝑅 = Ri + R1 + R2 + R3 + R4 + R5 + ....  + Ro 
+                </b>
+                <br>
+            </div>
+            <br>
+  <div >
+      <div style="width:400px; display: inline-block; position:relative; top: -40px;">
+        여기에서<br>
+        Ri&nbsp : 1 / ( 𝛼i x r1 ) &nbsp;&nbsp;&nbsp;&nbsp; ... Film<br>
+        R1 : LN(R2/R1) / 𝜆1  &nbsp;&nbsp;... Steel<br>
+        R2 : LN(R3/R2) / 𝜆2  &nbsp;&nbsp;... Insulation<br>
+        R3 : LN(R4/R3) / 𝜆3  &nbsp;&nbsp;... Air Gap<br>
+        R4 : LN(R5/R4) / 𝜆4  &nbsp;&nbsp;... Steel<br>
+        Ro : 1 / ( 𝛼o x r5 ) &nbsp;&nbsp;&nbsp;&nbsp;... Film<br>
+      </div>
+      <div style="width:200px; display: inline-block;">
+        <img src="./image/insul_2.jpg" alt="insulation">
+      </div>
+  </div> 
+
+  <p>1) Film에서의 열전달율(Heat Transfer Coeffcient) </p>
+  <table>
+      <tr>
+          <th width="300px">Film의 방향</th>
+          <th width="300px">열전달율 <br>(kcal/m2.h.C)</th>
+          <th width="200px">비  고</th>
+      </tr>
+      <tr>
+          <td>&nbsp;Steam Side</td>
+          <td align="center">100,000</td>
+          <td></td>
+      </tr>
+    <tr>
+        <td>&nbsp;Air Side (SIS Pipe)</td>
+        <td align="center">21.1</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&nbsp;Air Side (Condensate Pipe)</td>
+        <td align="center">12.3</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&nbsp;Air Side (FRP Pipe)</td>
+        <td align="center">10.0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&nbsp;Tunnel Side</td>
+        <td align="center">10.0</td>
+        <td></td>
+    </tr>
+  </table>
+<p>2) 열전도 계수(Heat Conductivity) </p>
+<table>
+    <tr>
+        <th width="300px">재 질</th>
+        <th width="300px">열전도 계수 <br>(kcal/m.h.C)</th>
+        <th width="200px">비 고</th>
+    </tr>
+    <tr>
+        <td>&nbsp;Steel</td>
+        <td align="center">38.7</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&nbsp;Rock Wool</td>
+        <td align="center">0.0384 + 7.13E-5 x t+3.51E-7 x t2</td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>&nbsp;Aerogel</td>
+        <td align="center">0.016336</td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>&nbsp;FRP</td>
+        <td align="center">0.224</td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>&nbsp;Concreete</td>
+        <td align="center">1.49</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>&nbsp;Soil</td>
+        <td align="center">0.9</td>
+        <td></td>
+    </tr>
+
+</table>
+<br>
+<br>
+            <h3>2. 배관의 표면 온도 계산</h3>
+            <p>원형 배관에서의 표면온도 계산은 다음수식에 의하여 계산된다. <br> </p>
+            
+            <div id="formula">
+                <br>
+                <b> tw = ti - (Σ𝑅(x) / 𝑅) x * ( ti - to)
+                </b>
+                <br>
+            </div>
+            
+            <br>
+            여기에서<br>
+            tw&nbsp&nbsp : 배관 벽면에서의 온도 (℃) <br>
+            ti&nbsp&nbsp : 배관의 내부 온도 (℃) <br>
+            To&nbsp&nbsp : 배관의 외부 온도 (℃) <br>
+            Σ𝑅(x) : 배관의 x Layer까지의 열저항(m.h.℃ / kcal) <br>
+            𝑅&nbsp&nbsp  : 배관의 전체 열저항 (m.h.℃ / kcal)
+<br>
+<br>
+            <h4>3. 배관의 열손실 및 표면온도 계산 </h4>
+            <h5>
+                1) 외기온도 : <input style="width:8vw; text-align:center" type="text" id="input_to" ><br>
+                2) 유체온도 : <input style="width:8vw; text-align:center" type="text" id="input_ti" >
+            </h5>
+            <h5> 3) Pipe and Insulation Structure </h5> 
+
+<table>
+    <tr align="center">
+        <th colspan="3" >Pipe Structure</th>
+        <th rowspan="2" width="150px">열전도(달)율</th>
+        <th rowspan="2" width="100px">Dimension <br>(mm)</th>
+        <th rowspan="2" width="100px">Layer<br> Symbol</th>
+        <th rowspan="2" width="100px">Layer Dim <br>(mm)</th>
+        <th rowspan="2" width="100px">Surface Temp <br>(℃)</th>
+    </tr>
+        <tr align="center">
+        <th width="100px">Symbol</th>
+        <th width="100px">Name</th>
+        <th width="100px">Material</th>
+    </tr>
+    <tr align="center">
+        <td>DI</td>
+        <td colspan="2">IN_Dia</td>
+        <td>-</td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_id" ></td>
+        <td>ri</td>
+        <td id="calc_ri"></td>
+        <td ></td>
+    </tr>
+    <tr align="center">
+        <td >t0</td>
+        <td >INNER</td>
+        <td >FILM</td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc0" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t0" ></td>
+        <td>r1</td>
+        <td id="calc_r1"></td>
+        <td id="calc_t0"></td>
+    </tr>
+    <tr align="center">
+        <td>t1</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t1" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t1" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc1" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t1" ></td>
+        <td>r2</td>
+        <td id="calc_r2"></td>
+        <td id="calc_t1"></td>
+    </tr>
+    <tr align="center">
+        <td>t2</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t2" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t2" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc2" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t2" ></td>
+        <td>r3</td>
+        <td id="calc_r3"></td>
+        <td id="calc_t2"></td>
+    </tr>
+    <tr align="center">
+        <td>t3</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t3" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t3" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc3" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t3" ></td>
+        <td>r4</td>
+        <td id="calc_r4"></td>
+        <td id="calc_t3"></td>
+    </tr>
+    <tr align="center">
+        <td>t4</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t4" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t4" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc4" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t4" ></td>
+        <td>r5</td>
+        <td id="calc_r5"></td> 
+        <td id="calc_t4"></td>
+    </tr>
+    <tr align="center">
+        <td>t5</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t5" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t5" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc5" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t5" ></td>
+        <td>r6</td>
+        <td id="calc_r6"></td>
+        <td id="calc_t5"></td>
+    </tr>
+    <tr align="center">
+        <td>t6</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t6" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t6" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc6" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t6" ></td>
+        <td>r7</td>
+        <td id="calc_r7"></td>
+        <td id="calc_t6"></td>
+     </tr>
+     <tr align="center">
+        <td>t7</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t7" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t7" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc7" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t7" ></td>
+        <td>r8</td>
+        <td id="calc_r8"></td>
+        <td id="calc_t7"></td>
+     </tr>
+     <tr align="center">
+        <td>t8</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t8" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t8" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc8" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t8" ></td>
+        <td>r9</td>
+        <td id="calc_r9"></td>
+        <td id="calc_t8"></td>
+    </tr> 
+    <tr align="center">
+        <td>t9</td>
+        <td><input style="width:5vw; text-align:center" type="text" id="name_t9" ></td>
+        <td><input style="width:5vw; text-align:center" type="text" id="material_t9" ></td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc9" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t9" ></td>
+        <td>r10</td>
+        <td id="calc_r10"></td>
+        <td id="calc_t9"></td>
+     </tr>
+     <tr align="center">
+        <td>t10</td>
+        <td>OUTER</td>
+        <td>FILM</td>
+        <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_hc10" ></td>
+        <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_t10" ></td>
+        <td>r11</td>
+        <td id="calc_r11"></td>
+        <td id="calc_t10"></td>
+     </tr>   
+</table>
+<br>
+    <div>
+        <span>
+            <button onclick="calculate()"> Calculation </button>
+        </span>
+        <span>
+            <button onclick="calculate1()"> Example </button>
+        </span>
+        <span>
+            <button onclick="calculate2()"> Reset </button>
+        </span>
+    </div>
+            <br>
+<br>
+4) 계산결과 <br>
+- 열저항(m.h.℃/kcal) : <span id="sigma_r"></span> <br>
+- 열손실(kcal/h.m) &nbsp;&nbsp; : <span id="q_loss"></span>
+<br>
+<br>
+<br>
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+        <script>
+            function calculate() {
+                // tm 계산
+                // 계산 수식
+                // tm = [(p x Do) / (2 x (SE+Py))]+A
+                var input_to;
+                var input_ti;
+
+                var input_id;
+                var input_t0;
+                var input_t1;
+                var input_t2;
+                var input_t3;
+                var input_t4;
+                var input_t5;
+                var input_t6;
+                var input_t7;
+                var input_t8;
+                var input_t9;
+                var input_t10;
+
+                var calc_ri;
+                var calc_r1;
+                var calc_r2;
+                var calc_r3;
+                var calc_r4;
+                var calc_r5;
+                var calc_r6;
+                var calc_r7;
+                var calc_r8;
+                var calc_r9;
+                var calc_r10;
+                var calc_r11;
+
+                var calc_t0;
+                var calc_t1;
+                var calc_t2;
+                var calc_t3;
+                var calc_t4;
+                var calc_t5;
+                var calc_t6;
+                var calc_t7;
+                var calc_t8;
+                var calc_t9;
+                var calc_t10;
+                
+                var regis_r1;
+                var regis_r2;
+                var regis_r3;
+                var regis_r4;
+                var regis_r5;
+                var regis_r6;
+                var regis_r7;
+                var regis_r8;
+                var regis_r9;
+                var regis_r10;
+                var regis_r11;
+
+                var sigma_r;
+                var q_loss;
+                // Layer Dim 초기화
+                document.getElementById("calc_r1").innerHTML = "";
+                document.getElementById("calc_r2").innerHTML = "";
+                document.getElementById("calc_r3").innerHTML = "";
+                document.getElementById("calc_r4").innerHTML = "";
+                document.getElementById("calc_r5").innerHTML = "";
+                document.getElementById("calc_r6").innerHTML = "";
+                document.getElementById("calc_r7").innerHTML = "";
+                document.getElementById("calc_r8").innerHTML = "";
+                document.getElementById("calc_r9").innerHTML = "";
+                document.getElementById("calc_r10").innerHTML = "";
+                document.getElementById("calc_r11").innerHTML = "";
+
+                // Layer Dim 초기화
+                document.getElementById("calc_t0").innerHTML = "";
+                document.getElementById("calc_t1").innerHTML = "";
+                document.getElementById("calc_t2").innerHTML = "";
+                document.getElementById("calc_t3").innerHTML = "";
+                document.getElementById("calc_t4").innerHTML = "";
+                document.getElementById("calc_t5").innerHTML = "";
+                document.getElementById("calc_t6").innerHTML = "";
+                document.getElementById("calc_t7").innerHTML = "";
+                document.getElementById("calc_t8").innerHTML = "";
+                document.getElementById("calc_t9").innerHTML = "";
+                document.getElementById("calc_t10").innerHTML = "";
+
+
+
+                // input 상자에서 data 가져오기
+                // 외기온도, 유체온도 가져오기
+                input_to = parseFloat(document.getElementById("input_to").value);
+                input_ti = parseFloat(document.getElementById("input_ti").value);
+                // 관경 및 두께 가져오기
+                input_id = parseFloat(document.getElementById("input_id").value);
+                input_t0 = parseFloat(document.getElementById("input_t0").value);
+                input_t1 = parseFloat(document.getElementById("input_t1").value);
+                input_t2 = parseFloat(document.getElementById("input_t2").value);
+                input_t3 = parseFloat(document.getElementById("input_t3").value);
+                input_t4 = parseFloat(document.getElementById("input_t4").value);
+                input_t5 = parseFloat(document.getElementById("input_t5").value);
+                input_t6 = parseFloat(document.getElementById("input_t6").value);
+                input_t7 = parseFloat(document.getElementById("input_t7").value);
+                input_t8 = parseFloat(document.getElementById("input_t8").value);
+                input_t9 = parseFloat(document.getElementById("input_t9").value);
+                input_t10 = parseFloat(document.getElementById("input_t10").value);
+// 열손실값 가져오기
+                input_hc0 = parseFloat(document.getElementById("input_hc0").value);
+                input_hc1 = parseFloat(document.getElementById("input_hc1").value);
+                input_hc2 = parseFloat(document.getElementById("input_hc2").value);
+                input_hc3 = parseFloat(document.getElementById("input_hc3").value);
+                input_hc4 = parseFloat(document.getElementById("input_hc4").value);
+                input_hc5 = parseFloat(document.getElementById("input_hc5").value);
+                input_hc6 = parseFloat(document.getElementById("input_hc6").value);
+                input_hc7 = parseFloat(document.getElementById("input_hc7").value);
+                input_hc8 = parseFloat(document.getElementById("input_hc8").value);
+                input_hc9 = parseFloat(document.getElementById("input_hc9").value);
+                input_hc10 = parseFloat(document.getElementById("input_hc10").value);
+                
+                // Di
+                if (!isNaN(input_id)) {
+                   //r 값 계산
+                    calc_ri = (input_id / 2) / 1000;
+                   document.getElementById("calc_ri").innerHTML = calc_ri.toFixed(5);
+                   }
+                // t0 
+                if (!isNaN(input_t0 || input_hc0)) {
+                    calc_r1 = calc_ri +(input_t0) / 1000;
+                    document.getElementById("calc_r1").innerHTML = calc_r1.toFixed(5);
+                    regis_r1 = 1 / (input_hc0 * calc_r1);
+                    calc_r11 = calc_r1;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = regis_r1;
+                    // console.log("1",regis_r1);
+                    // console.log("t0 :",regis_r1,input_hc0, calc_r1)
+                } else {
+                    calc_r1 = calc_ri;
+                    document.getElementById("calc_r1").innerHTML = calc_r1.toFixed(5);
+                    regis_r1 = 0;
+                    calc_r11 = calc_r1;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = regis_r1;
+                    // console.log("2", regis_r1);
+                }
+
+                //  t1
+                if (!isNaN(input_t1 && input_hc1)) {
+                    calc_r2 = calc_r1 + (input_t1) / 1000;
+                    document.getElementById("calc_r2").innerHTML = calc_r2.toFixed(5);
+                    regis_r2 = Math.log(calc_r2 / calc_r1) / input_hc1
+                   calc_r11 = calc_r2;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = sigma_r + regis_r2;
+                }
+                // t2
+                if (!isNaN(input_t2 && input_hc2)) {
+                    calc_r3 = calc_r2 + (input_t2) / 1000;
+                    document.getElementById("calc_r3").innerHTML = calc_r3.toFixed(5);
+                    regis_r3 = Math.log(calc_r3 / calc_r2) / input_hc2
+                   calc_r11 = calc_r3;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = sigma_r + regis_r3;
+                }
+                // t3
+                if (!isNaN(input_t3 && input_hc3)) {
+                    calc_r4 = calc_r3 + (input_t3) / 1000;
+                    document.getElementById("calc_r4").innerHTML = calc_r4.toFixed(5);
+                    regis_r4 = Math.log(calc_r4 / calc_r3) / input_hc3
+                    calc_r11 = calc_r4;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = sigma_r + regis_r4;
+                }
+                // t4
+                if (!isNaN(input_t4 && input_hc4)) {
+                   calc_r5 = calc_r4 + (input_t4) / 1000; 
+                    document.getElementById("calc_r5").innerHTML = calc_r5.toFixed(5);
+                    regis_r5 = Math.log(calc_r5 / calc_r4) / input_hc4
+                    calc_r11 = calc_r5;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = sigma_r + regis_r5;
+                }
+                // t5
+                if (!isNaN(input_t5 && input_hc5)) {
+                    calc_r6 = calc_r5 + (input_t5) / 1000;
+                    document.getElementById("calc_r6").innerHTML = calc_r6.toFixed(5);
+                    regis_r6 = Math.log(calc_r6 / calc_r5) / input_hc5
+                    calc_r11 = calc_r6;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = sigma_r + regis_r6;
+                }
+                // t6
+                if (!isNaN(input_t6 && input_hc6)) {
+                  calc_r7 = calc_r6 + (input_t6) / 1000; 
+                  document.getElementById("calc_r7").innerHTML = calc_r7.toFixed(5);
+                    regis_r7 = Math.log(calc_r7 / calc_r6) / input_hc6
+                    calc_r11 = calc_r7;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = sigma_r + regis_r7;
+                }
+                // t7
+                if (!isNaN(input_t7 && input_hc7)) {
+                 calc_r8 = calc_r7 + (input_t7) / 1000;
+                 document.getElementById("calc_r8").innerHTML = calc_r8.toFixed(5);
+                 regis_r8 = Math.log(calc_r8 / calc_r7) / input_hc7
+                calc_r11 = calc_r8;   // 반경의 가장 큰값을 찾기 위한 Module
+                 sigma_r = sigma_r + regis_r8;
+                }
+                // t8
+                if (!isNaN(input_t8 && input_hc8)) {
+                 calc_r9 = calc_r8 + (input_t8) / 1000;
+                 document.getElementById("calc_r9").innerHTML = calc_r9.toFixed(5);
+                 regis_r9 = Math.log(calc_r9 / calc_r8) / input_hc8
+                 calc_r11 = calc_r9;   // 반경의 가장 큰값을 찾기 위한 Module
+                 sigma_r = sigma_r + regis_r9;
+                }                
+                // t9
+                if (!isNaN(input_t9 && input_hc9)) {
+                     calc_r10 = calc_r9 + (input_t9) / 1000;
+                    document.getElementById("calc_r10").innerHTML = calc_r10.toFixed(5);
+                    regis_r10 = Math.log(calc_r10 / calc_r9) / input_hc9 
+                    calc_r11 = calc_r10;   // 반경의 가장 큰값을 찾기 위한 Module
+                    sigma_r = sigma_r + regis_r10;
+                }  
+                // t10
+                if (!isNaN(input_t10 && input_hc10)) {
+                    // calc_r11 = calc_r10 + (input_t10) / 1000;
+                    regis_r11 = 1 / (input_hc10 * calc_r11);
+                    document.getElementById("calc_r11").innerHTML = calc_r11.toFixed(5);
+                    sigma_r = sigma_r + regis_r11;
+                }
+                // Thermal Resistance Summary
+                q_loss = (2*Math.PI)*(input_ti-input_to)/sigma_r
+                // console.log("qloss=", q_loss, input_ti, input_to, sigma_r)
+                
+                document.getElementById("sigma_r").innerHTML = sigma_r.toFixed(2);
+                document.getElementById("q_loss").innerHTML = q_loss.toFixed(2);
+
+                // 표면 온도계산
+                // t0 regis_r1
+                if (!(regis_r1==0)) {
+                    // console.log(regis_r1);
+                    regis_sum = regis_r1;
+                    calc_t0 = input_ti - ((regis_sum /sigma_r)*(input_ti-input_to));
+                    document.getElementById("calc_t0").innerHTML = calc_t0.toFixed(2);
+                } else {
+                    regis_sum = regis_r1;
+                    // console.log("regis_r1",regis_r1);
+                    calc_t0 = input_ti ;
+                    // console.log("calc_t0", calc_t0);
+                    document.getElementById("calc_t0").innerHTML = calc_t0.toFixed(2);
+                }
+                // t1 regis_r2
+                if (!isNaN(regis_r2)) {
+                    regis_sum = regis_sum+regis_r2;
+                    calc_t1 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t1").innerHTML = calc_t1.toFixed(2);
+                }
+                // t2 regis_r3
+                if (!isNaN(regis_r3)) {
+                    regis_sum = regis_sum+regis_r3;
+                    // console.log(regis_r3);
+                    calc_t2 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t2").innerHTML = calc_t2.toFixed(2);
+                }
+                // t3 regis_r4
+                if (!isNaN(regis_r4)) {
+                    regis_sum = regis_sum+regis_r4;
+                    calc_t3 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t3").innerHTML = calc_t3.toFixed(2);
+                }
+                // t4 regis_r5
+                if (!isNaN(regis_r5)) {
+                    regis_sum = regis_sum+regis_r5;
+                    calc_t4 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t4").innerHTML = calc_t4.toFixed(2);
+                }
+                // t5 regis_r6
+                if (!isNaN(regis_r6)) {
+                    regis_sum = regis_sum + regis_r6;
+                    calc_t5 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t5").innerHTML = calc_t5.toFixed(2);
+                }
+                // t6 regis_r7
+                if (!isNaN(regis_r7)) {
+                    regis_sum = regis_sum + regis_r7;
+                    calc_t6 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t6").innerHTML = calc_t6.toFixed(2);
+                }
+                // t7 regis_r8
+                if (!isNaN(regis_r8)) {
+                    regis_sum = regis_sum + regis_r8;
+                    calc_t7 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t7").innerHTML = calc_t7.toFixed(2);
+                }
+                // t8 regis_r9
+                if (!isNaN(regis_r9)) {
+                    regis_sum = regis_sum + regis_r9;
+                    calc_t8 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t8").innerHTML = calc_t8.toFixed(2);
+                }
+                // t9 regis_r10
+                if (!isNaN(regis_r9)) {
+                    regis_sum = regis_sum + regis_r10;
+                    calc_t9 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t9").innerHTML = calc_t9.toFixed(2);
+                }
+                // t10 regis_r11
+                if (!isNaN(regis_r11)) {
+                    regis_sum = regis_sum + regis_r11;
+                    // console.log(regis_r11);
+                    calc_t10 = input_ti - ((regis_sum / sigma_r) * (input_ti - input_to))
+                    document.getElementById("calc_t10").innerHTML = calc_t10.toFixed(2);
+                }
+                // t7 regis_t8
+                // Layer별 온도계산
+                if (!isNaN(regis_r1)) {
+                   
+                }
+                
+
+            }
+    function calculate1() {
+        document.getElementById("input_to").value = 10.0;
+        document.getElementById("input_ti").value = 183.4;
+        document.getElementById("input_id").value = "304.81";
+        // t0
+        document.getElementById("input_hc0").value = 100000;
+        document.getElementById("input_t0").value = 0.0;
+        // t1
+        document.getElementById("name_t1").value = "Carrior Pipe";
+        document.getElementById("material_t1").value = "steel";
+        document.getElementById("input_hc1").value = 38.7;
+        document.getElementById("input_t1").value = 9.52;
+        // t2
+        document.getElementById("name_t2").value = "Insulation";
+        document.getElementById("material_t2").value = "rock wool";
+        document.getElementById("input_hc2").value = 0.055436;
+        document.getElementById("input_t2").value = 75;
+        // t3
+        document.getElementById("name_t3").value = "Air Gap";
+        document.getElementById("material_t3").value = "Air";
+        document.getElementById("input_hc3").value = 0.018125;
+        document.getElementById("input_t3").value = 32.955;
+        // t4
+        document.getElementById("name_t4").value = "Jacket Pipe";
+        document.getElementById("material_t4").value = "steel";
+        document.getElementById("input_hc4").value = 38.7;
+        document.getElementById("input_t4").value = 9.52;
+        // t5
+        document.getElementById("name_t5").value = "Soil";
+        document.getElementById("material_t5").value = "Soil";
+        document.getElementById("input_hc5").value = "";
+        document.getElementById("input_t5").value = "";
+        // t6
+        document.getElementById("name_t6").value = "";
+        document.getElementById("material_t6").value = "";
+        document.getElementById("input_hc6").value = "";
+        document.getElementById("input_t6").value = "";
+
+        document.getElementById("name_t7").value = "";
+        document.getElementById("material_t7").value = "";
+        document.getElementById("input_hc7").value = "";
+        document.getElementById("input_t7").value = "";
+
+        document.getElementById("name_t8").value = "";
+        document.getElementById("material_t8").value = "";
+        document.getElementById("input_hc8").value = "";
+        document.getElementById("input_t8").value = "";
+        
+        document.getElementById("name_t9").value = "";
+        document.getElementById("material_t9").value = "";
+        document.getElementById("input_hc9").value = "";
+        document.getElementById("input_t9").value = "";
+
+        document.getElementById("input_hc10").value = "";
+        document.getElementById("input_t10").value = "";
+        
+        
+        
+        
+
+    }
+    function calculate2() {
+
+            // 온도 및 ID Reset
+            document.getElementById("input_to").value = "";
+            document.getElementById("input_ti").value = "";
+            document.getElementById("input_id").value = "";
+            // ri Reset
+            document.getElementById("calc_ri").innerHTML = "";
+            // t0
+            document.getElementById("input_hc0").value = "";
+            document.getElementById("input_t0").value = "";
+            document.getElementById("calc_r1").innerHTML = "";
+            document.getElementById("calc_t0").innerHTML = "";
+            // t1
+            document.getElementById("name_t1").value = "";
+            document.getElementById("material_t1").value = "";
+            document.getElementById("input_hc1").value = "";
+            document.getElementById("input_t1").value = "";
+            document.getElementById("calc_r2").innerHTML = "";
+            document.getElementById("calc_t1").innerHTML = "";
+            // t2
+            document.getElementById("name_t2").value = "";
+            document.getElementById("material_t2").value = "";
+            document.getElementById("input_hc2").value = "";
+            document.getElementById("input_t2").value = "";
+            document.getElementById("calc_r3").innerHTML = "";
+            document.getElementById("calc_t2").innerHTML = "";
+            // t3
+            document.getElementById("name_t3").value = "";
+            document.getElementById("material_t3").value = "";
+            document.getElementById("input_hc3").value = "";
+            document.getElementById("input_t3").value = "";
+            document.getElementById("calc_r4").innerHTML = "";
+            document.getElementById("calc_t3").innerHTML = "";
+            // t4
+            document.getElementById("name_t4").value = "";
+            document.getElementById("material_t4").value = "";
+            document.getElementById("input_hc4").value = "";
+            document.getElementById("input_t4").value = "";
+            document.getElementById("calc_r5").innerHTML = "";
+            document.getElementById("calc_t4").innerHTML = "";
+            // t5
+            document.getElementById("name_t5").value = "";
+            document.getElementById("material_t5").value = "";
+            document.getElementById("input_hc5").value = "";
+            document.getElementById("input_t5").value = "";
+            document.getElementById("calc_r6").innerHTML = "";
+            document.getElementById("calc_t5").innerHTML = "";
+            // t6
+            document.getElementById("name_t6").value = "";
+            document.getElementById("material_t6").value = "";
+            document.getElementById("input_hc6").value = "";
+            document.getElementById("input_t6").value = "";
+            document.getElementById("calc_r7").innerHTML = "";
+            document.getElementById("calc_t6").innerHTML = "";
+            // t7
+            document.getElementById("name_t7").value = "";
+            document.getElementById("material_t7").value = "";
+            document.getElementById("input_hc7").value = "";
+            document.getElementById("input_t7").value = "";
+            document.getElementById("calc_r8").innerHTML = "";
+            document.getElementById("calc_t7").innerHTML = "";
+                        // t8
+            document.getElementById("name_t8").value = "";
+            document.getElementById("material_t8").value = "";
+            document.getElementById("input_hc8").value = "";
+            document.getElementById("input_t8").value = "";
+            document.getElementById("calc_r9").innerHTML = "";
+            document.getElementById("calc_t8").innerHTML = "";
+                    // t9
+            document.getElementById("name_t9").value = "";
+            document.getElementById("material_t9").value = "";
+            document.getElementById("input_hc9").value = "";
+            document.getElementById("input_t9").value = "";
+            document.getElementById("calc_r10").innerHTML = "";
+            document.getElementById("calc_t9").innerHTML = "";
+                    // t10
+            document.getElementById("input_hc10").value = "";
+            document.getElementById("input_t10").value = "";
+            document.getElementById("calc_r11").innerHTML = "";
+            document.getElementById("calc_t10").innerHTML = "";
+
+
+
+        }
+        </script>
+
+
+</body>
+
+</html>
