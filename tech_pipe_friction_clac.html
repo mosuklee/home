@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>배관의 압력손실 계산</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+            
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding-top: 5px;
+            padding-left: 10px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1 align="center">
+                배관의 압력손실 계산 
+            </h1>
+            
+            <br>
+            <h3>1. 개    요</h3>
+            <p>배관의 관경선정은 배관의 적정유속, 시스템 허용압력손실, 경제성등의 여러가지 요소를 종합 검토한 후에 선정하여야 한다. <br> 
+               배관의 유속은 공정의 종류별 특성에 따라 적정유속 가이드를 기준으로 기준관경을 선정하면 되며, 배관의 압력손실 계산은 Colebrook Equation 및 Darch-Weisbach equation을 이용하여 계산하면 된다. </p>
+            <h3>2. 배관의 유속 계산</h3>
+            <h4>배관의 유속계산식</h4>
+            <p>배관의 유속 계산은 다음 계산식에 의하여 계산한다.</p>
+            <div id="formula">
+                <br>
+                <b> V = (4 x Q) / (𝜋 x d^2) 
+                </b>
+                <br>
+            </div>
+
+            <br>
+            여기에서<br>
+            &nbsp&nbsp V &nbsp : 유 속 (m/s) <br>
+            &nbsp&nbsp Q &nbsp : 유 량 (m3/s)) <br>
+            &nbsp&nbsp d &nbsp : 배관의 내경 (m) <br>
+            <br>
+            <h4>배관의 적정유속</h4>
+            <p>다음은 일반적인 배관의 적정유속을 정리한 자료로서, 관경선정시에 참고 가이드 자료로 활용하기 위한 자료입니다.</p>
+
+            <table>
+                <tr>
+                    <th width="400px" colspan="2">Service Condition <br> 공정의 종류</th>
+                    <th width="200px">유속(m/s)</th>
+                    <th width="300px" >비  고</th>
+                </tr>
+                <tr>
+                    <td colspan="2">Steam Heater</td>
+                    <td align="center">5-15</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boiler Feed</td>
+                    <td align="center">2.5-4.6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Pump Suction <br> and drain lines</td>
+                    <td align="center">1.2-2.1</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">General service</td>
+                    <td align="center">1.2-3.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">City water</td>
+                    <td align="center">to 2.1</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Saturated Steam <br>heating line</td>
+                    <td align="center">20.32-30.48</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Super-heater steam <br> boiler and turbines</td>
+                    <td align="center">35.6-101.6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Hight Pressure <br>Saturatd steam</td>
+                    <td align="center">25-40</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Low Pressure <br>Saturated steam</td>
+                    <td align="center">15-30</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Raw or treated water</td>
+                    <td align="center">1.0-5.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boiler feed pump suction</td>
+                    <td align="center">1.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boiler feed pump discharge</td>
+                    <td align="center">3.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Flash steam</td>
+                    <td align="center">5-15</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Condensate</td>
+                    <td align="center">1.0-3.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Compressed air</td>
+                    <td align="center">5.0-15</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">FD fan discharge</td>
+                    <td align="center">8-10</td>
+                    <td></td>
+                </tr>
+
+                    <td rowspan="6">Heat exchanger tube</td>
+                    <td>Copper</td>
+                    <td align="center">1.8-2.3</td>
+                    <td></td>
+                </tr>
+                    <tr>
+                        <td>Carbon steel</td>
+                        <td align="center">2.4-2.7</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>90/1- CuNi</td>
+                        <td align="center">2.9-3.3</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Stainless steel</td>
+                        <td align="center">2.9-3.3</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Heat exchanger <br>nozzle velocity</td>
+                        <td align="center">2.1-2.4</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Heat exchanger <br>shell nozzle velocity</td>
+                        <td align="center">2.4-2.7</td>
+                        <td></td>
+                    </tr>
+            </table>
+            <br>
+            <h3>3. 배관의 압력손실 계산</h3>
+            <h4>레이놀즈 수 (Renolds Number)</h4>
+            <p>레이놀즈 수는 관성에 의한 힘와 점성에 의한 힘의 비로서 주어진 유동 조건에서 두 종류의 힘의 상대적인 역학관계를 정량적으로 나타낸 것으로서, 유동이 층류인지 안류인지 예측하는데에도 사용된다. </p>
+            <div id="formula">
+                <br>
+                <b> Re = (V x d) / ν
+                </b>
+                <br>
+            </div>
+            
+            <br>
+            여기에서<br>
+            &nbsp&nbsp Re &nbsp: 레이놀즈 수 <br>
+            &nbsp&nbsp V &nbsp : 유체의 유속 (m/s)) <br>
+            &nbsp&nbsp d &nbsp : 배관의 내경 (m) <br>
+            &nbsp&nbsp ν &nbsp : 유체의 동점성계수 (m2/s) <br>
+            <br>
+            <h4>등가거칠기 (Roughness)</h4>
+            <p>Pipe Roughness는 배관의 등가 거칠기(절대조도)라고 하며 관의 종류별 Roughness는 다음과 같다.</p>
+            <table>
+                <tr>
+                    <th width="300px" align="center">관의 종류</th>
+                    <th width="300px" align="center">등가거칠기(조도, m)</th>
+                     <th width="300px" align="center">비  고</th>
+                </tr>
+                <tr>
+                    <td align="center">인발관(동관, 유리관)</td>
+                    <td align="center">0.0000015</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">PVC (폴리에틸렌관)</td>
+                    <td align="center">0.0000050</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">강관 (New ~ Old</td>
+                    <td align="center">0.0000450 ~ 0.0001500</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">아연도 강관</td>
+                    <td align="center">0.0001500</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">녹이슬은 강관</td>
+                    <td align="center">0.0050000 ~ 0.0010000</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">대단히 녹슬은 강관</td>
+                    <td align="center">0.0010000 ~ 0.0030000</td>
+                    <td></td>
+                </tr>
+            </table>
+            <h4>배관의 압력손실계수 (Friction Factor)</h4>
+            <p>배관의 압력손실계수는 Colbrook Equation으로 계산하며 다음과 같은 식을 사용한다.</p>
+
+            <div style="width:350px;">
+                <img src="./image/colebrook_formula.jpg" alt="colebrook formula">
+            </div>
+
+            <p> 상기 수식은 계산하기가 어려워 층류일 경우 다음 식으로 계산할 수 있습니다.</p>
+            <div style="width:80px;">
+                <img src="./image/friction_factor_line.jpg" alt="colebrook formula">
+            </div>
+            <br>
+            여기에서<br>
+            &nbsp&nbsp&nbsp&nbsp f &nbsp&nbsp: 압력손실계수(friction factor) <br>
+            &nbsp&nbsp&nbsp&nbsp ϵ &nbsp : 등가거칠기 (m) <br>
+            &nbsp&nbsp&nbsp D &nbsp : 배관의 내경 (m) <br>
+            &nbspRe(R)  : 레이놀즈 수 (Renolds Number) <br>
+            <br>
+
+            <h4>배관의 압력손실 (Pipe Head Loss)</h4>
+            <p>배관의 압력손실은 Darch-Weisbach equation으로 계산하며 다음과 같이 식을 사용한다.</p>
+            <div style="width:200px;">
+                <img src="./image/darch_wishbach_equia.jpg" alt="colebrook formula">
+            </div>
+            <br>
+            여기에서<br>
+            &nbsp&nbsp HL: 압력손실 (mAq) <br>
+            &nbsp&nbsp f &nbsp : 압력손실계수 (friction factor) (m) <br>
+            &nbsp&nbsp l &nbsp : 배관의 길이 (m) <br>
+            &nbsp&nbsp V : 유체의 유속 (m/s) <br>
+            &nbsp&nbsp d : 배관의 내역 (m) <br>
+            &nbsp&nbsp g : 중력가속도 (9.8m/s2) <br>
+            <br>
+            <br>
+
+            <table>
+                <tr>
+                    <th align="center" style="width: 150px;">압력(kg/cm2.g)</th>
+                    <th align="center" style="width: 120px;">온도(℃)</th>
+                    <th align="center" style="width: 140px;">유량(kg/h)</th> 
+                    <th align="center" style="width: 130px;">관경(mm)</th>
+                    <th align="center" style="width: 140px;">조도(m)</th>
+                    <th align="center" style="width: 120px;">유속(m/s)</th>
+                    <th align="center" style="width: 140px;">압력손실(mAq/m)</th>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:50px; text-align:center" type="text" id="flow_press" input value=""></td>
+                    <td align="center"><input style="width:60px; text-align:center" type="text" id="flow_temp" input value=""></td>
+                    <td align="center"><input style="width:70px; text-align:center" type="text" id="flow_qty" input value=""></td>
+                    <td align="center"><input style="width:60px; text-align:center" type="text" id="flow_id" input value=""></td>
+                    <td align="center"><input style="width:80px; text-align:center" type="text" id="flow_roug" input value=""></td>
+                    <td align="center" id="flow_velocity" style="width: 90px;"></td>
+                    <td align="center" id="result_hl" style="width: 180px;"></td></td>
+                </tr>
+            </table>
+        <div>
+        <span>
+            <button onclick="calculate()"> Calculation </button>
+        </span>
+        <span>
+            <button onclick="calculate1()"> Reset </button>
+        </span>
+        </div>
+            <br>
+        <br>
+        <br>
+        <br>
+        <br>    
+             <div>
+            
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+        <script>
+            function calculate() {
+                // data 선언
+                var flow_temp;
+                var flow_temp_si;
+
+                var flow_press_si;
+                var flow_qty;
+                var flow_id;
+                var flow_velocity;
+                var flow_roug
+                var flow_kv;
+                var result;
+                var re;
+                var result_hl
+
+                // 입력
+                flow_press = parseFloat(document.getElementById("flow_press").value);
+                flow_temp = parseFloat(document.getElementById("flow_temp").value);
+                flow_qty = parseFloat(document.getElementById("flow_qty").value);
+                flow_id = parseFloat(document.getElementById("flow_id").value);
+                flow_roug = parseFloat(document.getElementById("flow_roug").value);
+                
+                // 온도의 입력값이 있으면 절대온도로 계산하고, 온도값이 없으면 스팀테이블에서 포화온도를 계산한다.
+                
+                if (!isNaN(flow_press) &  flow_temp > 0) {    // 압력이 입력되고 온도값이 0이상이면 
+                    flow_temp_si = flow_temp + 273.15;
+                    flow_press_si = flow_press * 0.0980665;
+                } else {                                      // 압력이 입력되고 온도값이 0이상이 아니면 포화증기로 인식하여 포화온도 계산
+                    flow_press_si = flow_press * 0.0980665;
+                    flow_temp_si = NeutriumJS.thermo.IAPWS97.PT.r4_P_Tsat(flow_press_si);
+                }
+                // 스팀테이블을 계산                 
+                result = NeutriumJS.thermo.IAPWS97.PT.solve(flow_press_si, flow_temp_si);
+                // kinematic viscosity 계산
+                flow_kv = result.mu * 0.001 * result.v;
+                // 비체적을 계산
+                flow_volume = result.v;
+                // 유속을 계산
+                flow_velocity = (4*flow_qty*flow_volume/3600)/(Math.PI*(flow_id/1000)**2)
+                // 레이놀수를 계산
+                re = (flow_velocity*flow_id)/flow_kv;
+
+                // Colebrook 식에 의한 Friction Factor 계산 (3번 반복계산)
+                var f = 0.01;
+                f_result = -2.0 * Math.log10((flow_roug*1000/(flow_id*3.7))+(2.51/(re*Math.sqrt(f))));
+                f_result = (1/f_result)**2
+                f=f_result;
+                f_result = -2.0 * Math.log10((flow_roug*1000 / (flow_id * 3.7)) + (2.51 / (re * Math.sqrt(f))));
+                f_result = (1 / f_result) ** 2
+                f = f_result;
+                f_result = -2.0 * Math.log10((flow_roug*1000 / (flow_id * 3.7)) + (2.51 / (re * Math.sqrt(f))));
+                f_result = (1 / f_result) ** 2
+
+                // Friction Loss 계산 (result_hl)
+                result_hl = 637.6 * (f_result*1*flow_volume*(flow_qty)**2)/(flow_id)**5 *10.0;
+
+                // 계산값을 화면에 뿌려준다.
+                document.getElementById("flow_velocity").innerHTML = flow_velocity.toFixed(2);
+                document.getElementById("result_hl").innerHTML = result_hl.toFixed(6);
+            }
+    function calculate1() {
+        document.getElementById("flow_press").value = "";
+        document.getElementById("flow_temp").value = "";
+        document.getElementById("flow_qty").value = "";
+        document.getElementById("flow_id").value = "";
+        document.getElementById("flow_roug").value = "";
+        document.getElementById("flow_velocity").value = "";
+        document.getElementById("result_hl").value = "";
+
+ 
+
+    }
+ 
+        </script>
+
+
+</body>
+
+</html>
