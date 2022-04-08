@@ -28,26 +28,26 @@
         } */
 
         .flex-box {
-            /* border: 1px solid red; */
+            /* border: 1px solid red;  */
             flex-grow: 1;
         }
 
         .subject {
-            /* border: 1px solid red; */
+             /* border: 1px solid red;  */
             flex-grow: 1;
-            /* padding-left: 1vw; */
+             padding-left: 1vw; 
         }
 
         #container {
             display: flex;
             padding-top: 2vh;
-            /* border: 1px solid rgb(89, 0, 255); */
+             /* border: 1px solid rgb(89, 0, 255);  */
         }
 
         .content {
             width: 400px;
             padding-left: 5px;
-            /* border: 1px solid red; */
+             /* border: 1px solid red;  */
         }
 
         .main-subject {
@@ -170,33 +170,39 @@
             <h3>OUTPUT PROPERTY</h3>
             <table>
                 <tr height="40">
-                    <th align="center" width="300">Property</th>
+                    <th align="center" width="350">Property</th>
                     <th align="center" width="300">Value</th>
+                    <th align="center" width="300">Value_1</th>
                     <th align="center" width="300">Remarks</th>
                 </tr>
                 <tr>
                     <td>Pressure (kg/cm2.a)</td>
                     <td align="center" id="result_w_s_p"></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Temperature (℃)</td>
                     <td align="center" id="result_w_s_t"></td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Specific enthalpy (kcal/kg)</td>
                     <td align="center" id="result_w_s_h"></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Specific entropy (kcal/kg.℃)</td>
                     <td align="center" id="result_w_s_s"></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Specific volume (m3/kg)</td>
                     <td align="center" id="result_w_s_v"></td>
+                    <td></td>
                     <td></td>
                 </tr>
 
@@ -245,7 +251,7 @@
             }
 
             // 스팀 상태값 계산
-            result_w_s = NeutriumJS.thermo.IAPWS97.PT.solve(input_w_s_p, input_w_s_t);
+            result_w_s = NeutriumJS.thermo.IAPWS97.PT.solve(input_w_s_p, input_w_s_t+0.000000000001);
 
             // 스팀 상태값의 Object 추출(h: 엔탈피, s : 엔트로피, v : 비체적)
             result_w_s_p = result_w_s.p / 0.0980665;
