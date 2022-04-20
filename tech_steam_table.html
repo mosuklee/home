@@ -170,33 +170,39 @@
             <h3>OUTPUT PROPERTY</h3>
             <table>
                 <tr height="40">
-                    <th align="center" width="300">Property</th>
-                    <th align="center" width="300">Value</th>
+                    <th align="center" width="350">Property</th>
+                    <th align="center" width="300">Liquid</th>
+                    <th align="center" width="300">Vapor</th>
                     <th align="center" width="300">Remarks</th>
                 </tr>
                 <tr>
                     <td>Pressure (kg/cm2.a)</td>
                     <td align="center" id="result_w_s_p"></td>
+                    <td align="center" id="result_v_s_p"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Temperature (℃)</td>
                     <td align="center" id="result_w_s_t"></td>
+                    <td align="center" id="result_v_s_t"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Specific enthalpy (kcal/kg)</td>
                     <td align="center" id="result_w_s_h"></td>
+                    <td align="center" id="result_v_s_h"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Specific entropy (kcal/kg.℃)</td>
                     <td align="center" id="result_w_s_s"></td>
+                    <td align="center" id="result_v_s_s"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Specific volume (m3/kg)</td>
                     <td align="center" id="result_w_s_v"></td>
+                    <td align="center" id="result_v_s_v"></td>
                     <td></td>
                 </tr>
 
@@ -230,7 +236,26 @@
             var result_w_s_t;
             var result_w_s_h;
             var result_w_s_s;
-            var resultW_w_s_v;
+            var result_w_s_v;
+
+            var result_v_s;
+            var result_v_s_p;
+            var result_v_s_t;
+            var result_v_s_h;
+            var result_v_s_s;
+            var result_v_s_v;
+
+            document.getElementById("result_w_s_p").innerHTML = "";
+            document.getElementById("result_w_s_t").innerHTML = "";
+            document.getElementById("result_w_s_h").innerHTML = "";
+            document.getElementById("result_w_s_s").innerHTML = "";
+            document.getElementById("result_w_s_v").innerHTML = "";
+
+            document.getElementById("result_v_s_p").innerHTML = "";
+            document.getElementById("result_v_s_t").innerHTML = "";
+            document.getElementById("result_v_s_h").innerHTML = "";
+            document.getElementById("result_v_s_s").innerHTML = "";
+            document.getElementById("result_v_s_v").innerHTML = "";
 
             // input 상자에서 data 가져오기
             input_w_s_p = parseFloat(document.getElementById("input_w_s_p").value);
@@ -242,10 +267,12 @@
             } else {
                 input_w_s_p = input_w_s_p * 0.0980665;
                 input_w_s_t = NeutriumJS.thermo.IAPWS97.PT.r4_P_Tsat(input_w_s_p);
+                input_w_s_t_index = NeutriumJS.thermo.IAPWS97.PT.r4_P_Tsat(input_w_s_p)-273.15;
             }
 
             // 스팀 상태값 계산
-            result_w_s = NeutriumJS.thermo.IAPWS97.PT.solve(input_w_s_p, input_w_s_t+0.000000000001);
+            result_w_s = NeutriumJS.thermo.IAPWS97.PT.solve(input_w_s_p, input_w_s_t - 0.000000000001);
+            result_v_s = NeutriumJS.thermo.IAPWS97.PT.solve(input_w_s_p, input_w_s_t + 0.000000000001);
 
             // 스팀 상태값의 Object 추출(h: 엔탈피, s : 엔트로피, v : 비체적)
             result_w_s_p = result_w_s.p / 0.0980665;
@@ -254,14 +281,25 @@
             result_w_s_s = result_w_s.s / 4.184;
             result_w_s_v = result_w_s.v;
 
+            result_v_s_p = result_v_s.p / 0.0980665;
+            result_v_s_t = result_v_s.t - 273.15;
+            result_v_s_h = result_v_s.h / 4.184;
+            result_v_s_s = result_v_s.s / 4.184;
+            result_v_s_v = result_v_s.v;
+
             // 계산된 결과를 web에 뿌리기
-            if (!isNaN(input_w_s_p)) {
+            if (input_w_s_t_index.toFixed(2) == result_v_s_t.toFixed(2)) {
                 document.getElementById("result_w_s_p").innerHTML = result_w_s_p.toFixed(2);
                 document.getElementById("result_w_s_t").innerHTML = result_w_s_t.toFixed(2);
                 document.getElementById("result_w_s_h").innerHTML = result_w_s_h.toFixed(2);
                 document.getElementById("result_w_s_s").innerHTML = result_w_s_s.toFixed(2);
                 document.getElementById("result_w_s_v").innerHTML = result_w_s_v.toFixed(5);
-            }
+            }            
+                document.getElementById("result_v_s_p").innerHTML = result_v_s_p.toFixed(2);
+                document.getElementById("result_v_s_t").innerHTML = result_v_s_t.toFixed(2);
+                document.getElementById("result_v_s_h").innerHTML = result_v_s_h.toFixed(2);
+                document.getElementById("result_v_s_s").innerHTML = result_v_s_s.toFixed(2);
+                document.getElementById("result_v_s_v").innerHTML = result_v_s_v.toFixed(5);
         }
 
     </script>
