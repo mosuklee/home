@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하트 코스</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.90vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .item_name {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            border-bottom: 1px solid #2bab0d;
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+            <h1>서울근교(하트 코스)</h1>
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <div style="padding : 3%">
+                <h3>자전거길 코스</h3>
+                <table>
+                    <tr>
+                        <td class="item_name" width="200px" align="center">
+                            코스명
+                        </td>
+                        <td width="600px">
+                            하트 코스
+                        </td>
+                    <tr>
+                        <td class="item_name" align="center">
+                            코 &nbsp 스
+                        </td>
+                        <td>
+                            인덕원역-과천정부청사역-학의천 합수부-동작대교-여의도-안양천합수부-안양천-쌍개울-인덕원역
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item_name" align="center">
+                            거 &nbsp 리
+                        </td>
+                        <td>
+                            68km
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item_name" align="center">
+                            시 &nbsp 간
+                        </td>
+                        <td>
+                            2시간 22분
+                        </td>
+                    </tr>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div id="road_map">
+                <img src="./image/near_hart_plan.jpg" alt="road map" width="830" height="500">
+                <img src="./image/near_hart_level.jpg" alt="road map" width="830" height="200">
+            </div>
+            <h3>즐거운 라이딩 (2022년 5월 7일)</h3>
+            <div class="picture flex-box">
+                <div>
+                    <table>
+                        <tr>
+                            <td style="height:16vmax;">
+                                <img src="./image/near_hart_01.jpg" alt="hangang_yeouido">
+                            </td>
+                            <td style="height:16vmax;">
+                                <img src="./image/near_hart_02.jpg" alt="hangang_gwangnaru">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="height:16vmax;">
+                                <img src="./image/near_hart_03.jpg" alt="hangang_gwangnaru1">
+
+                            </td>
+                            <td style="height:16vmax;">
+                                <img src="./image/near_hart_04.jpg" alt="hangang_neungnae">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+            <br>
+
+            <br>
+
+            <div>
+                <h3>즐거운길에서 남기고 싶은말..</h3>
+            </div>
+
+            <div class="note">
+                <p>하트코스는 초보자에게 장거리 훈련을 위한 안성마춤인 코스이다.<br>
+                    나는 몇번이고 하트코스를 돌아보고푼 마음이 있었으나 이래 저래 기회가 없어 매번 반쪽짜리 하트 및 불완전 하트만 그리고 있었다. <br>
+                    오늘은 동호회 일정도 없고 오로지 나혼자 코스를 갈 기회가 생겨 하트코스를 선택하여 온전한 하트코스를 한번 그려보기로 하녔다. <br>
+                    출발점을 인덕원역으로 하고 인덕원역에서 과천정부청사역을 지나 양재천 자전거길을 따라 라이딩 길을 잡았다. <br>
+                    평소에는 10시가 넘은 시간이면 많은 사람들이 걷거나 라이딩을 즐기곤 하였는데 오늘은 어린이 날고 샌드위치 연휴가 있어서인지 한적하여 라이딩하기 좋았다.<br>
+                    학의천 합수부까지는 길이 워낙 좋아서 힘껏 달려도 보고 주변 경관도 보고 하면서 나의 패에스에 맞추어 라이딩 하였으며, 합수부를 지나 한강에 다달으니 살짝 앞바람이 불어오기 시작했다. <br>
+                    한강에 도착해서 라이딩하니 날씨도 풍경도 좋아 쾌적한 라이딩을 할 수 있었다. 그래도 사람이 많으니 조심조심 라이딩!!! <br>
+                    오랜만에 여의도를 지나니 푸른 녹음이 나를 반기고 경관에 취해 정신을 차리니 어느덧 안양천 합수부에 도착하였다. <br>
+                    안양천 합수부에서 한숨돌리고 다시 안양천을 따라 쌍개울쪽으로 방향을 바꿔 내달렸다. 이번에는 한강보다는 인파가 적어 30km/h정도 조금 다리에 힘을 주어 보았다. <br>
+                    몇주전 코로나로 인하여 조금만 속도를 올려도 숨이 많이 찼는데 이제는 많이 괜찬아 진것 같다. <br> 
+                    쌍개울에서 우측으로 다시 인덕원역쪽으로 방향을 잡으니 약간의 오르막 길이지만 길이 좋고 실개천이 아름다워 라이딩하기 좋았다. <br> 
+                    <br>
+                    처음 라이딩을 할때를 떠올려 보니 처음에는 한강만 가면 뿌듯한 마음이 벅차올랐었는데 오늘 하트코스를 돌아보니 68km정도 인데도 별도 힘들지 않은 것으로 보아 체력이 많이 길러진 것 같다. 이제나도 겨우 초보를 벗어난 걸까? 
+                </p>
+            </div>
+            <div>
+                <h5>
+                    <br>
+                    <br>
+                    <hr>
+                    <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a> </h6>
+                </h5>
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+    <br>
+
+
+
+
+
+</body>
+
+</html>
