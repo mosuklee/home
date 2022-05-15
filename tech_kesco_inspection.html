@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>전기설비 정기검사대상 및 검사시기</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            /* border-bottom: 1px solid #2bab0d; */
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+
+            <h1>전기설비 정기검사대상 및 검사시기</h1>
+            관련법 : <a href="https://www.law.go.kr/LSW//lsBylInfoPLinkR.do?lsiSeq=2100000200532&lsNm=%EC%A0%84%EA%B8%B0%EC%95%88%EC%A0%84%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99&bylNo=0004&bylBrNo=00&bylCls=BE&bylEfYd=" target="pages"> 
+            전기안전관리법 시행규칙 [별표4] </a>
+            <br>
+            <h3>전기사업용 전기설비 </h3>
+            기력, 내연력, 가스터빈, 복합화력, 수력(양수), 풍력, 태양광, 연료전지 및 전기저장장치발전소(구역전기사업자의 송전.변전 및 배전설비를 포함한다.)
+            <table>
+                <tr>
+                    <th align="center" width="600vw" height="40">대  상</th>
+                    <th align="center" width="144vw">시  기</th>
+                    <th align="center" width="316vw">비 고</th>
+                </tr>
+                <tr>
+                    <td align="left">(1) 증기터빈 및 내연기관 계통</td>
+                    <td align="center">4년 이내</td>
+                    <td align="left" rowspan="9">(1)부터 (4)까지의 설비에 부속되는 전기설비로서 사용압력이 제곱센티미터당 0킬로그램 이상의 내압부분이 있는 것을 포함한다.</td>
+                </tr>
+                <tr>
+                    <td align="left">(2) 가스터빈,보일러,열교환기("집단에너지사업법"을 적용받는 보일러 및 압력용기는 제외) 및 발전기 계통)</td>
+                    <td align="center">2년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(3) 수차.발전기 계통</td>
+                    <td align="center">4년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(4) 풍차.발전기 계통(토목 기초를 포함한다.)</td>
+                    <td align="center">3년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(5) 태양광.전기설비 계통</td>
+                    <td align="center">4년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(6) 연료전지.전기설비 계톧</td>
+                    <td align="center">4년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(7) 전기저장장치.전기설비 계통 (전기저장장치 중 변전소에 설치되는 주파수조정용 전기저장장치는 제외) <br>
+                    (가) 여러사람이 이용할 수 있는 건물 안에 설치된 설비 또는 이차전지 용량 1천킬로와트시 이상인 설비(차량에 탑재하여 이동이 가능한 설비를 포함한다.) <br>
+                    (나)  (가) 외의 설비
+                    </td>
+                    <td align="center"><br><br>(가) 1년이내 <br><br><br>(나) 2년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(8) 구역전기사업자의 송전.변전 및 배전설비</td>
+                    <td align="center">2년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(9) 신재생에너지 발전사업용인 송전선로.변전소</td>
+                    <td align="center">4년이내</td>
+                </tr>
+            </table>
+            <br><br>
+            <h3>자가용 전기설비 </h3>
+            가. 발전실비기력, 내연력, 가스터빈, 복합화력 및 수력, 태양광, 연료전지 및 전기저장장치발전소(비상예비발전설비는 제외한다.)
+            <table>
+                <tr>
+                    <th align="center" width="600vw" height="40">대 상</th>
+                    <th align="center" width="144vw">시 기</th>
+                    <th align="center" width="316vw">비 고</th>
+                </tr>
+                <tr>
+                    <td align="left">(1) 증기터빈 및 내연기관 계통(발전기 계통을 포함한다)</td>
+                    <td align="center">4년 이내</td>
+                    <td align="left" rowspan="8">(1)부터 (2)에 부속되는 전기설비로서 사용압력이 제곱센티미터당 0킬로그램 이상의 내압부분이 있는 것을 포함한다.</td>
+                </tr>
+                <tr>
+                    <td align="left">(2) 가스터빈(발전기 계통포함), 보일러, 열교환기(보일러 및 열교환기 중 "에너지이용 합리화법" 제58조에 따라 검사를 받는 것은 제외한다.)</td>
+                    <td align="center">2년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(3) 수차.발전기 계통</td>
+                    <td align="center">4년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(4) 풍차.발전기 계통</td>
+                    <td align="center">4년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(5) 태양광.발전기 계통</td>
+                    <td align="center">4년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(6) 연료전지.전기설비 계톧</td>
+                    <td align="center">4년이내</td>
+                </tr>
+                <tr>
+                    <td align="left">(7) 전기저장장치.전기설비 계통 <br>
+                    (가) 여러사람이 이용할 수 있는 건물 안에 설치된 설비 또는 이차전지 용량 1,000킬로와트h 이상인 설비 <br>
+                    (나) (가)외의 설비 <br>
+                    </td>
+                    <td align="center"><br>1년이내<br><br>2년 이내</td>
+                </tr>
+            </table>
+            <br><br>
+            나. 전기수용설비 및 비상용 예비 발전설비
+            <table>
+                <tr>
+                    <th align="center" width="600vw" height="40">대 상</th>
+                    <th align="center" width="144vw">시 기</th>
+                    <th align="center" width="316vw">비 고</th>
+                </tr>
+                <tr>
+                    <td align="left">(1) 의료기관, 공연장, 호텔, 대규모 점포, 예식장, 지정문화재, 단란주점, 유흥주점, 목욕장, 노래연습장에 비치한 고압 이상의 수전설비 및 75킬로와트 이상의 비상용 예비발전설비</td>
+                    <td align="center">2년마다<br> 2개월전후</td>
+                    <td align="left" rowspan="8"></td>
+                </tr>
+                <tr>
+                    <td align="left">(2) 제25조1항에 따라 전기안전관리자의 선임이 면제된 제조업자 또는 제조업 관련 서비스업자의 수용설비</td>
+                    <td align="center">2년마다 <br>2개월전후</td>
+                </tr>
+                <tr>
+                    <td align="left">(3) (1) 및 (2)의 규정에도 불구하고 "산업안전보건법"제49조의2에 따른 공정안전보고서 또는 "고압가스안전관리법"제13조의2에 따른 안전성향상계획서를 제출하거나 갖춰둔 자의 고압 이상의 수전설비 및 용량 75킬로와트 이상의 비상용 발전설비</td>
+                    <td align="center">3년마다 <br> 2개월전후</td>
+                </tr>
+                <tr>
+                    <td align="left">(4) (3)의 규정에도 불구하고 "산업안전보건법" 제49조의2에 따른 공정안전보고서 또는 "고압가스 안전관리법" 제13조의 2에 따른 안전성향상계획서를 제출하거나 갖처 둔 자의 고압 이상의 수전설비 및 용량 75킬로와트 이상의 비상용 발전설비)</td>
+                    <td align="center">4년이내</td>
+                </tr>
+            </table>
+
+            <br><br>
+            <h3>비고</h3>
+            1. 발전설비의 검사는 발전설비의 가동정지기간 중에 하며, 설비 고장등 검사시기 조정 사유 발생 시 검사기관과 협의하여2개월 이내의 범위에서 검사시기를 조정할 수 있다. <br>
+            2. 비상용 예비발전설비는 이와 연계된 비상부하설비를 포함한다.
+            <br><br>
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+
+
+</body>
+
+</html>
