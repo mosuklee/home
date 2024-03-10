@@ -96,6 +96,10 @@
             /* height: 15vmax; */
             margin: 0px;
         }
+        tr:hover {
+            cursor: default;
+            background: #ecfafc;
+        }
 
         h2 {
             padding-left: 10px;
@@ -406,7 +410,705 @@
             <button onclick="calculate1()"> Reset </button>
         </span>
         </div>
-            <br>
+        <br>
+        <h4>배관부속 및 밸브류의 등가길이(Equivalent Length)</h4>
+
+        Equivalent Length는 배관 부속과 밸브류등에 걸리는 압력손실을 직선배돤의 길이로 환산한 길이를 말하며, 배관부속과 밸브류의 Equivlent Length를 계산한 후에 실제 직관의 길이에 더하여 전체 배관내에서 걸리는 배관의 압력손실을 계산할 
+        대 사용합니다. <br>
+        <h5>1) EQUIVALENT LENGTH(1/2)</h5>
+        <table>
+            <tr>
+                <th colspan="2">호칭지름</th>
+                <th rowspan="2">내경<br />(mm)</th>
+                <th rowspan="2">Friction<br />Factor</th>
+                <th rowspan="2">Gate <br> Valve</th>
+                <th rowspan="2">90°<br> Elbow</th>
+                <th rowspan="2">45°<br> Elbow</th>
+                <th rowspan="2">Thru<br> Tee</th>
+                <th rowspan="2">Branch<br> Tee</th>
+                <th rowspan="2">Close<br>Return<br>Bend </th>
+                <th rowspan="2">Swing<br>Check<br>Valve </th>
+             </tr>
+
+            <tr>
+                <th >A</th>
+                <th >B</th>
+            </tr>
+
+
+            <tr class="row3">
+                <td width="60vw">15</td>
+                <td width="60vw">1/2</td>
+                <td width="60vw">15.7988</td>
+                <td width="60vw">0.027</td>
+                <td width="60vw">0.12</td>
+                <td width="60vw">0.47</td>
+                <td width="60vw">0.25</td>
+                <td width="60vw">0.32</td>
+                <td width="60vw">0.95</td>
+                <td width="60vw">0.79</td>
+                <td width="60vw">1.58</td>
+            </tr>
+            <tr class="row4">
+
+                <td >20</td>
+                <td >3/4</td>
+                <td >20.9296</td>
+                <td >0.025</td>
+                <td >0.17</td>
+                <td >0.63</td>
+                <td >0.34</td>
+                <td >0.42</td>
+                <td >1.26</td>
+                <td >1.05</td>
+                <td >2.09</td>
+
+            </tr>
+            <tr class="row5">
+
+                <td >25</td>
+                <td >1</td>
+                <td >26.6446</td>
+                <td >0.023</td>
+                <td >0.21</td>
+                <td >0.8</td>
+                <td >0.43</td>
+                <td >0.53</td>
+                <td >1.6</td>
+                <td >1.33</td>
+                <td>2.66</td>
+
+            </tr>
+            <tr class="row6">
+
+                <td>32</td>
+                <td>1.25</td>
+                <td>35.0520</td>
+                <td>0.022</td>
+                <td>0.28</td>
+                <td>1.05</td>
+                <td>0.56</td>
+                <td>0.7</td>
+                <td>2.1</td>
+                <td>1.75</td>
+                <td>3.51</td>
+
+            </tr>
+            <tr class="row7">
+
+                <td>40</td>
+                <td>1.5</td>
+                <td>40.8940</td>
+                <td>0.021</td>
+                <td>0.33</td>
+                <td>1.23</td>
+                <td>0.66</td>
+                <td>0.82</td>
+                <td>2.45</td>
+                <td>2.05</td>
+                <td>4.08</td>
+
+            </tr>
+            <tr class="row8">
+
+                <td>50</td>
+                <td>2</td>
+                <td>52.5018</td>
+                <td>0.019</td>
+                <td>0.42</td>
+                <td>1.58</td>
+                <td>0.84</td>
+                <td>1.05</td>
+                <td>3.14</td>
+                <td>2.62</td>
+                <td>5.24</td>
+
+            </tr>
+            <tr class="row9">
+
+                <td>65</td>
+                <td>2.5</td>
+                <td>62.7126</td>
+                <td>0.018</td>
+                <td>0.5</td>
+                <td>1.88</td>
+                <td>1</td>
+                <td>1.26</td>
+                <td>3.75</td>
+                <td>3.14</td>
+                <td>6.28</td>
+
+            </tr>
+            <tr class="row10">
+
+                <td>80</td>
+                <td>3</td>
+                <td>77.9272</td>
+                <td>0.018</td>
+                <td>0.62</td>
+                <td>2.34</td>
+                <td>1.25</td>
+                <td>1.56</td>
+                <td>4.66</td>
+                <td>3.9</td>
+                <td>7.77</td>
+
+            </tr>
+            <tr class="row11">
+
+                <td>100</td>
+                <td>4</td>
+                <td>102.2604</td>
+                <td>0.017</td>
+                <td>0.82</td>
+                <td>3.08</td>
+                <td>1.64</td>
+                <td>2.05</td>
+                <td>6.13</td>
+                <td>5.12</td>
+                <td>10.24</td>
+
+            </tr>
+            <tr class="row12">
+
+                <td>125</td>
+                <td>5</td>
+                <td>128.1938</td>
+                <td>0.016</td>
+                <td>1.02</td>
+                <td>3.84</td>
+                <td>2.05</td>
+                <td>2.56</td>
+                <td>7.68</td>
+                <td>6.4</td>
+                <td>12.83</td>
+
+            </tr>
+            <tr class="row13">
+
+                <td>150</td>
+                <td>6</td>
+                <td>154.0510</td>
+                <td>0.015</td>
+                <td>1.23</td>
+                <td>4.63</td>
+                <td>2.47</td>
+                <td>3.08</td>
+                <td>9.23</td>
+                <td>7.71</td>
+                <td>15.39</td>
+
+            </tr>
+            <tr class="row14">
+
+                <td>200</td>
+                <td>8</td>
+                <td>202.7174</td>
+                <td>0.014</td>
+                <td>1.62</td>
+                <td>6.1</td>
+                <td>3.23</td>
+                <td>4.05</td>
+                <td>12.16</td>
+                <td>10.15</td>
+                <td>10.15</td>
+
+            </tr>
+            <tr class="row15">
+
+                <td>250</td>
+                <td>10</td>
+                <td>254.5080</td>
+                <td>0.014</td>
+                <td>2.04</td>
+                <td>7.65</td>
+                <td>4.08</td>
+                <td>5.09</td>
+                <td>15.27</td>
+                <td>12.74</td>
+                <td>12.74</td>
+
+            </tr>
+            <tr class="row16">
+
+                <td>300</td>
+                <td>12</td>
+                <td>282.5496</td>
+                <td>0.013</td>
+                <td>2.43</td>
+                <td>9.08</td>
+                <td>4.85</td>
+                <td>6.07</td>
+                <td>18.2</td>
+                <td>15.15</td>
+                <td>15.15</td>
+
+            </tr>
+            <tr class="row17">
+
+                <td>350</td>
+                <td>14</td>
+                <td>333.3496</td>
+                <td>0.013</td>
+                <td>2.67</td>
+                <td>10</td>
+                <td>5.33</td>
+                <td>6.64</td>
+                <td>19.99</td>
+                <td>16.67</td>
+                <td>16.67</td>
+
+            </tr>
+            <tr class="row18">
+
+                <td>400</td>
+                <td>16</td>
+                <td>381.0000</td>
+                <td>0.013</td>
+                <td>3.05</td>
+                <td>11.43</td>
+                <td>6.1</td>
+                <td>7.62</td>
+                <td>22.86</td>
+                <td>19.05</td>
+                <td>19.05</td>
+
+            </tr>
+            <tr class="row19">
+
+                <td>450</td>
+                <td>18</td>
+                <td>428.6504</td>
+                <td>0.012</td>
+                <td>5.15</td>
+                <td>12.86</td>
+                <td>6.86</td>
+                <td>8.56</td>
+                <td>25.72</td>
+                <td>21.43</td>
+                <td>21.43</td>
+
+            </tr>
+            <tr class="row20">
+
+                <td>500</td>
+                <td>20</td>
+                <td>477.8756</td>
+                <td>0.012</td>
+                <td>3.81</td>
+                <td>14.32</td>
+                <td>7.65</td>
+                <td>9.57</td>
+                <td>28.68</td>
+                <td>23.9</td>
+                <td>23.9</td>
+
+            </tr>
+            <tr class="row21">
+
+                <td>600</td>
+                <td>24</td>
+                <td>574.7512</td>
+                <td>0.012</td>
+                <td>4.6</td>
+                <td>17.25</td>
+                <td>9.2</td>
+                <td>11.49</td>
+                <td>34.44</td>
+                <td>28.74</td>
+                <td>28.74</td>
+
+            </tr>
+            <tr class="row22">
+
+                <td>750</td>
+                <td>30</td>
+                <td>711.2000</td>
+                <td>0.011</td>
+                <td>5.7</td>
+                <td>21.33</td>
+                <td>11.37</td>
+                <td>14.23</td>
+                <td>42.67</td>
+                <td>35.66</td>
+                <td></td>
+
+            </tr>
+            <tr class="row23">
+
+                <td>900</td>
+                <td>36</td>
+                <td>863.6000</td>
+                <td>0.011</td>
+                <td>6.92</td>
+                <td>25.81</td>
+                <td>13.81</td>
+                <td>17.28</td>
+                <td>51.81</td>
+                <td>43.28</td>
+                <td></td>
+
+            </tr>
+            <tr class="row24">
+
+                <td>1050</td>
+                <td>42</td>
+                <td>1016.0000</td>
+                <td>0.01</td>
+                <td>8.14</td>
+                <td>30.48</td>
+                <td>16.25</td>
+                <td>30.33</td>
+                <td>60.96</td>
+                <td>50.9</td>
+                <td></td>
+
+            </tr>
+            <tr class="row25">
+
+                <tr class="row25">
+                <td>1200</td>
+                <td>48</td>
+                <td>1168.0000</td>
+                <td>0.01</td>
+                <td>9.36</td>
+                <td>35.05</td>
+                <td>18.68</td>
+                <td>23.38</td>
+                <td>70.1</td>
+                <td>58.52</td>
+                    <td class="column10 style1 null"></td>
+            </tr>
+
+       </table>
+       <p>출처 : CHMERON HYDRAULIC DATA (Page: 3-112)</p>
+       <br> 
+       <br>
+        <h5>2) EQUIVALENT LENGTH(2/2)</h5>
+
+        <table>
+            <tr>
+                <th colspan="2">호칭지름</th>
+                <th rowspan="2">내경<br />(mm)</th>
+                <th rowspan="2">Friction<br />Factor</th>
+                <th rowspan="2">Angle <br> Valve</th>
+                <th rowspan="2">Glove<br> Valve</th>
+                <th rowspan="2">Butterfly<br> Valve</th>
+                <th colspan="2">90° Welding Elbow</th>
+                <th colspan="2">Miter<br> Bend</th>
+             </tr>
+
+            <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>r/d=1</th>
+                <th>r/d=2</th>
+                <th>45°</th>
+                <th>90°</th>
+            </tr>
+
+
+            <tr class="row3">
+                <td width="60vw" >15</td>
+                <td width="60vw" >1/2</td>
+                <td width="60vw" >15.7988</td>
+                <td width="60vw" >0.027</td>
+                <td width="60vw" >2.37</td>
+                <td width="60vw" >5.36</td>
+                <td width="60vw" ></td>
+                <td width="60vw" ></td>
+                <td width="60vw" ></td>
+                <td width="60vw" ></td>
+                <td width="60vw" ></td>
+            </tr>
+            <tr class="row4">
+                <td>20</td>
+                <td>3/4</td>
+                <td>20.9296</td>
+                <td>0.025</td>
+                <td>3.14</td>
+                <td>7.1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="row5">
+                <td>25</td>
+                <td>1</td>
+                <td>26.6446</td>
+                <td>0.023</td>
+                <td>3.99</td>
+                <td>9.05</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="row6">
+                <td>32</td>
+                <td>1.25</td>
+                <td>35.0520</td>
+                <td>0.022</td>
+                <td>5.27</td>
+                <td>11.92</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="row7">
+                <td>40</td>
+                <td>1.5</td>
+                <td>40.8940</td>
+                <td>0.021</td>
+                <td>6.13</td>
+                <td>13.9</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="row8">
+                <td>50</td>
+                <td>2</td>
+                <td>52.5018</td>
+                <td>0.019</td>
+                <td>7.86</td>
+                <td>17.86</td>
+                <td>2.36</td>
+                <td>1.05</td>
+                <td>0.63</td>
+                <td>0.79</td>
+                <td>3.14</td>
+              </tr>
+              <tr class="row9">
+                <td>65</td>
+                <td>2.5</td>
+                <td>62.7126</td>
+                <td>0.018</td>
+                <td>9.42</td>
+                <td>21.33</td>
+                <td>2.82</td>
+                <td>1.26</td>
+                <td>0.75</td>
+                <td>0.94</td>
+                <td>3.75</td>
+              </tr>
+              <tr class="row10">
+                <td>80</td>
+                <td>3</td>
+                <td>77.9272</td>
+                <td>0.018</td>
+                <td>11.7</td>
+                <td>26.49</td>
+                <td>3.51</td>
+                <td>1.56</td>
+                <td>0.94</td>
+                <td>1.17</td>
+                <td>4.66</td>
+              </tr>
+              <tr class="row11">
+                <td>100</td>
+                <td>4</td>
+                <td>102.2604</td>
+                <td>0.017</td>
+                <td>15.33</td>
+                <td>34.75</td>
+                <td>4.6</td>
+                <td>2.05</td>
+                <td>1.23</td>
+                <td>1.53</td>
+                <td>6.13</td>
+              </tr>
+              <tr class="row12">
+                <td>125</td>
+                <td>5</td>
+                <td>128.1938</td>
+                <td>0.016</td>
+                <td>19.23</td>
+                <td>43.58</td>
+                <td>5.76</td>
+                <td>2.56</td>
+                <td>1.54</td>
+                <td>1.92</td>
+                <td>7.68</td>
+              </tr>
+              <tr class="row13">
+                <td>150</td>
+                <td>6</td>
+                <td>154.0510</td>
+                <td>0.015</td>
+                <td>23.1</td>
+                <td>52.42</td>
+                <td>6.92</td>
+                <td>3.08</td>
+                <td>1.85</td>
+                <td>2.31</td>
+                <td>9.23</td>
+              </tr>
+              <tr class="row14">
+                <td>200</td>
+                <td>8</td>
+                <td>202.7174</td>
+                <td>0.014</td>
+                <td>30.42</td>
+                <td>68.88</td>
+                <td>9.11</td>
+                <td>4.05</td>
+                <td>2.43</td>
+                <td>3.04</td>
+                <td>12.16</td>
+              </tr>
+              <tr class="row15">
+                <td>250</td>
+                <td>10</td>
+                <td>254.5080</td>
+                <td>0.014</td>
+                <td>38.1</td>
+                <td>86.56</td>
+                <td>8.9</td>
+                <td>5.09</td>
+                <td>3.05</td>
+                <td>3.61</td>
+                <td>15.27</td>
+              </tr>
+              <tr class="row16">
+                <td>300</td>
+                <td>12</td>
+                <td>282.5496</td>
+                <td>0.013</td>
+                <td>45.41</td>
+                <td>103.02</td>
+                <td>10.61</td>
+                <td>6.07</td>
+                <td>3.63</td>
+                <td>4.54</td>
+                <td>18.2</td>
+              </tr>
+              <tr class="row17">
+                <td>350</td>
+                <td>14</td>
+                <td>333.3496</td>
+                <td>0.013</td>
+                <td>49.98</td>
+                <td>113.38</td>
+                <td>11.67</td>
+                <td>6.64</td>
+                <td>3.99</td>
+                <td>5</td>
+                <td>19.99</td>
+              </tr>
+              <tr class="row18">
+                <td>400</td>
+                <td>16</td>
+                <td>381.0000</td>
+                <td>0.013</td>
+                <td>57.3</td>
+                <td>129.53</td>
+                <td>9.54</td>
+                <td>7.62</td>
+                <td>4.57</td>
+                <td>5.73</td>
+                <td>22.86</td>
+              </tr>
+              <tr class="row19">
+                <td>450</td>
+                <td>18</td>
+                <td>428.6504</td>
+                <td>0.012</td>
+                <td>64</td>
+                <td>145.69</td>
+                <td>10.73</td>
+                <td>8.56</td>
+                <td>5.15</td>
+                <td>6.43</td>
+                <td>25.72</td>
+              </tr>
+              <tr class="row20">
+                <td>500</td>
+                <td>20</td>
+                <td>477.8756</td>
+                <td>0.012</td>
+                <td>71.62</td>
+                <td>162.45</td>
+                <td>11.95</td>
+                <td>9.57</td>
+                <td>5.73</td>
+                <td>7.16</td>
+                <td>28.68</td>
+              </tr>
+              <tr class="row21">
+                <td>600</td>
+                <td>24</td>
+                <td>574.7512</td>
+                <td>0.012</td>
+                <td>86.25</td>
+                <td>195.37</td>
+                <td>14.36</td>
+                <td>11.49</td>
+                <td>6.89</td>
+                <td>8.63</td>
+                <td>34.44</td>
+              </tr>
+              <tr class="row22">
+                <td>750</td>
+                <td>30</td>
+                <td>711.2000</td>
+                <td>0.011</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>14.23</td>
+                <td>8.53</td>
+                <td>10.67</td>
+                <td>42.67</td>
+              </tr>
+              <tr class="row23">
+                <td>900</td>
+                <td>36</td>
+                <td>863.6000</td>
+                <td>0.011</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>17.28</td>
+                <td>10.36</td>
+                <td>13.11</td>
+                <td>51.81</td>
+              </tr>
+              <tr class="row24">
+                <td>1050</td>
+                <td>42</td>
+                <td>1016.0000</td>
+                <td>0.01</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>20.33</td>
+                <td>12.19</td>
+                <td>15.24</td>
+                <td>60.96</td>
+              </tr>
+              <tr class="row25">
+                <td>1200</td>
+                <td>48</td>
+                <td>1168.0000</td>
+                <td>0.01</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>23.38</td>
+                <td>14.02</td>
+                <td>17.68</td>
+                <td>70.1</td>
+              </tr>
+           </table>
+           <p>출처 : CHMERON HYDRAULIC DATA (Page: 3-112)</p>
         <br>
         <br>
         <br>
