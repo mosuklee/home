@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>배관의 압력손실 계산</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+            
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding-top: 5px;
+            padding-left: 10px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+        tr:hover {
+            cursor: default;
+            background: #ecfafc;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1 align="center">
+                배관의 압력손실 계산 
+            </h1>
+            
+            <br>
+            <h3>1. 개    요</h3>
+            <p>배관의 관경선정은 배관의 적정유속, 시스템 허용압력손실, 경제성등의 여러가지 요소를 종합 검토한 후에 선정하여야 한다. <br> 
+               배관의 유속은 공정의 종류별 특성에 따라 적정유속 가이드를 기준으로 기준관경을 선정하면 되며, 배관의 압력손실 계산은 Colebrook Equation 및 Darch-Weisbach equation을 이용하여 계산하면 된다. </p>
+            <h3>2. 배관의 유속 계산</h3>
+            <h4>배관의 유속계산식</h4>
+            <p>배관의 유속 계산은 다음 계산식에 의하여 계산한다.</p>
+            <div id="formula">
+                <br>
+                <b> V = (4 x Q) / (𝜋 x d^2) 
+                </b>
+                <br>
+            </div>
+
+            <br>
+            여기에서<br>
+            &nbsp&nbsp V &nbsp : 유 속 (m/s) <br>
+            &nbsp&nbsp Q &nbsp : 유 량 (m3/s)) <br>
+            &nbsp&nbsp d &nbsp : 배관의 내경 (m) <br>
+            <br>
+            <h4>배관의 적정유속</h4>
+            <p>다음은 일반적인 배관의 적정유속을 정리한 자료로서, 관경선정시에 참고 가이드 자료로 활용하기 위한 자료입니다.</p>
+
+            <table>
+                <tr>
+                    <th width="400px" colspan="2">Service Condition <br> 공정의 종류</th>
+                    <th width="200px">유속(m/s)</th>
+                    <th width="300px" >비  고</th>
+                </tr>
+                <tr>
+                    <td colspan="2">Steam Heater</td>
+                    <td align="center">5-15</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boiler Feed</td>
+                    <td align="center">2.5-4.6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Pump Suction <br> and drain lines</td>
+                    <td align="center">1.2-2.1</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">General service</td>
+                    <td align="center">1.2-3.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">City water</td>
+                    <td align="center">to 2.1</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Saturated Steam <br>heating line</td>
+                    <td align="center">20.32-30.48</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Super-heater steam <br> boiler and turbines</td>
+                    <td align="center">35.6-101.6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Hight Pressure <br>Saturatd steam</td>
+                    <td align="center">25-40</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Low Pressure <br>Saturated steam</td>
+                    <td align="center">15-30</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Raw or treated water</td>
+                    <td align="center">1.0-5.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boiler feed pump suction</td>
+                    <td align="center">1.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Boiler feed pump discharge</td>
+                    <td align="center">3.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Flash steam</td>
+                    <td align="center">5-15</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Condensate</td>
+                    <td align="center">1.0-3.0</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Compressed air</td>
+                    <td align="center">5.0-15</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">FD fan discharge</td>
+                    <td align="center">8-10</td>
+                    <td></td>
+                </tr>
+
+                    <td rowspan="6">Heat exchanger tube</td>
+                    <td>Copper</td>
+                    <td align="center">1.8-2.3</td>
+                    <td></td>
+                </tr>
+                    <tr>
+                        <td>Carbon steel</td>
+                        <td align="center">2.4-2.7</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>90/1- CuNi</td>
+                        <td align="center">2.9-3.3</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Stainless steel</td>
+                        <td align="center">2.9-3.3</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Heat exchanger <br>nozzle velocity</td>
+                        <td align="center">2.1-2.4</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Heat exchanger <br>shell nozzle velocity</td>
+                        <td align="center">2.4-2.7</td>
+                        <td></td>
+                    </tr>
+            </table>
+            <br>
+            <h3>3. 배관의 압력손실 계산</h3>
+            <h4>레이놀즈 수 (Renolds Number)</h4>
+            <p>레이놀즈 수는 관성에 의한 힘와 점성에 의한 힘의 비로서 주어진 유동 조건에서 두 종류의 힘의 상대적인 역학관계를 정량적으로 나타낸 것으로서, 유동이 층류인지 안류인지 예측하는데에도 사용된다. </p>
+            <div id="formula">
+                <br>
+                <b> Re = (V x d) / ν
+                </b>
+                <br>
+            </div>
+            
+            <br>
+            여기에서<br>
+            &nbsp&nbsp Re &nbsp: 레이놀즈 수 <br>
+            &nbsp&nbsp V &nbsp : 유체의 유속 (m/s)) <br>
+            &nbsp&nbsp d &nbsp : 배관의 내경 (m) <br>
+            &nbsp&nbsp ν &nbsp : 유체의 동점성계수 (m2/s) <br>
+            <br>
+            <h4>등가거칠기 (Roughness)</h4>
+            <p>Pipe Roughness는 배관의 등가 거칠기(절대조도)라고 하며 관의 종류별 Roughness는 다음과 같다.</p>
+            <table>
+                <tr>
+                    <th width="300px" align="center">관의 종류</th>
+                    <th width="300px" align="center">등가거칠기(조도, m)</th>
+                     <th width="300px" align="center">비  고</th>
+                </tr>
+                <tr>
+                    <td align="center">인발관(동관, 유리관)</td>
+                    <td align="center">0.0000015</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">PVC (폴리에틸렌관)</td>
+                    <td align="center">0.0000050</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">강관 (New ~ Old</td>
+                    <td align="center">0.0000450 ~ 0.0001500</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">아연도 강관</td>
+                    <td align="center">0.0001500</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">녹이슬은 강관</td>
+                    <td align="center">0.0050000 ~ 0.0010000</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="center">대단히 녹슬은 강관</td>
+                    <td align="center">0.0010000 ~ 0.0030000</td>
+                    <td></td>
+                </tr>
+            </table>
+            <h4>배관의 압력손실계수 (Friction Factor)</h4>
+            <p>배관의 압력손실계수는 Colbrook Equation으로 계산하며 다음과 같은 식을 사용한다.</p>
+
+            <div style="width:350px;">
+                <img src="./image/colebrook_formula.jpg" alt="colebrook formula">
+            </div>
+
+            <p> 상기 수식은 계산하기가 어려워 층류일 경우 다음 식으로 계산할 수 있습니다.</p>
+            <div style="width:80px;">
+                <img src="./image/friction_factor_line.jpg" alt="colebrook formula">
+            </div>
+            <br>
+            여기에서<br>
+            &nbsp&nbsp&nbsp&nbsp f &nbsp&nbsp: 압력손실계수(friction factor) <br>
+            &nbsp&nbsp&nbsp&nbsp ϵ &nbsp : 등가거칠기 (m) <br>
+            &nbsp&nbsp&nbsp D &nbsp : 배관의 내경 (m) <br>
+            &nbspRe(R)  : 레이놀즈 수 (Renolds Number) <br>
+            <br>
+
+            <h4>배관의 압력손실 (Pipe Head Loss)</h4>
+            <p>배관의 압력손실은 Darch-Weisbach equation으로 계산하며 다음과 같이 식을 사용한다.</p>
+            <div style="width:200px;">
+                <img src="./image/darch_wishbach_equia.jpg" alt="colebrook formula">
+            </div>
+            <br>
+            여기에서<br>
+            &nbsp&nbsp HL: 압력손실 (mAq) <br>
+            &nbsp&nbsp f &nbsp : 압력손실계수 (friction factor) (m) <br>
+            &nbsp&nbsp l &nbsp : 배관의 길이 (m) <br>
+            &nbsp&nbsp V : 유체의 유속 (m/s) <br>
+            &nbsp&nbsp d : 배관의 내역 (m) <br>
+            &nbsp&nbsp g : 중력가속도 (9.8m/s2) <br>
+            <br>
+            <br>
+
+            <table>
+                <tr>
+                    <th align="center" style="width: 150px;">압력(kg/cm2.g)</th>
+                    <th align="center" style="width: 120px;">온도(℃)</th>
+                    <th align="center" style="width: 140px;">유량(kg/h)</th> 
+                    <th align="center" style="width: 130px;">관경(mm)</th>
+                    <th align="center" style="width: 140px;">조도(m)</th>
+                    <th align="center" style="width: 120px;">유속(m/s)</th>
+                    <th align="center" style="width: 140px;">압력손실(mAq/m)</th>
+                </tr>
+                <tr>
+                    <td align="center"><input style="width:50px; text-align:center" type="text" id="flow_press" input value=""></td>
+                    <td align="center"><input style="width:60px; text-align:center" type="text" id="flow_temp" input value=""></td>
+                    <td align="center"><input style="width:70px; text-align:center" type="text" id="flow_qty" input value=""></td>
+                    <td align="center"><input style="width:60px; text-align:center" type="text" id="flow_id" input value=""></td>
+                    <td align="center"><input style="width:80px; text-align:center" type="text" id="flow_roug" input value=""></td>
+                    <td align="center" id="flow_velocity" style="width: 90px;"></td>
+                    <td align="center" id="result_hl" style="width: 180px;"></td></td>
+                </tr>
+            </table>
+        <div>
+        <span>
+            <button onclick="calculate()"> Calculation </button>
+        </span>
+        <span>
+            <button onclick="calculate1()"> Reset </button>
+        </span>
+        </div>
+        <br>
+        <h4>배관부속 및 밸브류의 등가길이(Equivalent Length)</h4>
+
+        Equivalent Length는 배관 부속과 밸브류등에 걸리는 압력손실을 직선배돤의 길이로 환산한 길이를 말하며, 배관부속과 밸브류의 Equivlent Length를 계산한 후에 실제 직관의 길이에 더하여 전체 배관내에서 걸리는 배관의 압력손실을 계산할 
+        대 사용합니다. <br>
+        <h5>1) EQUIVALENT LENGTH(1/2)</h5>
+        <table>
+            <tr>
+                <th colspan="2">호칭지름</th>
+                <th rowspan="2">내경<br />(mm)</th>
+                <th rowspan="2">Friction<br />Factor</th>
+                <th rowspan="2">Gate <br> Valve</th>
+                <th rowspan="2">90°<br> Elbow</th>
+                <th rowspan="2">45°<br> Elbow</th>
+                <th rowspan="2">Thru<br> Tee</th>
+                <th rowspan="2">Branch<br> Tee</th>
+                <th rowspan="2">Close<br>Return<br>Bend </th>
+                <th rowspan="2">Swing<br>Check<br>Valve </th>
+             </tr>
+
+            <tr>
+                <th >A</th>
+                <th >B</th>
+            </tr>
+
+
+            <tr class="row3">
+                <td width="60vw">15</td>
+                <td width="60vw">1/2</td>
+                <td width="80vw">15.7988</td>
+                <td width="80vw">0.027</td>
+                <td width="80vw">0.12</td>
+                <td width="80vw">0.47</td>
+                <td width="80vw">0.25</td>
+                <td width="80vw">0.32</td>
+                <td width="80vw">0.95</td>
+                <td width="80vw">0.79</td>
+                <td width="80vw">1.58</td>
+            </tr>
+            <tr class="row4">
+
+                <td >20</td>
+                <td >3/4</td>
+                <td >20.9296</td>
+                <td >0.025</td>
+                <td >0.17</td>
+                <td >0.63</td>
+                <td >0.34</td>
+                <td >0.42</td>
+                <td >1.26</td>
+                <td >1.05</td>
+                <td >2.09</td>
+
+            </tr>
+            <tr class="row5">
+
+                <td >25</td>
+                <td >1</td>
+                <td >26.6446</td>
+                <td >0.023</td>
+                <td >0.21</td>
+                <td >0.8</td>
+                <td >0.43</td>
+                <td >0.53</td>
+                <td >1.6</td>
+                <td >1.33</td>
+                <td>2.66</td>
+
+            </tr>
+            <tr class="row6">
+
+                <td>32</td>
+                <td>1.25</td>
+                <td>35.0520</td>
+                <td>0.022</td>
+                <td>0.28</td>
+                <td>1.05</td>
+                <td>0.56</td>
+                <td>0.7</td>
+                <td>2.1</td>
+                <td>1.75</td>
+                <td>3.51</td>
+
+            </tr>
+            <tr class="row7">
+
+                <td>40</td>
+                <td>1.5</td>
+                <td>40.8940</td>
+                <td>0.021</td>
+                <td>0.33</td>
+                <td>1.23</td>
+                <td>0.66</td>
+                <td>0.82</td>
+                <td>2.45</td>
+                <td>2.05</td>
+                <td>4.08</td>
+
+            </tr>
+            <tr class="row8">
+
+                <td>50</td>
+                <td>2</td>
+                <td>52.5018</td>
+                <td>0.019</td>
+                <td>0.42</td>
+                <td>1.58</td>
+                <td>0.84</td>
+                <td>1.05</td>
+                <td>3.14</td>
+                <td>2.62</td>
+                <td>5.24</td>
+
+            </tr>
+            <tr class="row9">
+
+                <td>65</td>
+                <td>2.5</td>
+                <td>62.7126</td>
+                <td>0.018</td>
+                <td>0.5</td>
+                <td>1.88</td>
+                <td>1</td>
+                <td>1.26</td>
+                <td>3.75</td>
+                <td>3.14</td>
+                <td>6.28</td>
+
+            </tr>
+            <tr class="row10">
+
+                <td>80</td>
+                <td>3</td>
+                <td>77.9272</td>
+                <td>0.018</td>
+                <td>0.62</td>
+                <td>2.34</td>
+                <td>1.25</td>
+                <td>1.56</td>
+                <td>4.66</td>
+                <td>3.9</td>
+                <td>7.77</td>
+
+            </tr>
+            <tr class="row11">
+
+                <td>100</td>
+                <td>4</td>
+                <td>102.2604</td>
+                <td>0.017</td>
+                <td>0.82</td>
+                <td>3.08</td>
+                <td>1.64</td>
+                <td>2.05</td>
+                <td>6.13</td>
+                <td>5.12</td>
+                <td>10.24</td>
+
+            </tr>
+            <tr class="row12">
+
+                <td>125</td>
+                <td>5</td>
+                <td>128.1938</td>
+                <td>0.016</td>
+                <td>1.02</td>
+                <td>3.84</td>
+                <td>2.05</td>
+                <td>2.56</td>
+                <td>7.68</td>
+                <td>6.4</td>
+                <td>12.83</td>
+
+            </tr>
+            <tr class="row13">
+
+                <td>150</td>
+                <td>6</td>
+                <td>154.0510</td>
+                <td>0.015</td>
+                <td>1.23</td>
+                <td>4.63</td>
+                <td>2.47</td>
+                <td>3.08</td>
+                <td>9.23</td>
+                <td>7.71</td>
+                <td>15.39</td>
+
+            </tr>
+            <tr class="row14">
+
+                <td>200</td>
+                <td>8</td>
+                <td>202.7174</td>
+                <td>0.014</td>
+                <td>1.62</td>
+                <td>6.1</td>
+                <td>3.23</td>
+                <td>4.05</td>
+                <td>12.16</td>
+                <td>10.15</td>
+                <td>10.15</td>
+
+            </tr>
+            <tr class="row15">
+
+                <td>250</td>
+                <td>10</td>
+                <td>254.5080</td>
+                <td>0.014</td>
+                <td>2.04</td>
+                <td>7.65</td>
+                <td>4.08</td>
+                <td>5.09</td>
+                <td>15.27</td>
+                <td>12.74</td>
+                <td>12.74</td>
+
+            </tr>
+            <tr class="row16">
+
+                <td>300</td>
+                <td>12</td>
+                <td>282.5496</td>
+                <td>0.013</td>
+                <td>2.43</td>
+                <td>9.08</td>
+                <td>4.85</td>
+                <td>6.07</td>
+                <td>18.2</td>
+                <td>15.15</td>
+                <td>15.15</td>
+
+            </tr>
+            <tr class="row17">
+
+                <td>350</td>
+                <td>14</td>
+                <td>333.3496</td>
+                <td>0.013</td>
+                <td>2.67</td>
+                <td>10</td>
+                <td>5.33</td>
+                <td>6.64</td>
+                <td>19.99</td>
+                <td>16.67</td>
+                <td>16.67</td>
+
+            </tr>
+            <tr class="row18">
+
+                <td>400</td>
+                <td>16</td>
+                <td>381.0000</td>
+                <td>0.013</td>
+                <td>3.05</td>
+                <td>11.43</td>
+                <td>6.1</td>
+                <td>7.62</td>
+                <td>22.86</td>
+                <td>19.05</td>
+                <td>19.05</td>
+
+            </tr>
+            <tr class="row19">
+
+                <td>450</td>
+                <td>18</td>
+                <td>428.6504</td>
+                <td>0.012</td>
+                <td>5.15</td>
+                <td>12.86</td>
+                <td>6.86</td>
+                <td>8.56</td>
+                <td>25.72</td>
+                <td>21.43</td>
+                <td>21.43</td>
+
+            </tr>
+            <tr class="row20">
+
+                <td>500</td>
+                <td>20</td>
+                <td>477.8756</td>
+                <td>0.012</td>
+                <td>3.81</td>
+                <td>14.32</td>
+                <td>7.65</td>
+                <td>9.57</td>
+                <td>28.68</td>
+                <td>23.9</td>
+                <td>23.9</td>
+
+            </tr>
+            <tr class="row21">
+
+                <td>600</td>
+                <td>24</td>
+                <td>574.7512</td>
+                <td>0.012</td>
+                <td>4.6</td>
+                <td>17.25</td>
+                <td>9.2</td>
+                <td>11.49</td>
+                <td>34.44</td>
+                <td>28.74</td>
+                <td>28.74</td>
+
+            </tr>
+            <tr class="row22">
+
+                <td>750</td>
+                <td>30</td>
+                <td>711.2000</td>
+                <td>0.011</td>
+                <td>5.7</td>
+                <td>21.33</td>
+                <td>11.37</td>
+                <td>14.23</td>
+                <td>42.67</td>
+                <td>35.66</td>
+                <td></td>
+
+            </tr>
+            <tr class="row23">
+
+                <td>900</td>
+                <td>36</td>
+                <td>863.6000</td>
+                <td>0.011</td>
+                <td>6.92</td>
+                <td>25.81</td>
+                <td>13.81</td>
+                <td>17.28</td>
+                <td>51.81</td>
+                <td>43.28</td>
+                <td></td>
+
+            </tr>
+            <tr class="row24">
+
+                <td>1050</td>
+                <td>42</td>
+                <td>1016.0000</td>
+                <td>0.01</td>
+                <td>8.14</td>
+                <td>30.48</td>
+                <td>16.25</td>
+                <td>30.33</td>
+                <td>60.96</td>
+                <td>50.9</td>
+                <td></td>
+
+            </tr>
+            <tr class="row25">
+
+                <tr class="row25">
+                <td>1200</td>
+                <td>48</td>
+                <td>1168.0000</td>
+                <td>0.01</td>
+                <td>9.36</td>
+                <td>35.05</td>
+                <td>18.68</td>
+                <td>23.38</td>
+                <td>70.1</td>
+                <td>58.52</td>
+                    <td class="column10 style1 null"></td>
+            </tr>
+
+       </table>
+       <p>출처 : CHMERON HYDRAULIC DATA (Page: 3-112)</p>
+       <br> 
+       <br>
+        <h5>2) EQUIVALENT LENGTH(2/2)</h5>
+
+        <table>
+            <tr>
+                <th colspan="2">호칭지름</th>
+                <th rowspan="2">내경<br />(mm)</th>
+                <th rowspan="2">Friction<br />Factor</th>
+                <th rowspan="2">Angle <br> Valve</th>
+                <th rowspan="2">Glove<br> Valve</th>
+                <th rowspan="2">Butterfly<br> Valve</th>
+                <th colspan="2">90° Welding Elbow</th>
+                <th colspan="2">Miter<br> Bend</th>
+             </tr>
+
+            <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>r/d=1</th>
+                <th>r/d=2</th>
+                <th>45°</th>
+                <th>90°</th>
+            </tr>
+
+
+            <tr class="row3">
+                <td width="60vw" >15</td>
+                <td width="60vw" >1/2</td>
+                <td width="80vw" >15.7988</td>
+                <td width="80vw" >0.027</td>
+                <td width="80vw" >2.37</td>
+                <td width="80vw" >5.36</td>
+                <td width="80vw" ></td>
+                <td width="80vw" ></td>
+                <td width="80vw" ></td>
+                <td width="80vw" ></td>
+                <td width="80vw" ></td>
+            </tr>
+            <tr class="row4">
+                <td>20</td>
+                <td>3/4</td>
+                <td>20.9296</td>
+                <td>0.025</td>
+                <td>3.14</td>
+                <td>7.1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="row5">
+                <td>25</td>
+                <td>1</td>
+                <td>26.6446</td>
+                <td>0.023</td>
+                <td>3.99</td>
+                <td>9.05</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="row6">
+                <td>32</td>
+                <td>1.25</td>
+                <td>35.0520</td>
+                <td>0.022</td>
+                <td>5.27</td>
+                <td>11.92</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="row7">
+                <td>40</td>
+                <td>1.5</td>
+                <td>40.8940</td>
+                <td>0.021</td>
+                <td>6.13</td>
+                <td>13.9</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr class="row8">
+                <td>50</td>
+                <td>2</td>
+                <td>52.5018</td>
+                <td>0.019</td>
+                <td>7.86</td>
+                <td>17.86</td>
+                <td>2.36</td>
+                <td>1.05</td>
+                <td>0.63</td>
+                <td>0.79</td>
+                <td>3.14</td>
+              </tr>
+              <tr class="row9">
+                <td>65</td>
+                <td>2.5</td>
+                <td>62.7126</td>
+                <td>0.018</td>
+                <td>9.42</td>
+                <td>21.33</td>
+                <td>2.82</td>
+                <td>1.26</td>
+                <td>0.75</td>
+                <td>0.94</td>
+                <td>3.75</td>
+              </tr>
+              <tr class="row10">
+                <td>80</td>
+                <td>3</td>
+                <td>77.9272</td>
+                <td>0.018</td>
+                <td>11.7</td>
+                <td>26.49</td>
+                <td>3.51</td>
+                <td>1.56</td>
+                <td>0.94</td>
+                <td>1.17</td>
+                <td>4.66</td>
+              </tr>
+              <tr class="row11">
+                <td>100</td>
+                <td>4</td>
+                <td>102.2604</td>
+                <td>0.017</td>
+                <td>15.33</td>
+                <td>34.75</td>
+                <td>4.6</td>
+                <td>2.05</td>
+                <td>1.23</td>
+                <td>1.53</td>
+                <td>6.13</td>
+              </tr>
+              <tr class="row12">
+                <td>125</td>
+                <td>5</td>
+                <td>128.1938</td>
+                <td>0.016</td>
+                <td>19.23</td>
+                <td>43.58</td>
+                <td>5.76</td>
+                <td>2.56</td>
+                <td>1.54</td>
+                <td>1.92</td>
+                <td>7.68</td>
+              </tr>
+              <tr class="row13">
+                <td>150</td>
+                <td>6</td>
+                <td>154.0510</td>
+                <td>0.015</td>
+                <td>23.1</td>
+                <td>52.42</td>
+                <td>6.92</td>
+                <td>3.08</td>
+                <td>1.85</td>
+                <td>2.31</td>
+                <td>9.23</td>
+              </tr>
+              <tr class="row14">
+                <td>200</td>
+                <td>8</td>
+                <td>202.7174</td>
+                <td>0.014</td>
+                <td>30.42</td>
+                <td>68.88</td>
+                <td>9.11</td>
+                <td>4.05</td>
+                <td>2.43</td>
+                <td>3.04</td>
+                <td>12.16</td>
+              </tr>
+              <tr class="row15">
+                <td>250</td>
+                <td>10</td>
+                <td>254.5080</td>
+                <td>0.014</td>
+                <td>38.1</td>
+                <td>86.56</td>
+                <td>8.9</td>
+                <td>5.09</td>
+                <td>3.05</td>
+                <td>3.61</td>
+                <td>15.27</td>
+              </tr>
+              <tr class="row16">
+                <td>300</td>
+                <td>12</td>
+                <td>282.5496</td>
+                <td>0.013</td>
+                <td>45.41</td>
+                <td>103.02</td>
+                <td>10.61</td>
+                <td>6.07</td>
+                <td>3.63</td>
+                <td>4.54</td>
+                <td>18.2</td>
+              </tr>
+              <tr class="row17">
+                <td>350</td>
+                <td>14</td>
+                <td>333.3496</td>
+                <td>0.013</td>
+                <td>49.98</td>
+                <td>113.38</td>
+                <td>11.67</td>
+                <td>6.64</td>
+                <td>3.99</td>
+                <td>5</td>
+                <td>19.99</td>
+              </tr>
+              <tr class="row18">
+                <td>400</td>
+                <td>16</td>
+                <td>381.0000</td>
+                <td>0.013</td>
+                <td>57.3</td>
+                <td>129.53</td>
+                <td>9.54</td>
+                <td>7.62</td>
+                <td>4.57</td>
+                <td>5.73</td>
+                <td>22.86</td>
+              </tr>
+              <tr class="row19">
+                <td>450</td>
+                <td>18</td>
+                <td>428.6504</td>
+                <td>0.012</td>
+                <td>64</td>
+                <td>145.69</td>
+                <td>10.73</td>
+                <td>8.56</td>
+                <td>5.15</td>
+                <td>6.43</td>
+                <td>25.72</td>
+              </tr>
+              <tr class="row20">
+                <td>500</td>
+                <td>20</td>
+                <td>477.8756</td>
+                <td>0.012</td>
+                <td>71.62</td>
+                <td>162.45</td>
+                <td>11.95</td>
+                <td>9.57</td>
+                <td>5.73</td>
+                <td>7.16</td>
+                <td>28.68</td>
+              </tr>
+              <tr class="row21">
+                <td>600</td>
+                <td>24</td>
+                <td>574.7512</td>
+                <td>0.012</td>
+                <td>86.25</td>
+                <td>195.37</td>
+                <td>14.36</td>
+                <td>11.49</td>
+                <td>6.89</td>
+                <td>8.63</td>
+                <td>34.44</td>
+              </tr>
+              <tr class="row22">
+                <td>750</td>
+                <td>30</td>
+                <td>711.2000</td>
+                <td>0.011</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>14.23</td>
+                <td>8.53</td>
+                <td>10.67</td>
+                <td>42.67</td>
+              </tr>
+              <tr class="row23">
+                <td>900</td>
+                <td>36</td>
+                <td>863.6000</td>
+                <td>0.011</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>17.28</td>
+                <td>10.36</td>
+                <td>13.11</td>
+                <td>51.81</td>
+              </tr>
+              <tr class="row24">
+                <td>1050</td>
+                <td>42</td>
+                <td>1016.0000</td>
+                <td>0.01</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>20.33</td>
+                <td>12.19</td>
+                <td>15.24</td>
+                <td>60.96</td>
+              </tr>
+              <tr class="row25">
+                <td>1200</td>
+                <td>48</td>
+                <td>1168.0000</td>
+                <td>0.01</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>23.38</td>
+                <td>14.02</td>
+                <td>17.68</td>
+                <td>70.1</td>
+              </tr>
+           </table>
+           <p>출처 : CHMERON HYDRAULIC DATA (Page: 3-112)</p>
+        <br>
+        <br>
+        <br>
+        <br>    
+             <div>
+            
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+        <script>
+            function calculate() {
+                // data 선언
+                var flow_temp;
+                var flow_temp_si;
+
+                var flow_press_si;
+                var flow_qty;
+                var flow_id;
+                var flow_velocity;
+                var flow_roug
+                var flow_kv;
+                var result;
+                var re;
+                var result_hl
+
+                // 입력
+                flow_press = parseFloat(document.getElementById("flow_press").value);
+                flow_temp = parseFloat(document.getElementById("flow_temp").value);
+                flow_qty = parseFloat(document.getElementById("flow_qty").value);
+                flow_id = parseFloat(document.getElementById("flow_id").value);
+                flow_roug = parseFloat(document.getElementById("flow_roug").value);
+                
+                // 온도의 입력값이 있으면 절대온도로 계산하고, 온도값이 없으면 스팀테이블에서 포화온도를 계산한다.
+                
+                if (!isNaN(flow_press) &  flow_temp > 0) {    // 압력이 입력되고 온도값이 0이상이면 
+                    flow_temp_si = flow_temp + 273.15;
+                    flow_press_si = flow_press * 0.0980665;
+                } else {                                      // 압력이 입력되고 온도값이 0이상이 아니면 포화증기로 인식하여 포화온도 계산
+                    flow_press_si = flow_press * 0.0980665;
+                    flow_temp_si = NeutriumJS.thermo.IAPWS97.PT.r4_P_Tsat(flow_press_si);
+                }
+                // 스팀테이블을 계산                 
+                result = NeutriumJS.thermo.IAPWS97.PT.solve(flow_press_si, flow_temp_si);
+                // kinematic viscosity 계산
+                flow_kv = result.mu * 0.001 * result.v;
+                // 비체적을 계산
+                flow_volume = result.v;
+                // 유속을 계산
+                flow_velocity = (4*flow_qty*flow_volume/3600)/(Math.PI*(flow_id/1000)**2)
+                // 레이놀수를 계산
+                re = (flow_velocity*flow_id)/flow_kv;
+
+                // Colebrook 식에 의한 Friction Factor 계산 (3번 반복계산)
+                var f = 0.01;
+                f_result = -2.0 * Math.log10((flow_roug*1000/(flow_id*3.7))+(2.51/(re*Math.sqrt(f))));
+                f_result = (1/f_result)**2
+                f=f_result;
+                f_result = -2.0 * Math.log10((flow_roug*1000 / (flow_id * 3.7)) + (2.51 / (re * Math.sqrt(f))));
+                f_result = (1 / f_result) ** 2
+                f = f_result;
+                f_result = -2.0 * Math.log10((flow_roug*1000 / (flow_id * 3.7)) + (2.51 / (re * Math.sqrt(f))));
+                f_result = (1 / f_result) ** 2
+
+                // Friction Loss 계산 (result_hl)
+                result_hl = 637.6 * (f_result*1*flow_volume*(flow_qty)**2)/(flow_id)**5 *10.0;
+
+                // 계산값을 화면에 뿌려준다.
+                document.getElementById("flow_velocity").innerHTML = flow_velocity.toFixed(2);
+                document.getElementById("result_hl").innerHTML = result_hl.toFixed(6);
+            }
+    function calculate1() {
+        document.getElementById("flow_press").value = "";
+        document.getElementById("flow_temp").value = "";
+        document.getElementById("flow_qty").value = "";
+        document.getElementById("flow_id").value = "";
+        document.getElementById("flow_roug").value = "";
+        document.getElementById("flow_velocity").value = "";
+        document.getElementById("result_hl").value = "";
+
+ 
+
+    }
+ 
+        </script>
+
+
+</body>
+
+</html>
