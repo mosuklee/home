@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SCR MASS CALCULATION</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script type="text/x-mathjax-config">
+             MathJax.Hub.Config({            
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}            
+        });
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>
+                선택적 촉매 환원장치
+            </h1>
+            <br>
+            <h3>1. SCR (Selective Catalytic Reduction)</h3>
+            <p>SCR은 배기가스에 포함된 질소산화물(NOx – NO, NO2)을 환원제(NH3 또는 요소수)와 탈질 촉매를 이용하여 반응시킴으로써 인체에 무해한 질소(N2)와 물(H2O)로 환원시켜 배출하는 장치입니다.  <br> </p>
+            <h4>1.1 환원제의 종류</h4>
+             1) 요소수($CO(NH_{2})_{2}$ <br>
+             2) 암모니아 ($NH_{3} $) <br>
+            <br>
+            <h3>2. 요소수($CO(NH_{2})_{2}$ </h3>
+            <h4>2.1 반응생성식</h4>
+
+            <p>반응생성식은 다음의 3가지 반응식으로 일어나며, 이중 95%이상 반응이 일어나는 2)번 환원식을 사용합니다.  </p>
+            <div id="formula">
+                1) $ \quad CO(NH_{2})_{2} + H_{2}O \quad\quad\quad\quad  \Rightarrow  \quad\quad 2NH_{3} + CO_{2} $ <br>
+                <b>2) $ \quad CO(NH_{2})_{2} + 2NO + \frac{1}{2}O_{2} \quad  \Rightarrow \quad\quad 2N_{2} + CO_{2} + 2H_{2}O \quad \leftarrow $ </b>사용 <br>
+                3) $ \quad 4CO(NH_{2})_{2} + 6NO_{2} \quad\quad\quad \Rightarrow \quad\quad 7N_{2} + 4CO_{2} + 8H_{2}O $
+                <br>
+            </div>
+
+            <h4>2.2 요소수 투입량 계산</h4>
+             1) 설계입력자료 <br>
+<table>
+    <tr align="center">
+        <th  >구    분</th>
+        <th  width="300px">입력 자료</th>
+        <th  width="80px">비고 <br></th>
+    </tr>
+    <tr align="center">
+        <td width="200px">인입가스 유량 (dry, Sm3/h)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_in_gas_flow" ></td>
+        <td width="200px">O2함유량(%) : <input style="width:2vw; text-align:center" type="text" id="input_in_gas_o2" ></td>
+    </tr>
+    <tr align="center">
+        <td width="300px">인입가스 NOx 농도 (ppm)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_in_gas_nox" ></td>
+        <td width="200px">O2농도기준(%) : <input style="width:2vw; text-align:center" type="text" id="input_in_gas_nox_o2" ></td>
+    </tr>
+        <tr align="center">
+        <td width="300px">배출가스 NOx 농도 (ppm)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_out_gas_nox" ></td>
+        <td ></td>
+    </tr>
+    </tr>
+        <tr align="center">
+        <td width="300px">요소수 농도(%)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_urea_concen" ></td>
+        <td ></td>
+    </tr>
+        </tr>
+        <tr align="center">
+        <td width="300px">요소수 투입 당량비</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_urea_ratio" ></td>
+        <td ></td>
+    </tr>
+        </tr>
+        <tr align="center">
+        <td width="300px">Spray 요소수 농도(%)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_mixed_urea_ratio" ></td>
+        <td ></td>
+    </tr>
+</table>            
+            주1) O2 농도기준  &nbsp;&nbsp;&nbsp;&nbsp;1) 보일러 : 4% &nbsp;&nbsp;&nbsp;&nbsp;2) 폐기물 : 12% &nbsp;&nbsp;&nbsp;&nbsp;3) 발전소 : 15%  <br>
+            주2) 인입가스유량은 농도계산시 건조가스 기준이므로 수분을 제거한 건조상태의 유량을 입력 <br>
+<br>
+    <div>
+        <span>
+            <button onclick="calculate()"> Calculation </button>
+        </span>
+        <span>
+            <button onclick="calculate1()"> Example </button>
+        </span>
+        <span>
+            <button onclick="calculate2()"> Reset </button>
+        </span>
+    </div>
+            <br>
+<br>
+
+
+
+             2) 계산결과 <br>
+<table>
+    <tr align="center">
+        <th  >구    분</th>
+        <th  width="300px">입력 자료</th>
+        <th  width="200px">비고 <br></th>
+    </tr>
+    <tr align="center">
+        <td width="200px">NOx 제거율 (%)</td>
+        <td align="center" id="calc_nox_elim_urea"></td>
+        <td></td>
+    </tr>
+    <tr align="center">
+        <td width="200px">요소수 사용량(kg/h)</td>
+        <td align="center" id="calc_urea_consumpt_kg_urea"></td>
+        <td align="center" id="calc_urea_ref_ratio_urea"></td>
+    </tr>
+    <tr align="center">
+        <td width="200px">요소수 사용량(lit/h)</td>
+        <td align="center" id="calc_urea_consumpt_lit_urea"></td>
+        <td align="center" id="calc_urea_ref_ratio1_urea"></td>
+    </tr>
+    <tr align="center">
+        <td width="300px">Water spray량</td>
+        <td align="center" id="calc_water_spray_urea"></td>
+        <td ></td>
+
+    </tr>    
+</table>
+
+<br><br>
+
+            <h3>3. 암모니아($NH_{3})$ </h3>
+            <h4>3.1 반응생성식</h4>
+            <div id="formula">
+                1) $\quad 2NO + 2NH_{3} + \frac{1}{2}O_{2} \quad\quad\quad\quad  \Rightarrow  \quad\quad 2N_{2} + 3H_{2}O $ <br>
+            </div>
+
+            <h4>3.2 암모니아아 투입량 계산</h4>
+             1) 설계입력자료 <br>
+<table>
+    <tr align="center">
+        <th  >구    분</th>
+        <th  width="300px">입력 자료</th>
+        <th  width="80px">비고 <br></th>
+    </tr>
+    <tr align="center">
+        <td width="200px">인입가스 유량 (Dry,Sm3/h)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_in_gas_flow_nh3" ></td>
+        <td width="200px">O2함유량(%) : <input style="width:2vw; text-align:center" type="text" id="input_in_gas_o2_nh3" ></td>
+    </tr>
+    <tr align="center">
+        <td width="300px">인입가스 NOx 농도 (ppm)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_in_gas_nox_nh3" ></td>
+        <td width="200px">O2농도기준(%) : <input style="width:2vw; text-align:center" type="text" id="input_in_gas_nox_o2_nh3" ></td>
+    </tr>
+        <tr align="center">
+        <td width="300px">배출가스 NOx 농도 (ppm)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_out_gas_nox_nh3" ></td>
+        <td ></td>
+    </tr>
+    </tr>
+        <tr align="center">
+        <td width="300px">암모니아 농도(%)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_nh3_concen_nh3" ></td>
+        <td ></td>
+    </tr>
+        </tr>
+        <tr align="center">
+        <td width="300px">암모니아 투입 당량비</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_nh3_ratio_nh3" ></td>
+        <td ></td>
+    </tr>
+        </tr>
+        <tr align="center">
+        <td width="300px">Spray 암모니아아 농도(%)</td>
+        <td><input style="width:4vw; text-align:center" type="text" id="input_mixed_nh3_ratio_nh3" ></td>
+        <td ></td>
+    </tr>
+</table>            
+            주1) O2 농도기준  &nbsp;&nbsp;&nbsp;&nbsp;1) 보일러 : 4% &nbsp;&nbsp;&nbsp;&nbsp;2) 폐기물 : 12% &nbsp;&nbsp;&nbsp;&nbsp;3) 발전소 : 15%  <br>
+            주2) 인입가스유량은 농도계산시 건조가스 기준이므로 수분을 제거한 건조상태의 유량을 입력 <br>
+<br>
+    <div>
+        <span>
+            <button onclick="calculate_nh3()"> Calculation </button>
+        </span>
+        <span>
+            <button onclick="calculate1_nh3()"> Example </button>
+        </span>
+        <span>
+            <button onclick="calculate2_nh3()"> Reset </button>
+        </span>
+    </div>
+            <br>
+<br>
+
+
+
+             2) 계산결과 <br>
+<table>
+    <tr align="center">
+        <th  >구    분</th>
+        <th  width="300px">입력 자료</th>
+        <th  width="200px">비고 <br></th>
+    </tr>
+    <tr align="center">
+        <td width="200px">NOx 제거율 (%)</td>
+        <td align="center" id="calc_nox_elim_nh3"></td>
+        <td></td>
+    </tr>
+    <tr align="center">
+        <td width="200px">암모니아 사용량(kg/h)</td>
+        <td align="center" id="calc_nh3_consumpt_kg_nh3"></td>
+        <td align="center" id="calc_nh3_ref_ratio_nh3"></td>
+    </tr>
+    <tr align="center">
+        <td width="200px">암모니아 사용량(lit/h)</td>
+        <td align="center" id="calc_nh3_consumpt_lit_nh3"></td>
+        <td align="center" id="calc_nh3_ref_ratio1_nh3"></td>
+    </tr>
+    <tr align="center">
+        <td width="300px">Water spray량</td>
+        <td align="center" id="calc_water_spray_nh3"></td>
+        <td ></td>
+
+    </tr>    
+</table>
+<br><br>
+
+
+        <script>
+        function calculate() {
+                // 투입 요소수량 및 희석수 사용량 계산
+                // 사용 변수
+                var input_in_gas_flow;
+                var input_in_gas_o2
+                var input_in_gas_nox;
+                var input_in_gas_nox_o2;
+                var input_out_gas_nox;
+                var input_urea_concen;
+                var input_urea_ratio;
+                var input_mixed_urea_ratio;
+
+                // Layer Dim 초기화
+                document.getElementById("calc_nox_elim_urea").innerHTML = "";
+                document.getElementById("calc_urea_consumpt_kg_urea").innerHTML = "";
+                document.getElementById("calc_urea_ref_ratio_urea").innerHTML = "";
+                document.getElementById("calc_urea_consumpt_lit_urea").innerHTML = "";
+                document.getElementById("calc_urea_ref_ratio1_urea").innerHTML = "";
+                document.getElementById("calc_water_spray_urea").innerHTML = "";
+
+                // input 상자에서 data 가져오기
+                input_in_gas_flow = parseFloat(document.getElementById("input_in_gas_flow").value);
+                input_in_gas_o2 = parseFloat(document.getElementById("input_in_gas_o2").value);
+                input_in_gas_nox = parseFloat(document.getElementById("input_in_gas_nox").value);
+                input_in_gas_nox_o2 = parseFloat(document.getElementById("input_in_gas_nox_o2").value);
+                input_out_gas_nox = parseFloat(document.getElementById("input_out_gas_nox").value);
+                input_urea_concen = parseFloat(document.getElementById("input_urea_concen").value);
+                input_urea_ratio = parseFloat(document.getElementById("input_urea_ratio").value);
+                input_mixed_urea_ratio = parseFloat(document.getElementById("input_mixed_urea_ratio").value);
+                
+                // 투입 요소수량/희석요소수 계산
+                if (!isNaN(input_in_gas_flow)) {
+                    //투입 요소수량 계산
+                    urea_ref_ratio = "@"+input_urea_concen.toFixed(0) + "% urea";
+                    nox_elim_ratio = ((input_in_gas_nox-input_out_gas_nox)/input_in_gas_nox)*100
+                    urea_consumption = (input_in_gas_nox-input_out_gas_nox)*input_in_gas_flow*((21-input_in_gas_o2)/(21-input_in_gas_nox_o2))/(2*22.4)*60/1000000;
+                    urea_consumption_kg = urea_consumption * input_urea_ratio / (input_urea_concen/100)
+                    urea_consumption_lit =urea_consumption_kg * 1.33
+                    water_spray = urea_consumption_kg*input_urea_concen/100/(input_mixed_urea_ratio/100)*(1-(input_mixed_urea_ratio/100));
+                    // 콘솔에 계산결과 나타내기 
+                    console.log("요소수량",urea_consumption,urea_consumption_kg,urea_consumption_lit,water_spray);
+                    // 계산결과를 crt에 뿌려주기기
+                    document.getElementById("calc_nox_elim_urea").innerHTML = nox_elim_ratio.toFixed(3);  // Nox제거율
+                    document.getElementById("calc_urea_ref_ratio_urea").innerHTML = urea_ref_ratio;        // 요소수 농도
+                    document.getElementById("calc_urea_consumpt_kg_urea").innerHTML = urea_consumption_kg.toFixed(3);  // 요소수 사용량(kg)
+                    document.getElementById("calc_urea_ref_ratio1_urea").innerHTML = urea_ref_ratio; 
+                    document.getElementById("calc_urea_consumpt_lit_urea").innerHTML = urea_consumption_lit.toFixed(3); // 요소수 사용량(lit)
+                    document.getElementById("calc_water_spray_urea").innerHTML = water_spray.toFixed(3);   // spray 요소수 농도도
+                }
+            }
+
+        function calculate1() {
+            document.getElementById("input_in_gas_flow").value = 54994;
+            document.getElementById("input_in_gas_o2").value = 4.5;
+            document.getElementById("input_in_gas_nox").value = 9.6628;
+            document.getElementById("input_in_gas_nox_o2").value = 15;
+            document.getElementById("input_out_gas_nox").value = 1.99;
+            document.getElementById("input_urea_concen").value = 40;
+            document.getElementById("input_urea_ratio").value = 1.8;
+            document.getElementById("input_mixed_urea_ratio").value = 5;
+
+            }
+    
+        function calculate2() {
+            document.getElementById("input_in_gas_flow").value = "";
+            document.getElementById("input_in_gas_o2").value = "";
+            document.getElementById("input_in_gas_nox").value = "";
+            document.getElementById("input_in_gas_nox_o2").value = "";
+            document.getElementById("input_out_gas_nox").value = "";
+            document.getElementById("input_urea_concen").value = "";
+            document.getElementById("input_urea_ratio").value = "";
+            document.getElementById("input_mixed_urea_ratio").value = "";
+        }
+
+        function calculate_nh3() {
+            // 투입 요소수량 및 희석수 사용량 계산
+            // 사용 변수
+            var input_in_gas_flow_nh3;
+            var input_in_gas_o2_nh3;
+            var input_in_gas_nox_nh3;
+            var input_in_gas_nox_o2_nh3;
+            var input_out_gas_nox_nh3;
+            var input_nh3_concen_nh3;
+            var input_nh3_ratio_nh3;
+            var input_mixed_nh3_ratio_nh3;
+
+            // Layer Dim 초기화
+            document.getElementById("calc_nox_elim_nh3").innerHTML = "";
+            document.getElementById("calc_nh3_consumpt_kg_nh3").innerHTML = "";
+            document.getElementById("calc_nh3_ref_ratio_nh3").innerHTML = "";
+            document.getElementById("calc_nh3_consumpt_lit_nh3").innerHTML = "";
+            document.getElementById("calc_nh3_ref_ratio1_nh3").innerHTML = "";
+            document.getElementById("calc_water_spray_nh3").innerHTML = "";
+
+            // input 상자에서 data 가져오기
+            input_in_gas_flow = parseFloat(document.getElementById("input_in_gas_flow_nh3").value);
+            input_in_gas_o2 = parseFloat(document.getElementById("input_in_gas_o2_nh3").value);
+            input_in_gas_nox = parseFloat(document.getElementById("input_in_gas_nox_nh3").value);
+            input_in_gas_nox_o2 = parseFloat(document.getElementById("input_in_gas_nox_o2_nh3").value);
+            input_out_gas_nox = parseFloat(document.getElementById("input_out_gas_nox_nh3").value);
+            input_nh3_concen = parseFloat(document.getElementById("input_nh3_concen_nh3").value);
+            input_nh3_ratio = parseFloat(document.getElementById("input_nh3_ratio_nh3").value);
+            input_mixed_nh3_ratio = parseFloat(document.getElementById("input_mixed_nh3_ratio_nh3").value);
+
+            // 투입 암모니아아/희석요소수 계산
+            if (!isNaN(input_in_gas_flow)) {
+                console.log("ok");
+                //투입 암모니아아 계산
+                nh3_ref_ratio = "@"+input_nh3_concen.toFixed(0) + "% NH3";
+                nox_elim_ratio = ((input_in_gas_nox-input_out_gas_nox)/input_in_gas_nox)*100
+                nh3_consumption = (input_in_gas_nox-input_out_gas_nox)*input_in_gas_flow*((21-input_in_gas_o2)/(21-input_in_gas_nox_o2))/(2*22.4)*(2*17)/1000000;
+                nh3_consumption_kg = nh3_consumption * input_nh3_ratio / (input_nh3_concen/100)
+                nh3_consumption_lit =nh3_consumption_kg * 0.88
+                water_spray = nh3_consumption_kg*input_nh3_concen/100/(input_mixed_nh3_ratio/100)*(1-(input_mixed_nh3_ratio/100));
+                console.log(nh3_consumption,input_mixed_nh3_ratio,water_spray)
+                // 콘솔에 계산결과 나타내기 
+                console.log("요소수량",nox_elim_ratio,nh3_consumption_kg,nh3_consumption_lit,water_spray);
+                // 계산결과를 crt에 뿌려주기기
+                document.getElementById("calc_nox_elim_nh3").innerHTML = nox_elim_ratio.toFixed(3);  // Nox제거율
+                document.getElementById("calc_nh3_ref_ratio_nh3").innerHTML = nh3_ref_ratio;        // 요소수 농도
+                document.getElementById("calc_nh3_consumpt_kg_nh3").innerHTML = nh3_consumption_kg.toFixed(3);  // 요소수 사용량(kg)
+                document.getElementById("calc_nh3_ref_ratio1_nh3").innerHTML = nh3_ref_ratio; 
+                document.getElementById("calc_nh3_consumpt_lit_nh3").innerHTML = nh3_consumption_lit.toFixed(3); // 요소수 사용량(lit)
+                document.getElementById("calc_water_spray_nh3").innerHTML = water_spray.toFixed(3);   // spray 요소수 농도도
+            }
+        }
+
+        function calculate1_nh3() {
+            document.getElementById("input_in_gas_flow_nh3").value = 54994;
+            document.getElementById("input_in_gas_o2_nh3").value = 4.5;
+            document.getElementById("input_in_gas_nox_nh3").value = 9.6628;
+            document.getElementById("input_in_gas_nox_o2_nh3").value = 15;
+            document.getElementById("input_out_gas_nox_nh3").value = 1.99;
+            document.getElementById("input_nh3_concen_nh3").value = 25;
+            document.getElementById("input_nh3_ratio_nh3").value = 1.8;
+            document.getElementById("input_mixed_nh3_ratio_nh3").value = 5;
+
+            }
+    
+        function calculate2_nh3() {
+            document.getElementById("input_in_gas_flow_nh3").value = "";
+            document.getElementById("input_in_gas_o2_nh3").value = "";
+            document.getElementById("input_in_gas_nox_nh3").value = "";
+            document.getElementById("input_in_gas_nox_o2_nh3").value = "";
+            document.getElementById("input_out_gas_nox_nh3").value = "";
+            document.getElementById("input_nh3_concen_nh3").value = "";
+            document.getElementById("input_nh3_ratio_nh3").value = "";
+            document.getElementById("input_mixed_nh3_ratio_nh3").value = "";
+        }
+
+
+        </script>
+            <div>
+                <h5>
+                    <br>
+                    <br>
+                    <hr>
+                    <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+    <br>
+
+</body>
+
+</html>
