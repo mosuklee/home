@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>내압검사 기준</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        tr:hover {
+            cursor: default;
+            background: #ecfafc;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            /* border-bottom: 1px solid #2bab0d; */
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+
+            <h1>내압검사 기준 (Hydrostatic/Pneumatic Test)</h1>
+            
+            <br>
+            <h2>배관의 내압검사 기준</h2>
+            <br>
+            <p><h3>적용코드</h3></p>
+            <div>
+            &nbsp;&nbsp;&nbsp;&nbsp; ASME B31.1/31.3<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; - Hydrostatic Test 기준 : Section 137.5.1 / Paragraph 345.4.2 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; - Pneumatic Test 기준 : Section 137.5.2 / Paragraph 345.5 <br>
+            </div>
+            <br>
+            <p><h3>시험방법</h3></p>
+               <b>[수압시험]</b><br>
+            <table>
+                <tr height="30">
+                    <th align="center" width="300">구  분</th>
+                    <th align="center" width="400">압  력</th>
+                    <th align="center" width="350">시  간</th>
+                    <th align="center" width="350">비  고</th>
+                </tr>
+                <tr>
+                    <td align="center">시험압력</td>
+                    <td align="center">≥ 1.5 × 설계압력</td>
+                    <td align="center">≥ 10분</td>
+                    <td align="center">≥ 압력유지 확인</td>
+                </tr>
+                <tr>
+                    <td align="center">누설시험</td>
+                    <td align="center">≥ 1.0 × 설계압력</td>
+                    <td align="center">≥ 10분</td>
+                    <td align="center">≥ 육안검사 수행</td>
+                </tr>
+            </table>
+            <br>
+               <b>[기압시험]</b><br>
+            <table>
+                <tr height="30">
+                    <th align="center" width="300">구  분</th>
+                    <th align="center" width="400">압  력</th>
+                    <th align="center" width="350">시  간</th>
+                    <th align="center" width="350">비  고</th>
+                </tr>
+                <tr>
+                    <td align="center">시험압력</td>
+                    <td align="center">≥ 1.1~1.25 × 설계압력<br>(최대 1.5배 제한)</td>
+                    <td align="center">≥ 10분</td>
+                    <td align="center">≥ 압력유지 확인</td>
+                </tr>
+                <tr>
+                    <td align="center">누설시험</td>
+                    <td align="center">≥ 1.0 × 설계압력</td>
+                    <td align="center">≥ 10분</td>
+                    <td align="center">≥ 육안검사 수행</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <br>
+            <h2>압력용기 내압검사 기준</h2>
+            <br>
+            <p><h3>적용코드</h3></p>
+            <div>
+            &nbsp;&nbsp;&nbsp;&nbsp; ASME BPVC<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; - Hydrostatic Test 기준 :  Sec VIII Div.1/UG-99 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; - Pneumatic Test 기준 : Sec VIII Div.1/UG-100 <br>
+            </div>
+            <br>
+            <p><h3>시험방법</h3></p>
+               <b>[수압시험]</b><br>
+            <table>
+                <tr height="30">
+                    <th align="center" width="300">구  분</th>
+                    <th align="center" width="400">압  력</th>
+                    <th align="center" width="350">시  간</th>
+                    <th align="center" width="350">비  고</th>
+                </tr>
+                <tr>
+                    <td align="center">시험압력</td>
+                    <td align="center">≥ 1.3 × MAWP (최대허용작동압력) <br> 또는 보정식 적용</td>
+                    <td align="center">≥ 10분</td>
+                    <td align="center">≥ 압력유지 확인</td>
+                </tr>
+                <tr>
+                    <td align="center">누설시험</td>
+                    <td align="center">≥ 1.0 x MAWP (최대허용작동압력)</td>
+                    <td align="center">≥ 10분</td>
+                    <td align="center">≥ 육안검사 수행</td>
+                </tr>
+            </table>
+            <br>
+               <b>[기압시험]</b><br>
+            <table>
+                <tr height="30">
+                    <th align="center" width="300">구  분</th>
+                    <th align="center" width="400">압  력</th>
+                    <th align="center" width="350">시  간</th>
+                    <th align="center" width="350">비  고</th>
+                </tr>
+                <tr>
+                    <td align="center">시험압력</td>
+                    <td align="center">≥ 1.1 × MAWP,<br>≤ 1.15 × MAWP</td>
+                    <td align="center">≥ 10분</td>
+                    <td align="center">≥ 압력유지 확인</td>
+                </tr>
+                <tr>
+                    <td align="center">누설시험</td>
+                    <td align="center">≥ 1.0 x MAWP</td>
+                    <td align="center">≥ 10분</td>
+                    <td align="center">≥ 육안검사 수행</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <br>
+            <p><h2>내압검사 보고서</h2></p>
+            내압검사 보고서는 다음과 같은 서류로 구비되어야 한다.
+
+            <div>
+            &nbsp;&nbsp;&nbsp;&nbsp; 작성서류<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; - 내압검사 부위 표시도면 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; - 내압검사 보고서 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; - 내압검사 사진대지 <br>
+            <br>
+           
+
+            <br>
+            <br>
+            <br>
+
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+            </div>
+
+        </div>
+        <div class="flex-box">
+
+        </div>
+        
+        
+    </div>
+
+</body>
+
+</html>
