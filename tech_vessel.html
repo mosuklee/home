@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pressure Vessel</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({            
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}            
+    });
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            /* border-bottom: 1px solid #2bab0d; */
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1> THICKNESS FOR SHELL & 2:1 ELLIPSODIAL HEADS</h1>
+            <h3> 1. 적용코드</h3>
+            <p>Pressure Vessel의 Shell 및 2:1 Ellipsodial Head에 대한 두께는 다음 코드를 기준으로 계산한다.</p>
+                <div><b>
+                &nbsp;&nbsp;ASME Sec.VII Div.1 UG-27(c)*1),(2) <br>
+                &nbsp;&nbsp;ASME Sec.VII Div.1 UG-21(d)
+                </div></b>
+                <br>
+
+            <h3> 2. EQUATION</h3>  
+            <p>위의 코드에 의한 Sell 및 Ellipsodial Head의 Thickness 계산은 다음 Equation을 기준으로 계산한다.</p>  
+
+            <div id="formula">
+                 $ts =  \frac{P R}{S E-0.6\cdot P} + C $ <br>  <br>
+                 $th=  \frac{P D}{(2 \cdot S E)-0.2\cdot P} + C $ &nbsp;&nbsp;( for Ellipsodial Head )<br>
+                <br>
+            </div>
+                &nbsp;&nbsp;여기에서 <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;ts : Required Thickness for Shell <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;th : Rqquired thickness for 2:1 Ellipsodial Head <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;P : Design Pressure <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;R : Inside Radius <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;S : Allowable Stress <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;E : Joint Efficiency <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;C : Corrosion Allowance <br>
+            
+            <h4>1.1 배관이 허용응력 (ANSI B31.3) </h4>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;배관의 허용응력은 <a href="./tech_asme31_3_tableA_1.html">ANSI B31.3 Allowable Stress SE,ksi Metal
+                    Temperature</a> 를 기준으로 계산한다. <br><br> </p>
+               <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;허용응력 = 배관의 허용응력(ksi) x 70.31 (ksi)/(kg/cm3) </b><br>
+            <br>
+            <h4>1.2 이음매 있는 배관의 용접 이음계수(Joint Efficiency) </h4>
+            <table>
+                <tr>
+                    <th align="center" width="800" height="50">이음형태</th>
+                    <th align="center" width="150">용접이음 계수</th>
+                </tr>
+                <tr>
+                    <td><b>. 전기 또는 가스 용융용접 </b> <br>
+                        &nbsp; &nbsp;- 용가제를 사용한 한쪽면 맞대기 용접 <br>
+                        &nbsp; &nbsp;- 용가제를 사용하지 않는 한쪽면 맞대기 용접 <br>
+                        &nbsp; &nbsp;- 용가재 사용유무에 관계없이 양쪽면 맞대기 용접 <br>
+                        &nbsp; &nbsp;- 용가제 사용유무에 관계없이 한쪽면 또는 양쪽면 맞대기 용접의 100% 방사선 <br>
+                        &nbsp;&nbsp; &nbsp; 투과시험 검사를 할 경우 <br>
+                        <b>. 전기 저항 용접</b> <br>
+                    </td>
+                    <td align="center"> <br>
+                        0.8 <br>
+                        0.85 <br>
+                        0.90 <br>
+                        1.00 <br>
+                        <br>
+                        0.85 <br>
+                    </td>
+                </tr>
+            </table>
+
+            <p>주) SMLS 배관의 용접이음 계수 : 1.0</p>
+            <br>
+            <h4> 1.3 Corrsion Allowance</h4>  
+            <p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일반적으로 1~3mm를 적용합니다.</p>  
+
+            <br><br>
+                
+            <h3> 3. Calaulation</h3>  
+
+            <h4> 3.1 Design Data   </h4>
+
+            <!-- Design Data 입력 테이블 -->
+            <table>
+                <tr height="50">
+                    <th align="center" width="300vw"> Description </th>
+                    <th align="center" width="100vw"> UNIT </th>
+                    <th align="center" width="200vw"> Design Value </th>
+                    <th align="center" width="350vw"> Remarks </th>
+                </tr>
+
+
+                <td align="center"> Design Pressure (P) </td>
+                <td align="center"> kgf/cm2 </td>
+                <td align="center"> <input style = "width:4vw; text-align:center" id="dp_input" input value="33.0" style="width:100px">
+                <td align="center"> 설계압력을 입력 </td>
+                </td>
+
+                <tr>
+                    <td align="center"> Allowable Stress (S)</td>
+                    <td align="center"> kg/cm2 </td>
+                    <td align="center"> <input style = "width:4vw; text-align:center"  id="allow_stress_input" input value="1406.2" style="width:100px"> </td>
+                    <td align="center"> <a href="./tech_asme31_3_tableA_1.html">Allowable Stress 참조</a>  </td>
+                </tr>
+                <tr>
+                    <td align="center"> Joint Efficiency (E) </td>
+                    <td align="center"> - </td>
+                    <td align="center"> <input style = "width:4vw; text-align:center"  id="joint_eff_input" input value="0.85" style="width:100px"> </td>
+                    <td align="center">  </td>
+                </tr>
+                <tr>
+                    <td align="center"> Corrosion Allowance (C) </td>
+                    <td align="center"> mm </td>
+                    <td align="center"> <input style = "width:4vw; text-align:center"  id="ca_input" input value="3.0" style="width:100px"> </td>
+                    <td align="center"> 1~3(mm)입력 </td>
+                </tr>
+            </table>
+            <br>
+                <div id="direction" style="width : 60%">
+                    <img src="./image/vessel.jpg" alt="Vessel" width="400" height="300">
+                </div>
+
+
+            
+
+            <!-- Volume 계산용 입력테이블 -->
+
+             <h4>3.2 Geometric Data </h4>
+            <table>
+                <tr height="50">
+                    <th align="center" width="300vw"> Description </th>
+                    <th align="center" width="100vw"> UNIT </th>
+                    <th align="center" width="200vw"> Design Value </th>
+                    <th align="center" width="350vw"> Remarks </th>
+                </tr>
+                <tr>
+                    <td align="center"> Inside Dia (D)</td>
+                    <td align="center"> mm </td>
+                    <td align="center"> <input style = "width:4vw; text-align:center"  id="in_dia_input" input value="1250" style="width:100px"> </td>
+                    <td align="center"> 압력용기의 내경 </td>
+                </tr>
+                <tr>
+                    <td align="center"> Length for End to End (L) </td>
+                    <td align="center"> mm </td>
+                    <td align="center"> <input style = "width:4vw; text-align:center"  id="ete_length_input" input value="1250" style="width:100px"></td>
+                    <td align="center"> 노즐의 끝에서 끝까지 거리 </td>
+                </tr>
+                <tr>
+                    <td align="center"> Height for T.L. to T.L. (H)</td>
+                    <td align="center"> mm </td>
+                    <td align="center"> <input style = "width:4vw; text-align:center"  id="ttot_length_input" input value="2100" style="width:100px"> </td>
+                    <td align="center"> T.L.에서 T.L.까지 거리 </td>
+                </tr>
+                    
+                <tr>
+                    <td align="center"> Inside Dia for Nozzle (d) </td>
+                    <td align="center"> mm </td>
+                    <td align="center"> <input style = "width:4vw; text-align:center"  id="id_nozzle_input" input value="0.0" style="width:100px"> </td>
+                    <td align="center"> 노즐의 내경 (노즐의 체적을 계산하지 않을 경우 0을 입력) </td>
+                </tr>
+
+            </table>
+            <br>
+
+            <!-- 계산 Button 추가 -->
+            <br>
+            
+            <div style="display: flex; justify-content: center; gap: 3vw;">
+                <button onclick="calculate()" style="width:10vw; height:2vw">CALCULATION</button>
+                <button onclick="calculate1()" style="width:10vw; height:2vw">Example</button>
+                <button onclick="calculate2()" style="width:10vw; height:2vw">Reset</button>
+            </div>
+                                                                                                                                       
+
+
+
+            <!-- 입력데이터 단위변환 후 양식에 입력하기 -->
+
+            <!-- Calclation Result 양식 -->
+            <h4>3.3 calculation Results</h4>
+            <table>
+                <tr height="50">
+                    <th align="center" width="300vw"> Description </th>
+                    <th align="center" width="100vw"> UNIT </th>
+                    <th align="center" width="200vw"> Calculation Result </th>
+                    <th align="center" width="350vw"> Remarks </th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        Shell Thickness (ts)
+                    </td>
+                    <td align="center">
+                        mm
+                    </td>
+                    <td id="shell_thk_result" align="center">
+                        -
+                    </td>
+                    <td align="center">
+                        Shell의 두께
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="center">
+                        Head Thickness (th)
+                    </td>
+                    <td align="center">
+                        mm
+                    </td>
+                    <td id="head_thk_result" align="center">
+                        -
+                    </td>
+                    <td align="center">
+                        Head의 두께
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        Tank Volume (th)
+                    </td>
+                    <td align="center">
+                        m3
+                    </td>
+                    <td id="tank_volume_result" align="center">
+                        -
+                    </td>
+                    <td align="center">
+                        Tank 내부 체적(노즐체적 포함)
+                    </td>
+                </tr>
+            </table>
+
+            <br><br><br>
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+
+        <br>
+
+        <!-- Java Script 작성하기-->
+        <script>
+
+            // 전역변수 정의
+            var dp_input;
+            var allow_stress_input;
+            var joint_eff_input;
+            var ca_input;
+
+            var in_dia_input;
+            var ete_length_input;
+            var ttot_length_input;
+            var in_nozzle_input;
+
+            var shell_thk_result;
+            var head_thk_result;
+            var tank_volume;
+
+            // 첫번째 버튼 프로그램
+
+            function calculate() {
+
+                // 두께 및 volume 계산
+                // 1) shell 및 head 두께 계산
+
+                // Id Tag를 이용하여 값을 가져와 변수에 입력하기
+                var dp_input = parseFloat(document.getElementById("dp_input").value);
+                var allow_stress_input = parseFloat(document.getElementById("allow_stress_input").value);
+                var joint_eff_input = parseFloat(document.getElementById("joint_eff_input").value);
+                var ca_input = parseFloat(document.getElementById("ca_input").value);
+
+                var in_dia_input = parseFloat(document.getElementById("in_dia_input").value);
+                var ete_length_input = parseFloat(document.getElementById("ete_length_input").value);
+                var ttot_length_input = parseFloat(document.getElementById("ttot_length_input").value);
+                var id_nozzle_input = parseFloat(document.getElementById("id_nozzle_input").value);
+
+                // (1) Shell 두께 계산
+                // shell_thk_result = ((dp_input*in_dia_input/2)/(allow_stress_input*joint_eff_input-0.6*dp_input))+ca_input
+                // head_thk_result = ((dp_input*in_dia_input)/(2*allow_stress_input-0.2*dp_input))+ca_input
+                var shell_thk_result = ((dp_input*in_dia_input/2)/(allow_stress_input*joint_eff_input-0.6*dp_input))+ca_input
+                var head_thk_result = ((dp_input*in_dia_input)/(2*allow_stress_input-0.2*dp_input))+ca_input
+
+                // (2) Volume 계산하기
+                // tank_volume_result = (3.141592*(in_dia_input*0.01)**2*ttot_length_input*0.001/4)+(2*3.141592*in_dia_input*0.001)**3/24)+(3.141592*id_nozzle_input*0.001)**2*(ete_length_input-in_dia_input)*0.001*1.03/4)
+                var tank_volume_result = (3.141592*(in_dia_input*0.001)**2*ttot_length_input*0.001/4)+(2*3.141592*(in_dia_input*0.001)**3/24)+(3.141592*(id_nozzle_input*0.001)**2*(ete_length_input-in_dia_input)*0.001*1.03/4)
+                // console.log("value",tank_volume_result)
+                // 입력이 완료되었으면 계산값 입력
+                if (!isNaN(shell_thk_result)) {
+                    // 입력창의 force_comb 양식에 comb된 force 값 입력
+                    document.getElementById("shell_thk_result").innerHTML = shell_thk_result.toFixed(1);
+                    document.getElementById("head_thk_result").innerHTML = head_thk_result.toFixed(1);
+                    document.getElementById("tank_volume_result").innerHTML = tank_volume_result.toFixed(1);
+ 
+                }
+            }
+
+            function calculate1() {
+                document.getElementById("dp_input").value = 33.0;
+                document.getElementById("allow_stress_input").value = 1406.2;
+                document.getElementById("joint_eff_input").value = 0.85;
+                document.getElementById("ca_input").value = 3.0;
+                document.getElementById("in_dia_input").value = 1250;
+                document.getElementById("ete_length_input").value = 1250;
+                document.getElementById("ttot_length_input").value = 2100;
+                document.getElementById("id_nozzle_input").value = 0.0;
+
+                }
+        
+            function calculate2() {
+                document.getElementById("dp_input").value = "";
+                document.getElementById("allow_stress_input").value = "";
+                document.getElementById("joint_eff_input").value = "";
+                document.getElementById("ca_input").value = "";
+                document.getElementById("in_dia_input").value = "";
+                document.getElementById("ete_length_input").value = "";
+                document.getElementById("ttot_length_input").value = "";
+                document.getElementById("id_nozzle_input").value = "";
+            }
+
+
+        </script>
+
+</body>
+
+</html>
