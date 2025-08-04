@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>배관 응력해석 적용 CODE</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            /* border-bottom: 1px solid #2bab0d; */
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+
+            <h1>배관 응려해석 관련 적용코드</h1>
+            <br>
+            <h3>배관의 응력해석 적용코드 </h3>
+            <table>
+                <tr>
+                    <th align="center" width="300vw" height="50">구 분</th>
+                    <th align="center" width="400vw">적용코드</th>
+                    <th align="center" width="200vw">비 고</th>
+                </tr>
+                <tr>
+                    <td align="center">POWER PIPING</td>
+                    <td align="center">ASME B31.1</td>
+                    <td align="center">발전소</td>
+                </tr>
+                <tr>
+                    <td align="center">PROCESS PIPING</td>
+                    <td align="center">ASME B31.1</td>
+                    <td align="center">CHEMICAL</td>
+                </tr>
+                <tr>
+                    <td align="center">KOSHA GUIDE</td>
+                    <td align="center">M-105-2012</td>
+                    <td align="center">PSM</td>
+                </tr>
+                 <tr>
+                    <td align="center">PRESSURE VESSEL</td>
+                    <td align="center">ASME Sec.VIII, DIV.2</td>
+                    <td align="center">PRESSURE VESSEL</td>
+                </tr>               
+                <tr>
+                    <td rowspan="2" align="center">석유 및 가스산업</td>
+                    <td align="center">API 650</td>
+                    <td align="center">TANK</td>
+                </tr>
+                <tr>
+                    <td align="center">API 520</td>
+                    <td align="center">안전밸브</td>
+                </tr>
+            </table>
+            <br><br>
+            <h3>회전기기의 적용코드 </h3>
+
+            <table>
+                <tr>
+                    <th align="center" width="300vw" height="50">구 분</th>
+                    <th align="center" width="400vw">적용코드</th>
+                    <th align="center" width="200vw">비 고</th>
+                </tr>
+                <tr>
+                    <td align="center">STEAM TURBINE</td>
+                    <td align="center">NEMA SM23</td>
+                    <td align="center"></td>
+                </tr>
+                <tr>
+                    <td align="center">원심펌프</td>
+                    <td align="center">API 610 (Table 5)</td>
+                    <td align="center"></td>
+                </tr>
+                <tr>
+                    <td align="center">원심식 Compressor</td>
+                    <td align="center">API 617</td>
+                    <td align="center"></td>
+                </tr>
+            </table>
+            <br><br>
+            <h3>압력용기 및 저장탱크의 Nozzle 적용코드 </h3>
+
+            <table>
+                <tr>
+                    <th align="center" width="150vw" height="50">적용코드</th>
+                    <th align="center" width="200vw">상세조항/문서</th>
+                    <th align="center" width="350vw">설명</th>
+                    <th align="center" width="200vw">적용대상</th>
+                </tr>
+                <tr>
+                    <td align="center">API 650</td>
+                    <td align="center">Annex P</td>
+                    <td align="center">노즐에 작용하는 외력 및 모멘트 허용치, 보강패드 설계기준</td>
+                    <td align="center">대형 저압 저장탱크</td>
+                </tr>
+                <tr>
+                    <td align="center">ASME Sec.VIII Div.1</td>
+                    <td align="center">UG-37, UG-45, Appendix 1</td>
+                    <td align="center">압력용기 노즐의 크기, 보강, 평가기준</td>
+                    <td align="center">고압 압력용기</td>
+                </tr>
+                <tr>
+                    <td align="center">WRC 107 /<br> WRC 297</td>
+                    <td align="center">기술보고서</td>
+                    <td align="center">쉘-노즐 접합부의 응력분포 계산(경험식 기반)</td>
+                    <td align="center">쉘 구조물의 노즐 응력</td>
+                </tr>
+                <tr>
+                    <td align="center">KOSHA <br> D-35-2017</td>
+                    <td align="center">본문</td>
+                    <td align="center">상압 저장탱크 설계지침, 노즐 및 철판 응력기준 포함 KOSHA지침서</td>
+                    <td align="center">국내 산업안전 기준</td>
+                </tr> 
+                <tr>
+                    <td align="center">EN 14015</td>
+                    <td align="center">Clause 7.6</td>
+                    <td align="center">유러 저장탱크 설계기준, 노즐 위치 및 보강기준 포함</td>
+                    <td align="center">유럽식 저장탱크</td>
+                </tr>
+                <tr>
+                    <td align="center">API 620</td>
+                    <td align="center">Section 5.10</td>
+                    <td align="center">저온 저장탱크 설계기준, 노즐 응력 및 보강기준 포함</td>
+                    <td align="center">저온/고압 저장탱크</td>
+                </tr>               
+            </table>
+            <br><br>
+
+            <br>
+            <br>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+
+
+</body>
+
+</html>
