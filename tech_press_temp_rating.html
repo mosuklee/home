@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PRESSURE-TEMPERATURE RATINGS</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>
+                Pressure-Tempere Ratings
+            </h1>
+            <br>
+            <br>
+            <h2>
+                Design and Wroking Pressure Calculation
+            </h2>
+            <p> 1. Working Temperature : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input style="width: 5.6vw; height: 1em; text-align: center; font-size: 1em;"
+    type="text"
+    id="temperature"
+    value="38"
+> ℃ <br>
+                2. Application Rating &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="rating"  style="width: 6vw; height: 1.3em; text-align: center; font-size: 1em;">
+                    <option value="150" selected>150#</option>
+                    <option value="300">300#</option>
+                    <option value="600">600#</option>
+                    <option value="900">900#</option>
+                    <option value="1500">1500#</option>
+                    <option value="2500">2500#</option>
+                </select>
+                </select> <br>
+                3. Design Pressure &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a id="design_press"></a>   <br>
+                4. Working Pressure &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="working_press"></a>  <br>
+
+             </p>
+            <button onclick="calculate()" style="width: 20vw; height: 1.5em; padding: 0em; font-size: 1em;"
+> Pressure Rating Calculation </button> <br><br>
+            <br>
+            <h2>
+                ASME B16.5 Table 2-1.1 (2020)
+
+            </h2>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Pipe Flanges and flanged Fittings 
+            <br>
+            <h3>
+                Group 1.1 Materials 
+            </h3>
+                <table>
+                    <tr align="center">
+                        <th colspan="1" rowspan="1" width="200vw">Norminal Designation</th>
+                        <th colspan="1" rowspan="1" width="210vw">Forgings</th>
+                        <th colspan="1" rowspan="1" width="210vw">Castings</th>
+                        <th colspan="1" rowspan="1" width="210vw">Plates</th>
+                    </tr>
+                    <tr align="center">
+                        <td>C-Si</td>
+                        <td>A 105(1)</td>
+                        <td>A 216 Gr. WCB (1)</td>
+                        <td>A 515 Gr. 70 (1)</td>
+                    </tr>
+                    <tr align="center">
+                        <td>C-Mn-Si</td>
+                        <td>A 350 Gr. LF2 (1)</td>
+                        <td></td>
+                        <td>A 516 Gr. 70 (1), (2)</td>
+                    </tr>
+                    <tr align="center">
+                        <td>C-Mn-Si</td>
+                        <td></td>
+                        <td></td>
+                        <td>A 537 Cl. 1 (3)</td>
+                    </tr>
+                    <tr align="center">
+                        <td>C-Mn-Si-V</td>
+                        <td>A 350 Gr. LF6 Cl. 1 (4)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr align="center">
+                        <td>3 1/2 Ni</td>
+                        <td>A 350 Gr. LF3 (5)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                NOTES: <br>
+                (1) Prolonged use above 425°C is permissible but not recommended. Prolonged exposure above 425°C may cause the carbide phase of steel to convert to graphite. <br>
+                (425°C 이상의 장시간 사용은 허용되지만 권장되지는 않습니다. 425°C 이상의 장시간 노출은 강철의 탄화물 상(phase)이 흑연으로 변환될 수 있습니다.) <br>
+                (2) Not to be used over 455°C. <br>
+                (3) Not to be used over 370°C. <br>
+                (4) Not to be used over 260°C. <br>
+                (5) Not to be used over 345°C. <br>
+                <br> 
+            <h3>
+                Working Pressure by Classes, bar
+            </h3>
+
+                <table>
+                    <tr align="center">
+                        <th colspan="2" rowspan="1">Temperature</th>
+                        <th colspan="7" rowspan="1">ANSI B16.5 Rating</th>
+                        <th colspan="1" rowspan="2">Remarks</th>
+                    </tr>
+                    <tr align="center">
+                        <th width="100vw">℉</th>
+                        <th width="100vw">℃</th>
+                        <th width="100vw">150#</th>
+                        <th width="100vw">300#</th>
+                        <th width="100vw">400#</th>
+                        <th width="100vw">600#</th>
+                        <th width="100vw">900#</th>
+                        <th width="100vw">1500#</th>
+                        <th width="100vw">2500#</th>
+                    </tr>
+                    <tr align="center"><td>100</td><td>38</td><td>19.6</td><td>51.1</td><td>68.1</td><td>102.1</td><td>153.2</td><td>255.3</td><td>425.5</td><td></td></tr>
+                    <tr align="center"><td>122</td><td>50</td><td>19.2</td><td>50.1</td><td>66.8</td><td>100.2</td><td>150.4</td><td>250.6</td><td>417.7</td><td></td></tr>
+                    <tr align="center"><td>212</td><td>100</td><td>17.7</td><td>46.6</td><td>62.1</td><td>93.2</td><td>139.8</td><td>233.0</td><td>388.3</td><td></td></tr>
+                    <tr align="center"><td>302</td><td>150</td><td>15.8</td><td>45.1</td><td>60.1</td><td>90.2</td><td>135.2</td><td>225.4</td><td>375.6</td><td></td></tr>
+                    <tr align="center"><td>392</td><td>200</td><td>13.8</td><td>43.8</td><td>58.4</td><td>87.6</td><td>131.4</td><td>219.0</td><td>365.0</td><td></td></tr>
+                    <tr align="center"><td>482</td><td>250</td><td>12.1</td><td>41.9</td><td>55.9</td><td>83.9</td><td>125.8</td><td>209.7</td><td>349.5</td><td></td></tr>
+                    <tr align="center"><td>572</td><td>300</td><td>10.2</td><td>39.8</td><td>53.1</td><td>79.6</td><td>119.5</td><td>199.1</td><td>331.8</td><td></td></tr>
+                    <tr align="center"><td>617</td><td>325</td><td>9.3</td><td>38.7</td><td>51.6</td><td>77.4</td><td>116.1</td><td>193.6</td><td>322.6</td><td></td></tr>
+                    <tr align="center"><td>662</td><td>350</td><td>8.4</td><td>37.6</td><td>50.1</td><td>75.1</td><td>112.7</td><td>187.8</td><td>313.0</td><td></td></tr>
+                    <tr align="center"><td>707</td><td>375</td><td>7.4</td><td>36.4</td><td>48.5</td><td>72.7</td><td>109.1</td><td>181.8</td><td>303.1</td><td></td></tr>
+                    <tr align="center"><td>752</td><td>400</td><td>6.5</td><td>34.7</td><td>46.3</td><td>69.4</td><td>104.2</td><td>173.6</td><td>289.3</td><td></td></tr>
+                    <tr align="center"><td>797</td><td>425</td><td>5.5</td><td>28.8</td><td>38.4</td><td>57.5</td><td>86.3</td><td>143.8</td><td>239.7</td><td></td></tr>
+                    <tr align="center"><td>842</td><td>450</td><td>4.6</td><td>23.0</td><td>30.7</td><td>46.0</td><td>69.0</td><td>115.0</td><td>191.7</td><td></td></tr>
+                    <tr align="center"><td>887</td><td>475</td><td>3.7</td><td>17.4</td><td>23.2</td><td>34.9</td><td>52.3</td><td>87.2</td><td>145.3</td><td></td></tr>
+                    <tr align="center"><td>932</td><td>500</td><td>2.8</td><td>11.8</td><td>15.7</td><td>23.5</td><td>35.3</td><td>58.8</td><td>97.9</td><td></td></tr>
+                    <tr align="center"><td>1000</td><td>538</td><td>1.4</td><td>5.9</td><td>7.9</td><td>11.8</td><td>17.7</td><td>29.5</td><td>49.2</td><td></td></tr>
+</table>
+
+
+                </table>
+            <br>
+
+
+            <br>
+            <br>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+        <script>
+            const data = [
+            { temp: 38, ratings: { "150": 19.6, "300": 51.1, "400": 68.1, "600": 102.1, "900": 153.2, "1500": 255.3, "2500": 425.5 } },
+            { temp: 50, ratings: { "150": 19.2, "300": 50.1, "400": 66.8, "600": 100.2, "900": 150.4, "1500": 250.6, "2500": 417.7 } },
+            { temp: 100, ratings: { "150": 17.7, "300": 46.6, "400": 62.1, "600": 93.2, "900": 139.8, "1500": 233.0, "2500": 388.3 } },
+            { temp: 150, ratings: { "150": 15.8, "300": 45.1, "400": 60.1, "600": 90.2, "900": 135.2, "1500": 225.4, "2500": 375.6 } },
+            { temp: 200, ratings: { "150": 13.8, "300": 43.8, "400": 58.4, "600": 87.6, "900": 131.4, "1500": 219.0, "2500": 365.0 } },
+            { temp: 250, ratings: { "150": 12.1, "300": 41.9, "400": 55.9, "600": 83.9, "900": 125.8, "1500": 209.7, "2500": 349.5 } },
+            { temp: 300, ratings: { "150": 10.2, "300": 39.8, "400": 53.1, "600": 79.6, "900": 119.5, "1500": 199.1, "2500": 331.8 } },
+            { temp: 325, ratings: { "150": 9.3, "300": 38.7, "400": 51.6, "600": 77.4, "900": 116.1, "1500": 193.6, "2500": 322.6 } },
+            { temp: 350, ratings: { "150": 8.4, "300": 37.6, "400": 50.1, "600": 75.1, "900": 112.7, "1500": 187.8, "2500": 313.0 } },
+            { temp: 375, ratings: { "150": 7.4, "300": 36.4, "400": 48.5, "600": 72.7, "900": 109.1, "1500": 181.8, "2500": 303.1 } },
+            { temp: 400, ratings: { "150": 6.5, "300": 34.7, "400": 46.3, "600": 69.4, "900": 104.2, "1500": 173.6, "2500": 289.3 } },
+            { temp: 425, ratings: { "150": 5.5, "300": 28.8, "400": 38.4, "600": 57.5, "900": 86.3, "1500": 143.8, "2500": 239.7 } },
+            { temp: 450, ratings: { "150": 4.6, "300": 23.0, "400": 30.7, "600": 46.0, "900": 69.0, "1500": 115.0, "2500": 191.7 } },
+            { temp: 475, ratings: { "150": 3.7, "300": 17.4, "400": 23.2, "600": 34.9, "900": 52.3, "1500": 87.2, "2500": 145.3 } },
+            { temp: 500, ratings: { "150": 2.8, "300": 11.8, "400": 15.7, "600": 23.5, "900": 35.3, "1500": 58.8, "2500": 97.9 } },
+            { temp: 538, ratings: { "150": 1.4, "300": 5.9, "400": 7.9, "600": 11.8, "900": 17.7, "1500": 29.5, "2500": 49.2 } }
+            ];
+
+            function calculate() {
+            const tempInput = parseFloat(document.getElementById("temperature").value);
+            const ratingInput = document.getElementById("rating").value;
+
+            // Find surrounding temperature points
+            let lower, upper;
+            for (let i = 0; i < data.length - 1; i++) {
+                if (data[i].temp <= tempInput && data[i + 1].temp >= tempInput) {
+                lower = data[i];
+                upper = data[i + 1];
+                break;
+                }
+            }
+            
+
+            if (!lower || !upper) {
+                document.getElementById("design_press").innerText = "Temperature out of range.";
+                return;
+            }
+
+            const t1 = lower.temp;
+            const t2 = upper.temp;
+            const p1 = lower.ratings[ratingInput];
+            const p2 = upper.ratings[ratingInput];
+
+            // console.log(t1,t2,p1,p2)
+
+            // Linear interpolation
+            const designPressure = p1 + ((tempInput - t1) * (p2 - p1)) / (t2 - t1);
+            
+            if ((designPressure * 0.1) < 2.1) {
+                workingPressure = designPressure-2.1
+            } else {
+                workingPressure = designPressure*(1-0.1)
+            }
+            document.getElementById("design_press").innerText = `${designPressure.toFixed(2)} bar`;
+            document.getElementById("working_press").innerText = `${workingPressure.toFixed(2)} bar`;
+
+            }
+        </script>
+
+
+</body>
+
+</html>
