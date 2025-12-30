@@ -148,7 +148,7 @@
 
             <div id="formula">
                 <br>
-                <b> QL = { 2 x 𝜋 x (Ti - To) } / Σ𝑅 
+                <b> QL =  ( Ti - To )  / Σ𝑅 
                 </b>
                 <br>
             </div>
@@ -169,20 +169,20 @@
                 <br>
             </div>
             <br>
-  <div >
-      <div style="width:400px; display: inline-block; position:relative; top: -40px;">
-        여기에서<br>
-        Ri&nbsp : 1 / ( 𝛼i x r1 ) &nbsp;&nbsp;&nbsp;&nbsp; ... Film<br>
-        R1 : LN(R2/R1) / 𝜆1  &nbsp;&nbsp;... Steel<br>
-        R2 : LN(R3/R2) / 𝜆2  &nbsp;&nbsp;... Insulation<br>
-        R3 : LN(R4/R3) / 𝜆3  &nbsp;&nbsp;... Air Gap<br>
-        R4 : LN(R5/R4) / 𝜆4  &nbsp;&nbsp;... Steel<br>
-        Ro : 1 / ( 𝛼o x r5 ) &nbsp;&nbsp;&nbsp;&nbsp;... Film<br>
-      </div>
-      <div style="width:200px; display: inline-block;">
+    <div >
+         <div style="width:400px; display: inline-block; position:relative; top: -40px;"> 
+            여기에서<br>
+            Ri&nbsp : 1 / ( 𝛼i x 2𝜋 x r1 ) &nbsp;&nbsp;&nbsp;&nbsp; ... Film<br>
+            R1 : LN(R2/R1) / ( 𝜆1 x 2𝜋 )  &nbsp;&nbsp;... Steel<br>
+            R2 : LN(R3/R2) / ( 𝜆2 x 2𝜋 )  &nbsp;&nbsp;... Insulation<br>
+            R3 : LN(R4/R3) / ( 𝜆3 x 2𝜋 )  &nbsp;&nbsp;... Air Gap<br>
+            R4 : LN(R5/R4) / ( 𝜆4 x 2𝜋 )  &nbsp;&nbsp;... Steel<br>
+            Ro : 1 / ( 𝛼o x 2𝜋 x r5 ) &nbsp;&nbsp;&nbsp;&nbsp;... Film<br>
+        </div>
+        <div style="width:200px; display: inline-block;">
         <img src="./image/insul_2.jpg" alt="insulation">
-      </div>
-  </div> 
+        </div>
+  </div>
 
   <p>1) Film에서의 열전달율(Heat Transfer Coeffcient) </p>
   <table>
@@ -231,7 +231,7 @@
     </tr>
     <tr>
         <td>&nbsp;Rock Wool</td>
-        <td align="center">0.0384 + 7.13E-5 x t+3.51E-7 x t2</td>
+        <td align="center">0.0384 + 7.13E-5 x t+3.51E-7 x t^2</td>
         <td> </td>
     </tr>
     <tr>
@@ -674,7 +674,7 @@
                 q_loss = (2*Math.PI)*(input_ti-input_to)/sigma_r
                 // console.log("qloss=", q_loss, input_ti, input_to, sigma_r)
                 
-                document.getElementById("sigma_r").innerHTML = sigma_r.toFixed(2);
+                document.getElementById("sigma_r").innerHTML = (sigma_r/(2*Math.PI)).toFixed(2);
                 document.getElementById("q_loss").innerHTML = q_loss.toFixed(2);
 
                 // 표면 온도계산
