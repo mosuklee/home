@@ -285,16 +285,16 @@
 <body>
 <div class="container">
 
-<h1>Process Simulation Program Manual</h1>
-<h4><p style="color:#0f7206; font-size:20px;">M-sys (ver. 1.0)</p></h4>
+<h1>M-sys (Process Simulation Program) Manual</h1>
+<br><br><br>
 
 <!-- ===================== 프로그램 개요 이미지 ===================== -->
 <div style="text-align:center; margin: 24px 0 30px;">
-  <img src="img/program_overview.png" alt="M SYS 프로그램 전체 화면"
+  <img src="img/m-sys_title.jpg" alt="M-sys로고"
        style="width:100%; max-width:950px; border:2px solid #2bab0d; border-radius:6px;
               box-shadow:0 3px 14px rgba(0,0,0,0.18); display:inline-block;">
   <p style="color:#555; font-size:12px; margin-top:8px; margin-bottom:0;">
-    ▲ M SYS 프로그램 전체 화면 (GAS TURBINE CHP. PLANT)
+The copyright of this program and logo belongs to mosuklee@gmail.com.
   </p>
 </div>
 
@@ -341,6 +341,16 @@
 공학적 이론을 바탕으로 한 계산을 수행 후 순차적으로 사용자가 계산하고자 하는 방향을 그림으로 표현한 후
 계산은 Simulator에 내장된 각각의 오브젝트에서 물성을 계산하여 연속계산을 하기 위한 범용 Software입니다.
 </p>
+<!-- ===================== 프로그램 개요 이미지 ===================== -->
+<div style="text-align:center; margin: 24px 0 30px;">
+  <img src="img/program_overview.png" alt="M SYS 프로그램 전체 화면"
+       style="width:100%; max-width:950px; border:2px solid #2bab0d; border-radius:6px;
+              box-shadow:0 3px 14px rgba(0,0,0,0.18); display:inline-block;">
+  <p style="color:#555; font-size:12px; margin-top:8px; margin-bottom:0;">
+    ▲ M SYS 프로그램 전체 화면 (GAS TURBINE CHP. PLANT)
+  </p>
+</div>
+
 
 <h3 id="s12">1.1 사용가능 오브젝트</h3>
 <ol>
@@ -482,11 +492,11 @@
 <h3 id="s32">3.2 turbine</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/turbine.jpg" alt="turbine object" class="object-thumb"></div>
-  <div class="object-desc">turbine 오브젝트는 Expander(팽창기)를 해석하기 위한 오브젝트로, 입구 상태와 단열 팽창 효율 및 출구 압력을 이용해 출구 상태와 발전 출력을 계산합니다.</div>
+  <div class="object-desc">turbine 오브젝트는 Expander를 해석하기 위한 오브젝트로, 입구 상태와 단열 팽창 효율(Adiabatic Efficiency) 및 출구 압력을 이용해 출구 상태와 발전 출력을 계산합니다.</div>
 </div>
 
 <h4>1) 계산 이론</h4>
-<p>turbine의 해석 이론은 등엔트로피 과정을 따르며, 다음 계산 수식을 적용합니다.</p>
+<br>turbine의 해석 이론은 <b>등엔트로피</b> 과정을 따르며, 다음 계산 수식을 적용합니다.</p>
 <div class="formula-box">
 h2' = h1 - (h1 - h2) × Eff
 
@@ -494,7 +504,7 @@ h2' = h1 - (h1 - h2) × Eff
   h1   : 입구 엔탈피 (kcal/kg)
   h2   : 등엔트로피 출구 엔탈피 (kcal/kg)
   h2'  : 실제 출구 엔탈피 (kcal/kg)
-  Eff  : 단열팽창 효율 (소수점)
+  Eff  : 단열팽창 효율 (%)
 </div>
 
 <h4>2) Object Input</h4>
@@ -508,10 +518,11 @@ h2' = h1 - (h1 - h2) × Eff
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>Outlet_press</td><td>kg/cm²</td><td>Turbine 출구압력</td></tr>
-  <tr><td>Adabatic_eff</td><td>%</td><td>터빈의 단열팽창 효율 (%). 숫자를 직접 입력하거나 유량에 따른 회귀식 입력 가능.<br>
+  <tr><td>Outlet_press</td><td>kg/cm²</td><td>Turbine 출구압력(Absolute Pressure)</td></tr>
+  <tr><td>Adabatic_eff</td><td>%</td><td>터빈의 단열팽창 효율 (%). 효율을 숫자로 직접 입력하거나 유량에 따른 회귀식으로 입력 가능.<br>
   예) 숫자: 57.28<br>
-  회귀식: n_flow:637,r_flow:650,y=-0.0000012425*x**2+0.0164815000*x+3.1295</td></tr>
+  회귀식: n_flow:637,r_flow:650,y=-0.0000012425*x**2+0.0164815000*x+3.1295 <br>
+  (n_flow:신규적용 정격용량, r_flow:기존적용 정격용량)</td></tr>
 </table>
   </div>
 </div>
@@ -532,7 +543,7 @@ h2' = h1 - (h1 - h2) × Eff
 
 <h4>1) 계산 이론</h4>
 <p>valve 오브젝트의 해석 이론은 <b>등엔탈피</b> 조건을 따라 해석합니다. 즉 입출구의 엔탈피가 동일한 것으로 가정하고 Properties를 계산합니다.</p>
-<div class="formula-box">h_out = h_in  (등엔탈피 팽창)</div>
+<div class="formula-box">h_out = h_in  (등엔탈피 과정)</div>
 
 <h4>2) Object Input</h4>
 <div class="input-layout">
@@ -543,7 +554,7 @@ h2' = h1 - (h1 - h2) × Eff
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>Outlet_press</td><td>kg/cm²</td><td>출구압력 입력</td></tr>
+  <tr><td>Outlet_press</td><td>kg/cm²</td><td>출구압력 입력(절대압력)</td></tr>
 </table>
   </div>
 </div>
@@ -578,9 +589,11 @@ h2' = h1 - (h1 - h2) × Eff
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
   <tr><td>Split ratio</td><td>0~1 또는 kg/h</td><td>Stream 2로 분기하는 유량 비율 또는 실제 분배량.<br>
-  0~1 사이 입력: 분배 비율 / 1 이상 입력: 실제 분배량 (kg/h) /<br>
-  0~1 사이의 실제 분배량은 F 첨자 사용<br>
-  예) 비율: 0.2 &nbsp;|&nbsp; 실제 분배량: 5.3 &nbsp;|&nbsp; 실제 분배량(0.7 kg/h): F0.7</td></tr>
+  [입력방법] <br>
+  - 0~1 사이 입력 : 분배 비율로 인식 <br>
+  - 1 이상 입력 : 실제 분배량 (kg/h)으로 인식 <br>
+  - 0~1 사이의 실제 분배량은 F 첨자 사용<br>
+    예) 비율: 0.2 &nbsp;|&nbsp; 실제 분배량: 5.3 &nbsp;|&nbsp; 실제 분배량(0.7 kg/h): F0.7</td></tr>
 </table>
   </div>
 </div>
@@ -602,19 +615,54 @@ h2' = h1 - (h1 - h2) × Eff
 <h4>1) 계산 이론</h4>
 <div class="formula-box">
 압력손실 (Head Loss):
-  H_l = f × (l/d) × (v² / 2g)
-
+  H_l = f × (l/d) × (rho x v² / 2)
+  
+  h_l : 압력손실 (Pa)
   f  : 마찰계수 (Friction factor)
   l  : 등가 배관 길이 = l_p + l_e  (m)
+  l_p : 배관의 직선 길이 (m)
+  l_e : Fitting의 등가 길이 (m)
   d  : 배관 내경 (m)
   v  : 유속 (m/s)
-  g  : 9.814 m/s²
 
 마찰계수 (Colebrook-White):
-  1/√f = -2 log( e/D/3.7 + 2.51/(Re × √f) )
 
-  e  : 조도 (m)
+Re 값이 2000미만이면 층류영역
+  f = 64 / Re
+
+Re 값이 2000이상 이면 천이 및 난류영역 (Colebrook-White 공식사용)
+1/√f = -2 log( e/(Dx3.7) + 2.51/(Re × √f) )
+
+  f  : 마찰계수 (Friction factor)
+  e  : 배관의 조도 (m)
+  D  : 배관의 내경 (m)
   Re : 레이놀즈 수(Reynolds Number)
+
+레이놀수 (Reynolds Number):
+  Re = (rho × v × d) / mu
+
+  rho : 유체의 밀도 (kg/m³)
+  v   : 유속 (m/s)
+  d   : 배관 내경 (m)
+  mu  : 유체의 점성계수 (Pa·s = kg/m·s )
+
+열손실 (Heat Loss):
+  Q = (T_in - T_out) / R_total
+  
+  Q       : 열손실 (kcal/h. m)
+  T_in    : 배관 내부 온도 (℃)  
+  T_out   : 배관 외부 온도 (℃)
+  R_total : 총 열저항 (m·h·℃/kcal)
+
+응축수 발생량 (Condensate ):
+  m_cond = Q x L / (hv-hf)
+  
+  m_cond : 응축수 발생량 (kg/h)
+  Q : 열손실 (kcal/h.m)
+  L : 배관의 길이 (m)
+  h_v : 유체의 포화증기 엔탈피 (kcal/kg)
+  h_f: 유체의 포화액 엔탈피 (kcal/kg)
+
 </div>
 
 <h4>2) Object Input</h4>
@@ -631,12 +679,18 @@ h2' = h1 - (h1 - h2) × Eff
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>diameter</td><td>mm</td><td>배관의 내경. 직접 입력 또는 <code>ND</code> 첨자 뒤에 호칭경 기입(15A~1000A)<br>예) 직접: 52.48 / 호칭경: ND50</td></tr>
+  <tr><td>diameter</td><td>mm</td><td>배관의 내경. 직접 입력 또는 <code>ND</code> 첨자 뒤에 호칭경 기입(ND15~ND1000) 1000A 이상은 내경 직접 기입<br>예) 직접: 52.48 / 호칭경: ND50</td></tr>
   <tr><td>length</td><td>m</td><td>배관의 직선 길이</td></tr>
-  <tr><td>Equiv. Len</td><td>m</td><td>Fitting의 등가 길이 (Symbol 입력 가능)</td></tr>
-  <tr><td>Elevation</td><td>m</td><td>배관의 수직 Elevation</td></tr>
+  <tr><td>Equiv. Len</td><td>m</td><td>Fitting의 등가 길이 직접입력 가능 (Symbol 입력시 ":"+수량 입력) <br>
+          예) 직접입력 : 2.5 / Symbol 입력 : ELBOW:2,GATE:1 (90도 엘보 2개+게이트밸브 1개 적용)</td>
+  </td></tr>
+  <tr><td>Elevation</td><td>m</td><td>배관의 수직 Elevation <br> 
+    (배관의 배관의 시작점을 기준한 끝점까지의 높이)</td></tr>
   <tr><td>Roughness</td><td>mm</td><td>배관의 조도. 직접 입력 또는 Symbol 입력<br>예) 직접: 0.045 / Symbol: steel</td></tr>
-  <tr><td>Thermal Resist.</td><td>m·h·℃/kcal</td><td>배관의 열저항. 직접 입력 시 외기온도 10℃ 기준.<br><code>R:8.2,T:10</code> 형식으로 열저항과 외기온도 동시 입력 가능</td></tr>
+  <tr><td>Thermal Resist.</td><td>m·h·℃/kcal</td><td>열저항 직접입력 및 열저항:외기온도 동시입력 가능<br> 
+    열저항을 직접 입력 시 외기온도 10℃ 기준 열손실 계산<br>
+    예)  <code>R:8.2,T:10</code> 
+    (열저항 R=8.2 m·h·℃/kcal, 외기온도 10℃)<br></td></tr>
 </table>
   </div>
 </div>
@@ -695,23 +749,33 @@ h2' = h1 - (h1 - h2) × Eff
 
 <h4>1) 계산 이론</h4>
 <div class="formula-box">
-펌프 동력:
-  P (W) = ρ × g × Q × h / (Eff_p × Eff_m)
-
-  ρ      : 밀도 (kg/m³)
-  g      : 9.814 m/s²
-  Q      : 체적유량 (m³/s)
+소비 동력:
+  P  = m x g × h / (Eff_p × Eff_m)
+  
+  P      : 펌프 동력 (Watt)
+  m      : 유체 질량 (kg/s)
+  g      : 9.80665 m/s²
   h      : 양정 (m)
   Eff_p  : 펌프 효율
   Eff_m  : 모터 효율
 
 엔탈피 상승:
-  Δh (J/kg) = g × h / Eff_p
+  Δh = g × h / Eff_p
+
+  Δh  : 유체의 엔탈피 상승 (j/kg)
+  g      : 9.80665 m/s²
+  h      : 양정 (m)
+  Eff_p  : 펌프 효율
 
 NPSH Available:
-  NPSH_av = ha - hv
-  ha : 입구측 절대압력 수두
-  hv : 포화증기압 수두
+  NPSH_av = ha - hv - hst - hl
+
+  NPSH_av : 입구측 NPSH Available (m)
+
+  ha : 입구측 절대압력 (m)
+  hv : 유체의 포화증기압 수두 (m)
+  hst : 유체의 정압 수두 (프로그램내에서는 이미계산되어 계산생략)
+  hl : 입구측 압력손실 수두 ((프로그램내에는 이미 계산되어 계산생략))
   권장: NPSH_av ≥ 1.1~1.3 × NPSH_re
 </div>
 
@@ -728,7 +792,7 @@ NPSH Available:
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
   <tr><td>Head</td><td>m</td><td>펌프의 양정. 숫자 또는 유량에 따른 회귀식 입력<br>예) 20 / y=-0.000016*x**3+0.000277*x+45.04</td></tr>
   <tr><td>Pump Eff</td><td>%</td><td>펌프의 효율. 숫자 또는 회귀식 입력<br>예) 57.8 / y=-0.000004*x**2+0.034*x-0.657</td></tr>
-  <tr><td>Motor Eff</td><td>%</td><td>모터의 효율. 공란 시 내장 효율표 자동 적용</td></tr>
+  <tr><td>Motor Eff</td><td>%</td><td>모터 효율 직접입력, 공란 시 효율표 자동 적용</td></tr>
 </table>
   </div>
 </div>
@@ -763,14 +827,15 @@ NPSH Available:
   LMTD : 대수 평균 온도차 (℃)
   Eff  : 열교환 효율 (0~1)
 
-병류(Parallel) LMTD:
+LMTD 계산 :
   LMTD = (ΔT1 - ΔT2) / ln(ΔT1 / ΔT2)
+
+Parallel Flow:
   ΔT1 = T_s1_in - T_s2_in,  ΔT2 = T_s1_out - T_s2_out
 
-향류(Counter) LMTD:
+Counter Flow:
   ΔT1 = T_s1_in - T_s2_out,  ΔT2 = T_s1_out - T_s2_in
 
-주) 대용량 열교환기(>5 MW)는 자동으로 병렬 분할하여 계산 오차를 최소화합니다.
 </div>
 
 <h4>2) 포트 구성</h4>
@@ -797,15 +862,15 @@ S1_in → Exchanger → S1_out
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>기본값</th><th>설명</th></tr>
-  <tr><td>Design Basis</td><td>S1_Outlet_T</td><td>설계 기준 선택 (ComboBox)<br>
-    · Stream1: 출구온도(℃) → S1_Outlet_T<br>
-    · Stream2: 출구온도(℃) → S2_Outlet_T<br>
-    · Stream1: 출구 VF(-) → S1_Outlet_X<br>
-    · Stream2: 출구 VF(-) → S2_Outlet_X
+  <tr><td>Design Basis</td><td>S1_Outlet_T</td><td>설계 기준 선택 <br>
+    · Stream1: 출구온도(℃) → Stream1의 출구온도를 알고 있을때<br>
+    · Stream2: 출구온도(℃) → Stream2의 출구온도를 알고 있을때<br>
+    · Stream1: 출구 VF(-) → Stream1의 출구 건도를 알고 있을때<br>
+    · Stream2: 출구 VF(-) → Stream2의 출구 건도를 알고 있을때
   </td></tr>
   <tr><td>Outlet Value</td><td>100.0</td><td>Design Basis에 따른 목표값. 온도(℃) 또는 건도(-)</td></tr>
   <tr><td>U (W/m²·K)</td><td>280</td><td>열관류율 (전열계수)</td></tr>
-  <tr><td>Type</td><td>counter</td><td>유동 형태: <code>counter</code> (향류) 또는 <code>parallel</code> (병류)</td></tr>
+  <tr><td>Type</td><td>counter</td><td>유동 형태: <code>Counter Flow</code>또는 <code>Parallel Flow</code></td></tr>
   <tr><td>Press Drop(S1)</td><td>0.1 kg/cm²</td><td>Stream 1 측 압력강하</td></tr>
   <tr><td>Press Drop(S2)</td><td>0.1 kg/cm²</td><td>Stream 2 측 압력강하</td></tr>
   <tr><td>Efficiency(%)</td><td>100</td><td>열교환 효율 (%)</td></tr>
@@ -844,7 +909,7 @@ S1_in → Exchanger → S1_out
   출구 압력:
     min 선택 시: P_out = min(P1, P2)
     max 선택 시: P_out = max(P1, P2)
-  출구 온도: 혼합 엔탈피와 출구 압력으로부터 CoolProp 물성 계산
+  출구 온도: 혼합 엔탈피와 출구 압력으로부터 물성 계산
 </div>
 
 <h4>2) 포트 구성</h4>
@@ -908,9 +973,9 @@ s1_in ──────────── s1_out (출구)
 <h4>2) 포트 구성</h4>
 <div class="port-diagram">
               s1_out (Vapor, 상단)
-                 ↑
+                    ↑
 s1_in → [VL Separator]
-                 ↓
+                    ↓
               s2_out (Liquid, 하단)
 </div>
 
@@ -940,18 +1005,18 @@ s1_in → [VL Separator]
 <h3 id="s310">3.10 comp</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/comp.jpg" alt="comp object" class="object-thumb"></div>
-  <div class="object-desc">comp 오브젝트는 Compressor/Blower의 압축 계산을 수행하는 오브젝트로, 압축 방식(단열/다방), 효율, 출구 압력 기준으로 출구 상태와 동력을 계산합니다.</div>
+  <div class="object-desc">comp 오브젝트는 Compressor 및 Blower의 압축 계산을 수행하는 오브젝트로, 압축 방식(Adiabatic/Polytropic), 효율, 출구 압력 기준으로 출구 상태와 동력을 계산합니다.</div>
 </div>
 
 <h4>1) 계산 이론</h4>
 <div class="formula-box">
-[단열(Adiabatic) 압축]
+[Adiabatic 과정]
   1. 등엔트로피 출구 상태 계산: s_in = s_out_ideal
   2. 효율 반영 실제 출구 엔탈피:
        h_out = h_in + (h_out_ideal - h_in) / Eff
   3. 실제 출구 온도: h(P_out, T_out) = h_out
 
-[다방(Polytropic) 압축]
+[Polytropic 과정]
   γ   = Cp / Cv  (입구 조건 기준)
   n   = 1 / (1 - (γ-1) / (γ × Eff))
   T_out = T_in × (P_out/P_in)^((n-1)/n)
@@ -975,8 +1040,8 @@ s1_in → [VL Separator]
 <table>
   <tr><th>필드명</th><th>기본값</th><th>설명</th></tr>
   <tr><td>Calculation Mode</td><td>Adiabatic</td><td>계산 방법 선택 (ComboBox)<br>
-    · Adiabatic: 단열 압축<br>
-    · Polytropic: 다방 압축</td></tr>
+    · Adiabatic: Adiabatic 압축과정 해석<br>
+    · Polytropic: Polytropic 압축과정 해석</td></tr>
   <tr><td>Outlet Pressure</td><td>-</td><td>출구 압력 (kg/cm²)</td></tr>
   <tr><td>Calc. Efficiency</td><td>80</td><td>압축 효율 (%)</td></tr>
 </table>
@@ -1008,20 +1073,41 @@ s1_in → [VL Separator]
 냉각용량:
   Q_cool = ṁ_circ × Cp × (T_in - T_out)  (kcal/h)
 
+  Q_cool : 냉각용량 (kcal/h)
+  ṁ_circ : 순환수 유량 (kg/h
+  Cp      : 순환수 비열 (kcal/kg·℃)
+  T_in    : 순환수 입구 온도 (℃)
+  T_out   : 순환수 출구 온도 (℃)
+
 증발량:
   m_evap = Q_cool × η_evap / L_v  (kg/h)
+  
+  m_evap: 증발량 (kg/h)
+  Q_cool : 냉각용량 (kcal/h)
   L_v   : 포화 잠열 (평균온도 기준, kcal/kg)
   η_evap: 증발 효율 (기본 0.75)
 
 드리프트(비산량):
   m_drift = m_circ × 0.002%  (kg/h)
 
+  m_drift : 드리프트 손실량 (kg/h)
+  m_circ  : 순환수 유량 (kg/h)
+  0.002%   : 드리프트 비율 (기본 0.002%)
+
 블로다운:
   m_blowdown = m_evap / (CF - 1)  (kg/h)
+  
+  m_blowdown : 블로다운 유량 (kg/h)
+  m_evap     : 증발량 (kg/h)
   CF : 농축배율 (Concentration Factor)
 
 보급수량 (Makeup):
   m_makeup = m_evap + m_drift + m_blowdown  (kg/h)
+
+  m_makeup : 보급수 필요량 (kg/h)
+  m_evap    : 증발량 (kg/h)
+  m_drift   : 드리프트 손실량 (kg/h)
+  m_blowdown: 블로다운 유량 (kg/h)
 </div>
 
 <h4>2) 포트 구성</h4>
@@ -1073,14 +1159,18 @@ ct_in → [Cooling Tower] → ct_out  (냉각된 물 출구)
 </div>
 
 <h4>1) 계산 이론</h4>
-<p>배기가스의 조성, 온도, 압력을 사용자가 직접 입력하며, CoolProp을 이용하여 엔탈피, 밀도, 비체적 등의 물성을 계산합니다.
-NOx 농도는 배기가스 조성에서 계산된 실제 건조 O₂% 기준으로 다음 오브젝트(SCR 등)에 전달됩니다.</p>
+<p>배기가스의 조성, 온도, 압력을 사용자가 직접 입력하며, 엔탈피, 밀도, 비체적 등의 물성을 계산합니다. <br>
+NOx 농도는 배기가스 조성에서 계산된 Standard 조건(0℃, 1atm, Dry)의 O₂%를 기준으로 다음 계산됩니다.</p>
 <div class="formula-box">
 NOx 환산 (O₂ 기준 보정):
-  NOx_std = NOx_input × (21 - O2_act_dry) / (21 - O2_std)
+  NOx_std = NOx_act × (21 - O2_std) / (21 - O2_act)
 
-  O2_std     : 사용자 입력 기준 O₂ 농도 (건조 %, std)
-  O2_act_dry : 배기가스 조성에서 계산된 실제 건조 O₂ 농도 (%)
+  NOx_std     : 표준상태의 NOx 환산농도 (ppmv)
+  NOx_act     : 배기가스에서 측정된 실제 NOx농도 (ppmv)
+  O2_std      :  표준산소농도 (건조 %, std)
+  - 표준산소농도
+    일반보일러  : 4%,   폐기물관련설비 : 12%,   발전설비 : 15%
+  O2_act      : 배기가스에서 측정(또는 계산된) 실제 건조상태 산소농도 (%)
 </div>
 
 <h4>2) 포트 구성</h4>
@@ -1102,11 +1192,11 @@ NOx 환산 (O₂ 기준 보정):
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>Power Gen</td><td>kW</td><td>발전기 출력 (발전량). 회귀식의 x 변수로도 활용됨</td></tr>
-  <tr><td>EXH.Flow</td><td>kg/h</td><td>배기가스 유량. 숫자 또는 발전량에 따른 회귀식 입력 가능<br>예) 10000 / y=15.2*x+500</td></tr>
+  <tr><td>Power Gen</td><td>kW</td><td>발전기 출력 (발전량)</td></tr>
+  <tr><td>EXH.Flow</td><td>kg/h</td><td>배기가스 유량, 직접입력 또는 발전량에 따른 회귀식 입력 가능<br>예) 10000 / y=15.2*x+500</td></tr>
   <tr><td>EXH.Press</td><td>kg/cm²</td><td>배기가스 출구 압력</td></tr>
-  <tr><td>EXH.Temp</td><td>℃</td><td>배기가스 출구 온도. 숫자 또는 발전량에 따른 회귀식 입력 가능<br>예) 515 / y=0.05*x+480</td></tr>
-  <tr><td>EXH.Comp</td><td>-</td><td>배기가스 조성 (질량분율). [성분]:[값] 형식으로 쉼표 구분<br>예) CO2:4.99,O2:15.758,N2:74.107,H2O:3.887,Ar:1.258</td></tr>
+  <tr><td>EXH.Temp</td><td>℃</td><td>배기가스 출구 온도, 직접입력 또는 발전량에 따른 회귀식 입력 가능<br>예) 515 / y=0.05*x+480</td></tr>
+  <tr><td>EXH.Comp</td><td>-</td><td>배기가스 조성 (질량분율로 입력), [성분]:[값] 형식으로 쉼표 구분<br>예) CO2:4.99,O2:15.758,N2:74.107,H2O:3.887,Ar:1.258</td></tr>
   <tr><td>NOx Emission</td><td>ppmv</td><td>NOx 배출 농도 (사용자 입력 기준 O₂% 기준)</td></tr>
   <tr><td>O2 Conc.</td><td>%</td><td>NOx 기준 O₂ 농도 (건조, %)</td></tr>
 </table>
@@ -1136,18 +1226,55 @@ NOx 환산 (O₂ 기준 보정):
 연소 화학양론:
   연료 성분별 연소:
     탄화수소(CₙHₘ): CₙHₘ + (n + m/4)O₂ → nCO₂ + (m/2)H₂O
-    수소(H₂):        H₂ + 0.5O₂ → H₂O
-    CO:              CO + 0.5O₂ → CO₂
+    [예시]
+    메탄(CH₄)  :        CH₄ + 2O₂ → CO₂ + 2H₂O
+    에탄(C₂H₆) :        C₂H₆ + 3.5O₂ → 2CO₂ + 3H₂O
+    수소(H₂)   :        H₂ + 0.5O₂ → H₂O
+     CO        :         CO + 0.5O₂ → CO₂
 
-발열량:
-  HHV (kcal/kg) = Σ [HHV_mol(i) × ṁ_fuel(i) / M(i)] / ṁ_fuel_total × 0.239 × 1000
-  LHV (kcal/kg) = Σ [LHV_mol(i) × ṁ_fuel(i) / M(i)] / ṁ_fuel_total × 0.239 × 1000
+  이론산소량 계산:
+    O₂_theo = C + (H/4) - (O/2)
+    C : C의 원소별 몰수
+    H : H의 원소별 몰수
+    O : O의 원소별 몰수
+    [예시]
+    CH₄  : O₂_theo = 1 + (4/4) - 0 = 2 mol O₂ / mol CH₄
+    C₂H₆ : O₂_theo = 2 + (6/4) - 0 = 3.5 mol O₂ / mol C₂H₆
+    H₂   : O₂_theo = 0 + (2/4) - 0 = 0.5 mol O₂ / mol H₂
+    CO    : O₂_theo = 0 + (0/4) - (1/2) = -0.5 mol O₂ / mol CO (O₂ 소비)
+ 
+  위 내용을 정리하면
+  CH₄ 1mole을 연소시키려면 2 mol O₂가 필요하며, 이때 CO₂ 1 mol과 H₂O 2 mol이 생성됩니다.
+
+  발열량: 연료의 조성별 발열량 (ISO 6976 기준)
+  ====================================================
+    물질 	HHV_mol (kJ/mol)     HHV_mol (kJ/mol)
+  ====================================================
+    ch4	               890.3	           802.3
+    c2h2	      1300.0	          1220.0
+    c2h4	      1411.0	          1322.0
+    c2h6	      1560.0	          1428.0
+    c3h4	      1880.0	          1760.0
+    c3h6	      2050.0	          1915.0
+    c3h8	      2220.0	          2044.0
+    c4h8	      2740.0	          2550.0
+    c4h10	      2877.0	          2658.0
+    c5h10	      3450.0	          3200.0
+    c5h12	      3580.0	          3320.0
+    c6h6	      3270.0	          3140.0
+    c6h12	      4140.0	          3850.0
+    c6h14	      4270.0	          3970.0
+    c7h8	      3770.0	          3600.0
+    ch3oh	       726.0	           638.0
+    c2h5oh	      1367.0	          1235.0
+    nh3	               317.0	           266.0
+    co	               283.0	           283.0
+    h2	               285.8	           241.8
+  ====================================================
 
 실제 투입 열량:
   Q_eff = LHV_total × (Eff / 100)  (kcal/h)
 
-출구 온도 계산:
-  h(P, T_out) = h_base(P, T_in) + Q_eff / ṁ_total  → 뉴턴-랩슨 + 이분법 수렴
 </div>
 <div class="note-box">
   <b>주의:</b> 입구 배가스의 O₂ 공급량이 연소에 필요한 O₂ 양보다 부족할 경우 계산이 중단됩니다 (산소 부족 오류).
@@ -1170,12 +1297,13 @@ NOx 환산 (O₂ 기준 보정):
 <table>
   <tr><th>필드명</th><th>기본값</th><th>단위</th><th>설명</th></tr>
   <tr><td>Fuel Mass Flow</td><td>-</td><td>kg/h</td><td>연료의 질량 유량</td></tr>
-  <tr><td>Fuel Composition(wt%)</td><td>-</td><td>-</td><td>연료 조성 (질량분율 또는 질량%). [성분]:[값] 형식, 쉼표 구분<br>
-    지원 성분: CH4, C2H6, C3H8, C4H10, H2, CO, CO2, N2, O2, Ar 등<br>
-    예) ch4:90,c2h6:5,c3h8:3,co2:1,n2:1</td></tr>
+  <tr><td>Fuel Composition(wt%)</td><td>-</td><td>-</td><td>연료 조성 직접 입력 (질량분율 또는 질량%)<br>
+          입력방법 : [성분]:[값] 형식, 쉼표 구분<br>
+          예) ch4:90,c2h6:5,c3h8:3,co2:1,n2:1</td></tr>
   <tr><td>Efficiency</td><td>100</td><td>%</td><td>버너 연소 효율 (0~100%)</td></tr>
-  <tr><td>NOx_Emis</td><td>-</td><td>ppmv</td><td>NOx 배출 농도 (직접 지정 시). 공란이면 입력 Stream의 NOx를 통과시킴</td></tr>
-  <tr><td>O2 Conc.</td><td>-</td><td>%</td><td>NOx 기준 O₂ 농도 (건조, %). NOx를 직접 지정 시 함께 입력</td></tr>
+  <tr><td>NOx_Emis</td><td>-</td><td>ppmv</td><td>NOx 배출 농도 직접 입력 <br>
+         (입력하지 않을 경우 입력포트 값 적용)</td></tr>
+  <tr><td>O2 Conc.</td><td>-</td><td>%</td><td>NOx_Emis 입력시 해당 산소농도 입력</td></tr>
 </table>
   </div>
 </div>
@@ -1208,21 +1336,39 @@ NOx 환산 (O₂ 기준 보정):
 <h4>1) 계산 이론</h4>
 <div class="formula-box">
 SCR 반응식 (Urea 기반):
-  CO(NH₂)₂ + H₂O → 2NH₃ + CO₂  (요소수 열분해)
-  4NH₃ + 4NO + O₂ → 4N₂ + 6H₂O  (SCR 반응)
+  [반응식]
+  1) CO(NH₂)₂ + H₂O → 2NH₃ + CO₂                 (요소수 열분해)
+  2) CO(NH₂)₂ + 2NO + 0.5O₂ → 2N₂ + CO₂ + 2H₂O  (요소수 직접 반응)
+  3) NH₃ + 4NO + O₂ → 4N₂ + 6H₂O                  (SCR 반응)
+
+위 반응식중 95%이상 반응이 이어나는 2)번 반응식 기준으로 계산 수행
 
 NOx 제거량:
   NO_removed = (NOx_in - NOx_out) × Q_dry / 1,000,000 / 22.414  (kmol/h)
+  
+  NO_removed : 제거된 NOx 몰수 (kmol/h)
+  NOx_in  : 입구 NOx 농도 (ppmv, 표준 O₂ 기준)
+  NOx_out : 출구 NOx 농도 (ppmv, 표준 O₂
   Q_dry : 건조 배기가스 체적 유량 (Nm³/h)
 
-순수 NH₃ 필요량:
-  NH3_pure = NO_removed × 17.031  (kg/h)  → 1:1 당량비 기준
+NO 제거를 위한 Urea 몰수
+  Urea_mol = NO_removed/2 (kmol/h)
+  * 요소수 1mole을 반응시키기 위해서는 2mole의 NO가 필요함 (CO(NH₂)₂ + 2NO)
+
+순수 Urea 필요량:
+  urea_pure = Urea_mol × 60.06  (kg/h)
 
 요소수 사용량:
-  Urea_solution = NH3_pure × 당량비 / (Urea농도/100) × 환산계수  (kg/h)
+  Urea_solution = urea_pure × 당량비 / (Urea농도/100)  (kg/h)
 
-NOx O₂ 기준 보정:
+주) 위 내용중 NOx_in과 NOx_out은 모두 표준 O₂ 기준 농도로 계산되어야 함.  
+NOx 표준 O₂로 보정하는 방법:
   NOx_std = NOx_actual × (21 - O2_std) / (21 - O2_actual_dry)
+
+대한민국 법령 표준 기준 농도
+  - 일반 보일러     : 4% O₂ 기준
+  - 폐기물 관련 설비 : 12% O₂ 기준
+  - 발전 설비       : 15% O₂ 기준
 </div>
 
 <h4>2) 포트 구성</h4>
@@ -1241,12 +1387,11 @@ NOx O₂ 기준 보정:
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>NOx_Emis(ppmv)</td><td>ppmv</td><td>목표 NOx 출구 농도 (표준 O₂ 기준)</td></tr>
-  <tr><td>O2 Conc.(%)</td><td>%</td><td>NOx 농도의 기준 O₂ 농도 (건조, %)<br>
-  예) 한국 법정 기준: 15% O₂ 기준 → 15 입력</td></tr>
+  <tr><td>NOx_Emis(ppmv)</td><td>ppmv</td><td>배출 NOx 출구 농도 (표준 O₂ 기준)</td></tr>
+  <tr><td>O2 Conc.(%)</td><td>%</td><td>NOx 농도의 기준 O₂ 농도 (건조, %)</td></tr>
   <tr><td>Urea_Constru.(%)</td><td>%</td><td>요소수(Urea 수용액)의 농도 (%)<br>예) AdBlue (32.5%), 일반 요소수 (40~50%)</td></tr>
-  <tr><td>Equiv_Ratio(-)</td><td>-</td><td>당량비 (NH₃/NO 몰비). 기준값 1.0. 실제는 1.0~1.05 범위 적용</td></tr>
-  <tr><td>Spray_Urea_Constru(%)</td><td>%</td><td>분무 요소수에서의 Urea 농도 (%). 추가 희석수 양 계산에 사용</td></tr>
+  <tr><td>Equiv_Ratio(-)</td><td>-</td><td>당량비 직접입력, 기준값 1.0. 실제는 1.0~2.0 범위 적용</td></tr>
+  <tr><td>Spray_Urea_Constru(%)</td><td>%</td><td>배기가스에 직접 분무되는 요소수에서의 Urea 농도 (%)</td></tr>
 </table>
   </div>
 </div>
@@ -1282,14 +1427,30 @@ SCR 반응식 (Ammonia 기반):
 NOx 제거량:
   NO_removed = (NOx_in - NOx_out) × Q_dry / 1,000,000 / 22.414  (kmol/h)
 
+  NO_removed : 제거된 NOx 몰수 (kmol/h)
+  NOx_in  : 입구 NOx 농도 (ppmv, 표준 O₂ 기준)
+  NOx_out : 출구 NOx 농도 (ppmv, 표준 O₂
+  Q_dry : 건조 배기가스 체적 유량 (Nm³/h)
+
+NO 제거를 위한 NH₃ 몰수
+  NH₃_mol = NO_removed (kmol/h)
+  * 암모니아 1mole을 반응시키기 위해서는 1mole의 NO가 필요함 (2NO + 2NH₃)
+
 순수 NH₃ 필요량:
-  NH3_pure = NO_removed × 17.031  (kg/h)  → 1:1 당량비 기준
+  NH3_pure = NH₃_mol × 17.031  (kg/h) 
 
 암모니아 수용액 사용량:
   Ammonia_solution = NH3_pure × 당량비 / (NH₃농도/100)  (kg/h)
 
-수용액 밀도 계산:
-  ρ = ρ_water + (ρ_NH3 - ρ_water) × (농도/100)  ≈ 0.682~1.0 kg/L 범위
+주) 위 내용중 NOx_in과 NOx_out은 모두 표준 O₂ 기준 농도로 계산되어야 함.  
+NOx 표준 O₂로 보정하는 방법:
+  NOx_std = NOx_actual × (21 - O2_std) / (21 - O2_actual_dry)
+
+대한민국 법령 표준 기준 농도
+  - 일반 보일러     : 4% O₂ 기준
+  - 폐기물 관련 설비 : 12% O₂ 기준
+  - 발전 설비       : 15% O₂ 기준
+
 </div>
 
 <h4>2) 포트 구성</h4>
@@ -1307,10 +1468,10 @@ NOx 제거량:
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>NOx_Emis(ppmv)</td><td>ppmv</td><td>목표 NOx 출구 농도 (표준 O₂ 기준)</td></tr>
+  <tr><td>NOx_Emis(ppmv)</td><td>ppmv</td><td>배출 NOx 출구 농도 (표준 O₂ 기준)</td></tr>
   <tr><td>O2 Conc.(%)</td><td>%</td><td>NOx 농도의 기준 O₂ 농도 (건조, %)</td></tr>
-  <tr><td>Ammonia_Constru.(%)</td><td>%</td><td>암모니아 수용액의 NH₃ 농도 (%)<br>예) 25% 암모니아수 → 25 입력</td></tr>
-  <tr><td>Equiv_Ratio(-)</td><td>-</td><td>당량비 (NH₃/NO 몰비). 기준값 1.0</td></tr>
+  <tr><td>Ammonia_Constru.(%)</td><td>%</td><td>암모니아 수용액의 NH₃ 농도 (%)<br>예) 9% 암모니아수 → 9 입력</td></tr>
+  <tr><td>Equiv_Ratio(-)</td><td>-</td><td>당량비 직접입력, 기준값 1.0. 최적범위 0.8~1.2 범위</td></tr>
 </table>
   </div>
 </div>
@@ -1352,7 +1513,7 @@ NOx 제거량:
       <circle cx="108" cy="40" r="4" fill="#9c9c9c" stroke="#2f2f2f" stroke-width="1"></circle>
     </svg>
   </div>
-  <div class="object-desc">note 오브젝트는 Flowsheet에 텍스트 주석(메모)을 추가하기 위한 오브젝트입니다. 포트가 없으며 Simulation 계산에는 참여하지 않습니다.</div>
+  <div class="object-desc">note 오브젝트는 Flowsheet에 텍스트 주석(메모)을 추가하기 위한 오브젝트입니다. </div>
 </div>
 
 <h4>1) Object Input</h4>
@@ -1373,12 +1534,12 @@ NOx 제거량:
   <tr><th>필드명</th><th>기본값</th><th>설명</th></tr>
   <tr><td>Note</td><td>-</td><td>표시할 텍스트 내용 (여러 줄 입력 가능)</td></tr>
   <tr><td>Font Size</td><td>11</td><td>글자 크기 (포인트)</td></tr>
-  <tr><td>Font Color</td><td>black</td><td>글자 색상. 입력 가능 값: black, red, blue, green</td></tr>
-  <tr><td>Alignment</td><td>left</td><td>텍스트 정렬 방식. 입력 가능 값: left, center, right</td></tr>
-  <tr><td>Background Color</td><td>white</td><td>배경 색상. 입력 가능 값: yellow, lightgray, white, 투명</td></tr>
-  <tr><td>Box Line Color</td><td>darkgray</td><td>테두리 색상. 입력 가능 값: darkgray, red, green, black, 투명</td></tr>
-  <tr><td>Size(width)</td><td>100</td><td>노트 박스의 가로 크기 (픽셀)</td></tr>
-  <tr><td>Size(height)</td><td>50</td><td>노트 박스의 세로 크기 (픽셀)</td></tr>
+  <tr><td>Font Color</td><td>black</td><td>글자 색상 입력  (black, red, blue, green)</td></tr>
+  <tr><td>Alignment</td><td>left</td><td>텍스트 정렬 방식 입력 (left, center, right)</td></tr>
+  <tr><td>Background Color</td><td>white</td><td>배경 색상 입력 (yellow, lightgray, white, 투명)</td></tr>
+  <tr><td>Box Line Color</td><td>darkgray</td><td>테두리 색상 입력 (darkgray, red, green, black, 투명)</td></tr>
+  <tr><td>Size(width)</td><td>100</td><td>노트 박스의 가로 크기</td></tr>
+  <tr><td>Size(height)</td><td>50</td><td>노트 박스의 세로 크기</td></tr>
 </table>
   </div>
 </div>
@@ -1387,8 +1548,8 @@ NOx 제거량:
 <ul>
   <li>팔레트에서 note 오브젝트를 Flowsheet로 Drag &amp; Drop하여 생성합니다.</li>
   <li>오브젝트를 더블클릭하면 입력 패널이 활성화되어 텍스트 및 스타일을 설정할 수 있습니다.</li>
-  <li>CALCULA 버튼을 눌러도 note는 계산에 포함되지 않습니다 (표시 전용).</li>
   <li>마우스 드래그로 Flowsheet 내 자유롭게 이동할 수 있습니다.</li>
+  <li>마우스 오른쪽 버튼을 클릭하면 노트의 회전, 맨앞으로 및 맨뒤로 위치를 설정할 수 있습니다.</li>
 </ul>
 
 <!-- ============================== 3.17 properties_table ============================== -->
@@ -1407,17 +1568,13 @@ NOx 제거량:
       <circle cx="108" cy="40" r="4" fill="#9c9c9c" stroke="#2f2f2f" stroke-width="1"></circle>
     </svg>
   </div>
-  <div class="object-desc">properties_table 오브젝트는 Flowsheet에 Stream Properties 값을 표 형태로 표시하는 오브젝트입니다. 여러 Stream의 물성을 한눈에 비교할 수 있습니다.</div>
+  <div class="object-desc">properties_table 오브젝트는 Flowsheet에 Stream Properties 값을 표 형태로 표시하는 오브젝트입니다.<br> 여러 Stream의 물성을 한눈에 비교할 수 있습니다.</div>
 </div>
 
 <h4>1) 주요 기능</h4>
 <ul>
   <li>선택한 MassStream 오브젝트들의 Properties를 동적으로 표 형태로 표시합니다.</li>
   <li>행(Row): Properties 항목 (온도, 압력, 밀도, 엔탈피, 엔트로피, 유량 등)</li>
-  <li>열(Column): 각 Stream 오브젝트 이름</li>
-  <li>열 헤더를 더블클릭하면 Stream을 추가하거나 변경할 수 있습니다.</li>
-  <li>행 헤더를 더블클릭하면 표시할 Properties 항목을 변경할 수 있습니다.</li>
-  <li>CALCULA 후 자동으로 각 Stream의 계산된 Properties가 표에 업데이트됩니다.</li>
 </ul>
 
 <h4>2) 기본 표시 Properties 항목</h4>
@@ -1434,10 +1591,9 @@ NOx 제거량:
 <h4>3) 사용 방법</h4>
 <ul>
   <li>팔레트에서 properties_table 오브젝트를 Flowsheet로 Drag &amp; Drop하여 생성합니다.</li>
-  <li>열 헤더(Column Header)를 더블클릭하여 표시할 Stream 오브젝트 이름을 입력합니다.</li>
-  <li>행 헤더(Row Header)를 더블클릭하여 표시할 Properties 항목을 변경합니다.</li>
   <li>CALCULA 버튼을 누르면 연결된 Stream의 계산된 Properties가 표에 자동 업데이트됩니다.</li>
   <li>마우스 드래그로 Flowsheet 내 자유롭게 이동할 수 있으며, 테두리를 드래그하여 크기 조절이 가능합니다.</li>
+  <li>마우스 오른쪽 버튼을 클릭하면 properties_table의 회전, 맨앞으로 및 맨뒤로 위치를 설정할 수 있습니다.</li>
 </ul>
 
 <!-- ===================== 참고 ===================== -->
@@ -1455,7 +1611,7 @@ NOx 제거량:
 
 <br>
 <p style="text-align:center; color:#999; font-size:11px; margin-top:48px;">
-  Process Simulation Program — Manual Rev. 1.0 &nbsp;|&nbsp; 2026.03.19
+  M-sys (Process Simulation Program) — Users Manual Rev. 1.0 &nbsp;|&nbsp; 2026.04.03
 </p>
 
 </div>
