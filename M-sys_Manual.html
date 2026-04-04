@@ -451,11 +451,13 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>압력</td><td>kg/cm²</td><td>Stream의 절대압력</td></tr>
-  <tr><td>온도</td><td>℃</td><td>Stream의 섭씨온도 (0℃ 이상 입력). 압력과 온도의 조합으로 나머지 Properties 계산</td></tr>
-  <tr><td>Dryness</td><td>-</td><td>Vapor Fraction(건도). 압력과 건도의 조합으로 Properties 계산. 사용 시 온도 입력필드는 공란으로 둠</td></tr>
-  <tr><td>Flow Rate</td><td>kg/h</td><td>질량유량. 앞에 <code>v</code> 첨자: 체적유량, <code>s</code> 첨자: 표준상태 체적유량<br>예) v100, s100</td></tr>
-  <tr><td>Fluid_id</td><td>-</td><td>유체의 종류. 기본값: water. 복수 성분 시 [Fluid_id]:[조성비] 형식으로 쉼표 구분<br>예) CO2:4.99,O2:15.758,N2:74.107,H2O:3.887,Ar:1.258</td></tr>
+  <tr><td>압력</td><td>kg/cm²</td><td>Stream의 절대압력 입력</td></tr>
+  <tr><td>온도</td><td>℃</td><td>Stream의 섭씨온도 (0℃ 이상 입력)와 압력과의 조합으로 나머지 Properties 계산</td></tr>
+  <tr><td>Dryness</td><td>-</td><td>Vapor Fraction(건도) 입력, 압력과 건도의 조합으로 Properties 계산 <br>
+         Dryness 입력 시 온도 입력필드는 공란</td></tr>
+  <tr><td>Flow Rate</td><td>kg/h</td><td>질량유량 입력, 유량값 앞에 <code>v</code> 첨자: 체적유량 인식, <code>s</code> 첨자: 표준상태 체적유량 인식<br>
+          예) 질량유량 : 100, 체적유량 : v100, 표준유량 : s100</td></tr>
+  <tr><td>Fluid_id</td><td>-</td><td>유체의 종류 입력(기본값: water), symbol 및 화학식 입력 가능 <br> (적용가능 물질 아래 표 참조)</td></tr>
 </table>
   </div>
 </div>
