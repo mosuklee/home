@@ -499,14 +499,21 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 
 <h4>1) 계산 이론</h4>
 <br>turbine의 해석 이론은 <b>등엔트로피</b> 과정을 따르며, 다음 계산 수식을 적용합니다.</p>
-<div class="formula-box">
+<div style="display:flex; gap:16px; align-items:stretch; margin:10px 0;">
+  <div class="formula-box" style="flex:1; margin:0;">
 h2' = h1 - (h1 - h2) × Eff
 
 여기서,
   h1   : 입구 엔탈피 (kcal/kg)
-  h2   : 등엔트로피 출구 엔탈피 (kcal/kg)
-  h2'  : 실제 출구 엔탈피 (kcal/kg)
+  h2   : 등엔트로피 출구 엔탈피 (kcal/kg.℃)
+  h2'  : 실제 출구 엔탈피 (kcal/kg.℃)
   Eff  : 단열팽창 효율 (%)
+  </div>
+  <div style="text-align:center; flex-shrink:0; display:flex; flex-direction:column; justify-content:center; border:1px solid #b8e6b8; border-radius:4px; padding:6px; background:#f5fef3;">
+    <img src="img/turbine_ther.jpg" alt="터빈 열역학 선도"
+         style="max-width:280px; width:100%; border-radius:2px; display:block; flex:1; object-fit:contain;">
+    <p style="color:#555; font-size:11px; margin-top:4px; margin-bottom:0;">▲ 터빈 열역학 선도 (h-s diagram)</p>
+  </div>
 </div>
 
 <h4>2) Object Input</h4>
@@ -960,11 +967,17 @@ s1_in ──────────── s1_out (출구)
 입력 Stream의 건도(Dryness, x)를 기반으로 분리:
 
   기상 출력 (s1_out):
-    유량: m_vapor = m_in × x        (kg/h)
+    유량(vapor)  : m_vapor = m_in × x (kg/h)
+    m_in        : 입력 Stream 유량 (kg/h)
+    x           : 입력 Stream 건도 (Dryness)
+
     상태: 포화 증기 (Dryness = 1.0), 동일 압력
 
   액상 출력 (s2_out):
-    유량: m_liquid = m_in × (1 - x) (kg/h)
+    유량(liquid) : m_liquid = m_in × (1 - x) (kg/h)
+    m_in        : 입력 Stream 유량 (kg/h)
+    x           : 입력 Stream 건도 (Dryness)
+
     상태: 포화 액체 (Dryness = 0.0), 동일 압력
 </div>
 
@@ -974,11 +987,11 @@ s1_in ──────────── s1_out (출구)
 
 <h4>2) 포트 구성</h4>
 <div class="port-diagram">
-              s1_out (Vapor, 상단)
+                 s1_out (Vapor, 상단)
                     ↑
 s1_in → [VL Separator]
                     ↓
-              s2_out (Liquid, 하단)
+                 s2_out (Liquid, 하단)
 </div>
 
 <h4>3) Object Input</h4>
@@ -1017,6 +1030,7 @@ s1_in → [VL Separator]
   2. 효율 반영 실제 출구 엔탈피:
        h_out = h_in + (h_out_ideal - h_in) / Eff
   3. 실제 출구 온도: h(P_out, T_out) = h_out
+     * h_out과 h(P_out, T_out)이 일치하는 T_out 계산 (Newton-Raphson 등 수치해석 활용)
 
 [Polytropic 과정]
   γ   = Cp / Cv  (입구 조건 기준)
@@ -1220,34 +1234,43 @@ NOx 환산 (O₂ 기준 보정):
 <h3 id="s313">3.13 burner</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/burner.jpg" alt="burner object" class="object-thumb"></div>
-  <div class="object-desc">burner 오브젝트는 연료를 입력 배가스(공기 포함)와 연소시켜 배기가스 조성, 유량, 온도를 계산하는 오브젝트입니다. 입력 Stream의 O2를 기준으로 완전 연소 계산을 수행합니다.</div>
+  <div class="object-desc">burner 오브젝트는 버너를 이용하여 연료의 연소 반응을 계산하는 오브젝트로 연료와 공기중의 산소를 이용하거나 배기가스의 산소를 이용하여 연소반응을 해석하고, 배기가스 조성, 유량, 온도를 계산하는 오브젝트입니다. 입력 Stream의 O2를 기준으로 완전 연소를 전제조건으로한 계산을 수행합니다.</div>
 </div>
 
 <h4>1) 계산 이론</h4>
 <div class="formula-box">
-연소 화학양론:
+[연소 화학양론]
   연료 성분별 연소:
-    탄화수소(CₙHₘ): CₙHₘ + (n + m/4)O₂ → nCO₂ + (m/2)H₂O
-    [예시]
-    메탄(CH₄)  :        CH₄ + 2O₂ → CO₂ + 2H₂O
-    에탄(C₂H₆) :        C₂H₆ + 3.5O₂ → 2CO₂ + 3H₂O
-    수소(H₂)   :        H₂ + 0.5O₂ → H₂O
-     CO        :         CO + 0.5O₂ → CO₂
+    탄화수소(CₙHₘ): CₙHₘ + (n + m/4)O₂ → nCO₂ + (m/2)H2O
+    n : 탄소 원자 수
+    m : 수소 원자 수
+    
+    [연소 생성물 예시]
+    메탄(CH4)    :        CH4 + 2O₂     → CO₂  + 2H2O
+    에탄(C2H6)   :        C2H6 + 3.5O₂  → 2CO₂ + 3H2O
+    프로판(C3H8) :        C3H8 + 5O₂    → 3CO₂ + 4H2O
+    부탄(C4H10)  :        C4H10 + 6.5O₂ → 4CO₂ + 5H2O  
+    펜탄(C5H12)  :        C5H12 + 8O₂   → 5CO₂ + 6H2O
+    질소(N2)     :        N2 + 0O₂      → N2 (NOx 생성)
 
   이론산소량 계산:
     O₂_theo = C + (H/4) - (O/2)
     C : C의 원소별 몰수
     H : H의 원소별 몰수
     O : O의 원소별 몰수
-    [예시]
-    CH₄  : O₂_theo = 1 + (4/4) - 0 = 2 mol O₂ / mol CH₄
-    C₂H₆ : O₂_theo = 2 + (6/4) - 0 = 3.5 mol O₂ / mol C₂H₆
-    H₂   : O₂_theo = 0 + (2/4) - 0 = 0.5 mol O₂ / mol H₂
-    CO    : O₂_theo = 0 + (0/4) - (1/2) = -0.5 mol O₂ / mol CO (O₂ 소비)
- 
-  위 내용을 정리하면
-  CH₄ 1mole을 연소시키려면 2 mol O₂가 필요하며, 이때 CO₂ 1 mol과 H₂O 2 mol이 생성됩니다.
 
+    [LNG연료 예시]
+    CH4   : O₂_theo = 1 +  (4/4) - 0 = 2 mol O₂   / mol CH4
+    C2H6  : O₂_theo = 2 +  (6/4) - 0 = 3.5 mol O₂ / mol C2H6
+    C3H8  : O₂_theo = 3 +  (8/4) - 0 = 5 mol O₂   / mol C3H8
+    C4H10 : O₂_theo = 4 + (10/4) - 0 = 6.5 mol O₂ / mol C4H10
+    C5H12 : O₂_theo = 5 + (12/4) - 0 = 8 mol O₂   / mol C5H12
+    N2    : O₂_theo = 0 +  (2/4) - 0 = 0.5 mol O₂ / mol H2
+ 
+  위 내용중 CH4를 정리하면
+  CH4 1mole을 연소시키려면 2 mol O₂가 필요하며, 이때 CO2 1 mol과 H2O 2 mol이 생성됩니다.
+
+[연료의 발열량 기준]
   발열량: 연료의 조성별 발열량 (ISO 6976 기준)
   ====================================================
     물질 	HHV_mol (kJ/mol)     HHV_mol (kJ/mol)
@@ -1274,8 +1297,16 @@ NOx 환산 (O₂ 기준 보정):
     h2	               285.8	           241.8
   ====================================================
 
-실제 투입 열량:
+[burner의 가열 열량]
   Q_eff = LHV_total × (Eff / 100)  (kcal/h)
+  
+    Q_eff     : 버너에서 가열에 실제로 생성된 열량 (kcal/h)
+    LHV_total : 연료의 총 저위 발열량 (kcal/h)
+    Eff       : 연소 효율 (%)
+    * 연료의 계산은 저위발열량 기준으로 수행됩니다. (물의 생성열량 제외)
+
+[덕트버너의 최소 산소 요구량]
+덕트버너 연소시 배기가스내 산소 농도는 연료의 종류에 따라 다르나 최소 2~3%정도 필요하며, 실제운전조건에서는 완전연소를 위해서는 10%이상 산소농도를 확보하는 것이 바람직합니다.
 
 </div>
 <div class="note-box">
