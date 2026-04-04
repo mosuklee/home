@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>NEMA-SM23</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: dimgray;
+            border-style: dotted;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            border-bottom: 1px solid #2bab0d;
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>HEI SURFACE CONDENSER</h1>
+
+            <p id="formula3">
+                본 페이지는 HEI의 SURFACE CONDENSER에서 6.0 VENTING EQUIPMENT CAPACITIES에서 VENTING EQUIPMET의 용량을 선정하기 위하여 발취하여 정리한 자료입니다. 
+            <br><br>
+            Surface Condenser의 Venting Equipment의 용량 선정은 HEI(Heat Exchange Institute, INC. STEAM SURFACE CONDENSERS)의 기준에 따라 다음과 같이
+            선정합니다.
+            </p>
+
+            <h3>6.0 VENTING EQUIPMENT CAPACITIES</h3>
+            <p>
+            6.1.1 Venting equipment must be capable of removing all non-condensibles and associated water vapor from the condenser
+            to produce the minimum steam condensing pressure consistent with physical dimensions and heat transfer and to provide
+            for deaeration of condensate. The sources of the non-condensibles to be removed include, but are not limited to : <br>
+
+            ( Venting Equipment는 컨덴서의 최소 증기응축 압력을 만들고, 응축수의 탈기시 불응축가스 및 관련 증기를 모두 제거할 수 있는 용량이어야 합니다.
+            이에 대한 제거할 비응축물은 다음과 같으며, 다만 이에 국한되지는 않습니다. ) <br><br>
+
+            <h3>6.5 Minimum Recmmended capacities</h3>
+            It is recommended the the capacity of the venting equipment be not less than the values shown in Table 9 at the design
+            suction pressure to insure adequate removal capaicty under commercial operating conditions. <br>
+
+            ( 상용운전조건하에서의 적절한 제거능력을 보장하기 위하여 Venting Equipment의 용량은 설계 흡입압력에서 표 9에 표시된 값 이상이어야 합니다. )<br> <br>
+            <b>6.5.1 Peocedure for Siazing Venting Equipment. (Venting Equipment의 크기 선정과정) </b> <br>
+            <br>
+            6.5.1.1 Determine total steam flow of the unit by adding the main turbine exhaust flow and any auxiliary turbine exhaust flow entering all shells of the condenser.
+            ( Main turbine exhaust 유량과 컨덴서로 들어가는 auxiliary turbine exhaust유량을 더한 값을 Total steam 유량으로 결정합니다. )
+            <br><br>
+            6.5.1.2 Determine the total number of MAIN turbine exhaust opening of all shells. Do not include auxiliary turbine
+            exhaust openings.
+            ( 모든 Shell의 MAIN turbine 배기구의 전체 수를 결정합니다. 보조터빈의 배기구는 포함하지 않습니다. )
+            <br>
+            <br>
+            6.5.1.3 Divide flow obtained in 6.5.1.1 by exhaust opening number obtained in 6.5.1.2. The resultant number is the
+            EFFECTIVE STEAM FLOW EACH MAIN EXHAUST OPENING.
+            ( 6.5.1에서 구한 유량을 6.5.1.2에서 구한 배기구 수로 나눕니다. )
+            <br>
+            <br>
+            6.5.1.4 Enter the appropriate section of Table 9 based on whether unit is a single shell, twin sell or triple shell
+            condenser and locate the flow obtained in Step 6.5.1.3 tin the left vertical culumn.
+            ( 장치가 단일 쉘, 트윈쉘 또는 트리플 쉘 콘덴서인지에 따라 표9의 해당 섹션을 찾고 왼쪽 수직 기둥에서 6.5.1.3 단계에서 얻은 유량값의 해당부분을 찾습니다. )
+            <br>
+            <br>
+            6.5.1.5 Determine TOTAL NUMBER OF EXHAUST OPENINGS for all shells by adding the total number of main trubine exhaust
+            openings to the total number of auxiliary turbines exhausting in the ondenser
+            ( 콘덴서에서 배기되는 Auxilary turbine exhausting의 총수에 Main turbine exhausting의 총수를 더하여 "TOTAL NUMBER OF EXHAUST OPENINGS" 를
+            결정합니다. )
+            <br><br>
+            Split auxiliary turbine exhaust ducts coming from one auxilary turbine count as one auxiliary turbine exhaust.
+            ( 하나의 Auxilary tuebine exhaust로부터 나오는 분할 Auxilary turbine exhaust ducts는 하나의 Auxiliary tuebine exhaust로 계산됩니다. )
+            <br>
+            <br>
+            6.5.1.6 Locate the oppropriate column and capacity using the number obtained in 6.5.1.5
+            ( 6.5.1.5에서 얻은 숫자를 사용하여 적정한 칼럼과 용량을 찾습니다. )
+            <br>
+            <br>
+            6.5.1.7 If inderpendent venting system are utilized for each shell of a multi-shell condenser, the capacity of each
+            system is determined by dividing the total capacith obtained from the appropriate table by the number of indenpendent
+            venting system.
+            <br>
+            ( Multy-shell condenser의 각 쉘에 대하여 독립 Venting system을 구성하는 경우, 각 시스템의 용량은 해당 적정한 표로부터 얻은 총 용량을 독립 venting system으로 나누어
+            결정합니다. )
+            <br>
+            <br>
+
+            <h1>Hogging Equipment의 용량선정</h1>
+            <h3>6.6 Rapid Evacuation Equipment</h3>
+            When starting a turbine, it is desirable to reduce the condenser pressure from atomospheric to some lower value. This
+            can be done by means of single stage ejector or is dependent on the effectiveness of the turbine gland seals, the volume
+            of the condenser shells, turbine casings, and associated ducting as well as the time desired for such reduction. Where
+            specific values are not listed, refer to Table 8.
+            <br>
+            ( 터빈을 기동할때, 컨덴서의 압력을 대기압에서 더 낮은 값으로 낮추는 것이 바람직합니다. 이것은 Single stage ejector를 사용하여 수행할 수 있거나 Turbine Gland Seal의 효율성,
+            Condenser shell, Turbine casing 및 관련 덕트의 부피와 압력의 감소에 필요한 시간에 따라 달라집니다. 특정값이 listed되지 않을 경우 Table 8의 값을 따릅니다. )
+            <br><br>
+            </p>
+            <b>TABLE 8. RAPID EVACUATION EQUIPMENT CAPACITIES</b>
+            <table>
+            <tr>
+                <th align="center" width="500">
+                    Total Steam Condensed <br>
+                    (lbs/hour)
+                </th>
+                <th align="center" width="500">
+                    *SCFM-Dry Air at 10 in HgA <br>
+                    Design Suction Pressure
+                </th>
+            </tr>
+            <tr align="center">
+                <td> Up to 100,000 </td>
+                <td> 50 </td>
+            </tr>
+            <tr align="center">
+                <td> 100,001 to 250,000 </td>
+                <td>100</td>
+            </tr>
+            <tr align="center">
+                <td> 250,001 to 500,000 </td>
+                <td>200</td>
+            </tr>
+            <tr align="center">
+                <td> 500,001 to 1,000,000 </td>
+                <td>350</td>
+            </tr>
+            <tr align="center">
+                <td> 1,000,001 to 2,000,000 </td>
+                <td>700</td>
+            </tr>
+            <tr align="center">
+                <td> 2,000,001 to 3,000,000 </td>
+                <td>1050</td>
+            </tr>
+            <tr align="center">
+                <td> 3,000,001 to 4,000,000 </td>
+                <td>1400</td>
+            </tr>
+            <tr align="center">
+                <td> 4,000,001 to 5,000,000 </td>
+                <td>1750</td>
+            </tr>
+            <tr align="center">
+                <td> 5,000,001 to 6,000,000 </td>
+                <td>2100</td>
+            </tr>
+            <tr align="center">
+                <td> 6,000,001 to 7,000,000 </td>
+                <td>2450</td>
+            </tr>
+            <tr align="center">
+                <td> 7,000,001 to 8,000,000 </td>
+                <td>2800</td>
+            </tr>
+            <tr align="center">
+                <td> 8,000,001 to 9,000,000 </td>
+                <td>3150</td>
+            </tr>
+            <tr align="center">
+                <td> 9,000,001 to 10,000,000 </td>
+                <td>3500</td>
+            </tr>
+
+            </table>
+            NOte : In the range of 500,000 lbs/hr steam condensed and above, the above table provides evacuation of the air in the condenser and I.P. turbine is assumed to be 26 cu ft / 100 lb/hr of steam condensed. <br>
+            *SCFM - 14.7 psia at 70℉ - to convert to lbs/hr. multiply above values by 4.5.            
+            <br>
+            <br>
+            <b>TABLE 9A. VENTING EQUIPMENT CAPACITIES (A. One Condenser Shell)</b>
+            <table style="font-size:0.8em">
+                <tr>
+                    <th rowspan="2" colspan="2">Effective Steam Flow Each <br> Main Exhaust opening
+                        (lbs/hr)
+                    </th>
+                    <th colspan="9">Total Number of Exhaust Openings</th>
+                </tr>
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <th>5</th>
+                    <th>6</th>
+                    <th>7</th>
+                    <th>8</th>
+                    <th>9</th>
+                </tr>
+                <tr>
+                    <td  rowspan="4" width="120"> UP <br> to 25,000 </td>
+                    <td align="right" width="200"> *SCFM </td>
+                    <td align="right">3.0</td>
+                    <td align="right">4.0</td>
+                    <td align="right">5.0</td>
+                    <td align="right">5.0</td>
+                    <td align="right">7.5</td>
+                    <td align="right">7.5</td>
+                    <td align="right">7.5</td>
+                    <td align="right">10.0</td>
+                    <td align="right">10.0</td>
+                </tr>
+                <tr>
+                    <td align="right"> Dry Air (lbs/hr)</td>
+                    <td align="right">13.5</td>
+                    <td align="right">18.0</td>
+                    <td align="right">22.5</td>
+                    <td align="right">22.5</td>
+                    <td align="right">33.8</td>
+                    <td align="right">33.8</td>
+                    <td align="right">33.8</td>
+                    <td align="right">45.0</td>
+                    <td align="right">45.0</td>
+                </tr>
+                <tr>
+                    <td align="right">Water Vapor (lbs/hr)</td>
+                    <td align="right">29.7</td>
+                    <td align="right">39.6</td>
+                    <td align="right">49.5</td>
+                    <td align="right">49.5</td>
+                    <td align="right">74.4</td>
+                    <td align="right">74.4</td>
+                    <td align="right">74.4</td>
+                    <td align="right">99.0</td>
+                    <td align="right">99.0</td>
+                </tr>
+                <tr>
+                    <td align="right">Total Mixture (lbs/hr)</td>
+                    <td align="right">43.2</td>
+                    <td align="right">57.6</td>
+                    <td align="right">72.0</td>
+                    <td align="right">72.0</td>
+                    <td align="right">108.2</td>
+                    <td align="right">108.2</td>
+                    <td align="right">108.2</td>
+                    <td align="right">144.0</td>
+                    <td align="right">144.0</td>
+                </tr>
+ 
+ 
+                <tr>
+                    <td rowspan="4"> 25,001 <br> to 50,000 </td>
+                    <td align="right"> *SCFM </td>
+                    <td align="right">4.0</td>
+                    <td align="right">5.0</td>
+                    <td align="right">7.5</td>
+                    <td align="right">7.5</td>
+                    <td align="right">10.0</td>
+                    <td align="right">10.0</td>
+                    <td align="right">10.0</td>
+                    <td align="right">12.5</td>
+                    <td align="right">12.5</td>
+                </tr>
+                <tr>
+                    <td align="right"> Dry Air (lbs/hr)</td>
+                    <td align="right">18.0</td>
+                    <td align="right">22.5</td>
+                    <td align="right">33.8</td>
+                    <td align="right">33.8</td>
+                    <td align="right">45.0</td>
+                    <td align="right">45.0</td>
+                    <td align="right">45.0</td>
+                    <td align="right">56.2</td>
+                    <td align="right">56.2</td>
+                </tr>
+                <tr>
+                    <td align="right">Water Vapor (lbs/hr)</td>
+                    <td align="right">39.6</td>
+                    <td align="right">49.5</td>
+                    <td align="right">74.4</td>
+                    <td align="right">74.4</td>
+                    <td align="right">99.0</td>
+                    <td align="right">99.0</td>
+                    <td align="right">99.0</td>
+                    <td align="right">123.6</td>
+                    <td align="right">123.6</td>
+                </tr>
+                <tr>
+                    <td align="right">Total Mixture (lbs/hr)</td>
+                    <td align="right">57.6</td>
+                    <td align="right">72.0</td>
+                    <td align="right">108.2</td>
+                    <td align="right">144.0</td>
+                    <td align="right">144.0</td>
+                    <td align="right">144.0</td>
+                    <td align="right">108.2</td>
+                    <td align="right">179.8</td>
+                    <td align="right">179.8</td>
+                </tr>
+ 
+ 
+                <tr>
+                    <td rowspan="4"> 50,001 <br> to 100,000 </td>
+                    <td align="right"> *SCFM </td>
+                    <td align="right">5.0</td>
+                    <td align="right">7.5</td>
+                    <td align="right">10.0</td>
+                    <td align="right">10.0</td>
+                    <td align="right">12.5</td>
+                    <td align="right">12.5</td>
+                    <td align="right">15.0</td>
+                    <td align="right">15.0</td>
+                    <td align="right">15.0</td>
+                </tr>
+                <tr>
+                    <td align="right"> Dry Air (lbs/hr)</td>
+                    <td align="right">22.5</td>
+                    <td align="right">33.8</td>
+                    <td align="right">45.0</td>
+                    <td align="right">45.0</td>
+                    <td align="right">56.2</td>
+                    <td align="right">56.2</td>
+                    <td align="right">67.5</td>
+                    <td align="right">67.5</td>
+                    <td align="right">67.5</td>
+                </tr>
+                <tr>
+                    <td align="right">Water Vapor (lbs/hr)</td>
+                    <td align="right">49.5</td>
+                    <td align="right">74.4</td>
+                    <td align="right">99.0</td>
+                    <td align="right">99.0</td>
+                    <td align="right">123.6</td>
+                    <td align="right">123.6</td>
+                    <td align="right">148.5</td>
+                    <td align="right">148.5</td>
+                    <td align="right">148.5</td>
+                </tr>
+                <tr>
+                    <td align="right">Total Mixture (lbs/hr)</td>
+                    <td align="right">72.0</td>
+                    <td align="right">106.2</td>
+                    <td align="right">144.0</td>
+                    <td align="right">144.0</td>
+                    <td align="right">179.8</td>
+                    <td align="right">179.8</td>
+                    <td align="right">216.0</td>
+                    <td align="right">216.0</td>
+                    <td align="right">216.0</td>
+                </tr>
+
+               <tr>
+                    <td rowspan="4"> 100,001 <br> to 250,000 </td>
+                    <td align="right"> *SCFM </td>
+                    <td align="right">7.5</td>
+                    <td align="right">12.5</td>
+                    <td align="right">12.5</td>
+                    <td align="right">15.0</td>
+                    <td align="right">17.5</td>
+                    <td align="right">20.0</td>
+                    <td align="right">20.0</td>
+                    <td align="right">20.0</td>
+                    <td align="right">25.0</td>
+                </tr>
+                <tr>
+                    <td align="right"> Dry Air (lbs/hr)</td>
+                    <td align="right">33.8</td>
+                    <td align="right">56.2</td>
+                    <td align="right">56.2</td>
+                    <td align="right">67.5</td>
+                    <td align="right">78.7</td>
+                    <td align="right">90.0</td>
+                    <td align="right">90.0</td>
+                    <td align="right">112.5</td>
+                    <td align="right">112.5</td>
+                </tr>
+                <tr>
+                    <td align="right">Water Vapor (lbs/hr)</td>
+                    <td align="right">74.4</td>
+                    <td align="right">123.6</td>
+                    <td align="right">123.6</td>
+                    <td align="right">148.5</td>
+                    <td align="right">173.1</td>
+                    <td align="right">198.0</td>
+                    <td align="right">198.0</td>
+                    <td align="right">247.5</td>
+                    <td align="right">247.5</td>
+                </tr>
+                <tr>
+                    <td align="right">Total Mixture (lbs/hr)</td>
+                    <td align="right">108.2</td>
+                    <td align="right">179.8</td>
+                    <td align="right">179.8</td>
+                    <td align="right">216.0</td>
+                    <td align="right">251.8</td>
+                    <td align="right">288.0</td>
+                    <td align="right">288.0</td>
+                    <td align="right">360.0</td>
+                    <td align="right">360.0</td>
+                </tr>
+
+            <tr>
+                <td rowspan="4"> 250,001 <br> to 500,000 </td>
+                <td align="right"> *SCFM </td>
+                <td align="right">10.0</td>
+                <td align="right">15.0</td>
+                <td align="right">17.5</td>
+                <td align="right">20.0</td>
+                <td align="right">25.0</td>
+                <td align="right">25.0</td>
+                <td align="right">30.0</td>
+                <td align="right">30.0</td>
+                <td align="right">35.0</td>
+            </tr>
+            <tr>
+                <td align="right"> Dry Air (lbs/hr)</td>
+                <td align="right">45.0</td>
+                <td align="right">67.5</td>
+                <td align="right">78.7</td>
+                <td align="right">90.0</td>
+                <td align="right">112.5</td>
+                <td align="right">112.5</td>
+                <td align="right">135.0</td>
+                <td align="right">135.0</td>
+                <td align="right">157.5</td>
+            </tr>
+            <tr>
+                <td align="right">Water Vapor (lbs/hr)</td>
+                <td align="right">99.0</td>
+                <td align="right">148.5</td>
+                <td align="right">173.1</td>
+                <td align="right">198.0</td>
+                <td align="right">247.5</td>
+                <td align="right">247.5</td>
+                <td align="right">297.0</td>
+                <td align="right">297.0</td>
+                <td align="right">346.5</td>
+            </tr>
+            <tr>
+                <td align="right">Total Mixture (lbs/hr)</td>
+                <td align="right">144.0</td>
+                <td align="right">216.0</td>
+                <td align="right">251.8</td>
+                <td align="right">288.0</td>
+                <td align="right">360.0</td>
+                <td align="right">360.0</td>
+                <td align="right">432.0</td>
+                <td align="right">432.0</td>
+                <td align="right">504.0</td>
+            </tr>
+
+            <tr>
+                <td rowspan="4"> 500,001 <br> to 1,000,000 </td>
+                <td align="right"> *SCFM </td>
+                <td align="right">12.5</td>
+                <td align="right">20.0</td>
+                <td align="right">20.0</td>
+                <td align="right">25.0</td>
+                <td align="right">30.0</td>
+                <td align="right">30.0</td>
+                <td align="right">35.0</td>
+                <td align="right">40.0</td>
+                <td align="right">40.0</td>
+            </tr>
+            <tr>
+                <td align="right"> Dry Air (lbs/hr)</td>
+                <td align="right">56.2</td>
+                <td align="right">90.0</td>
+                <td align="right">90.0</td>
+                <td align="right">112.5</td>
+                <td align="right">135.0</td>
+                <td align="right">135.0</td>
+                <td align="right">157.5</td>
+                <td align="right">180.0</td>
+                <td align="right">180.0</td>
+            </tr>
+            <tr>
+                <td align="right">Water Vapor (lbs/hr)</td>
+                <td align="right">123.6</td>
+                <td align="right">198.0</td>
+                <td align="right">198.0</td>
+                <td align="right">247.5</td>
+                <td align="right">297.0</td>
+                <td align="right">297.0</td>
+                <td align="right">346.5</td>
+                <td align="right">396.0</td>
+                <td align="right">396.0</td>
+            </tr>
+            <tr>
+                <td align="right">Total Mixture (lbs/hr)</td>
+                <td align="right">179.8</td>
+                <td align="right">288.0</td>
+                <td align="right">288.0</td>
+                <td align="right">360.0</td>
+                <td align="right">432.0</td>
+                <td align="right">432.0</td>
+                <td align="right">504.0</td>
+                <td align="right">576.0</td>
+                <td align="right">576.0</td>
+            </tr>
+
+
+            <tr>
+                <td rowspan="4"> 1,000,001 <br> to 2,000,000 </td>
+                <td align="right"> *SCFM </td>
+                <td align="right">15.0</td>
+                <td align="right">25.0</td>
+                <td align="right">25.0</td>
+                <td align="right">30.0</td>
+                <td align="right">35.0</td>
+                <td align="right">40.0</td>
+                <td align="right">40.0</td>
+                <td align="right">45.0</td>
+                <td align="right">50.0</td>
+            </tr>
+            <tr>
+                <td align="right"> Dry Air (lbs/hr)</td>
+                <td align="right">67.5</td>
+                <td align="right">112.5</td>
+                <td align="right">112.5</td>
+                <td align="right">135.0</td>
+                <td align="right">157.5</td>
+                <td align="right">180.0</td>
+                <td align="right">180.0</td>
+                <td align="right">202.5</td>
+                <td align="right">225.0</td>
+            </tr>
+            <tr>
+                <td align="right">Water Vapor (lbs/hr)</td>
+                <td align="right">148.5</td>
+                <td align="right">247.5</td>
+                <td align="right">247.5</td>
+                <td align="right">297.0</td>
+                <td align="right">346.5</td>
+                <td align="right">396.0</td>
+                <td align="right">396.0</td>
+                <td align="right">455.5</td>
+                <td align="right">495.0</td>
+            </tr>
+            <tr>
+                <td align="right">Total Mixture (lbs/hr)</td>
+                <td align="right">216.0</td>
+                <td align="right">360.0</td>
+                <td align="right">360.0</td>
+                <td align="right">432.0</td>
+                <td align="right">504.0</td>
+                <td align="right">576.0</td>
+                <td align="right">576.0</td>
+                <td align="right">648.0</td>
+                <td align="right">720.0</td>
+            </tr>
+
+            <tr>
+                <td rowspan="4"> 2,000,001 <br> to 3,000,000 </td>
+                <td align="right"> *SCFM </td>
+                <td align="right">17.5</td>
+                <td align="right">25.0</td>
+                <td align="right">30.0</td>
+                <td align="right">35.0</td>
+                <td align="right">40.0</td>
+                <td align="right">45.0</td>
+                <td align="right">50.0</td>
+                <td align="right">55.0</td>
+                <td align="right">60.0</td>
+            </tr>
+            <tr>
+                <td align="right"> Dry Air (lbs/hr)</td>
+                <td align="right">78.7</td>
+                <td align="right">112.5</td>
+                <td align="right">135.0</td>
+                <td align="right">157.5</td>
+                <td align="right">180.0</td>
+                <td align="right">202.5</td>
+                <td align="right">225.0</td>
+                <td align="right">247.5</td>
+                <td align="right">270.0</td>
+            </tr>
+            <tr>
+                <td align="right">Water Vapor (lbs/hr)</td>
+                <td align="right">173.1</td>
+                <td align="right">247.5</td>
+                <td align="right">297.0</td>
+                <td align="right">346.5</td>
+                <td align="right">396.0</td>
+                <td align="right">445.0</td>
+                <td align="right">495.0</td>
+                <td align="right">544.5</td>
+                <td align="right">594.0</td>
+            </tr>
+            <tr>
+                <td align="right">Total Mixture (lbs/hr)</td>
+                <td align="right">251.8</td>
+                <td align="right">396.0</td>
+                <td align="right">432.0</td>
+                <td align="right">504.0</td>
+                <td align="right">576.0</td>
+                <td align="right">648.0</td>
+                <td align="right">720.0</td>
+                <td align="right">792.0</td>
+                <td align="right">864.0</td>
+            </tr>
+
+                <td rowspan="4"> 3,000,001 <br> to 4,000,000 </td>
+                <td align="right"> *SCFM </td>
+                <td align="right">20.0</td>
+                <td align="right">30.0</td>
+                <td align="right">35.0</td>
+                <td align="right">40.0</td>
+                <td align="right">45.0</td>
+                <td align="right">50.0</td>
+                <td align="right">55.0</td>
+                <td align="right">60.0</td>
+                <td align="right">65.0</td>
+                </tr>
+                <tr>
+                    <td align="right"> Dry Air (lbs/hr)</td>
+                    <td align="right">90.0</td>
+                    <td align="right">135.0</td>
+                    <td align="right">157.5</td>
+                    <td align="right">180.0</td>
+                    <td align="right">202.5</td>
+                    <td align="right">225.0</td>
+                    <td align="right">247.5</td>
+                    <td align="right">270.0</td>
+                    <td align="right">292.5</td>
+                </tr>
+                <tr>
+                    <td align="right">Water Vapor (lbs/hr)</td>
+                    <td align="right">198.0</td>
+                    <td align="right">297.0</td>
+                    <td align="right">346.5</td>
+                    <td align="right">396.0</td>
+                    <td align="right">444.5</td>
+                    <td align="right">495.0</td>
+                    <td align="right">544.5</td>
+                    <td align="right">594.0</td>
+                    <td align="right">613.5</td>
+                </tr>
+                <tr>
+                    <td align="right">Total Mixture (lbs/hr)</td>
+                    <td align="right">288.0</td>
+                    <td align="right">432.0</td>
+                    <td align="right">504.0</td>
+                    <td align="right">576.0</td>
+                    <td align="right">648.0</td>
+                    <td align="right">720.0</td>
+                    <td align="right">792.0</td>
+                    <td align="right">864.0</td>
+                    <td align="right">936.0</td>
+                </tr>
+            </table>
+            * 14.7 psia at 70℉ <br>
+            Note : Those tables are based on air leakage only and the air vapor mixture at 1 inch HgA and 71.5℉
+
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+            
+            </div>
+            
+            <div class="flex-box">
+            
+            </div>
+            
+            <br>
+            
+            </body>
+
+</html>

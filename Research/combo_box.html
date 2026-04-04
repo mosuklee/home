@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <select name="language" onchange="handleOnChange(this)">
+        <option value="">선 택</option>
+        <option value="LNG">LNG</option>
+        <option value="LPG">LPG</option>
+        <option value="FLUE_GAS">FLUE GAS</option>
+        <option value="OTHERS">기 타</option>
+    </select>
+    <div id='result'></div>
+
+    <p id="template">
+
+        <span class="character">화합물</span> : <span class="c">C</span> : <span class="h">H</span>: <span
+            class="o">O</span>: <span class="n">N</span>: <span class="s">S</span>
+        <span class="character">화합물</span> : <span class="c">C</span> : <span class="h">H</span>: <span
+            class="o">O</span>: <span class="n">N</span>: <span class="s">S</span>
+    </p>
+
+    <h1>GAS VOLUME / WEIGHT CALCULATION</h1>
+
+    <p id="formula3">
+        본 페이지는 GAS의 Volume Flow을 Mass Flow로 환산하기 위한 페이지 입니다.
+    </p>
+    <br>
+    <h3>분자(molecule)의 분자량(molecular weight) 계산</h3>
+    <table>
+        <tr>
+            <td width="120vw" class="table_head" align="center">FOUMLA</td>
+            <td width="120vw" class="table_head" align="center">C</td>
+            <td width="120vw" class="table_head" align="center">H</td>
+            <td width="120vw" class="table_head" align="center">O</td>
+            <td width="120vw" class="table_head" align="center">N</td>
+            <td width="120vw" class="table_head" align="center">S</td>
+            <td width="120vw" class="table_head" align="center">TOTAL</td>
+        </tr>
+        <tr>
+            <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_formula"></td>
+            <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_c"></td>
+            <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_h"></td>
+            <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_o"></td>
+            <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_n"></td>
+            <td align="center"><input style="width:3vw; text-align:center" type="text" id="input_1_s"></td>
+            <td align="center" id="input_1_tot"></td>
+        </tr>
+    </table>
+    <script>
+
+
+        // Combo box 구연
+
+        function handleOnChange(e) {
+            // 선택된 데이터 가져오기
+            var gas_kind = e.value;
+
+            // 데이터 출력
+            document.getElementById('result').innerText
+                = gas_kind;
+
+            //console.log(value);
+
+
+            // 데이터 읽기
+            var req = new XMLHttpRequest();
+
+            req.onreadystatechange = function a() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var gas = JSON.parse(this.response);
+                    // gas에 있는 JSON파일을 해당변수에 입력하기 ( gas data가 이구간내 지역변수임)
+                    // formula
+
+                    input_1_formula = gas[gas_kind][0].formula;
+                    // input_2_formula = gas[gas_kind][1].formula;
+
+                    document.getElementById("input_1_formula").value = input_1_formula;
+
+
+                    console.log(input_1_formula);
+                }
+            }
+            req.open("GET", "./json_example.json");
+            req.send();
+            // 데이터 읽기 끝.
+            // alert(formula_1, 0)
+            // 물성값 넣기
+
+        }
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

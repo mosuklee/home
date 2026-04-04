@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            text-align: center;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #301e4e;
+        }
+
+        .content {
+            width: 200px;
+            height: 50px;
+            border: 1px solid blue;
+            font-family: system-ui serif;
+            font-size: 2rem;
+            padding: 3rem;
+            border-radius: 1rem;
+            background: coral;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            border: 1px solid #666;
+        }
+
+        hr {
+            border-color: crimson;
+            border-style: dashed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <div>중앙</div>
+    </div>
+
+    <div class="wrapper">
+        <div class="content">중앙</div>
+    </div>
+
+    <table>
+        <tr>
+            <th width="100px"> 번호</th>
+            <th width="200px">이름</th>
+        <tr align="center">
+            <td>1</td>
+            <td>김영희</td>
+        </tr>
+        <tr align="center">
+            <td>1</td>
+            <td>김순자</td>
+        </tr>
+    </table>
+
+    <hr>
+
+
+    <input type='radio' name='gender' value='female' onclick='getGender(event)' />여성
+    <input type='radio' name='gender' value='male' onclick='getGender(event)' />남성
+    <div id='result'></div>
+
+    <script>
+        function getGender(event) {
+            document.getElementById('result').innerText = event.target.value;
+        }
+    </script>
+
+</body>
+
+</html>

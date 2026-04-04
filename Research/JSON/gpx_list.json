@@ -1,0 +1,26 @@
+[
+    {
+        "no": 1,
+        "subject": "런닝맨",
+        "file_name": "runningman_seoul.gpx",
+        "remarks": "런닝맨(서울)"
+    },
+    {
+        "no": 2,
+        "subject": "장화코스",
+        "file_name": "janghwa.gpx",
+        "remarks": "장화코스(서울)"
+    },
+    {
+        "no": 3,
+        "subject": "런닝맨",
+        "file_name": "runningman.gpx",
+        "remarks": "런닝맨 서울코스"
+    },
+    {
+        "no": 4,
+        "subject": "런닝맨",
+        "file_name": "runningman.gpx",
+        "remarks": "런닝맨 서울코스"
+    }
+]

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>STEAM TABLE</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red;  */
+            flex-grow: 1;
+        }
+
+        .subject {
+             /* border: 1px solid red;  */
+            flex-grow: 1;
+             padding-left: 1vw; 
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+             /* border: 1px solid rgb(89, 0, 255);  */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+             /* border: 1px solid red;  */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            border-bottom: 1px solid #2bab0d;
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+        <div class="flex-box content">
+            <h1>STEAM TABLE (IAPWS97)</h1>
+            <br>
+            <h3>INPUT PROPERTY</h3>
+            <table>
+                <tr height="40">
+                    <th align="center" width="350">Property</th>
+                    <th align="center" width="350">Value</th>
+                    <th align="center" width="350">Remarks</th>
+                </tr>
+                <tr>
+                    <td>Pressure (kg/cm2.a)</td>
+                    <td align="center"><input style="width:80px; text-align:center" type="text" id="input_w_s_p" input
+                            value="">
+                    </td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>Temperature (℃)</td>
+                    <td align="center"><input style="width:80px; text-align:center" type="text" id="input_w_s_t" input
+                            value="">
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <button onclick="calculate_water_superheated()"> Calculation </button>
+
+            <br><br>
+            <h3>OUTPUT PROPERTY</h3>
+            <table>
+                <tr height="40">
+                    <th align="center" width="350">Property</th>
+                    <th align="center" width="280">Liquid</th>
+                    <th align="center" width="280">Vapor</th>
+                    <th align="center" width="280">Remarks</th>
+                </tr>
+                <tr>
+                    <td>Pressure (kg/cm2.a)</td>
+                    <td align="center" id="result_w_s_p"></td>
+                    <td align="center" id="result_v_s_p"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Temperature (℃)</td>
+                    <td align="center" id="result_w_s_t"></td>
+                    <td align="center" id="result_v_s_t"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Specific enthalpy (kcal/kg)</td>
+                    <td align="center" id="result_w_s_h"></td>
+                    <td align="center" id="result_v_s_h"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Specific entropy (kcal/kg.℃)</td>
+                    <td align="center" id="result_w_s_s"></td>
+                    <td align="center" id="result_v_s_s"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Specific volume (m3/kg)</td>
+                    <td align="center" id="result_w_s_v"></td>
+                    <td align="center" id="result_v_s_v"></td>
+                    <td></td>
+                </tr>
+
+            </table>
+            <br>
+            <br>
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+    <br>
+
+    <script>
+
+        function calculate_water_superheated() {
+
+            var input_p;
+            var input_t;
+            var input_h;
+            var input_s;
+            var input_v;
+            var result_w_s;
+            var result_w_s_p;
+            var result_w_s_t;
+            var result_w_s_h;
+            var result_w_s_s;
+            var result_w_s_v;
+
+            var result_v_s;
+            var result_v_s_p;
+            var result_v_s_t;
+            var result_v_s_h;
+            var result_v_s_s;
+            var result_v_s_v;
+
+            document.getElementById("result_w_s_p").innerHTML = "";
+            document.getElementById("result_w_s_t").innerHTML = "";
+            document.getElementById("result_w_s_h").innerHTML = "";
+            document.getElementById("result_w_s_s").innerHTML = "";
+            document.getElementById("result_w_s_v").innerHTML = "";
+
+            document.getElementById("result_v_s_p").innerHTML = "";
+            document.getElementById("result_v_s_t").innerHTML = "";
+            document.getElementById("result_v_s_h").innerHTML = "";
+            document.getElementById("result_v_s_s").innerHTML = "";
+            document.getElementById("result_v_s_v").innerHTML = "";
+
+            // input 상자에서 data 가져오기
+            input_w_s_p = parseFloat(document.getElementById("input_w_s_p").value);
+            input_w_s_t = parseFloat(document.getElementById("input_w_s_t").value);
+
+            if (!isNaN(input_w_s_p) & input_w_s_t > 0) {
+                input_w_s_t = input_w_s_t + 273.15;
+                input_w_s_p = input_w_s_p * 0.0980665;
+            } else {
+                input_w_s_p = input_w_s_p * 0.0980665;
+                input_w_s_t = NeutriumJS.thermo.IAPWS97.PT.r4_P_Tsat(input_w_s_p);
+                input_w_s_t_index = NeutriumJS.thermo.IAPWS97.PT.r4_P_Tsat(input_w_s_p)-273.15;
+            }
+
+            // 스팀 상태값 계산
+            result_w_s = NeutriumJS.thermo.IAPWS97.PT.solve(input_w_s_p, input_w_s_t - 0.000000000001);
+            result_v_s = NeutriumJS.thermo.IAPWS97.PT.solve(input_w_s_p, input_w_s_t + 0.000000000001);
+
+            // 스팀 상태값의 Object 추출(h: 엔탈피, s : 엔트로피, v : 비체적)
+            result_w_s_p = result_w_s.p / 0.0980665;
+            result_w_s_t = result_w_s.t - 273.15;
+            result_w_s_h = result_w_s.h / 4.184;
+            result_w_s_s = result_w_s.s / 4.184;
+            result_w_s_v = result_w_s.v;
+
+            result_v_s_p = result_v_s.p / 0.0980665;
+            result_v_s_t = result_v_s.t - 273.15;
+            result_v_s_h = result_v_s.h / 4.184;
+            result_v_s_s = result_v_s.s / 4.184;
+            result_v_s_v = result_v_s.v;
+
+            // 계산된 결과를 web에 뿌리기
+            if (input_w_s_t_index.toFixed(2) == result_v_s_t.toFixed(2)) {
+                document.getElementById("result_w_s_p").innerHTML = result_w_s_p.toFixed(2);
+                document.getElementById("result_w_s_t").innerHTML = result_w_s_t.toFixed(2);
+                document.getElementById("result_w_s_h").innerHTML = result_w_s_h.toFixed(2);
+                document.getElementById("result_w_s_s").innerHTML = result_w_s_s.toFixed(2);
+                document.getElementById("result_w_s_v").innerHTML = result_w_s_v.toFixed(5);
+            }            
+                document.getElementById("result_v_s_p").innerHTML = result_v_s_p.toFixed(2);
+                document.getElementById("result_v_s_t").innerHTML = result_v_s_t.toFixed(2);
+                document.getElementById("result_v_s_h").innerHTML = result_v_s_h.toFixed(2);
+                document.getElementById("result_v_s_s").innerHTML = result_v_s_s.toFixed(2);
+                document.getElementById("result_v_s_v").innerHTML = result_v_s_v.toFixed(5);
+        }
+
+    </script>
+
+</body>
+
+</html>

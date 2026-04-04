@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 810px;
+            /* border: 3px solid blue; */
+        }
+
+        td {
+            padding: 5px;
+            border: 1px solid #666;
+        }
+
+        body {
+            height: 80vh;
+            display: grid;
+            justify-content: center;
+            /* align-items: center; */
+            background: #f3f1f5;
+            /* border: 3px solid blue; */
+        }
+
+        .item_name {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1> NEMA SM-23 GUIDE LINE CHECK</h1>
+    <h3> 1. Result of Stress Analysis</h3>
+    <h4> (1) Inlet Steam Nozzle</h4>
+    <h4 id="force_inlet_check"></h4>
+    <table>
+        <tr>
+            <td class="item_name" width="200px">
+                PIPE DIRECTION
+            </td>
+            <td width="200px">
+                FORCE(kgf)
+            </td>
+            <td width="200px">
+                MOMENT(kgf.cm)
+            </td>
+            <td class="item_name" width="200px">
+                TURBINE DIRECTION
+            </td>
+        <tr>
+            <td class="item_name">
+                X
+            </td>
+            <td>
+                <input type="text" id="x_inlet_force">
+            </td>
+            <td>
+                <input type="text" id="x_inlet_moment">
+            </td>
+            <td>
+                Z
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                Y
+            </td>
+            <td>
+                <input type="text" id="y_inlet_force">
+            </td>
+            <td>
+                <input type="text" id="y_inlet_moment">
+            </td>
+            <td>
+                Y
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                Z
+            </td>
+            <td>
+                <input type="text" id="z_exhaust_force">
+            </td>
+            <td>
+                <input type="text" id="z_inlet_moment">
+            </td>
+            <td>
+                -X
+            </td>
+        </tr>
+        </tr>
+
+        <h4 id="force_inlet_comb"></h4>
+        <h4 id="force_inlet_moment"></h4>
+        <h4 id="force_inlet_check"></h4>
+
+    </table>
+    <h4> (2) Exhaust Nozzle</h4>
+    <table>
+        <tr>
+            <td class="item_name" width="200px">
+                PIPE DIRECTION
+            </td>
+            <td width="200px" align="center">
+                FORCE(kgf)
+            </td>
+            <td width="200px" align="center">
+                MOMENT(kgf.cm)
+            </td>
+            <td class="item_name" width="200px" align="center">
+                TURBINE DIRECTION
+            </td>
+        <tr>
+            <td class="item_name">
+                X
+            </td>
+            <td align="center">
+                <input type="text" id="x_exhaust_force">
+            </td>
+            <td align="center">
+                <input type="text" id="x_exhaust_moment">
+            </td>
+            <td align="center">
+                Z
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                Y
+            </td>
+            <td align="center">
+                <input type="text" id="y_exhaust_force">
+            </td>
+            <td align="center">
+                <input type="text" id="y_exhaust_moment">
+            </td>
+            <td align="center">
+                Y
+            </td>
+        </tr>
+        <tr>
+            <td class="item_name">
+                Z
+            </td>
+            <td align="center">
+                <input type="text" id="z_exhaust_force">
+            </td>
+            <td align="center">
+                <input type="text" id="z_exhaust_moment">
+            </td>
+            <td>
+                -X
+            </td>
+        </tr>
+        </tr>
+
+        <h4 id="force_exhaust_comb"></h4>
+        <h4 id="force_exhaust_moment"></h4>
+
+    </table>
+    </div>
+
+    <button onclick="calculate()"> Calculate </button>
+
+
+    <script>
+        function calculate() {
+            // inlet steam Nozzle //
+            var x_inlet_force = parseFloat(document.getElementById("x_inlet_force").value)
+            var y_inlet_force = parseFloat(document.getElementById("y_inlet_force").value)
+            var z_inlet_force = parseFloat(document.getElementById("z_inlet_force").value)
+
+            var x_inlet_moment = parseFloat(document.getElementById("x_inlet_moment").value)
+            var y_inlet_moment = parseFloat(document.getElementById("y_inlet_moment").value)
+            var z_inlet_moment = parseFloat(document.getElementById("z_inlet_moment").value)
+
+            var x_inlet_force_comb = Math.sqrt(Math.pow(x_inlet_force, 2) + Math.pow(y_inlet_force, 2) + Math.pow(z_inlet_force, 2))
+            var x_inlet_moment_comb = Math.sqrt(Math.pow(x_inlet_moment, 2) + Math.pow(y_inlet_moment, 2) + Math.pow(z_inlet_moment, 2))
+
+            if (!isNaN(x_inlet_force_comb)) {
+                document.getElementById("force_inlet_comb").innerHTML = "FORCE_COMB " + x_inlet_force_comb;
+            }
+            if (!isNaN(x_inlet_moment_comb)) {
+                document.getElementById("force_inlet_moment").innerHTML = "MOMENT_COMB " + x_inlet_moment_comb;
+            }
+            document.getElementById("force_inlet_check").innerHTML = "Calculation result : " + 'OK';
+
+            // Exhaust Steam Nozzle //
+            var x_exhaust_force = parseFloat(document.getElementById("x_exhaust_force").value)
+            var y_exhaust_force = parseFloat(document.getElementById("y_exhaust_force").value)
+            var z_exhaust_force = parseFloat(document.getElementById("z_exhaust_force").value)
+
+            var x_exhaust_moment = parseFloat(document.getElementById("x_exhaust_moment").value)
+            var y_exhaust_moment = parseFloat(document.getElementById("y_exhaust_moment").value)
+            var z_exhaust_moment = parseFloat(document.getElementById("z_exhaust_moment").value)
+
+            var x_exhaust_force_comb = Math.sqrt(Math.pow(x_exhaust_force, 2) + Math.pow(y_exhaust_force, 2) + Math.pow(z_exhaust_force, 2))
+            var x_exhaust_moment_comb = Math.sqrt(Math.pow(x_exhaust_moment, 2) + Math.pow(y_exhaust_moment, 2) + Math.pow(z_exhaust_moment, 2))
+
+            if (!isNaN(x_exhaust_force_comb)) {
+                document.getElementById("force_exhaust_comb").innerHTML = "FORCE_COMB " + x_exhaust_force_comb;
+            }
+            if (!isNaN(x_exhaust_moment_comb)) {
+                document.getElementById("force_exhaust_moment").innerHTML = "MOMENT_COMB " + x_exhaust_moment_comb;
+            }
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

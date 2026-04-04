@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPX LIST</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.90vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            padding-left: 1vw;
+
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            width: 100px;
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <div>
+
+                <h3> GPX LIST</h3>
+                <table>
+                    <tr>
+                        <th width=160px height="50" align="center">
+                            번호
+                        </th>
+                        <th width=300px align="center">
+                            GPX 경로
+                        </th>
+                        <th width=300px align="center">
+                            GPX 파일
+                        </th>
+                        <th width=500px align="center">
+                            비 고
+                        </th>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            1
+                        </td>
+                        </td>
+                        <td align="center">
+                            장화코스(서울)
+                        </td>
+                        <td>
+                            <a href="./gpx/장화코스.gpx" download="장화코스.gpx">장화코스.gpx</a>
+                        </td>
+                        <td>
+                            옥수역 ->한강-중랑천-부용천-축석고개-광릉수목원-왕숙천-한강
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            2
+                        </td>
+                        <td align="center">
+                            런닝맨코스(서울)
+                        </td>
+                        <td>
+                            <a href="./gpx/runningman_seoul.gpx"
+                                download="runningman_seoul.gpx">runningman_seoul.gpx</a>
+
+                        </td>
+                        <td>
+                            한강공원-여의도(63빌딩)-남산(남산타워)-효창공원(백범김구기념관)-용산전자상가-공덕동-서대문(독립문,서대문형무소)-광화문-북촌한옥마을-청와대-북악
+                            팔각정-성균관대학교-고려대학교-제기동(약령시장)-영휘원-경희대학교-청계천박물관-한강공원
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            3
+                        </td>
+                        <td align="center">
+                            가오리코스_시계방향_광진교기점
+                        </td>
+                        <td>
+                            <a href="./gpx/가오리코스_시계방향_광진교기점.gpx"
+                                download="가오리코스_시계방향_광진교기점.gpx">가오리코스_시계방향_광진교기점.gpx</a>
+                        </td>
+                        <td>
+                            검단산주차장-한강자전거길-왕숙천자전거길-경춘선자전거길-북한강자전거길-남한강자전거길-한강자전거길
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            4
+                        </td>
+                        <td align="center">
+                            동해안자전거길(속초-강릉)
+                        </td>
+                        <td>
+                            <a href="./gpx/속초시외_강릉시외.gpx" download="속초시외_강릉시외.gpx">속초시외_강릉시외.gpx</a>
+                        </td>
+                        <td>
+                            속초시외버스터미널-영금정인증센터-동호해변-지경공원-경포해변-강릉시외버스터미널
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            5
+                        </td>
+                        <td align="center">
+                            제주환상자전거길
+                        </td>
+                        <td>
+                            <a href="./gpx/제주환상자전거길.gpx" download="제주환상자전거길.gpx">제주환상자전거길.gpx</a>
+                        </td>
+                        <td>
+                            다락쉼터-해거름마을공원-송악산-법환마당-쇠소깍-표선해변-성산일출봉-김녕성세기해변-함덕서우봉해변-용두암
+                        </td>
+                     </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            6
+                        </td>
+                        <td align="center">
+                            섬진강 자전거길
+                        </td>
+                        <td>
+                            <a href="./gpx/섬진강_강진T-중마T.gpx" download="섬진강_강진T-중마T.gpx">섬진강_강진T-중마T.gpx</a>
+                        </td>
+                        <td>
+                            강진터미널-섬진강인증센터-장군목인증센터-향가유원지인증센터-횡탄정인증센터-사성암인증센터-남도대교인증센터-매화마을인증센터-배알도수변공원인증센터-중마터미널
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td align="center" height="50">
+                            7
+                        </td>
+                        <td align="center">
+                            영산강 자전거길
+                        </td>
+                        <td>
+                            <a href="./gpx/영산강_순창T_목포KTX.gpx" download="영산강_순창T_목포KTX.gpx">섬진강_순창T_중마T.gpx</a>
+                        </td>
+                        <td>
+                            순창버스공용버스정류장-담양댐인증센터-메타스퀘이아길인증센터-담양대나무숲인증센터-승촌보인증센터-죽산보인증센터-느러지전망관람대인증센터-영산하구둑인증센터-목포역(KTX)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            8
+                        </td>
+                        <td align="center">
+                            동해안자전거길(속초-통일전망대)
+                        </td>
+                        <td>
+                            <a href="./gpx/속초T-통일-속초T.gpx" download="속초T-통일-속초T.gpx">속초T-통일-속초T.gpx</a>
+                        </td>
+                        <td>
+                            (속초시외버스터미널) - (영금정) - 봉포해변 - 북천철교 - 통일전망대
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            9
+                        </td>
+                        <td align="center">
+                            동해안자전거길(포항-강릉)
+                        </td>
+                        <td>
+                            <a href="./gpx/포항KTX_강릉터미널.gpx" download="포항KTX_강릉터미널.gpx">포항KTX_강릉터미널.gpx</a>
+                        </td>
+                        <td>
+                            포항역(KTX) - 해맞이공원 - 고래블해변 - 월송정 - 망향휴게소 - 울진은어다리 - 임원 - 한재공원 - 추암촛대바위 - 망상해변 - 정동진 - 강릉시외버스터미널
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            10
+                        </td>
+                        <td align="center">
+                            낙동강 자전거길
+                        </td>
+                        <td>
+                            <a href="./gpx/낙동강자전거길.gpx" download="낙동강자전거길.gpx">낙동강자전거길.gpx</a>
+                        </td>
+                        <td>
+                            안동댐 - 상주상풍교 - 상주보 - 낙단보 - 구미보 - 칠곡보 - 강정고령보 - 달성보 - 합천창녕보 - 창녕함안보 - 양산물문화관 - 낙동강하구둑
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" height="50">
+                            11
+                        </td>
+                        <td align="center">
+                            한반도길 시즌2
+                        </td>
+                        <td>
+                            <a href="./gpx/hanbando_season2.gpx" download="hanbando_season2.gpx">hanbando_season2.gpx</a>
+                        </td>
+                        <td>
+                            왕송호수(시작)-송라리저수지-비봉습지공원(화성)-반월천자전거길(안산)-화정천자전거길-안산면허시험장-물왕저수지-포동생활체육공원-신천역(시흥)-송내역(부천)-백만송이장미공원-신월사거리-화곡역-월촌초등학교(목동)-양평교-양화대교-홍제천자전거길-창의문-청와대-광화문-충정로4거리-용산성당(효창동)-한강자전거길-한강대교-고구동산(상도동)-장승배기역-보라매공원-도림천자전거길-철산교-기아자동차(소하리)-기아대교-안양천자전거길-의왕ICD-부곡체육공원-왕송호수(복귀)
+                        </td>
+                    </tr>
+                </table>
+
+                <div>
+                    <h5>
+                        <br>
+                        <br>
+                        <hr>
+                        <h6 id="foot"><a href="chatt.html" target="pages"> >> Dicuss with Me</a>
+                        </h6>
+                    </h5>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+    <br>
+</body>
+
+</html>

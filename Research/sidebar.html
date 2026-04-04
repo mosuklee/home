@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles_side.css">
+
+    <title>SideBar sub menus</title>
+</head>
+
+<body id="body-pd">
+    <div class="l-navbar" id="navbar">
+        <nav class="nav">
+            <div>
+                <div class="nav__brand">
+                    <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                    <a href="#" class="nav__logo">Lee's Home</a>
+                </div>
+                <div class="nav__list">
+                    <a href="#" class="nav__link active">
+                        <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Home</span>
+                    </a>
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">About Me</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">About Me</a>
+                            <a href="#" class="collapse__sublink">Cirtificate/Copyright</a>
+                        </ul>
+                    </div>
+
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">My youtobe</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">DWSIM 소개 및 설치</a>
+                            <a href="#" class="collapse__sublink">DWSIM 시작하기</a>
+                            <a href="#" class="collapse__sublink">Object 사용방법 익히기</a>
+                            <a href="#" class="collapse__sublink">Tutorial</a>
+                        </ul>
+                    </div>
+
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="folder-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">자전거 국토종주</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">아라 자전거길</a>
+                            <a href="#" class="collapse__sublink">한강자전거길(서울구간)</a>
+                            <a href="#" class="collapse__sublink">남한강 자전거길</a>
+                            <a href="#" class="collapse__sublink">북한강 자전거길</a>
+
+                            <a href="#" class="collapse__sublink">세제 자전거길</a>
+                            <a href="#" class="collapse__sublink">오천 자전거길</a>
+                            <a href="#" class="collapse__sublink">낙동강 자전거길(상류)</a>
+                            <a href="#" class="collapse__sublink">낙동강 자전거길(하류</a>
+                            <a href="#" class="collapse__sublink">금강 자전거길(상류)</a>
+                            <a href="#" class="collapse__sublink">영산강 자전거길(하류)</a>
+                            <a href="#" class="collapse__sublink">섬진강 자전거길</a>
+                            <a href="#" class="collapse__sublink">동해안 자전거길(강원)</a>
+                            <a href="#" class="collapse__sublink">동해안 자전거길(경북)</a>
+                            <a href="#" class="collapse__sublink">제주환상 자전거길</a>
+                        </ul>
+                    </div>
+
+
+                    <a href="#" class="nav__link">
+                        <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">My Hobby</span>
+                    </a>
+
+                    <div href="#" class="nav__link collapse">
+                        <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Team</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                        <ul class="collapse__menu">
+                            <a href="#" class="collapse__sublink">Data</a>
+                            <a href="#" class="collapse__sublink">Group</a>
+                            <a href="#" class="collapse__sublink">Members</a>
+                        </ul>
+                    </div>
+
+                    <a href="#" class="nav__link">
+                        <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">Settings</span>
+                    </a>
+                </div>
+                <a href="#" class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav_name">Log out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- IONICONS -->
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <!-- JS -->
+    <script src="main_side.js"></script>
+</body>
+
+</html>
+[출처] [Front-End] 반응형 사이드 바(Responsive Sidebar Menu) 첫번째|작성자 LuckyStrike

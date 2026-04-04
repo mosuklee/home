@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<style>
+    td,
+    th {
+        padding: 10px;
+        border: 1px solid #2bab0d;
+        /* height: 15vmax; */
+        margin: 0px;
+    }
+</style>
+
+
+<body>
+    <p id="pid"> </p>
+
+    <table>
+        <thead>
+            <th>제목</th>
+            <th>저자</th>
+            <th>가격</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+    <script type="text/javascript">
+        var xmlhttp = new XMLHttpRequest();
+        // 서버로 보낸 요청에 대한 응답을 받았을때 어떤동작을 해야할지를 정의
+        // onereadystatechange에 특정함수를 할당하면 요청에 대한 상태가 변화할때 특정함수(function())을 실행하게 됩니다.
+        // function은 readyState가 4가되고(요청한 데이터의 처리가 완료되고 응답할 준비가 된고) status가 200이면 요청이 성공했을때
+        // jsonFunction 함수를 실행하라는 의미임
+        // xmlhttp.responseText : xmlhttp로 응답한 서버의 응답을 텍스트 문자열로 변환하는 기능
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                jsonFunction(xmlhttp.responseText);
+            }
+        }
+        // 서버의 json파일을 읽어온다.(경로 및 통신방식 지정)
+        xmlhttp.open("GET", "table.json", true);
+        xmlhttp.send();
+
+        // 테이블을 작성하기 위한 함수
+        // 읽은 JSON 파일의 Text를 한행씩 테이블로 그린다. 
+
+        function jsonFunction(resp) {
+            //읽어들인 JSON파일을 덱스트로 변경하여 arr로 저장한다 (리스트 형태로 저장)
+            var arr = JSON.parse(resp);
+            var txt = "";
+            // list의 0번째부터 마지막행까지 하나씩 나타내기 위하여 for 문을 이용하였다.
+            for (i = 0; i < arr.length; i++) {
+                // JSON 파일의 Array를 한 행씩 title, author, price 변수에 저장한다.
+                var title = arr[i].title;
+                var author = arr[i].author;
+                var price = arr[i].price;
+
+                // title, author, price의 변수에 저장된 Data를 thTitle, tdAuthor, tdPrice 변수에 저장한다.
+                var thTitle = document.createTextNode(title);
+                var tdAuthor = document.createTextNode(author);
+                var tdPrice = document.createTextNode(price);
+
+                // tr변수에 Element인 tr, th, td, td를 저장한다.
+                // javascript를 이용하여 HTML을 만들 경우에는 document.createElement를 이용하여 Element를 입력한다.
+                var tr = document.createElement("tr");
+                var td1 = document.createElement("td");
+                var td2 = document.createElement("td");
+                var td3 = document.createElement("td");
+
+                // table의 column을 지정한다.
+                td1.width = 500
+                td2.width = 500
+                td3.width = 200
+
+                // Table 을 그린다.
+                td1.appendChild(thTitle);    // <td> thTitle </td>
+                td2.appendChild(tdAuthor);   // <td> tdAuthor </td>
+                td3.appendChild(tdPrice);    // <td> tdPrice </td>
+
+                tr.appendChild(td1);         // <tr> <td> thTitle </td> </tr>
+                tr.appendChild(td2);         // <tr> <td> thTitle </td> <td> tdAuthor </td> </tr>   
+                tr.appendChild(td3);         // <tr> <td> thTitle </td> <td> tdAuthor </td> <td> tdPrice </td> </tr>
+
+                var tbody = document.getElementsByTagName("tbody")[0];
+
+                tbody.appendChild(tr);
+
+            }
+            document.getElementById("pid").innerHTML = txt;
+        };
+    </script>
+
+</body>
+
+</html>

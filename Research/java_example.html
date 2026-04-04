@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1> 두개의 숫자의 곱셈</h1>
+
+
+    Num 1 <input type="text" id="num1">
+    <br>
+    <br>
+    Num 2 <input type="text" id="num2">
+    <br>
+    <br>
+    <button onclick="calculate()"> Calculate </button>
+
+    <h1 id="answer"></h1>
+
+    <script>
+        function calculate() {
+            var field1 = document.getElementById("num1").value;
+            var field2 = document.getElementById("num2").value;
+            var result = parseFloat(field1) * parseFloat(field2);
+
+            if (!isNaN(result)) {
+                document.getElementById("answer").innerHTML = "두 수의 곱의 값은 " + result + "입니다.";
+            }
+
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

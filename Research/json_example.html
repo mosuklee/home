@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // function handleOnChange(e) {
+        //     // 선택된 데이터 가져오기
+        //     const value = e.value;
+
+        //     // 데이터 출력
+        //     document.getElementById('result').innerText = value;
+        // }
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function a() {
+            if (this.readyState == 4 && this.status == 200) {
+                var attent = JSON.parse(this.response);
+                console.log(attent.LNG[0].formula);
+            }
+        }
+
+        req.open("GET", "./json_example.json");
+        req.send();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex box 이해</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.90vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            padding-left: 1vw;
+
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            width: 100px;
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #2bab0d;
+            height: 15vmax;
+            margin: 0px;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-bottom: 1px solid #2bab0d;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <div>
+
+                <h3>Object 사용방법 익히기</h3>
+                <div class="sub_explain">
+                    <p>이제 가장 기본이 되는 Object의 사용방법에 대하여 학습하도록 하겠습니다. <br>
+                        다음에 설명하는 Object는 가장 기본이 되는 Object로서 천천히 동영상을 따라서 익혀보도록 합니다.
+                    </p>
+                </div>
+                <table>
+                    <tr>
+                        <td width="200vw">
+                            <ul>
+                                <li>Stream Mixer</li>
+                                <li>Splitter</li>
+                            </ul>
+                        </td>
+                        <td width="600vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/5wrBNOlIUL0"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <table>
+                    <tr>
+                        <td width="200vw">
+                            <ul>
+                                <li>Centrifugal Pump</li>
+                                <li>Piping Segment</li>
+                            </ul>
+                        </td>
+                        <td width="600vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/n260WHDmZ-w"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+
+                </table>
+
+
+                <table>
+                    <tr>
+                        <td width="200vw">
+                            <ul>
+                                <li>Valve</li>
+                                <li>Gas-Liquid Separator</li>
+                            </ul>
+                        </td>
+                        <td width="600vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/i3R25M6WJ7c"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <table>
+                    <tr>
+                        <td width="200vw">
+                            <ul>
+                                <li>Heater</li>
+                                <li>Expander</li>
+                            </ul>
+                        </td>
+                        <td width="600vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WFWJV3TeaA4"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+                </table>
+
+                <table>
+                    <tr>
+                        <td width="200vw">
+                            <ul>
+                                <li>Cooler</li>
+                                <li>Compressor</li>
+                            </ul>
+                        </td>
+                        <td width="600vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ZOpTEfXTAFM"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+                </table>
+
+                <table>
+                    <tr>
+                        <td width="200vw">
+                            <ul>
+                                <li>Heat Exchanger</li>
+                                <li>Coltrol Block</li>
+                            </ul>
+                        </td>
+                        <td width="600vw">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/zY_Bzz1T1O8"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                        </td>
+                    </tr>
+                </table>
+
+                <div>
+                    <h5>
+                        <li>상기 동영상은 영상을 실행시키고 화면 우측에서 최대화면을 클릭하시면 화면 전체로 시청하실 수 있습니다.
+                    </h5>
+                </div>
+
+                <div>
+                    <h5>
+                        <br>
+                        <br>
+                        <hr>
+                        <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a>
+                        </h6>
+                    </h5>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="flex-box">
+
+        </div>
+    </div>
+    <br>
+
+
+</body>
+
+</html>
