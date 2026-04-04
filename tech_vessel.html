@@ -155,7 +155,7 @@
                 <br>
 
             <h3> 2. EQUATION</h3>  
-            <p>위의 코드에 의한 Shell 및 Ellipsodial Head의 Thickness 계산은 다음 Equation을 기준으로 계산한다.</p>  
+            <p>위의 코드에 의한 Sell 및 Ellipsodial Head의 Thickness 계산은 다음 Equation을 기준으로 계산한다.</p>  
 
             <div id="formula">
                  $ts =  \frac{P R}{S E-0.6\cdot P} + C $ <br>  <br>
@@ -164,15 +164,15 @@
             </div>
                 &nbsp;&nbsp;여기에서 <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;ts : Required Thickness for Shell <br>
-                &nbsp;&nbsp;&nbsp;&nbsp;th : Required thickness for 2:1 Ellipsodial Head <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;th : Rqquired thickness for 2:1 Ellipsodial Head <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;P : Design Pressure <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;R : Inside Radius <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;S : Allowable Stress <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;E : Joint Efficiency <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;C : Corrosion Allowance <br>
             
-            <h4>1.1 배관이 허용응력 (ASME B31.3) </h4>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;배관의 허용응력은 <a href="./tech_asme31_3_tableA_1.html">ASME B31.3 Allowable Stress SE,ksi Metal
+            <h4>1.1 배관이 허용응력 (ANSI B31.3) </h4>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;배관의 허용응력은 <a href="./tech_asme31_3_tableA_1.html">ANSI B31.3 Allowable Stress SE,ksi Metal
                     Temperature</a> 를 기준으로 계산한다. <br><br> </p>
                <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;허용응력 = 배관의 허용응력(ksi) x 70.31 (ksi)/(kg/cm3) </b><br>
             <br>
@@ -223,26 +223,26 @@
                 </tr>
 
 
-                <td align="left"> Design Pressure (P) </td>
+                <td align="center"> Design Pressure (P) </td>
                 <td align="center"> kgf/cm2 </td>
                 <td align="center"> <input style = "width:4vw; text-align:center" id="dp_input" input value="33.0" style="width:100px">
                 <td align="center"> 설계압력을 입력 </td>
                 </td>
 
                 <tr>
-                    <td align="left"> Allowable Stress (S)</td>
+                    <td align="center"> Allowable Stress (S)</td>
                     <td align="center"> kg/cm2 </td>
                     <td align="center"> <input style = "width:4vw; text-align:center"  id="allow_stress_input" input value="1406.2" style="width:100px"> </td>
                     <td align="center"> <a href="./tech_asme31_3_tableA_1.html">Allowable Stress 참조</a>  </td>
                 </tr>
                 <tr>
-                    <td align="left"> Joint Efficiency (E) </td>
+                    <td align="center"> Joint Efficiency (E) </td>
                     <td align="center"> - </td>
                     <td align="center"> <input style = "width:4vw; text-align:center"  id="joint_eff_input" input value="0.85" style="width:100px"> </td>
                     <td align="center">  </td>
                 </tr>
                 <tr>
-                    <td align="left"> Corrosion Allowance (C) </td>
+                    <td align="center"> Corrosion Allowance (C) </td>
                     <td align="center"> mm </td>
                     <td align="center"> <input style = "width:4vw; text-align:center"  id="ca_input" input value="3.0" style="width:100px"> </td>
                     <td align="center"> 1~3(mm)입력 </td>
@@ -268,26 +268,26 @@
                     <th align="center" width="350vw"> Remarks </th>
                 </tr>
                 <tr>
-                    <td align="left"> Inside Dia (D)</td>
+                    <td align="center"> Inside Dia (D)</td>
                     <td align="center"> mm </td>
                     <td align="center"> <input style = "width:4vw; text-align:center"  id="in_dia_input" input value="1250" style="width:100px"> </td>
                     <td align="center"> 압력용기의 내경 </td>
                 </tr>
                 <tr>
-                    <td align="left"> Length for End to End (L) </td>
+                    <td align="center"> Length for End to End (L) </td>
                     <td align="center"> mm </td>
                     <td align="center"> <input style = "width:4vw; text-align:center"  id="ete_length_input" input value="1250" style="width:100px"></td>
                     <td align="center"> 노즐의 끝에서 끝까지 거리 </td>
                 </tr>
                 <tr>
-                    <td align="left"> Height for T.L. to T.L. (H)</td>
+                    <td align="center"> Height for T.L. to T.L. (H)</td>
                     <td align="center"> mm </td>
                     <td align="center"> <input style = "width:4vw; text-align:center"  id="ttot_length_input" input value="2100" style="width:100px"> </td>
                     <td align="center"> T.L.에서 T.L.까지 거리 </td>
                 </tr>
                     
                 <tr>
-                    <td align="left"> Inside Dia for Nozzle (d) </td>
+                    <td align="center"> Inside Dia for Nozzle (d) </td>
                     <td align="center"> mm </td>
                     <td align="center"> <input style = "width:4vw; text-align:center"  id="id_nozzle_input" input value="0.0" style="width:100px"> </td>
                     <td align="center"> 노즐의 내경 (노즐의 체적을 계산하지 않을 경우 0을 입력) </td>
@@ -320,7 +320,7 @@
                     <th align="center" width="350vw"> Remarks </th>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="center">
                         Shell Thickness (ts)
                     </td>
                     <td align="center">
@@ -335,7 +335,7 @@
 
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="center">
                         Head Thickness (th)
                     </td>
                     <td align="center">
@@ -349,7 +349,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">
+                    <td align="center">
                         Tank Volume (th)
                     </td>
                     <td align="center">
