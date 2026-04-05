@@ -1,150 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-
+﻿<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIPE THICKNESS CALCULATION</title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <script type="text/x-mathjax-config">
-             MathJax.Hub.Config({            
-            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}            
-        });
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$']] }
+        };
     </script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
     <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
     <style>
-        @media screen and (max-width: 768px) {
-            * {
-                font-size: 1.8vw;
-            }
-
-            /* .devide_2 {
-                width: 7vw;
-            } */
-        }
-
-
         body {
-            font-size: 0.96vw;
-            background: white;
+            font-family: 'Malgun Gothic','맑은 고딕',Arial,sans-serif;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #222;
         }
-
-        /* @media screen and (max-width: 768px) {
-            * {
-                font-size: 0.8rem;
-
-            }
-        } */
-
-        .flex-box {
-            /* border: 1px solid red; */
-            flex-grow: 1;
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 48px 60px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            border-radius: 4px;
         }
-
-        .subject {
-            /* border: 1px solid red; */
-            flex-grow: 1;
-            /* padding-left: 1vw; */
+        h1 { font-size: 22px; font-weight: bold; border-bottom: 3px solid #2bab0d; padding-bottom: 8px; color: #2bab0d; margin-top: 0; }
+        h2 { font-size: 17px; color: #2bab0d; border-left: 8px solid #2bab0d; padding-left: 10px; margin-top: 36px; margin-bottom: 10px; }
+        h3 { font-size: 15px; color: #2bab0d; border-left: 8px solid #2bab0d; padding-left: 10px; margin-top: 28px; }
+        h4 { font-size: 13px; color: #333; border-left: 4px solid #a8f197; padding-left: 10px; margin-top: 14px; }
+        .formula-box, #formula {
+            background: #f5fef3;
+            border: 1px solid #b8e6b8;
+            border-radius: 4px;
+            padding: 10px 16px;
+            margin: 10px 0 10px 20px;
+            font-size: 13px;
+            line-height: 1.8;
+            display: inline-block;
         }
-
-        #container {
-            display: flex;
-            padding-top: 2vh;
-            /* border: 1px solid rgb(89, 0, 255); */
-        }
-
-        .content {
-            width: 400px;
-            padding-left: 5px;
-            /* border: 1px solid red; */
-        }
-
-        .main-subject {
-            /* width: 100px; */
-            text-align: center;
-        }
-
-        img {
-            width: 95%;
-            height: 95%;
-            display: block;
-            margin: auto;
-        }
-
-
-        hr {
-            width: 100%;
-            color: #2bab0d;
-            border-style: solid;
-        }
-
-        #foot {
-            text-align: right;
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-        th {
-            border: 1px solid #2bab0d;
-            background: #a8f197
-        }
-
-        td {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            /* padding: 7px; */
-            border: 1px solid #2bab0d;
-            /* height: 15vmax; */
-            margin: 0px;
-        }
-
-        h2 {
-            padding-left: 10px;
-            border-left: 8px solid #2bab0d;
-        }
-
-        h3 {
-            padding-left: 10px;
-            border-left: 8px solid #2bab0d;
-
-        }
-
-        h4 {
-            padding-left: 10px;
-            border-left: 8px solid #2bab0d;
-        }
-
-        /* .sub_explain {
-            width: 800px;
-        } */
-    </style>
+        .def-table { border: none; width: auto; margin: 4px 0 10px 20px; font-size: 13px; }
+        .def-table td { border: none; padding: 2px 6px; vertical-align: top; }
+        .input-table { border: none; width: auto; margin: 6px 0 10px 20px; font-size: 13px; }
+        .input-table td { border: none; padding: 4px 6px; vertical-align: middle; }
+        .calc-input { width: 90px; height: 30px; text-align: center; font-size: 13px; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12px; }
+        th { background: #a8f197; text-align: center; padding: 7px 10px; border: 1px solid #2bab0d; }
+        td { padding: 6px 10px; border: 1px solid #2bab0d; vertical-align: top; }
+        hr { border: none; border-top: 2px solid #2bab0d; margin: 36px 0 10px; }
+        .foot-link { text-align: right; font-size: 12px; margin-top: 4px; }
+        a { color: #2bab0d; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; margin: 10px auto; }
+        input, select, button { font-family: 'Malgun Gothic','맑은 고딕',Arial,sans-serif; font-size: 13px; }
+        button { background: #2bab0d; color: #fff; border: none; padding: 6px 18px; border-radius: 3px; cursor: pointer; margin: 8px 2px; }
+        button:hover { background: #1e8a09; }
+        @media (max-width: 700px) { .container { padding: 18px 8px; } }
+        @media print { body { background: #fff; } .container { box-shadow: none; } }    </style>
 </head>
-
 <body>
+    <div class="container">
 
-    <div id="container">
-        <div class="subject">
-
-        </div>
-        <div class="subject main-subject">
-
-
-        </div>
-
-        <div class="subject">
-
-        </div>
-    </div>
-    <div id="container">
-        <div class="flex-box">
-
-        </div>
-
-
-        <div class="flex-box content">
             <h1>
                 강구조설계 (H-Beam)
             </h1>
@@ -160,13 +79,13 @@
                 <br>
             </div>
             <br>
-            여기에서<br><br>
-            <div style="font-size: 17px;">
-                $ \phi $ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 저감계수  <br>
-                $R_{n} $ &nbsp;&nbsp;: 플랜지의 국부 휨 강도 (N) <br>
-                ${t_{f}}$ &nbsp;&nbsp;&nbsp;&nbsp;: 플랜지 두께 (mm) <br>
-                $F_{yf} $ : 플랜지의 항복인장강도  ($N/mm^{2}$) <br>
-            </div>
+            여기에서
+            <table class="def-table">
+                <tr><td>$ \phi $</td><td>:</td><td>저감계수</td></tr>
+                <tr><td>$ R_{n} $</td><td>:</td><td>플랜지의 국부 휨 강도 (N)</td></tr>
+                <tr><td>$ {t_{f}} $</td><td>:</td><td>플랜지 두께 (mm)</td></tr>
+                <tr><td>$ F_{yf} $</td><td>:</td><td>플랜지의 항복인장강도 ($N/mm^{2}$)</td></tr>
+            </table>
             <br>
             <br>
             <h3>2. 웨브의 국부 항복 강도 계산 </h3>
@@ -191,16 +110,16 @@
                 <br>
             </div>
             <br><br>
-            여기에서<br><br>
-            <div style="font-size: 17px;">
-                $ \phi $ &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 저감계수  <br>
-                $ R_{n} $ :&nbsp;&nbsp; 웨브의 공칭 국부 항복 강도 (N) <br>
-                k &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 플랜지 표면에서 웨브 필렛 선단까지 거리(mm) <br>
-                N &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 집중력이 작용하는 폭 (k 이상일것,mm) <br>
-                ${t_{w}}$ &nbsp;&nbsp;:&nbsp;&nbsp; 웨브의의 두께 (mm) <br>
-                $F_{yw} $:&nbsp;&nbsp; 웨브의 항복강도 ($N/mm^{2}$) <br>
-                d &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;H 형강 단면의 전체 춤 (mm)<br>
-            </div>
+            여기에서
+            <table class="def-table">
+                <tr><td>$ \phi $</td><td>:</td><td>저감계수</td></tr>
+                <tr><td>$ R_{n} $</td><td>:</td><td>웨브의 공칭 국부 항복 강도 (N)</td></tr>
+                <tr><td>$ k $</td><td>:</td><td>플랜지 표면에서 웨브 필렛 선단까지 거리 (mm)</td></tr>
+                <tr><td>$ N $</td><td>:</td><td>집중력이 작용하는 폭 (k 이상, mm)</td></tr>
+                <tr><td>$ {t_{w}} $</td><td>:</td><td>웨브의 두께 (mm)</td></tr>
+                <tr><td>$ F_{yw} $</td><td>:</td><td>웨브의 항복강도 ($N/mm^{2}$)</td></tr>
+                <tr><td>$ d $</td><td>:</td><td>H 형강 단면의 전체 춤 (mm)</td></tr>
+            </table>
             <br><br>
             <h3>3. 웨브의 크립풀링강도 </h3>
             <p>웨브의 크립풀링(crippling)은 플랜지에 작용하는 집중하중에 의해서 웨브가 면외로 좌굴하는 현상으로 웨브의 국부항복과는 구별되는 현상 <br>
@@ -230,17 +149,17 @@
                 <br>
             </div>
             <br><br>
-            여기에서<br><br>
-            <div style="font-size: 17px;">
-                $ \phi $ &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 저감계수  <br>
-                $ R_{n} $ :&nbsp;&nbsp; 웨브의 공칭 클립플링 강도 (N) <br>
-                k &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 플랜지 표면에서 웨브 필렛 선단까지 거리(mm) <br>
-                N &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; 집중력이 작용하는 폭 (k 이상일것,mm) <br>
-                ${t_{w}}$ &nbsp;&nbsp;:&nbsp;&nbsp; 웨브의 두께 (mm) <br>
-                ${t_{f}}$ &nbsp;&nbsp;:&nbsp;&nbsp; 후렌지의 두께 (mm) <br>
-                $F_{yw} $:&nbsp;&nbsp; 웨브의 항복강도 ($N/mm^{2}$) <br>
-                d &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;H 형강 단면의 전체 춤 (mm)<br>
-            </div>
+            여기에서
+            <table class="def-table">
+                <tr><td>$ \phi $</td><td>:</td><td>저감계수</td></tr>
+                <tr><td>$ R_{n} $</td><td>:</td><td>웨브의 공칭 클립플링 강도 (N)</td></tr>
+                <tr><td>$ k $</td><td>:</td><td>플랜지 표면에서 웨브 필렛 선단까지 거리 (mm)</td></tr>
+                <tr><td>$ N $</td><td>:</td><td>집중력이 작용하는 폭 (k 이상, mm)</td></tr>
+                <tr><td>$ {t_{w}} $</td><td>:</td><td>웨브의 두께 (mm)</td></tr>
+                <tr><td>$ {t_{f}} $</td><td>:</td><td>플랜지의 두께 (mm)</td></tr>
+                <tr><td>$ F_{yw} $</td><td>:</td><td>웨브의 항복강도 ($N/mm^{2}$)</td></tr>
+                <tr><td>$ d $</td><td>:</td><td>H 형강 단면의 전체 춤 (mm)</td></tr>
+            </table>
             <br>
             <br>
             <h3>4. 강도계산</h3>
@@ -249,26 +168,18 @@
             <div>
                 <img src="./image/web1.png" width="300", height="200":>
             </div>
-            <P>1) 구조물에 걸리는 집중하중</P>
-            <div>
-                $ P = $ &nbsp;&nbsp;&nbsp; <input style="width:5vw; font-size:20px; text-align:center;" type="'text" id="input_p" input value="4">&nbsp; kN (집중하중) <br>
-            </div>
-            <br>
-            <P>2) 재료의 강도</P>
-            <div>
-                $ F_{yw} = $ <input style="width:5vw; font-size:20px; text-align:center;" type="text" id="input_fyw" input value="275">&nbsp; N/mm2 (재료의 허용용하중) <br>
-                $ E = $ &nbsp;&nbsp;&nbsp;&nbsp;<input style="width:5vw; font-size:20px; text-align:center;" type="text" id="input_e" input value="205000">&nbsp; N/mm2 (탄성계계수) <br>
-            </div>
-            <br>
-            <P>3) 구조물의 길이</P>
-            <div>
-                $ d = $ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:5vw; font-size:20px; text-align:center;" type="text" id="input_d" input value="100">&nbsp; mm <br>
-                $ t_{f} = $ &nbsp;&nbsp;&nbsp; <input style="width:5vw; font-size:20px; text-align:center;" type="text" id="input_tf" input value="8">&nbsp; mm (Flange의 두께) <br>
-                $ t_{w} = $&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:5vw; font-size:20px; text-align:center;" type="text" id="input_tw" input value="6">&nbsp; mm (Web의 두께) <br>
-                $ k = $ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:5vw; font-size:20px; text-align:center;" type="text" id="input_k" input value="18">&nbsp; mm <br>
-                $ N = $ &nbsp;&nbsp;&nbsp;<input style="width:5vw; font-size:20px; text-align:center;" type="text" id="input_n" input value="100">&nbsp; mm <br>
-                $ l = $&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style="width:5vw; font-size:20px; text-align:center;" type="text" id="input_lc" input value="323">&nbsp; mm<br>
-            </div>
+            <p>1) 구조물/재료/치수 입력</p>
+            <table class="input-table">
+                <tr><td>$ P $</td><td>=</td><td><input class="calc-input" type="text" id="input_p" value="4"></td><td>kN</td><td>(집중하중)</td></tr>
+                <tr><td>$ F_{yw} $</td><td>=</td><td><input class="calc-input" type="text" id="input_fyw" value="275"></td><td>N/mm2</td><td>(재료의 허용하중)</td></tr>
+                <tr><td>$ E $</td><td>=</td><td><input class="calc-input" type="text" id="input_e" value="205000"></td><td>N/mm2</td><td>(탄성계수)</td></tr>
+                <tr><td>$ d $</td><td>=</td><td><input class="calc-input" type="text" id="input_d" value="100"></td><td>mm</td><td></td></tr>
+                <tr><td>$ t_{f} $</td><td>=</td><td><input class="calc-input" type="text" id="input_tf" value="8"></td><td>mm</td><td>(Flange 두께)</td></tr>
+                <tr><td>$ t_{w} $</td><td>=</td><td><input class="calc-input" type="text" id="input_tw" value="6"></td><td>mm</td><td>(Web 두께)</td></tr>
+                <tr><td>$ k $</td><td>=</td><td><input class="calc-input" type="text" id="input_k" value="18"></td><td>mm</td><td></td></tr>
+                <tr><td>$ N $</td><td>=</td><td><input class="calc-input" type="text" id="input_n" value="100"></td><td>mm</td><td></td></tr>
+                <tr><td>$ l $</td><td>=</td><td><input class="calc-input" type="text" id="input_lc" value="323"></td><td>mm</td><td></td></tr>
+            </table>
             <br>
             <h4>4.2 강도계산 결과</h4>
             <p>1) 플랜지의 국부 휨 계산결과</p>
@@ -320,21 +231,16 @@
 
             <br>
             <br>
-            <button onclick="calculate()" style="width: 18vw; height: 50px;font-size:20px;"> PIPE Thickness Calculation </button>
+            <button onclick="calculate()" style="width: 18vw; height: 42px; font-size: 13px;"> H-Beam Strength Calculation </button>
 
             <br>
             <br>
-            <div>
-                <hr>
-                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
-                </h5>
-            </div>
-        </div>
+        <hr>
+        <div class="foot-link"><a href="chatt_tech.html" target="pages">>> Dicuss with Me for Technical</a></div>
+    </div>
 
-        <div class="flex-box">
+    <script>
 
-        </div>
-        <script>
             function calculate() {
 
                 //input 상자에서 data 가져오기
@@ -464,9 +370,7 @@
 
                 }
             }
-        </script>
-
-
+        
+    </script>
 </body>
-
 </html>

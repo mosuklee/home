@@ -1,34 +1,21 @@
-<!doctype html>
-<html>
-
+﻿<!DOCTYPE html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>에너지가격 실적분석(Weekly)</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에너지가격 실적분석</title>
     <style>
-        body {
-            height: 80vh;
-            display: grid;
-            justify-content: none;
-            /* align-items: center; */
-            background: #f3f1f5;
-            /* border: 3px solid blue; */
-            */
-        }
-
-        /* .iframe100 {
-            display: block;
-            border: none;
-            height: 100vh;
-            width: 100vw;
-        } */
+        body { font-family: 'Malgun Gothic','맑은 고딕',Arial,sans-serif; font-size:13px; line-height:1.7; margin:0; padding:0; background-color:#f5f5f5; color:#222; }
+        .container { max-width:960px; margin:30px auto; background:#fff; padding:48px 60px; box-shadow:0 2px 12px rgba(0,0,0,0.12); border-radius:4px; }
+        h1 { font-size:22px; font-weight:bold; border-bottom:3px solid #2bab0d; padding-bottom:8px; color:#2bab0d; margin-top:0; }
+        iframe { display:block; width:100%; border:none; }
+        @media (max-width:700px) { .container { padding:18px 8px; } }
     </style>
 </head>
-
 <body>
-    <h2> 에너지가격 실적분석</h2>
-
-    <iframe calss="iframe100" width="100%" height="800vh" src="./pdf/energy_sales_report.pdf"></iframe>
+    <div class="container">
+        <h1>에너지가격 실적분석(Weekly)</h1>
+        <iframe width="100%" height="900px" src="./pdf/energy_sales_report.pdf"></iframe>
+    </div>
 </body>
-
 </html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            padding-left: 1vw;
+
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid red; */
+        }
+
+        .content {
+            width: 280px;
+            padding-left: 5px;
+        }
+
+        .main-subject {
+            width: 100px;
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #209786;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+            /* color: #2bab0d; */
+        }
+
+        h4 {
+            padding-left: 10px;
+            /* border-top: 1px solid #2bab0d; */
+            border-left: 8px solid #2bab0d;
+            /* color: #2bab0d; */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+            <!-- <h2> About Me.....</h2> -->
+        </div>
+        <div class="subject main-subject">
+
+        </div>
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+        <div class="flex-box content picture">
+            <div>
+                <img src="./image/my_pic.jpg" alt="MY Picture">
+            </div>
+        </div>
+
+        <div class="flex-box content">
+            <div>
+                <h2> About Me.....</h2>
+                <p> 안녕하세요? 여기는 MS LEE의 개인 홈페이지 입니다.</p>
+                <p> 저는 Process Engineer 이며,
+                    아래와 같은 분야에 관심이 많습니다. </p>
+                <h4>컴퓨터 프로그래밍 </h4>
+                <p>- Visual Basic <br>
+                    - Python <br>
+                    - HTML, CSS, JavaScript </p>
+                <h4>컴퓨터를 이용한 시뮬레이션</h4>
+                <p>- DWSIM (화학공정 Simulation) <br>
+                    - Hysis (화학공정 Simulation) <br>
+                    - Thermoflow (발전설비 및 열설비 Simulation) <br>
+                    - CFD (전산유체역학)</p>
+                <h4>Process 설계 및 배관설계</h4>
+                <p>- 스팀터빈 시스템 설계 및 배관설계 <br>
+                    - 가스터빈 시스템 설계 및 배관설계 <br>
+                    - 소각로 시스템 설계 (Simulation 프로그램 개발 보유) <br>
+                    - MVR 및 열교환기 시스템 설계 <br>
+                    - 배관 열응력해석 검토 <br>
+                    - 태양광 시스템 설계 및 Simulation </p>
+                <h4>취미생활 </h4>
+                <p>- 자전거타기 <br>
+                    - 등산하기
+                </p>
+
+            </div>
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt.html" target="pages"> >> 저에관한 댓글은 여기에 남겨주세요</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+
+        <div class="flex-box">
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

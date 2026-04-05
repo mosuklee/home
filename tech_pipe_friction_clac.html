@@ -1,151 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-
+﻿<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>배관의 압력손실 계산</title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
     <style>
-        @media screen and (max-width: 768px) {
-            * {
-                font-size: 1.8vw;
-            }
-
-            /* .devide_2 {
-                width: 7vw;
-            } */
-        }
-
-
         body {
-            font-size: 0.96vw;
-            background: white;
+            font-family: 'Malgun Gothic','맑은 고딕',Arial,sans-serif;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #222;
         }
-
-        /* @media screen and (max-width: 768px) {
-            * {
-                font-size: 0.8rem;
-
-            }
-        } */
-
-        .flex-box {
-            /* border: 1px solid red; */
-            flex-grow: 1;
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 48px 60px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            border-radius: 4px;
         }
-
-        .subject {
-            /* border: 1px solid red; */
-            flex-grow: 1;
-            /* padding-left: 1vw; */
+        h1 { font-size: 22px; font-weight: bold; border-bottom: 3px solid #2bab0d; padding-bottom: 8px; color: #2bab0d; margin-top: 0; }
+        h2 { font-size: 17px; color: #2bab0d; border-left: 8px solid #2bab0d; padding-left: 10px; margin-top: 36px; margin-bottom: 10px; }
+        h3 { font-size: 15px; color: #2bab0d; border-left: 8px solid #2bab0d; padding-left: 10px; margin-top: 28px; }
+        h4 { font-size: 13px; color: #333; border-left: 4px solid #a8f197; padding-left: 10px; margin-top: 14px; }
+        h5 { font-size: 13px; font-weight: bold; color: #2bab0d; margin-top: 20px; margin-bottom: 6px; }
+        .formula-box {
+            background: #f5fef3;
+            border: 1px solid #b8e6b8;
+            border-radius: 4px;
+            padding: 10px 16px;
+            margin: 10px 0 10px 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            display: inline-block;
         }
-
-        #container {
-            display: flex;
-            padding-top: 2vh;
-            /* border: 1px solid rgb(89, 0, 255); */
-        }
-
-        .content {
-            width: 400px;
-            padding-left: 5px;
-            /* border: 1px solid red; */
-        }
-
-        .main-subject {
-            /* width: 100px; */
-            text-align: center;
-        }
-
-        img {
-            width: 95%;
-            height: 95%;
-            display: block;
-            margin: auto;
-        }
-
-
-        hr {
-            width: 100%;
-            color: #2bab0d;
-            border-style: solid;
-        }
-
-        #foot {
-            text-align: right;
-        }
-
-        table {
-            border-collapse: collapse;
-            
-        }
-
-        th {
-            border: 1px solid #2bab0d;
-            background: #a8f197
-        }
-
-        td {
-            padding-top: 5px;
-            padding-left: 10px;
-            padding-bottom: 5px;
-            /* padding: 7px; */
-            border: 1px solid #2bab0d;
-            /* height: 15vmax; */
-            margin: 0px;
-        }
-        tr:hover {
-            cursor: default;
-            background: #ecfafc;
-        }
-
-        h2 {
-            padding-left: 10px;
-            border-left: 8px solid #2bab0d;
-        }
-
-        h3 {
-            padding-left: 10px;
-            border-left: 8px solid #2bab0d;
-
-        }
-
-        h4 {
-            padding-left: 10px;
-            border-left: 8px solid #2bab0d;
-        }
-
-        /* .sub_explain {
-            width: 800px;
-        } */
-    </style>
+        .def-table { border: none; width: auto; margin: 4px 0 10px 20px; font-size: 13px; }
+        .def-table td { border: none; padding: 2px 6px; vertical-align: top; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12px; }
+        th { background: #a8f197; text-align: center; padding: 7px 10px; border: 1px solid #2bab0d; }
+        td { padding: 6px 10px; border: 1px solid #2bab0d; vertical-align: top; }
+        hr { border: none; border-top: 2px solid #2bab0d; margin: 36px 0 10px; }
+        .foot-link { text-align: right; font-size: 12px; margin-top: 4px; }
+        a { color: #2bab0d; text-decoration: none; }
+        img { max-width: 100%; height: auto; display: block; margin: 10px auto; }
+        input, select, button { font-family: 'Malgun Gothic','맑은 고딕',Arial,sans-serif; font-size: 13px; }
+        button { background: #2bab0d; color: #fff; border: none; padding: 6px 18px; border-radius: 3px; cursor: pointer; margin: 8px 2px; }
+        button:hover { background: #1e8a09; }
+        @media (max-width: 700px) { .container { padding: 18px 8px; } }
+        @media print { body { background: #fff; } .container { box-shadow: none; } }    </style>
 </head>
-
 <body>
+    <div class="container">
 
-    <div id="container">
-        <div class="subject">
-
-        </div>
-        <div class="subject main-subject">
-
-
-        </div>
-
-        <div class="subject">
-
-        </div>
-    </div>
-    <div id="container">
-        <div class="flex-box">
-
-        </div>
-
-
-        <div class="flex-box content">
-            <h1 align="center">
+            <h1>
                 배관의 압력손실 계산 
             </h1>
             
@@ -156,18 +67,14 @@
             <h3>2. 배관의 유속 계산</h3>
             <h4>배관의 유속계산식</h4>
             <p>배관의 유속 계산은 다음 계산식에 의하여 계산한다.</p>
-            <div id="formula">
-                <br>
-                <b> V = (4 x Q) / (𝜋 x d^2) 
-                </b>
-                <br>
-            </div>
-
+            <div class="formula-box">V = (4 × Q) / (π × d²)</div>
             <br>
-            여기에서<br>
-            &nbsp&nbsp V &nbsp : 유 속 (m/s) <br>
-            &nbsp&nbsp Q &nbsp : 유 량 (m3/s)) <br>
-            &nbsp&nbsp d &nbsp : 배관의 내경 (m) <br>
+            여기에서
+            <table class="def-table">
+                <tr><td>V</td><td>:</td><td>유 속 (m/s)</td></tr>
+                <tr><td>Q</td><td>:</td><td>유 량 (m³/s)</td></tr>
+                <tr><td>d</td><td>:</td><td>배관의 내경 (m)</td></tr>
+            </table>
             <br>
             <h4>배관의 적정유속</h4>
             <p>다음은 일반적인 배관의 적정유속을 정리한 자료로서, 관경선정시에 참고 가이드 자료로 활용하기 위한 자료입니다.</p>
@@ -214,7 +121,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2">Hight Pressure <br>Saturatd steam</td>
+                    <td colspan="2">High Pressure <br>Saturated steam</td>
                     <td align="center">25-40</td>
                     <td></td>
                 </tr>
@@ -294,19 +201,15 @@
             <h3>3. 배관의 압력손실 계산</h3>
             <h4>레이놀즈 수 (Renolds Number)</h4>
             <p>레이놀즈 수는 관성에 의한 힘와 점성에 의한 힘의 비로서 주어진 유동 조건에서 두 종류의 힘의 상대적인 역학관계를 정량적으로 나타낸 것으로서, 유동이 층류인지 안류인지 예측하는데에도 사용된다. </p>
-            <div id="formula">
-                <br>
-                <b> Re = (V x d) / ν
-                </b>
-                <br>
-            </div>
-            
+            <div class="formula-box">Re = (V × d) / ν</div>
             <br>
-            여기에서<br>
-            &nbsp&nbsp Re &nbsp: 레이놀즈 수 <br>
-            &nbsp&nbsp V &nbsp : 유체의 유속 (m/s)) <br>
-            &nbsp&nbsp d &nbsp : 배관의 내경 (m) <br>
-            &nbsp&nbsp ν &nbsp : 유체의 동점성계수 (m2/s) <br>
+            여기에서
+            <table class="def-table">
+                <tr><td>Re</td><td>:</td><td>레이놀즈 수</td></tr>
+                <tr><td>V</td><td>:</td><td>유체의 유속 (m/s)</td></tr>
+                <tr><td>d</td><td>:</td><td>배관의 내경 (m)</td></tr>
+                <tr><td>ν</td><td>:</td><td>유체의 동점성계수 (m²/s)</td></tr>
+            </table>
             <br>
             <h4>등가거칠기 (Roughness)</h4>
             <p>Pipe Roughness는 배관의 등가 거칠기(절대조도)라고 하며 관의 종류별 Roughness는 다음과 같다.</p>
@@ -359,11 +262,13 @@
                 <img src="./image/friction_factor_line.jpg" alt="colebrook formula">
             </div>
             <br>
-            여기에서<br>
-            &nbsp&nbsp&nbsp&nbsp f &nbsp&nbsp: 압력손실계수(friction factor) <br>
-            &nbsp&nbsp&nbsp&nbsp ϵ &nbsp : 등가거칠기 (m) <br>
-            &nbsp&nbsp&nbsp D &nbsp : 배관의 내경 (m) <br>
-            &nbspRe(R)  : 레이놀즈 수 (Renolds Number) <br>
+            여기에서
+            <table class="def-table">
+                <tr><td>f</td><td>:</td><td>압력손실계수 (friction factor)</td></tr>
+                <tr><td>ϵ</td><td>:</td><td>등가거칠기 (m)</td></tr>
+                <tr><td>D</td><td>:</td><td>배관의 내경 (m)</td></tr>
+                <tr><td>Re</td><td>:</td><td>레이놀즈 수 (Reynolds Number)</td></tr>
+            </table>
             <br>
 
             <h4>배관의 압력손실 (Pipe Head Loss)</h4>
@@ -372,34 +277,36 @@
                 <img src="./image/darch_wishbach_equia.jpg" alt="colebrook formula">
             </div>
             <br>
-            여기에서<br>
-            &nbsp&nbsp HL: 압력손실 (mAq) <br>
-            &nbsp&nbsp f &nbsp : 압력손실계수 (friction factor) (m) <br>
-            &nbsp&nbsp l &nbsp : 배관의 길이 (m) <br>
-            &nbsp&nbsp V : 유체의 유속 (m/s) <br>
-            &nbsp&nbsp d : 배관의 내역 (m) <br>
-            &nbsp&nbsp g : 중력가속도 (9.8m/s2) <br>
+            여기에서
+            <table class="def-table">
+                <tr><td>HL</td><td>:</td><td>압력손실 (mAq)</td></tr>
+                <tr><td>f</td><td>:</td><td>압력손실계수 (friction factor)</td></tr>
+                <tr><td>l</td><td>:</td><td>배관의 길이 (m)</td></tr>
+                <tr><td>V</td><td>:</td><td>유체의 유속 (m/s)</td></tr>
+                <tr><td>d</td><td>:</td><td>배관의 내경 (m)</td></tr>
+                <tr><td>g</td><td>:</td><td>중력가속도 (9.8 m/s²)</td></tr>
+            </table>
             <br>
             <br>
 
-            <table>
+            <table style="width:auto;">
                 <tr>
-                    <th align="center" style="width: 150px;">압력(kg/cm2.g)</th>
-                    <th align="center" style="width: 120px;">온도(℃)</th>
-                    <th align="center" style="width: 140px;">유량(kg/h)</th> 
-                    <th align="center" style="width: 130px;">관경(mm)</th>
-                    <th align="center" style="width: 140px;">조도(m)</th>
-                    <th align="center" style="width: 120px;">유속(m/s)</th>
-                    <th align="center" style="width: 140px;">압력손실(mAq/m)</th>
+                    <th style="width:120px; text-align:center;">압력<br>(kg/cm².g)</th>
+                    <th style="width:100px; text-align:center;">온도<br>(℃)</th>
+                    <th style="width:110px; text-align:center;">유량<br>(kg/h)</th>
+                    <th style="width:100px; text-align:center;">관경<br>(mm)</th>
+                    <th style="width:120px; text-align:center;">조도<br>(m)</th>
+                    <th style="width:100px; text-align:center;">유속<br>(m/s)</th>
+                    <th style="width:140px; text-align:center;">압력손실<br>(mAq/m)</th>
                 </tr>
                 <tr>
-                    <td align="center"><input style="width:50px; text-align:center" type="text" id="flow_press" input value=""></td>
-                    <td align="center"><input style="width:60px; text-align:center" type="text" id="flow_temp" input value=""></td>
-                    <td align="center"><input style="width:70px; text-align:center" type="text" id="flow_qty" input value=""></td>
-                    <td align="center"><input style="width:60px; text-align:center" type="text" id="flow_id" input value=""></td>
-                    <td align="center"><input style="width:80px; text-align:center" type="text" id="flow_roug" input value=""></td>
-                    <td align="center" id="flow_velocity" style="width: 90px;"></td>
-                    <td align="center" id="result_hl" style="width: 180px;"></td></td>
+                    <td style="text-align:center;"><input type="text" id="flow_press" value="" style="width:90px; text-align:center;"></td>
+                    <td style="text-align:center;"><input type="text" id="flow_temp" value="" style="width:70px; text-align:center;"></td>
+                    <td style="text-align:center;"><input type="text" id="flow_qty" value="" style="width:80px; text-align:center;"></td>
+                    <td style="text-align:center;"><input type="text" id="flow_id" value="" style="width:70px; text-align:center;"></td>
+                    <td style="text-align:center;"><input type="text" id="flow_roug" value="" style="width:90px; text-align:center;"></td>
+                    <td style="text-align:center; font-weight:bold;" id="flow_velocity"></td>
+                    <td style="text-align:center; font-weight:bold;" id="result_hl"></td>
                 </tr>
             </table>
         <div>
@@ -1111,19 +1018,13 @@
         <br>
         <br>
         <br>
-        <br>    
-             <div>
-            
-                <hr>
-                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
-                </h5>
-            </div>
-        </div>
+        <br>
+        <hr>
+        <div class="foot-link"><a href="chatt_tech.html" target="pages">>> Dicuss with Me for Technical</a></div>
+    </div>
 
-        <div class="flex-box">
+    <script>
 
-        </div>
-        <script>
             function calculate() {
                 // data 선언
                 var flow_temp;
@@ -1197,9 +1098,7 @@
 
     }
  
-        </script>
-
-
+        
+    </script>
 </body>
-
 </html>

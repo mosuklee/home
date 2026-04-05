@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>구조계산 설계 방법</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>구조계산 설계방법</h1>
+            
+            <br>
+            <h3>허용응력 설계법(Working stress design method, WSD)</h3>
+            <p>예상되는 실제의 하중이 적용되었을 경우에 부재가 탄성 범위 이내에 있도록 하기 위하여 재료에 안전율을 적용하는 탄성 설계법이다. 사용하고 있는 재료가 탄성한도 이내에만 있다면 파괴되지 않고 안전하다는 개념이다.  <br> </p>
+            <p><h4>계산방법</h4></p>
+            <div id="formula">
+                <br>
+                <b> 외력(고정하중+적재하중) < 내력(0.4Fc, Fy/1.5)
+                </b>
+            </div>
+
+            <br>
+            여기에서<br>
+            - Fc&nbsp&nbsp: 콘크리트 압축강도 <br>
+            - 0.4 : 콘크리트 안전계수 <br>
+            - Fy&nbsp&nbsp: 철근 항복강도 <br>
+            - 1.5 : 철근 안전계수 <br>
+
+            <br>
+
+            <br>
+            <h3>극한강도 설계법(Ultimate strength design method, USD)</h3>
+            <p>
+            ① 확률의 개념이 도입 <br>
+            ② 재료가 파괴될때까지의 최대 능력을 설계에 반영 <br>
+            ③ 하중에 하중계수를 곱하여 확률적으로 하중을 크게 보고, 부재의 강도는 최대 강도를 그대로 계산하여 적용하는 대신에 강도저감계수를 적용 <br>
+            <br> </p>
+
+
+            <p><H4>계산방법</H4></p>
+            <div id="formula">
+                <br>
+                <b> 외력(1.4x고정하중+1.7x적재하중) < 내력 φ(fck, fy) </b>
+            </div>
+            
+            <br>
+            여기에서<br>
+            - 1.4(하중계수) : 고정하중이 1.4배 이상 커지지 않는다. <br>
+            - 1.7(하중계수) : 적재하중이 1.7배 이상 커지지 않는다. <br>
+            - Fy : 철근 항복강도 <br>
+            - 1.5 : 철근 안전계수 <br>
+            - φ(부재의 강도저감계수) : 설계계산의 불확실성, 재료강도 및 치수의오차, 제작 시공기술의 오차등으로 <br>
+            &nbsp&nbsp인해 발생할 수 있는 강도저감 요인을 보정하기 위한 것으로 휨은 0.9, 압축은 0.7 적용 <br>
+            - fck(콘크리트 압축강도) , fy(철근 항복강도) <br>
+            &nbsp&nbsp( fck, fy : 어떤 보정계수도 적용하지 않는다. ) <br>
+ 
+            <br>
+            <h3>한계상태 설계법(Limit state design method, LSD)</h3>
+            <p>
+            극한강도설계법에서 일부 도입되었던 확률개념을 전적으로 도입한 일종의 확률설계법.
+            하중에 대해서는 극한강도설계법과 마찬가지로 하중안전계수를 적용하여 특성 하중이라 하고 실제 하중이 특성 하중 이상이 될 확률이 5%이내가 되는 수치를 구하였고 재료에 대해서도 재료안전계수를 곱하여 특성 강도라 하고
+            실제 강도가 특성 강도 이하가 될 확률이 5% 이내가 되는 수치를 확률적으로 구하여 구조설계를 하는 설계법 <br>
+                <br>
+            </p>
+            
+            
+            <p><h4>계산방법</h4></p>
+            <div id="formula">
+                <br>
+                <b> 외력(1.4x고정하중+1.6x적재하중) < 내력 (Fc/1.5, Fy/1.15) </b>
+            </div>
+            
+            <br>
+            여기에서<br>
+            - 1.4(하중계수) : 고정하중이 1.4배 이상될 확률이 5%이내인 수치 <br>
+            - 1.6(하중계수) : 적재하중이 1.6배 이상될 확률이 5%이내인 수치 <br>
+            - 1.5, 1.15(안전계수) : 콘크리트와 철근의 강도가 그 이하가 될 확률이 5%이내인 계수 <br>
+
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+        
+
+
+</body>
+
+</html>

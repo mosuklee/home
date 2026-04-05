@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>구조체 응력검토</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>구조체 응력검토</h1>
+            
+            <br>
+            <h3>응력의 종류</h3>
+            
+            
+            <div>
+                <img src="./image/stress_1.jpg" style="width:60%;height:60%;" alt="stress">
+            </div>
+            <br>
+            <br>
+            <h3>탄성한도(σe)</h3>
+            <div>
+                <img src="./image/stress_2.jpg" style="width:40%;height:40%;" alt="stress">
+            </div>
+            <br>
+            <br>
+            <h3>안전율(S)</h3>
+
+            <p>
+            구조물 또는 기계 재료가 안전을 유지하는 정도, 설계시 안전율을 얼마나 주느냐에 따라 구조물에 쓰이는 재료가 달라집니다. <br>
+            <br> </p>
+
+            <p>
+            안전율(S) = 소성/탄성 = 영구 변형을 갖는 모든 응력 / 탄성한도 이내의 모든 응력 <br>
+    
+            = 항복점강도 또는 극한강도 / 허용응력 또는 사용응력<br>
+            = 소성내에 있는 많은 응력 / 탄성내에 있는 많은 응력 <br>
+            </p>
+
+            <table>
+                <tr>
+                    <th rowspan="1" align="center" height = "50hw" width="180vw">정하중</th>
+                    <th rowspan="1" align="center" width="180vw">반복하중</th>
+                    <th rowspan="1" align="center" width="180vw">교번하중</th>
+                    <th rowspan="1" align="center" width="180vw">충격하중</th>
+                </tr>
+                <tr>
+                    <td align="center" height = "40hw"> 3 </td>
+                    <td align="center"> 5 </td>
+                    <td align="center"> 8 </td>
+                    <td align="center"> 12</td>
+                </tr>
+            </table>
+        
+
+            <br>
+            <br>
+            <br>
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+        
+
+
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>슬래브의 하중 분담</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <script charset="utf-8" src="./js/neutriumJS.thermo.IAPWS97.min.js"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+
+            /* .devide_2 {
+                width: 7vw;
+            } */
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 95%;
+            display: block;
+            margin: auto;
+        }
+
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            /* padding: 7px; */
+            border: 1px solid #2bab0d;
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>슬래브의 하중 분담</h1>
+            
+            <br>
+            <h3>수직하중과 슬래브</h3>
+            <p>슬래브는 고정하중(자신의 무게를 포함한 마감재 그리고 밑에 달린 천장재 등의 무게)과 활하중(가구나 사람 등의 무게) 같은 수직하중을 보에 전달합니다.  <br> </p>
+            
+            <div>
+                <img src="./image/slab_1.jpg" style="width:60%;height:60%;" alt="slab1">
+            </div>
+            
+            <br>
+            <h3>슬래브의 구조해석</h3>
+            <p>
+            2방향 슬래브 중간쯤에 하중 P가 작용한다고 가정해보겠습니다. 이 하중은 장변 방향과 단변 방향으로 각각 전달됩니다. <br>
+            <br> </p>
+
+            <div>
+                <img src="./image/slab_2.jpg" style="width:60%;height:60%;" alt="slab2">
+            </div>
+
+            <p><h4>슬래브 구조해석의 원리</h4></p>
+            <p>이때 하중이 전달되는 방향을 따라 미세한 두께로 슬래브를 잘라 <b>서로 교차하는 미세한 두께의 작은보</b>를 만들었다고 생각해봅시다. 슬래브에 작용하는 하중 P는 이 미세한 보들을 따라 하중이 전달된다고 이해할 수
+            있습니다. <br><br>
+            
+            슬래브의 양쪽 경간(Span)이 다르다면 서로 교차하는 두 보는 하나는 짧고 또 하나는 길게 됩니다. 그러나 하중 P 때문에 생기는 처짐량은 둘 다 같아야 합니다. 이 처짐량은 양쪽 보측면에 다르게 영향을 미칩니다. <br>
+            <br>
+            단변 방향으로 뻗어있는 <b>짧은 보 측면에서는 보 길이에 비해 상대적으로 많이 변형되었고</b>, 길이가 긴 보는 길이에 비해 상대적으로 조금 변형된 것으로 이해할 수 있습니다. 즉 <b>단변 방향에서 보면 길이에 비해
+            많이 구부러졌기 때문에 휨모멘트가 크게 발생한 것입니다. 따라서 하중 P가 단변 방향으로 더 많은 전달된다고 볼 수 있습니다.</b> <br>
+            
+            다른 측면에서 얘기하면 장변 방향보다는 <b>단변 방향의 거리가 짧기 때문에 하중 P가 단변 쪽으로 더 빨리 도달하고 더 많은 하중이 전달됩니다. 따라서 2방향 슬래브에서는 단변 방향이 더 중요하고 주근 방향이
+            됩니다.</b> 철근을 배근하게 되면 단변 방향 철근과 장변 방향 철근이 교차하게 되는데 단변 방향 하부 철근을 맨 먼저 배치해야 구조적인 성능이 좋아집니다.</p>
+
+
+            <p><H4>1방향 슬래브와 2방향 슬래브의 하중 분담 비율</H4></p>
+            <p>슬래브 4변 주위로 보가 달려 있어 지지하고 있다면 단변방향의 하중 분담비율은 다음과 같이 구할 수 있습니다.</p>
+
+            <div>
+                <img src="./image/slab_3.jpg" style="width:30%;height:30%;" alt="slab3">
+            </div>
+
+            <p>여기서 **변장비(λ=Ly/Lx)는 단변의 순경간 길이(Lx)에 대한 장변 순경간길이(Ly)의 비**에 해당합니다. <br>
+            1방향 슬래브와 2방향 슬래브를 나누는 기준이 1 : 2이기 때문에 이 기준을 대입해보면 변장비(λ) = 2가 됩니다. <br> <br>
+
+            <b>변장비가 2일 때 값을 계산해 보면 Wx = 0.94W 정도가 됩니다. 다시 말해서 슬래브 단변방향(x방향)의 하중 분담비율은 94% 이상입니다.</b> 결국 1방향 슬래브는 λ > 2 이기 때문에 하중 분담비율은
+            94%보다 더 커지기 되고 슬래브에 가해지는 하중의 대부분을 분담한다고 볼 수 있습니다.<br> </p>
+
+            <div>
+                <img src="./image/slab_4.jpg" style="width:60%;height:60%;" alt="slab4">
+            </div>
+
+            <p>
+            <h4>슬래브의 하중 흐름</h4>
+            </p>
+            <div>
+                <img src="./image/slab_5.jpg" style="width:80%;height:80%;" alt="slab5">
+            </div>
+            <br>
+            <p>슬래브에서 작은보, 작은보에서 큰보로 전달되는 하중의 흐름은 상기 그림과 같으며, 이때의 고정하중(Dead Load)과 활하중(Live Load)의 면적비 만큼 하중이 전달된다고 가정하고 하중의 흐름을 계산합니다.</p>
+
+            <p>
+            <h4>보에 걸리는 하중의 계산</h4>
+            </p>
+            <div>
+                <img src="./image/slab_6.jpg" style="width:80%;height:80%;" alt="slab6">
+            </div>
+
+            <p>보에 걸리는 하중의 계산은 위의 그림과 같이 각 보에 걸리는 하중을 삼각형 및 사다리꼴 형태의 등분포 하중(삼각형 및 사다리꼴)으로 변환한 뒤에 보에 걸리는 하중을 계산한다.</p>
+
+<br>
+<br>
+<br>
+
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+        
+
+
+</body>
+
+</html>

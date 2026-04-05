@@ -1,42 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="image/logo.ico" rel="shortcut icon" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
     <title>LEE'S Home</title>
-</head>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+            font-size: 13px;
+            background-color: #f5f5f5;
+            color: #222;
+        }
+
+        /* ── 상단 메뉴바 ── */
+        .menu-bar {
+            background-color: rgb(0,100,0);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            position: relative;
+            z-index: 100;
+        }
+
+        .menu-bar > ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            padding: 0 16px;
+            flex-wrap: wrap;
+        }
+
+        .menu-bar > ul > li {
+            position: relative;
+        }
+
+        .menu-bar > ul > li > a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 12px 16px;
+            white-space: nowrap;
+            letter-spacing: 0.3px;
+        }
+
+        .menu-bar > ul > li.active > a,
+        .menu-bar > ul > li:hover > a {
+            background-color: rgba(255,255,255,0.18);
+            border-radius: 3px;
+        }
+
+        /* ── 1단 드롭다운 ── */
+        .sub-menu-1 {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #2bab0d;
+            border-radius: 4px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.13);
+            min-width: 190px;
+            z-index: 200;
+        }
+
+        .menu-bar > ul > li:hover > .sub-menu-1 {
+            display: block;
+        }
+
+        .sub-menu-1 > ul {
+            list-style: none;
+            padding: 4px 0;
+        }
+
+        .sub-menu-1 > ul > li {
+            position: relative;
+            border-bottom: 1px solid #e8f8e0;
+        }
+
+        .sub-menu-1 > ul > li:last-child {
+            border-bottom: none;
+        }
+
+        .sub-menu-1 > ul > li > a {
+            display: block;
+            color: #1a6600;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 8px 14px;
+            white-space: nowrap;
+        }
+
+        .sub-menu-1 > ul > li:hover > a {
+            background-color: #edfbe5;
+            color: #2bab0d;
+        }
+
+        /* ── 2단 드롭다운 ── */
+        .sub-menu-2 {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #fff;
+            border: 1px solid #2bab0d;
+            border-radius: 4px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.13);
+            min-width: 210px;
+            z-index: 300;
+        }
+
+        .hover-me:hover > .sub-menu-2 {
+            display: block;
+        }
+
+        .sub-menu-2 > ul {
+            list-style: none;
+            padding: 4px 0;
+        }
+
+        .sub-menu-2 > ul > li {
+            border-bottom: 1px solid #e8f8e0;
+        }
+
+        .sub-menu-2 > ul > li:last-child {
+            border-bottom: none;
+        }
+
+        .sub-menu-2 > ul > li > a {
+            display: block;
+            color: #1a6600;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 7px 14px;
+            white-space: nowrap;
+        }
+
+        .sub-menu-2 > ul > li > a:hover {
+            background-color: #edfbe5;
+            color: #2bab0d;
+        }
+
+        /* ── 타이틀 로고 ── */
+        .site-title {
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 12px 20px 12px 8px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            border-right: 1px solid rgba(255,255,255,0.3);
+            margin-right: 8px;
+        }
+
+        /* ── iframe 영역 ── */
+        .iframebox {
+            width: 100%;
+            height: calc(100vh - 44px);
+            background: url('image/background01.jpg') center center / cover no-repeat;
+        }
+
+        .iframebox iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .menu-bar > ul { flex-wrap: wrap; }
+            .menu-bar > ul > li > a { padding: 9px 10px; font-size: 12px; }
+            .iframebox { height: calc(100vh - 80px); }
+        }
+    </style>
+</head>
 <body>
     <div class="menu-bar">
         <ul>
-            <li class="active"><a href="index.html">LEE'S HOME ＞</a></li>
-            <li><a href="#">About Me</a>
+            <li class="site-title" style="cursor:pointer;" onclick="document.querySelector('iframe[name=pages]').src='about:blank'">LEE'S HOME</li>
+
+            <li>
+                <a href="#">About Me</a>
                 <div class="sub-menu-1">
                     <ul>
-                        <!--
-                        <li><a href="energy.html" target="pages">Mission</a></li>
--->
                         <li><a href="about_me.html" target="pages">About Me...</a></li>
-                        <li><a href="cirti_copyright.html" target="pages">Cirtificate / Copyright</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a href="#">My YouTube</a>
-                <div class="sub-menu-1">
-                    <ul>
-                        <li><a href="youtube1.html" target="pages">DWSIM 소개 및 설치</a></li>
-                        <li><a href="youtube2.html" target="pages">DWSIM 시작하기</a></li>
-                        <li><a href="youtube3.html" target="pages">Object 사용방법 익히기</a></li>
-                        <li><a href="youtube4.html" target="pages">Tutorial</a></li>
+                        <li><a href="cirti_copyright.html" target="pages">Certificate / Copyright</a></li>
                     </ul>
                 </div>
             </li>
 
-            <li><a href="#">My Hobby</a>
+            <li>
+                <a href="#">My Hobby</a>
                 <div class="sub-menu-1">
                     <ul>
                         <li class="hover-me"><a href="korea_road_map.html" target="pages">자전거 국토종주 ＞</a>
@@ -50,7 +212,6 @@
                                     <li><a href="myhobby_ocheon.html" target="pages">오천 자전거길</a></li>
                                     <li><a href="myhobby_nakdong_andong.html" target="pages">낙동강 자전거길(안동-상주보)</a></li>
                                     <li><a href="myhobby_nakdong_nakdan.html" target="pages">낙동강 자전거길(낙단보-낙동강하구둑)</a></li>
-                                    <!-- <li><a href="#menu9" onclick(set=9) style="color:gray">낙동강 자전거길(하류)</a></li> -->
                                     <li><a href="myhobby_geumgang.html" target="pages">금강 자전거길</a></li>
                                     <li><a href="myhobby_youngsangang.html" target="pages">영산강 자전거길</a></li>
                                     <li><a href="myhobby_sumjingang.html" target="pages">섬진강 자전거길</a></li>
@@ -70,7 +231,6 @@
                                     <li><a href="myhobby_near_hart.html" target="pages">하트 코스</a></li>
                                     <li><a href="myhobby_near_pynghwanuri.html" target="pages">평화누리 코스</a></li>
                                     <li><a href="myhobby_near_hanbando2.html" target="pages">한반도_시즌2 코스</a></li>
-
                                 </ul>
                             </div>
                         </li>
@@ -79,18 +239,17 @@
                                 <ul>
                                     <li><a href="myhobby_jachul_imjingak.html" target="pages">임진각 100</a></li>
                                     <li><a href="myhobby_jachul_chuncheon100.html" target="pages">춘천 100</a></li>
-                                    <li><a href="myhobby_near_runningman.html" target="pages">충주 150</a></li>
+                                    <li><a href="myhobby_jachul_chungju150.html" target="pages">충주 150</a></li>
+                                    <li><a href="myhobby_jachul_donghaean330.html" target="pages">동해안 330</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li class="hover-me"><a href="#">GPX 개발 ＞</a>
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a href="https://map.kakao.com/" target=" _blank">카카오 맵</a></li>
-                                    <li><a href="https://mygpsfiles.com/app/"
-                                            target="pages">GPX 편집기</a></li>
-                                    <li><a href="gpx_list.html" target="pages">GPX LIST</a>
-                                    </li>
+                                    <li><a href="https://map.kakao.com/" target="_blank">카카오 맵</a></li>
+                                    <li><a href="https://mygpsfiles.com/app/" target="pages">GPX 편집기</a></li>
+                                    <li><a href="gpx_list.html" target="pages">GPX LIST</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -98,122 +257,75 @@
                 </div>
             </li>
 
-            <li><a href="#">Technical</a>
+            <li>
+                <a href="#">Technical</a>
                 <div class="sub-menu-1">
-
                     <ul>
-                        <li class="hover-me"><a href="tech_steam_table.html" target="pages">Steam Table </a>
-                            <!-- 아래 서브메뉴 작성시 사용 -->
-                            <!-- <div class="sub-menu-2">
-                                    <ul>
-                                        <li><a href="tech_random_to_time_data.html" target="pages">Digitiging to Data</a>
-                                        </li>
-                                        <li><a href="tech_cooling_Tower.html" target="pages">Cooling Tower Design</a></li>
-                                        <li><a href="tech_pipe_friction_loss.html" target="pages">Pipe Friction Loss</a>
-                                        </li>
-                                        <li><a href="#" target="pages">Tech_1</a></li>
-                                    </ul>
-                                </div> -->
-                        </li>
+                        <li><a href="tech_steam_table.html" target="pages">Steam Table</a></li>
                         <li class="hover-me"><a href="#">Python Source ＞</a>
-
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a href="tech_random_to_time_data.html" target="pages">Digitiging to
-                                            Data</a>
-                                    </li>
-                                    <li><a href="tech_cooling_Tower.html" target="pages">Cooling Tower Design</a>
-                                    </li>
-                                    <li><a href="tech_pipe_friction_loss.html" target="pages">Pipe Friction Loss</a>
-                                    </li>
-                                    <li><a href="tech_wetbulb_calc.html" target="pages">Wet Bulb Calculation</a>
-                                    </li>
-                                    <!-- <li><a href="#" target="pages">Tech_1</a></li> -->
+                                    <li><a href="tech_random_to_time_data.html" target="pages">Digitizing to Data</a></li>
+                                    <li><a href="tech_cooling_Tower.html" target="pages">Cooling Tower Design</a></li>
+                                    <li><a href="tech_pipe_friction_loss.html" target="pages">Pipe Friction Loss</a></li>
+                                    <li><a href="tech_wetbulb_calc.html" target="pages">Wet Bulb Calculation</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="hover-me"><a href="#">POWER PLANT ＞</a>
+                        <li class="hover-me"><a href="#">Power Plant ＞</a>
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a href="tech_kesco.html" target="pages">전기안전공사 사용전검사</a></li>    
+                                    <li><a href="tech_kesco.html" target="pages">전기안전공사 사용전검사</a></li>
                                     <li><a href="tech_kesco_inspection.html" target="pages">전기설비 정기검사 시기</a></li>
                                     <li><a href="tech_psm.html" target="pages">KOSHA PSM 심사</a></li>
                                     <li><a href="tech_p_test.html" target="pages">내압시험 기준</a></li>
-                                    <li><a href="tech_stress_code.html" target="pages">배관 응력해석 관련코드</a></li>                                
+                                    <li><a href="tech_stress_code.html" target="pages">배관 응력해석 관련코드</a></li>
                                     <li><a href="tech_nema_sm23_doc.html" target="pages">NEMA SM23 Doc.</a></li>
                                     <li><a href="tech_nema_sm23.html" target="pages">NEMA SM23 Calc.</a></li>
                                     <li><a href="tech_hei_surface_doc.html" target="pages">HEI Surface Cond. Doc.</a></li>
                                     <li><a href="tech_hei_surface_calc.html" target="pages">HEI Surface Cond. Calc.</a></li>
-                                    <li><a href="tech_vessel.html" target="pages">Pressure Vessel</a></li>
                                     <li><a href="tech_press_temp_rating.html" target="pages">Press-Temp Rating</a></li>
-
-
                                 </ul>
                             </div>
                         </li>
-                        <li class="hover-me"><a href="#">PIPE DESIGN ＞</a>
+                        <li class="hover-me"><a href="#">Pipe Design ＞</a>
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a href="tech_pipe_code.html" target="pages">PIPE CODE</a></li>
-                                    <li><a href="tech_pipe_spec_ks.html" target="pages">PIPE SPEC. (KS)</a></li>
-                                    <li><a href="tech_pipe_spec_asme.html" target="pages">PIPE SPEC. (ASME)</a></li>
-                                    <li><a href="tech_pipe_material_compar.html" target="pages">PIPE MATERIAL COMPARE</a></li>
-                                    <li><a href="tech_pipe_fitting.html" target="pages">PIPE FITTING</a></li>
-                                    <li><a href="tech_pipe_thick_clac.html" target="pages">PIPE THK CALC</a></li>
-                                    <li><a href="tech_pipe_insul_clac.html" target="pages">PIPE INSULATION CALC</a></li>
-                                    <li><a href="tech_pipe_support_span.html" target="pages">PIPE HANGER SPAN</a></li>
-                                    <li><a href="tech_pipe_friction_clac.html" target="pages">PIPE FRICTION LOSS</a></li>
-
-                                    </li>
+                                    <li><a href="tech_pipe_code.html" target="pages">Pipe Code</a></li>
+                                    <li><a href="tech_pipe_spec_ks.html" target="pages">Pipe Spec. (KS)</a></li>
+                                    <li><a href="tech_pipe_spec_asme.html" target="pages">Pipe Spec. (ASME)</a></li>
+                                    <li><a href="tech_pipe_material_compar.html" target="pages">Pipe Material Compare</a></li>
+                                    <li><a href="tech_pipe_fitting.html" target="pages">Pipe Fitting</a></li>
+                                    <li><a href="tech_pipe_thick_clac.html" target="pages">Pipe Thk Calc</a></li>
+                                    <li><a href="tech_pipe_insul_clac.html" target="pages">Pipe Insulation Calc</a></li>
+                                    <li><a href="tech_pipe_support_span.html" target="pages">Pipe Hanger Span</a></li>
+                                    <li><a href="tech_pipe_friction_clac.html" target="pages">Pipe Friction Loss</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="hover-me"><a href="#">STRUCTURE DESIGN ＞</a>
+                        <li class="hover-me"><a href="#">Structure Design ＞</a>
                             <div class="sub-menu-2">
                                 <ul>
                                     <li><a href="tech_structure_method.html" target="pages">구조계산 설계방법</a></li>
-                                    
                                     <li><a href="tech_structure_slave.html" target="pages">슬래브의 하중 분담</a></li>
                                     <li><a href="tech_structure_stress.html" target="pages">구조체 응력검토</a></li>
-                                    
                                     <li><a href="tech_structure_material.html" target="pages">구조용 강재</a></li>
-                                    <li><a href="tech_structure_hbeam_calc.html" target="pages">강구조설계(H-Beam)</a></li>
-
-                                    <!--
-                                    <li><a href="tech_pipe_material_compar.html" target="pages">PIPE MATERIAL COMPARE</a></li>
-                                    <li><a href="tech_pipe_fitting.html" target="pages">PIPE FITTING</a></li>
-                                    <li><a href="tech_pipe_thick_clac.html" target="pages">PIPE THK CALC</a></li>
-                                    <li><a href="tech_pipe_insul_clac.html" target="pages">PIPE INSULATION CALC</a></li>
-                                    <li><a href="tech_pipe_support_span.html" target="pages">PIPE HANGER SPAN</a></li>
-                                    <li><a href="tech_pipe_friction_clac.html" target="pages">PIPE FRICTION LOSS</a></li> 
-                                    -->
+                                    <li><a href="tech_structure_hbeam_calc.html" target="pages">강구조설계 (H-Beam)</a></li>
+                                </ul>
+                            </div>
                         </li>
-                        </ul>
-                        </div>
-                        </li>
-                        <li class="hover-me"><a href="#">PHOTOVOLTAIC ＞</a>
+                        <li class="hover-me"><a href="#">Photovoltaic ＞</a>
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a href="http://www.moamodu.com/develop/naver_map.php" target=" _blank">주소를 위경도로 변경</a></li>
-                                    <li><a href="https://cyber.kepco.co.kr/ckepco/mobile/resources/resources_search2.jsp#" target=" _blank">선로 여유용량확인(전주번호)</a></li>
-                                    <li><a href="https://online.kepco.co.kr/EWM092D00" target=" _blank">선로 여유용량확인(변전소변압기)</a></li>
-                                    <li><a href="https://re.jrc.ec.europa.eu/pvg_tools/en/" target=" _blank">수평선 프로파일 </a></li>
-                                    <li><a href="http://www.kier-tmy.org/" target=" _blank">기상자료 데이터베이스</a></li>
-                        
-                                    
-                                    <!--
-                                                            <li><a href="tech_pipe_material_compar.html" target="pages">PIPE MATERIAL COMPARE</a></li>
-                                                            <li><a href="tech_pipe_fitting.html" target="pages">PIPE FITTING</a></li>
-                                                            <li><a href="tech_pipe_thick_clac.html" target="pages">PIPE THK CALC</a></li>
-                                                            <li><a href="tech_pipe_insul_clac.html" target="pages">PIPE INSULATION CALC</a></li>
-                                                            <li><a href="tech_pipe_support_span.html" target="pages">PIPE HANGER SPAN</a></li>
-                                                            <li><a href="tech_pipe_friction_clac.html" target="pages">PIPE FRICTION LOSS</a></li> 
-                                                            -->
+                                    <li><a href="http://www.moamodu.com/develop/naver_map.php" target="_blank">주소를 위경도로 변경</a></li>
+                                    <li><a href="https://cyber.kepco.co.kr/ckepco/mobile/resources/resources_search2.jsp#" target="_blank">선로 여유용량확인(전주번호)</a></li>
+                                    <li><a href="https://online.kepco.co.kr/EWM092D00" target="_blank">선로 여유용량확인(변전소변압기)</a></li>
+                                    <li><a href="https://re.jrc.ec.europa.eu/pvg_tools/en/" target="_blank">수평선 프로파일</a></li>
+                                    <li><a href="http://www.kier-tmy.org/" target="_blank">기상자료 데이터베이스</a></li>
+                                </ul>
+                            </div>
                         </li>
-                        </ul>
-                        </div>
-                        </li>
-                        <li class="hover-me"><a href="#">CHEMICAL ＞</a>
+                        <li class="hover-me"><a href="#">Chemical ＞</a>
                             <div class="sub-menu-2">
                                 <ul>
                                     <li><a href="tech_chemical_basic.html" target="pages">화학공학 상식</a></li>
@@ -222,97 +334,47 @@
                                     <li><a href="tech_chemical_gas_vol.html" target="pages">Volume To Mass</a></li>
                                     <li><a href="tech_chemical_ppm.html" target="pages">표준산소농도계산</a></li>
                                     <li><a href="tech_chemical_scr.html" target="pages">선택적 촉매 환원장치</a></li>
-                                    <li><a href="tech_chemical_thermodynamics.html" target="pages">Thermodynamics
-                            </li>
-                        
-                    </ul>
-                </div>
-            </li>
-            <li class="hover-me"><a href="#">기  타 ＞</a>
-                <div class="sub-menu-2">
-                    <ul>
-                        <li><a href="https://tips.energy.or.kr/popup/toe.do" target="_blank">석유환산톤 및 배출량 계산기</a></li>
-                        <!--
-                        <li><a href="tech_chemical_std.html" target="pages">표준상태</a></li>
-                        <li><a href="tech_chemical_perodic_table.html" target="pages">주기율표</a></li>
-                        <li><a href="tech_chemical_gas_vol.html" target="pages">Volume To Mass</a></li>
-                        <li><a href="tech_chemical_ppm.html" target="pages">표준산소농도계산</a></li>
-                        <li><a href="tech_chemical_thermodynamics.html" target="pages">Thermodynamics
-                            -->
-                </li>
-            
-        </ul>
-    </div>
-</li>
-    </div>
-
-
-    <li><a href="#">Data Analysis</a>
-        <div class="sub-menu-1">
-            <ul>
-                <li><a href="data_energy_price.html" target="pages">에너지가격 실적분석</a></li>
-                <!-- <li class="hover-me"><a href="#">Marketing ＞</a>
-                <div class="sub-menu-2">
-                    <ul>
-                        <li><a href="#menu1" onclick(sel=1)>SEO</a></li>
-                        <li><a href="#menu2" onclick(set=2)>Social Media</a></li>
-                        <li><a href="#">Email Marketing</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="hover-me"><a href="#">Mobile App ＞</a>
-                <div class="sub-menu-2">
-                    <ul>
-                        <li><a href="#">Android App</a></li>
-                        <li><a href="#">iOs App</a></li>
-                        <li><a href="#">Ionic App</a></li>
-                        <li><a href="#">Flutter App</a></li>
-                        <li><a href="#">Unity App</a></li>
-                    </ul>
-                </div>
-            </li> -->
-            </ul>
-        </div>
-    </li>
-
-    <li><a href="#"></a>M-sys</a>
-        <div class="sub-menu-1">
-            <ul>
-                <li><a href="./M-sys_Manual.html" target="pages">M-sys Manual</a></li>
-                <li><a href="./cheat_sheet_M-sys_viewer.html" target="pages">M-sys Cheat Sheet</a></li>
-                <!-- <li class="hover-me"><a href="#">Marketing ＞</a>
-                            <div class="sub-menu-2">
-                                <ul>
-                                    <li><a href="#menu1" onclick(sel=1)>SEO</a></li>
-                                    <li><a href="#menu2" onclick(set=2)>Social Media</a></li>
-                                    <li><a href="#">Email Marketing</a></li>
+                                    <li><a href="tech_chemical_thermodynamics.html" target="pages">Thermodynamics</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="hover-me"><a href="#">Mobile App ＞</a>
+                        <li class="hover-me"><a href="#">기  타 ＞</a>
                             <div class="sub-menu-2">
                                 <ul>
-                                    <li><a href="#">Android App</a></li>
-                                    <li><a href="#">iOs App</a></li>
-                                    <li><a href="#">Ionic App</a></li>
-                                    <li><a href="#">Flutter App</a></li>
-                                    <li><a href="#">Unity App</a></li>
+                                    <li><a href="https://tips.energy.or.kr/popup/toe.do" target="_blank">석유환산톤 및 배출량 계산기</a></li>
                                 </ul>
                             </div>
-                        </li> -->
-            </ul>
-        </div>
-    </li>
-    <li><a href="Contact.html" target="pages">Contact</a></li>
-    </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a href="#">Data Analysis</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a href="data_energy_price.html" target="pages">에너지가격 실적분석</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a href="#">M-sys</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a href="./M-sys_Manual.html" target="pages">M-sys Manual</a></li>
+                        <li><a href="./cheat_sheet_M-sys_viewer.html" target="pages">M-sys Cheat Sheet</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li><a href="Contact.html" target="pages">Contact</a></li>
+        </ul>
     </div>
 
     <div class="iframebox">
-        <iframe name="pages" style="display:block; width:100vw; height: 100vh"></iframe>
+        <iframe name="pages" style="display:block; width:100%; height:100%; border:none; background:transparent;"></iframe>
     </div>
 
-
-
 </body>
-
 </html>

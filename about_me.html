@@ -1,164 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <style>
-        @media screen and (max-width: 768px) {
-            * {
-                font-size: 1.8vw;
-            }
-        }
-
-
-        body {
-            font-size: 0.96vw;
-            background: white;
-        }
-
-        /* @media screen and (max-width: 768px) {
-            * {
-                font-size: 0.8rem;
-
-            }
-        } */
-
-        .flex-box {
-            /* border: 1px solid red; */
-            flex-grow: 1;
-        }
-
-        .subject {
-            /* border: 1px solid red; */
-            flex-grow: 1;
-            padding-left: 1vw;
-
-        }
-
-        #container {
-            display: flex;
-            padding-top: 2vh;
-            /* border: 1px solid red; */
-        }
-
-        .content {
-            width: 280px;
-            padding-left: 5px;
-        }
-
-        .main-subject {
-            width: 100px;
-        }
-
-        img {
-            width: 70%;
-            height: auto;
-            display: block;
-            margin: auto;
-        }
-
-        .picture {
-            padding-top: 20px;
-        }
-
-        hr {
-            width: 100%;
-            color: #209786;
-            border-style: solid;
-        }
-
-        #foot {
-            text-align: right;
-        }
-
-        h2 {
-            padding-left: 10px;
-            border-left: 8px solid #2bab0d;
-            /* color: #2bab0d; */
-        }
-
-        h4 {
-            padding-left: 10px;
-            /* border-top: 1px solid #2bab0d; */
-            border-left: 8px solid #2bab0d;
-            /* color: #2bab0d; */
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me - MS LEE</title>
+<style>
+  body {
+    font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #222;
+  }
+  .container {
+    max-width: 960px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 48px 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    border-radius: 4px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 3px solid #2bab0d;
+    padding-bottom: 8px;
+    color: #2bab0d;
+    margin-top: 0;
+  }
+  h2 {
+    font-size: 17px;
+    font-weight: bold;
+    color: #2bab0d;
+    border-left: 8px solid #2bab0d;
+    padding-left: 10px;
+    margin-top: 36px;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2bab0d;
+    margin-top: 28px;
+    margin-bottom: 6px;
+    border-left: 8px solid #2bab0d;
+    padding-left: 10px;
+    padding-bottom: 4px;
+  }
+  h4 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 18px;
+    margin-bottom: 4px;
+    padding-left: 10px;
+    border-left: 4px solid #a8f197;
+  }
+  p, li {
+    margin: 4px 0;
+  }
+  ul {
+    padding-left: 24px;
+    margin: 4px 0;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #2bab0d;
+    margin: 24px 0 8px;
+  }
+  .profile-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-top: 24px;
+  }
+  .profile-photo {
+    padding-top: 3.0em;
+  }
+  .profile-photo img {
+    width: 90%;
+    height: auto;
+    border: 2px solid #2bab0d;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    display: block;
+  }
+  .profile-photo p {
+    text-align: center;
+    color: #555;
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  .foot-link {
+    text-align: right;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .foot-link a {
+    color: #2bab0d;
+    text-decoration: none;
+  }
+  .foot-link a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 700px) {
+    .container {
+      padding: 24px 18px;
+    }
+    .profile-layout {
+      grid-template-columns: 1fr;
+    }
+    .profile-photo img {
+      max-width: 200px;
+      margin: 0 auto;
+    }
+  }
+  @media print {
+    body { background: #fff; }
+    .container { box-shadow: none; margin: 0; padding: 20px 30px; max-width: 100%; }
+  }
+</style>
 </head>
-
 <body>
+<div class="container">
 
-    <div id="container">
-        <div class="subject">
+  <h1>About Me</h1>
 
-        </div>
-        <div class="subject main-subject">
-            <!-- <h2> About Me.....</h2> -->
-        </div>
-        <div class="subject main-subject">
+  <div class="profile-layout">
 
-        </div>
-        <div class="subject">
-
-        </div>
-    </div>
-    <div id="container">
-        <div class="flex-box">
-
-        </div>
-
-        <div class="flex-box content picture">
-            <div>
-                <img src="./image/my_pic.jpg" alt="MY Picture">
-            </div>
-        </div>
-
-        <div class="flex-box content">
-            <div>
-                <h2> About Me.....</h2>
-                <p> 안녕하세요? 여기는 MS LEE의 개인 홈페이지 입니다.</p>
-                <p> 저는 Process Engineer 이며,
-                    아래와 같은 분야에 관심이 많습니다. </p>
-                <h4>컴퓨터 프로그래밍 </h4>
-                <p>- Visual Basic <br>
-                    - Python <br>
-                    - HTML, CSS, JavaScript </p>
-                <h4>컴퓨터를 이용한 시뮬레이션</h4>
-                <p>- DWSIM (화학공정 Simulation) <br>
-                    - Hysis (화학공정 Simulation) <br>
-                    - Thermoflow (발전설비 및 열설비 Simulation) <br>
-                    - CFD (전산유체역학)</p>
-                <h4>Process 설계 및 배관설계</h4>
-                <p>- 스팀터빈 시스템 설계 및 배관설계 <br>
-                    - 가스터빈 시스템 설계 및 배관설계 <br>
-                    - 소각로 시스템 설계 (Simulation 프로그램 개발 보유) <br>
-                    - MVR 및 열교환기 시스템 설계 <br>
-                    - 배관 열응력해석 검토 <br>
-                    - 태양광 시스템 설계 및 Simulation </p>
-                <h4>취미생활 </h4>
-                <p>- 자전거타기 <br>
-                    - 등산하기
-                </p>
-
-            </div>
-
-            <div>
-                <hr>
-                <h6 id="foot"><a href="chatt.html" target="pages"> >> 저에관한 댓글은 여기에 남겨주세요</a> </h6>
-                </h5>
-            </div>
-        </div>
-
-
-        <div class="flex-box">
-
-        </div>
+    <!-- 사진 -->
+    <div class="profile-photo">
+      <img src="./image/my_pic.jpg" alt="MS LEE 사진">
+      <p>MS LEE</p>
     </div>
 
+    <!-- 소개 내용 -->
+    <div class="profile-content">
 
+      <h2>소개</h2>
+      <p>안녕하세요? 여기는 MS LEE의 개인 홈페이지 입니다.</p>
+      <p>저는 Process Engineer 이며, 아래와 같은 분야에 관심이 많습니다.</p>
+
+      <h2>관심 분야</h2>
+
+      <h4>컴퓨터 프로그래밍</h4>
+      <ul>
+        <li>Visual Basic</li>
+        <li>Python</li>
+        <li>HTML, CSS, JavaScript</li>
+      </ul>
+
+      <h4>컴퓨터를 이용한 시뮬레이션</h4>
+      <ul>
+        <li>DWSIM (화학공정 Simulation)</li>
+        <li>Hysis (화학공정 Simulation)</li>
+        <li>Thermoflow (발전설비 및 열설비 Simulation)</li>
+        <li>M-sys (Process Simulation & Optimization)</li>
+      </ul>
+
+      <h4>Process 설계 및 배관설계</h4>
+      <ul>
+        <li>스팀터빈 시스템 설계 및 배관설계</li>
+        <li>가스터빈 시스템 설계 및 배관설계</li>
+        <li>소각로 시스템 설계 (Simulation 프로그램 개발 보유)</li>
+        <li>MVR 및 열교환기 시스템 설계</li>
+        <li>배관 열응력해석 검토</li>
+        <li>태양광 시스템 설계 및 Simulation</li>
+      </ul>
+
+      <h4>취미생활</h4>
+      <ul>
+        <li>자전거타기</li>
+        <li>등산하기</li>
+      </ul>
+
+      <hr>
+      <div class="foot-link">
+        <a href="chatt.html" target="pages">&gt;&gt; 저에 관한 댓글은 여기에 남겨주세요</a>
+      </div>
+
+    </div><!-- /profile-content -->
+  </div><!-- /profile-layout -->
+
+</div><!-- /container -->
 </body>
-
 </html>

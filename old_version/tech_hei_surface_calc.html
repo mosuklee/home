@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>HEI Surface Condenser Vent Capacity Calculation</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        @media screen and (max-width: 768px) {
+            * {
+                font-size: 1.8vw;
+            }
+        }
+
+
+        body {
+            font-size: 0.96vw;
+            background: white;
+        }
+
+        /* @media screen and (max-width: 768px) {
+            * {
+                font-size: 0.8rem;
+
+            }
+        } */
+
+        .flex-box {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+        }
+
+        .subject {
+            /* border: 1px solid red; */
+            flex-grow: 1;
+            /* padding-left: 1vw; */
+        }
+
+        #container {
+            display: flex;
+            padding-top: 2vh;
+            /* border: 1px solid rgb(89, 0, 255); */
+        }
+
+        .content {
+            width: 400px;
+            padding-left: 5px;
+            /* border: 1px solid red; */
+        }
+
+        .main-subject {
+            /* width: 100px; */
+            text-align: center;
+        }
+
+        img {
+            width: 95%;
+            height: 80%;
+            display: block;
+            margin: auto;
+        }
+
+        .picture {
+            padding-top: 20px;
+        }
+
+        hr {
+            width: 100%;
+            color: #2bab0d;
+            border-style: solid;
+        }
+
+        #foot {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th {
+            border: 1px solid #2bab0d;
+            background: #a8f197
+        }
+
+        td {
+            padding: 6px;
+            border: 1px solid #2bab0d;
+
+            /* height: 15vmax; */
+            margin: 0px;
+        }
+
+
+        table {
+            border-collapse: collapse;
+        }
+
+        h2 {
+            padding-left: 10px;
+            border-left: 8px solid #2bab0d;
+        }
+
+        h3 {
+            padding-left: 10px;
+            /* border-bottom: 1px solid blue; */
+            border-left: 8px solid #2bab0d;
+
+        }
+
+        h4 {
+            padding: 10px;
+            border-bottom: 1px solid #2bab0d;
+            /* border-left: 3px dashed blue; */
+            /* color: blue; */
+        }
+
+        /* .sub_explain {
+            width: 800px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="subject">
+
+        </div>
+        <div class="subject main-subject">
+
+
+        </div>
+
+        <div class="subject">
+
+        </div>
+    </div>
+    <div id="container">
+        <div class="flex-box">
+
+        </div>
+
+
+        <div class="flex-box content">
+            <h1>HEI Surface Condenser Vent Capacity Calculation</h1>
+
+            <p id="formula3">
+                본 페이지는 HEI를 기준으로 Surface Condenser의 Vent Capacity를 계산하기 위한 페이지 입니다.
+            </p>
+            <b>Condeser Shell Q'ty : </b>
+            <select name="language" onchange="handleOnChange(this)">
+                <option value="">선 택</option>
+                <option value="one">One</option>
+                <option value="two">Two</option>
+                <option value="three">Three</option>
+            </select>
+            <br>
+            <h3>Design Condition</h3>
+            <table>
+                <tr>
+                    <th width="1100vw" align="center" height="40">Design Condition</th>
+                    <th align="center" colspan="2">Design Data</th>
+                </tr>
+                <tr>
+                    <td align="left">1. Total steam flow from Main Turbine Exhaust </td>
+                    <td width="300" align="center"><input style="width:5vw; text-align:center" type="text" id="input_1_tsf_mte"></td>
+                    <td width="300" align="center">lb/hr</td>
+                </tr>
+                <tr>
+                <tr>
+                    <td align="left">2. Total steam flow from Turbine Auxilary Exhaust </td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_1_tsf_tae"></td>
+                    <td align="center">lb/hr</td>
+                </tr>
+                <tr>
+                    <td align="left">3. Number of Main Turbine Exhaust Opening </td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_1_num_mto"></td>
+                    <td align="center"></td>
+                </tr>
+                <tr>
+                    <td align="left">4. Number of Auxiliary Turbine Exhaust Openings </td>
+                    <td align="center"><input style="width:5vw; text-align:center" type="text" id="input_1_num_ateo"></td>
+                    <td align="center"></td>
+                </tr>
+
+
+            </table>
+            <button onclick="calculate()" style="WIDTH: 200px;"> Venting Capacity Calculation </button>
+            <br>
+            <br>
+
+            <h3>Calculation Result</h3>
+            <table>
+                <tr>
+                    <th width="900vw" align="center" height="40">Calculation Item</th>
+                    <th align="center" colspan="2">Result</th>
+                </tr>
+            <tr>
+                <td align="left">The total steam flow of the unit </td>
+                <td width="300" align="center" id="out_1_tot_steam_flow"></td>
+                <td width="300" align="center">lb/hr</td>
+            </tr>
+                <tr>
+                    <td align="left">Hogging Capacity </td>
+                    <td width="300" align="center" id="out_1_hogging_capacity"></td>
+                    <td width="300" align="center">SCFM</td>
+                </tr>
+                <tr>
+                    <td align="left">Venting Equipment Capacity </td>
+                    <td align="center" id="out_1_vent_equip_capacity"></td>
+                    <td align="center">SCFM</td>
+                </tr>
+                <tr>
+                    <td align="left">Dry Air </td>
+                    <td align="center" id="out_1_dry_air"></td>
+                    <td align="center">lbs/hr</td>
+                </tr>
+                <tr>
+                    <td align="left">Water Vapor </td>
+                    <td align="center" id="out_1_water_vapor"></td>
+                    <td align="center">lbs/hr</td>
+                </tr>
+                <tr>
+                    <td align="left">Total Mixture </td>
+                    <td align="center" id="out_1_tot_mixture"></td>
+                    <td align="center">lbs/hr</td>
+                </tr>
+
+            </table>
+            <p>SCFM : 14.7 psia at 70℉ - to convert to lbs/hr. multiply above values by 4.5.</p>
+            <br>
+            <br>
+            <br>
+            <div>
+                <hr>
+                <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a> </h6>
+                </h5>
+            </div>
+        </div>
+
+        <div class="flex-box">
+
+        </div>
+
+
+
+        <script>
+            // 전역변수로 지정
+            // Input 자료 변수
+            let shell_number;
+            let num_exhaust_opening;
+            let num_mto;
+            let num_ateo;
+            let total_steam_flow;
+            let tsf_mte;
+            let tsf_tae;
+            //Out Put 자료 변수
+            let result_hogging;
+            let result_scfm;
+            let result_dry_air;
+            let result_water_vapor;
+            let result_total;
+
+            function handleOnChange(e) {
+                // Shell의 갯수를 저장
+                shell_number = e.value;
+            }
+
+            // Json파일을 불러와서 조건에 맞는 값 찾아서 Calculation Result에 뿌려주기
+            function calculate() {
+
+                var req = new XMLHttpRequest();
+
+                req.onreadystatechange = function a() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var vent = JSON.parse(this.response);
+                        
+                        // Design Condition Calculation
+                        // Total Steam Flow
+                        tsf_mte = parseFloat(document.getElementById("input_1_tsf_mte").value);
+                        tsf_tae = parseFloat(document.getElementById("input_1_tsf_tae").value);
+                        total_steam_flow = tsf_mte + tsf_tae;
+                        
+                        // Total Exhaust Opening
+                         num_mto = parseFloat(document.getElementById("input_1_num_mto").value);
+                         num_ateo = parseFloat(document.getElementById("input_1_num_ateo").value);
+                         num_exhaust_opening = num_mto + num_ateo;
+                        
+                         // Shell Q'ty is one
+                        if (shell_number == "one") {
+                            // Venting Equipment Capacities의 표를 조건별로 찾아준다.
+                            if (total_steam_flow <= 25000) {
+                                result_scfm = vent.one[0].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[0].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[0].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor ;
+                            }
+                            if (total_steam_flow > 25000 && total_steam_flow <=50000) {
+                                result_scfm = vent.one[1].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[1].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[1].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 50000 && total_steam_flow <= 100000) {
+                                result_scfm = vent.one[2].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[2].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[2].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 100000 && total_steam_flow <= 250000) {
+                                result_scfm = vent.one[3].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[3].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[3].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 250000 && total_steam_flow <= 500000) {
+                                result_scfm = vent.one[4].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[4].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[4].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 500000 && total_steam_flow <= 1000000) {
+                                result_scfm = vent.one[5].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[5].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[5].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor ;
+                            }
+                            if (total_steam_flow > 1000000 && total_steam_flow <= 2000000) {
+                                result_scfm = vent.one[6].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[6].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[6].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 2000000 && total_steam_flow <= 3000000) {
+                                result_scfm = vent.one[7].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[7].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[7].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 3000000 && total_steam_flow <= 4000000) {
+                                result_scfm = vent.one[8].scfm[num_exhaust_opening];
+                                result_dry_air = vent.one[8].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.one[8].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }                        
+                        }
+                        // Shell Q'ty are two.
+                        if (shell_number == "two") {
+                            // Venting Equipment Capacities의 표를 조건별로 찾아준다.
+                            if (total_steam_flow >= 100000 && total_steam_flow <= 250000) {
+                                result_scfm = vent.two[0].scfm[num_exhaust_opening];
+                                result_dry_air = vent.two[0].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.two[0].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 250000 && total_steam_flow <= 500000) {
+                                result_scfm = vent.two[1].scfm[num_exhaust_opening];
+                                result_dry_air = vent.two[1].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.two[1].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 500000 && total_steam_flow <= 1000000) {
+                                result_scfm = vent.two[2].scfm[num_exhaust_opening];
+                                result_dry_air = vent.two[2].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.two[2].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 1000000 && total_steam_flow <= 2000000) {
+                                result_scfm = vent.two[3].scfm[num_exhaust_opening];
+                                result_dry_air = vent.two[3].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.two[3].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 2000000 && total_steam_flow <= 3000000) {
+                                result_scfm = vent.two[4].scfm[num_exhaust_opening];
+                                result_dry_air = vent.two[4].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.two[4].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 3000000 && total_steam_flow <= 4000000) {
+                                result_scfm = vent.two[5].scfm[num_exhaust_opening];
+                                result_dry_air = vent.two[5].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.two[5].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                        }
+                        // Shell Q'ty are three.
+                        if (shell_number == "three") {
+                            // Venting Equipment Capacities의 표를 조건별로 찾아준다.
+                            if (total_steam_flow >= 250000 && total_steam_flow <= 500000) {
+                                result_scfm = vent.three[0].scfm[num_exhaust_opening];
+                                result_dry_air = vent.three[0].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.three[0].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 500000 && total_steam_flow <= 1000000) {
+                                result_scfm = vent.three[1].scfm[num_exhaust_opening];
+                                result_dry_air = vent.three[1].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.three[1].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 1000000 && total_steam_flow <= 2000000) {
+                                result_scfm = vent.three[2].scfm[num_exhaust_opening];
+                                result_dry_air = vent.three[2].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.three[2].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 2000000 && total_steam_flow <= 3000000) {
+                                result_scfm = vent.three[3].scfm[num_exhaust_opening];
+                                result_dry_air = vent.three[3].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.three[3].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                            if (total_steam_flow > 3000000 && total_steam_flow <= 4000000) {
+                                result_scfm = vent.three[4].scfm[num_exhaust_opening];
+                                result_dry_air = vent.three[4].dry_air[num_exhaust_opening];
+                                result_water_vapor = vent.three[4].water_vapor[num_exhaust_opening];
+                                result_total = result_dry_air + result_water_vapor;
+                            }
+                        }                        
+
+                        // Hogging Capacity Table 
+                        if (total_steam_flow <= 100000) {
+                            result_hogging = 50.0;
+                        }
+                        if (total_steam_flow > 100000 && total_steam_flow <= 250000) {
+                            result_hogging = 100;
+                        }
+                        if (total_steam_flow > 250000 && total_steam_flow <= 500000) {
+                            result_hogging = 200;
+                        }
+                        if (total_steam_flow > 500000 && total_steam_flow <= 1000000) {
+                            result_hogging = 350;
+                        }
+                        if (total_steam_flow > 1000000 && total_steam_flow <= 2000000) {
+                            result_hogging = 700;
+                        }
+                        if (total_steam_flow > 2000000 && total_steam_flow <= 3000000) {
+                            result_hogging = 1050;
+                        }
+                        if (total_steam_flow > 3000000 && total_steam_flow <= 4000000) {
+                            result_hogging = 1400;
+                        }
+                        if (total_steam_flow > 4000000 && total_steam_flow <= 5000000) {
+                            result_hogging = 1750;
+                        }
+                        if (total_steam_flow > 5000000 && total_steam_flow <= 6000000) {
+                            result_hogging = 2100;
+                        }
+                        if (total_steam_flow > 6000000 && total_steam_flow <= 7000000) {
+                            result_hogging = 2450;
+                        }
+                        if (total_steam_flow > 7000000 && total_steam_flow <= 8000000) {
+                            result_hogging = 2800;
+                        }
+                        if (total_steam_flow > 8000000 && total_steam_flow <= 9000000) {
+                            result_hogging = 3150;
+                        }
+                        if (total_steam_flow > 9000000 && total_steam_flow <= 10000000) {
+                            result_hogging = 3500;
+                        }
+
+                        // 찾은 조건별 자료를 Calculation Result에 뿌려준다.
+                        document.getElementById("out_1_tot_steam_flow").innerHTML = total_steam_flow;
+                        document.getElementById("out_1_hogging_capacity").innerHTML = result_hogging;
+                        document.getElementById("out_1_vent_equip_capacity").innerHTML = result_scfm;
+                        document.getElementById("out_1_dry_air").innerHTML = result_dry_air;
+                        document.getElementById("out_1_water_vapor").innerHTML = result_water_vapor;
+                        document.getElementById("out_1_tot_mixture").innerHTML = result_total;
+                    }
+
+                }
+                // Json File을 읽는다.
+                req.open("GET", "./json/json_vent.json");
+                req.send();
+            }
+
+
+        </script>
+</body>
+
+</html>

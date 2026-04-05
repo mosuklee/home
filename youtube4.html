@@ -1,217 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-
+﻿<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flex box 이해</title>
-    <style>
-        @media screen and (max-width: 768px) {
-            * {
-                font-size: 1.8vw;
-            }
-        }
-
-
-        body {
-            font-size: 0.90vw;
-            background: white;
-        }
-
-        /* @media screen and (max-width: 768px) {
-            * {
-                font-size: 0.8rem;
-
-            }
-        } */
-
-        .flex-box {
-            /* border: 1px solid red; */
-            flex-grow: 1;
-        }
-
-        .subject {
-            /* border: 1px solid red; */
-            flex-grow: 1;
-            padding-left: 1vw;
-
-        }
-
-        #container {
-            display: flex;
-            padding-top: 2vh;
-            /* border: 1px solid rgb(89, 0, 255); */
-        }
-
-        .content {
-            width: 400px;
-            padding-left: 5px;
-            /* border: 1px solid red; */
-        }
-
-        .main-subject {
-            width: 100px;
-        }
-
-        img {
-            width: 70%;
-            height: auto;
-            display: block;
-            margin: auto;
-        }
-
-        .picture {
-            padding-top: 20px;
-        }
-
-        hr {
-            width: 100%;
-            color: #2bab0d;
-            border-style: solid;
-        }
-
-        #foot {
-            text-align: right;
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-        td {
-            padding: 10px;
-            border: 1px solid #2bab0d;
-            height: 15vmax;
-            margin: 0px;
-        }
-
-        h3 {
-            padding-left: 10px;
-            border-bottom: 1px solid #2bab0d;
-            border-left: 8px solid #2bab0d;
-
-        }
-
-        /* .sub_explain {
-            width: 800px;
-        } */
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DWSIM Tutorial</title>
+<style>
+  body {
+    font-family: 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #222;
+  }
+  .container {
+    max-width: 960px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 48px 60px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    border-radius: 4px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 3px solid #2bab0d;
+    padding-bottom: 8px;
+    color: #2bab0d;
+    margin-top: 0;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2bab0d;
+    border-left: 8px solid #2bab0d;
+    padding-left: 10px;
+    padding-bottom: 4px;
+    margin-top: 36px;
+    margin-bottom: 10px;
+  }
+  p, li {
+    margin: 4px 0;
+  }
+  ul {
+    padding-left: 24px;
+    margin: 8px 0;
+  }
+  a {
+    color: #2bab0d;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .video-block {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-top: 14px;
+    border: 1px solid #2bab0d;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .video-info {
+    background-color: #f5fef3;
+    padding: 16px 14px;
+    border-right: 1px solid #2bab0d;
+  }
+  .video-info ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .video-frame {
+    padding: 10px;
+    background: #fff;
+  }
+  .video-frame iframe {
+    width: 100%;
+    height: 390px;
+    display: block;
+    border: none;
+  }
+  .note {
+    font-size: 12px;
+    color: #555;
+    margin-top: 12px;
+    padding-left: 4px;
+  }
+  hr {
+    border: none;
+    border-top: 2px solid #2bab0d;
+    margin: 36px 0 10px;
+  }
+  .foot-link {
+    text-align: right;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  @media (max-width: 700px) {
+    .container { padding: 24px 18px; }
+    .video-block { grid-template-columns: 1fr; }
+    .video-info { border-right: none; border-bottom: 1px solid #2bab0d; }
+    .video-frame iframe { height: 200px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .container { box-shadow: none; margin: 0; padding: 20px 30px; max-width: 100%; }
+  }
+</style>
 </head>
-
 <body>
+<div class="container">
 
-    <div id="container">
-        <div class="subject">
+  <h1>Tutorial</h1>
 
-        </div>
-        <div class="subject main-subject">
+  <p>본 Tutorial은 실제 업무에 적용할 수 있는 각각의 시스템별 Tutorial 입니다.<br>
+    실제 업무에 적용하여 사용하시길 바랍니다.
+  </p>
 
-        </div>
-
-        <div class="subject">
-
-        </div>
+  <h3>Steam Turbine</h3>
+  <div class="video-block">
+    <div class="video-info">
+      <ul>
+        <li>Steam Turbine</li>
+      </ul>
     </div>
-    <div id="container">
-        <div class="flex-box">
-
-        </div>
-
-
-        <div class="flex-box content">
-            <div>
-
-                <h3>Tutorial</h3>
-                <div class="sub_explain">
-                    <p> 본 Tutorial은 실제 업무에 적상할 수 있는 각각의 시스템별 Tutorial 입니다. <br>
-                        실제 업무에 적용하여 사용하시길 바랍니다.
-                    </p>
-                </div>
-                <table>
-                    <tr>
-                        <td width="250vw">
-                            <ul>
-                                <li>Steam Turbine</li>
-                            </ul>
-                        </td>
-                        <td width="600vw">
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/vwlZxwPC8NI"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </td>
-                    </tr>
-
-                </table>
-
-                <table>
-                    <tr>
-                        <td width="250vw">
-                            <ul>
-                                <li>진공복수기의 높이는 <br>
-                                    어떻게 선정할까?</li>
-                            </ul>
-                        </td>
-                        <td width="600vw">
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/46_iiF7dcfc"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </td>
-                    </tr>
-
-                </table>
-
-
-                <table>
-                    <tr>
-                        <td width="250vw">
-                            <ul>
-                                <li>MVR System Design</li>
-                            </ul>
-                        </td>
-                        <td width="600vw">
-                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/R-Iy2bNWXaA"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </td>
-                    </tr>
-
-                </table>
-
-
-                <div>
-                    <h5>
-                        <li>상기 동영상은 영상을 실행시키고 화면 우측에서 최대화면을 클릭하시면 화면 전체로 시청하실 수 있습니다.
-                    </h5>
-                </div>
-
-                <div>
-                    <h5>
-                        <br>
-                        <br>
-                        <hr>
-                        <h6 id="foot"><a href="chatt_tech.html" target="pages"> >> Dicuss with Me for Technical</a>
-                        </h6>
-                    </h5>
-                </div>
-
-
-
-            </div>
-        </div>
-        <div class="flex-box">
-
-        </div>
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/vwlZxwPC8NI"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
     </div>
-    <br>
+  </div>
 
+  <h3>진공복수기 높이 선정</h3>
+  <div class="video-block">
+    <div class="video-info">
+      <ul>
+        <li>진공복수기의 높이는 어떻게 선정할까?</li>
+      </ul>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/46_iiF7dcfc"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
 
+  <h3>MVR System Design</h3>
+  <div class="video-block">
+    <div class="video-info">
+      <ul>
+        <li>MVR System Design</li>
+      </ul>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/R-Iy2bNWXaA"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
 
+  <p class="note">※ 동영상을 실행 후 화면 우측 하단의 최대화 버튼을 클릭하시면 전체화면으로 시청하실 수 있습니다.</p>
 
+  <hr>
+  <div class="foot-link">
+    <a href="chatt_tech.html" target="pages">&gt;&gt; Discuss with Me for Technical</a>
+  </div>
 
+</div><!-- /container -->
 </body>
-
 </html>
