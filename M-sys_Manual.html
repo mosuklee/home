@@ -416,9 +416,14 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 이 범위에 들어간 오브젝트는 모두 선택이 됩니다.<br>
 오브젝트와 오브젝트 간 연결은 각각의 오브젝트의 입력 및 출력포트를 이용하며, 연결 활성화시 입출력 포트가 초록색으로 변합니다.
 출력포트가 초록색으로 변하였을 경우 클릭한 후 드래그하여 다음 오브젝트의 입력포트가 초록색으로 변하였을 때
-마우스를 놓으면 라인이 연결됩니다.</p>
-<h4>3) 오브젝트의 옵션</h4>
-<p>오브젝트의 그림을 마우스 오른쪽 버튼을 클릭하면 90도 회전, 좌우반전, 맨앞에, 맨뒤에, 삭제 메뉴를 볼 수 있습니다.</p>
+마우스를 놓으면 라인이 연결됩니다.</p> 
+<h4>3) 오브젝트의 회전 및 삭제</h4>
+<p>오브젝트를 마우스 오른쪽 버튼을 클릭하면 90도 회전, 좌우반전, 맨앞에, 맨뒤에, 삭제 메뉴를 볼 수 있습니다. <br>
+다중 오브젝트가 선택되었을 경우에도 마우스 오른쪽 버튼을 누르면 동일한 기능을 수행 할 수 있습니다. <br>
+오브젝트가 단일 또는 다중으로 선택되었을 경우 키보드의 Delete 버튼을 누르면 선택된 오브젝트가 삭제됩니다.
+</p>
+<H4>4) 오브젝트의 복사 및 붙여넣기</H4>
+<p>오브젝트를 선택한 후 Ctrl+C를 누르면 오브젝트가 복사되고, Ctrl+V를 누르면 복사된 오브젝트가 Flowsheet에 나타납니다. <br>
 
 <h3 id="s24">2.4 Object 정의</h3>
 <p>세번째 화면은 Flowsheet에 나타낼 오브젝트를 선택하기 위한 메뉴로서 여기에서 Drag한 후 Flowsheet에 Drop하면
@@ -1415,7 +1420,8 @@ NOx 표준 O₂로 보정하는 방법:
     <div class="cap-row"><div class="cap-name">O2 Conc.(%)</div><div class="cap-colon">:</div><div class="cap-box">15</div></div>
     <div class="cap-row"><div class="cap-name">Urea_Constru.(%)</div><div class="cap-colon">:</div><div class="cap-box">40</div></div>
     <div class="cap-row"><div class="cap-name">Equiv_Ratio(-)</div><div class="cap-colon">:</div><div class="cap-box">1.02</div></div>
-    <div class="cap-row"><div class="cap-name">Spray_Urea_Constru</div><div class="cap-colon">:</div><div class="cap-box">20</div></div>
+    <div class="cap-row"><div class="cap-name">Spray_Urea_Constru(%)</div><div class="cap-colon">:</div><div class="cap-box">20</div></div>
+    <div class="cap-row"><div class="cap-name">SV (h⁻¹)</div><div class="cap-colon">:</div><div class="cap-box">5000</div></div>
   </div>
   <div class="input-table">
 <table>
@@ -1425,6 +1431,7 @@ NOx 표준 O₂로 보정하는 방법:
   <tr><td>Urea_Constru.(%)</td><td>%</td><td>요소수(Urea 수용액)의 농도 (%)<br>예) AdBlue (32.5%), 일반 요소수 (40~50%)</td></tr>
   <tr><td>Equiv_Ratio(-)</td><td>-</td><td>당량비 직접입력, 기준값 1.0. 실제는 1.0~2.0 범위 적용</td></tr>
   <tr><td>Spray_Urea_Constru(%)</td><td>%</td><td>배기가스에 직접 분무되는 요소수에서의 Urea 농도 (%)</td></tr>
+  <tr><td>SV (h⁻¹)</td><td>h⁻¹</td><td>촉매 Space Velocity 기준값으로, 촉매 체적 계산에 사용됩니다.</td></tr>
 </table>
   </div>
 </div>
@@ -1443,6 +1450,7 @@ NOx 표준 O₂로 보정하는 방법:
   <tr><td>Water Spray (added)</td><td>kg/h</td><td>추가 분사수량</td></tr>
   <tr><td>Water Total to Gas</td><td>kg/h</td><td>배기가스에 유입되는 총 수분량</td></tr>
   <tr><td>NOx Emission Amount (actual)</td><td>kg/h</td><td>실제 NOx 질량 배출량</td></tr>
+  <tr><td>Catalytic Area</td><td>m³</td><td>계산된 촉매 체적이며, 결과값에 적용된 SV (h⁻¹)가 함께 표시됩니다.</td></tr>
 </table>
 
 <!-- ============================== 3.15 scr_ammonia ============================== -->
@@ -1497,6 +1505,7 @@ NOx 표준 O₂로 보정하는 방법:
     <div class="cap-row"><div class="cap-name">O2 Conc.(%)</div><div class="cap-colon">:</div><div class="cap-box">15</div></div>
     <div class="cap-row"><div class="cap-name">Ammonia_Constru.(%)</div><div class="cap-colon">:</div><div class="cap-box">25</div></div>
     <div class="cap-row"><div class="cap-name">Equiv_Ratio(-)</div><div class="cap-colon">:</div><div class="cap-box">1.00</div></div>
+    <div class="cap-row"><div class="cap-name">SV (h⁻¹)</div><div class="cap-colon">:</div><div class="cap-box">5000</div></div>
   </div>
   <div class="input-table">
 <table>
@@ -1505,6 +1514,7 @@ NOx 표준 O₂로 보정하는 방법:
   <tr><td>O2 Conc.(%)</td><td>%</td><td>NOx 농도의 기준 O₂ 농도 (건조, %)</td></tr>
   <tr><td>Ammonia_Constru.(%)</td><td>%</td><td>암모니아 수용액의 NH₃ 농도 (%)<br>예) 9% 암모니아수 → 9 입력</td></tr>
   <tr><td>Equiv_Ratio(-)</td><td>-</td><td>당량비 직접입력, 기준값 1.0. 최적범위 0.8~1.2 범위</td></tr>
+  <tr><td>SV (h⁻¹)</td><td>h⁻¹</td><td>촉매 Space Velocity 기준값으로, 촉매 체적 계산에 사용됩니다.</td></tr>
 </table>
   </div>
 </div>
@@ -1524,6 +1534,7 @@ NOx 표준 O₂로 보정하는 방법:
   <tr><td>Water in NH3 Solution</td><td>kg/h</td><td>암모니아 수용액 내 물 함량</td></tr>
   <tr><td>Water Total to Gas</td><td>kg/h</td><td>배기가스에 유입되는 총 수분량</td></tr>
   <tr><td>NOx Emission Amount (actual)</td><td>kg/h</td><td>실제 NOx 질량 배출량</td></tr>
+  <tr><td>Catalytic Area</td><td>m³</td><td>계산된 촉매 체적이며, 결과값에 적용된 SV (h⁻¹)가 함께 표시됩니다.</td></tr>
 </table>
 
 <div class="note-box">
