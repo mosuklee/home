@@ -844,13 +844,37 @@ NPSH Available:
 LMTD 계산 :
   LMTD = (ΔT1 - ΔT2) / ln(ΔT1 / ΔT2)
 
-Parallel Flow:
-  ΔT1 = T_s1_in - T_s2_in,  ΔT2 = T_s1_out - T_s2_out
+  Parallel Flow:
+    ΔT1 = T_s1_in - T_s2_in,  ΔT2 = T_s1_out - T_s2_out
 
-Counter Flow:
-  ΔT1 = T_s1_in - T_s2_out,  ΔT2 = T_s1_out - T_s2_in
+  Counter Flow:
+    ΔT1 = T_s1_in - T_s2_out,  ΔT2 = T_s1_out - T_s2_in
+
+Pinch Temperature (at Boiler)
+  Pinch T = Exhaust gas outlet Temperature - Steam Saturation Temperature 
+
+Approch Temperature (at Boiler)
+  Approach T = Steam Saturation Temperature - Water Temperature from Economizer outlet
 
 </div>
+
+<p><b>[참고1] 열교환기(보일러)의 형식별 전열계수 (U값) 권장 범위</b></p>
+<table>
+  <tr><th>열교환기 형식</th><th style="text-align:center;">U값 범위 (W/m²·K)</th><th style="text-align:center;">권장값 (W/m²·K)</th><th>특성 및 주의사항</th></tr>
+  <tr><td>Evaporator (고온부)</td><td style="text-align:center;">200~350</td><td style="text-align:center;">270</td><td>배기 고온 (&gt;400℃), 액체→증기 (Boiling), 제약: 배기측 h_o, 규모: 면적 작음</td></tr>
+  <tr><td>Economizer (저온부)</td><td style="text-align:center;">120~200</td><td style="text-align:center;">160</td><td>배기 저온 (150~250℃), 액체만 존재, 제약: 응축·오염, 규모: 면적 큼</td></tr>
+  <tr><td>Air Heater (공기가열)</td><td style="text-align:center;">80~150</td><td style="text-align:center;">110</td><td>배기→연소공기, 저 열전달율, 최대 응축 위험, 규모: 매우 큼</td></tr>
+  <tr><td>보조 증기발생기 (SG)</td><td style="text-align:center;">300~500</td><td style="text-align:center;">400</td><td>배기→물 (Boiling), 높은 열전달율, 제약: 응축 스케일, 규모: 작음</td></tr>
+</table>
+
+<p><b>[참고2] 보일러에서의 Pinch 온도 및 Approch 온도 권장 범위</b></p>
+<table>
+  <tr><th>보일러의 종류</th><th style="text-align:center;">Pinch 온도차</th><th style="text-align:center;">Approch 온도차</th></tr>
+  <tr><td>소형 패키지</td><td style="text-align:center;">15 - 20℃</td><td style="text-align:center;">10 - 15℃</td></tr>
+  <tr><td>중형 보일러</td><td style="text-align:center;">12 - 15℃</td><td style="text-align:center;">8 - 10℃</td></tr>
+  <tr><td>대형 산업용</td><td style="text-align:center;">8 - 12℃</td><td style="text-align:center;">5 - 8℃</td></tr>
+</table>
+
 
 <h4>2) 포트 구성</h4>
 <div class="port-diagram">
