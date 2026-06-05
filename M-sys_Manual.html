@@ -319,16 +319,17 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
         <li><a href="#s35">3.5 pipe</a></li>
         <li><a href="#s36">3.6 pump</a></li>
         <li><a href="#s37">3.7 exchanger</a></li>
-        <li><a href="#s38">3.8 mixer</a></li>
-        <li><a href="#s39">3.9 VLSeperator</a></li>
-        <li><a href="#s310">3.10 comp</a></li>
-        <li><a href="#s311">3.11 cooling_tower</a></li>
-        <li><a href="#s312">3.12 power_gen</a></li>
-        <li><a href="#s313">3.13 burner</a></li>
-        <li><a href="#s314">3.14 scr_urea</a></li>
-        <li><a href="#s315">3.15 scr_ammonia</a></li>
-        <li><a href="#s316">3.16 note</a></li>
-        <li><a href="#s317">3.17 properties_table</a></li>
+        <li><a href="#s38">3.8 economizer</a></li>
+        <li><a href="#s39">3.9 mixer</a></li>
+        <li><a href="#s310">3.10 VLSeperator</a></li>
+        <li><a href="#s311">3.11 comp</a></li>
+        <li><a href="#s312">3.12 cooling_tower</a></li>
+        <li><a href="#s313">3.13 power_gen</a></li>
+        <li><a href="#s314">3.14 burner</a></li>
+        <li><a href="#s315">3.15 scr_urea</a></li>
+        <li><a href="#s316">3.16 scr_ammonia</a></li>
+        <li><a href="#s317">3.17 note</a></li>
+        <li><a href="#s318">3.18 properties_table</a></li>
       </ul>
     </li>
   </ul>
@@ -361,6 +362,7 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
   <li><b>pipe</b> : 배관의 압력손실, 유속, 열손실, 출구의 상태 계산</li>
   <li><b>pump</b> : 펌프의 동력, NPSHav 및 출구상태 계산</li>
   <li><b>exchanger</b> : 열교환기의 열교환량 및 출구상태 계산</li>
+  <li><b>economizer</b> : Economizer의 Design Mod와 Simulation Mod 출구상태 계산</li>
   <li><b>mixer</b> : 2개의 stream의 혼합 정의 (배관의 Tee와 같은 역할)</li>
   <li><b>VLSeperator</b> : stream의 기상과 액상의 분리 및 출구상태 계산</li>
   <li><b>comp</b> : compressor의 압축비 및 압축동력 등 계산 및 출구상태 계산</li>
@@ -391,6 +393,20 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 <h4>2) Print</h4>
 <p>Print 메뉴에는 Flowsheet와 Report 메뉴가 있으며, Flowsheet 메뉴는 Flowsheet의 그림을 캡쳐하여 pdf파일로
 저장하기 위한 메뉴이며, Report 메뉴는 계산된 계산결과 및 Properties 등을 레포트 형태로 pdf파일로 저장하기 위한 메뉴입니다.</p>
+
+<h4>3) Case Study</h4>
+<p>Case Study 메뉴에는 Open Case Study 메뉴가 있으며, 메뉴를 선택하면 별도의 창이 열립니다. <br>
+   Case Study 창에서는 기준 Flowsheet를 기반으로 다양한 Case를 설정하여 각 Case별로 계산된 결과를 비교할 수 있도록 되어 있습니다. <br>
+   총 20개의 Case를 설정할 수 있으며, 입력값을 입력하는 Input Override 리스트와 각각의 오브젝트 계산결과를 볼 수 있는 Result 리스트로 구성되어 있습니다.
+  </p>
+
+<h4>3) HELP</h4>
+<p>Help 메뉴에는 Manual, Cheat Sheet, Download의 3가지 서브메뉴가 있으며, 프로그램 사용에 대한 도움말을 볼 수 있습니다. <br>
+   메뉴를 선택하면 별도의 링크된 Web 페이지 창이 열립니다. <br>
+   Manual : 프로그램 사용에 대한 자세한 설명이 담긴 매뉴얼 페이지로 연결됩니다. <br>
+   Cheat Sheet : 프로그램 사용에 대한 간단한 설명이 담긴 치트 시트 페이지로 연결됩니다. <br>
+   Download : 프로그램 설치 파일을 다운로드할 수 있는 페이지로 연결됩니다. <br>
+  </p>
 
 <h3 id="s22">2.2 입력 및 출력</h3>
 <p>전체 화면은 첫번째 팔레트는 Object의 물성을 입력 및 출력, 계산결과를 나타낼 수 있도록 3개의 입출력 칸으로 구분되어 있습니다.</p>
@@ -931,8 +947,106 @@ S1_in → Exchanger → S1_out
   <tr><td>Temp(S2_out)</td><td>℃</td><td>Stream 2 출구 온도</td></tr>
 </table>
 
-<!-- ============================== 3.8 mixer ============================== -->
-<h3 id="s38">3.8 mixer</h3>
+<!-- ============================== 3.8 economizer ============================== -->
+<h3 id="s38">3.8 economizer</h3>
+<div class="object-summary">
+  <div class="object-visual"><img src="img/exchanger.jpg" alt="economizer object" class="object-thumb"></div>
+  <div class="object-desc">economizer 오브젝트는 보일러의 급수를 가열하기 위한 열교환기로써 Design Mode와 Simulation Mode를 지원합니다. <br>
+                           Design Mode에서는 설계 값을 계산하며, Simulation Mode에서는 Design Mode에서 계산된 값을 기반으로 변경후의 실제 열교환량과 출구 온도를 계산합니다.
+  </div>
+                           
+</div>
+
+<h4>1) 계산 이론</h4>
+<div class="formula-box">
+Economizer 기본 계산 (열교환기 기본 계산과 동일):
+  Q = U × A × LMTD × Eff
+
+  Q    : 열교환량 (W)
+  U    : 전열계수 (W/m²·K)
+  A    : 전열면적 (m²)
+  LMTD : 대수 평균 온도차 (℃)
+  Eff  : 열교환 효율 (0~1)
+
+LMTD 계산 :
+  LMTD = (ΔT1 - ΔT2) / ln(ΔT1 / ΔT2)
+
+  Parallel Flow:
+    ΔT1 = T_s1_in - T_s2_in,  ΔT2 = T_s1_out - T_s2_out
+
+  Counter Flow:
+    ΔT1 = T_s1_in - T_s2_out,  ΔT2 = T_s1_out - T_s2_in
+
+Approch Temperature (at Boiler)
+  Approach T = Steam Saturation Temperature - Water Temperature from Economizer outlet
+
+[Design Mode]
+위의 계산이론을 기반으로 설계 기준에 따른 필요 전열면적과 전열계수 등을 계산합니다.
+
+[Simulation Mode]
+Design Mode에서 계산된 전열면적(A) 및 전열계수(U)값을 기반으로 다음 수식을 기준으로 변경후의 실제 UA_op 값을 계산한 후 급수의 출구온도를 추정 계산합니다.
+
+UA_op = UA_design x {0.85 x (m_gas_op / m_gas_design)^0.7 + 0.15 x (m_water_op / m_water_design)^0.8}
+
+  UA_op : Simulation Mode에서의 실제 UA값
+  UA_design : Design Mode에서 계산된 설계 UA값
+  m_gas_op : Simulation Mode에서의 배기가스 유량
+  m_gas_design : Design Mode에서의 설계 배기가스 유량
+  m_water_op : Simulation Mode에서의 급수 유량
+  m_water_design : Design Mode에서의 설계 급수 유량
+
+</div>
+
+<h4>2) 포트 구성</h4>
+<div class="port-diagram">
+        S2_in
+          ↓
+S1_in → Exchanger → S1_out
+          ↓
+        S2_out
+</div>
+
+<h4>3) Object Input</h4>
+<div class="input-layout">
+  <div class="input-capture">
+    <div class="cap-title">Object Input</div>
+    <div class="cap-row"><div class="cap-name">Design Basis</div><div class="cap-colon">:</div><div class="cap-box">Stream2:출구온도(℃)</div></div>
+    <div class="cap-row"><div class="cap-name">Outlet Value</div><div class="cap-colon">:</div><div class="cap-box">156.0</div></div>
+    <div class="cap-row"><div class="cap-name">U (W/m2K)</div><div class="cap-colon">:</div><div class="cap-box">160</div></div>
+    <div class="cap-row"><div class="cap-name">Type</div><div class="cap-colon">:</div><div class="cap-box">counter</div></div>
+    <div class="cap-row"><div class="cap-name">Press Drop(S1)</div><div class="cap-colon">:</div><div class="cap-box">0.1</div></div>
+    <div class="cap-row"><div class="cap-name">Press Drop(S2)</div><div class="cap-colon">:</div><div class="cap-box">0.1</div></div>
+    <div class="cap-row"><div class="cap-name">Efficiency(%)</div><div class="cap-colon">:</div><div class="cap-box">100</div></div>
+    <div class="cap-row"><div class="cap-name">Simulation </div><div class="cap-colon">:</div> [ ]</div>
+  </div>
+  <div class="input-table">
+<table>
+  <tr><th>필드명</th><th>기본값</th><th>설명</th></tr>
+  <tr><td>Design Basis</td><td>Stream2:출구온도(℃)</td><td>Economizer 이므로 항상 일정(선택 없음) <br>
+  </td></tr>
+  <tr><td>Outlet Value</td><td>156.0</td><td>Economizer 급수 출구 온도(℃)</td></tr>
+  <tr><td>U (W/m²·K)</td><td>160</td><td>열관류율 (전열계수)</td></tr>
+  <tr><td>Type</td><td>counter</td><td>유동 형태: <code>Counter Flow</code>또는 <code>Parallel Flow</code></td></tr>
+  <tr><td>Press Drop(S1)</td><td>0.1 kg/cm²</td><td>Stream 1 측 압력강하</td></tr>
+  <tr><td>Press Drop(S2)</td><td>0.1 kg/cm²</td><td>Stream 2 측 압력강하</td></tr>
+  <tr><td>Efficiency(%)</td><td>100</td><td>열교환 효율 (%)</td></tr>
+  <tr><td>Simulation </td><td>100</td><td>[ ] or [ ✓ ]</td></tr>
+</table>
+  </div>
+</div>
+
+<h4>4) Simulation Result</h4>
+<table>
+  <tr><th>항목</th><th>단위</th><th>설명</th></tr>
+  <tr><td>Heat Duty</td><td>kW</td><td>실제 열교환량</td></tr>
+  <tr><td>LMTD</td><td>℃</td><td>대수 평균 온도차</td></tr>
+  <tr><td>UA Required</td><td>W/K</td><td>UA값 (열관류율 × 면적)</td></tr>
+  <tr><td>Temp(S1_out)</td><td>℃</td><td>Stream 1 출구 온도</td></tr>
+  <tr><td>Temp(S2_out)</td><td>℃</td><td>Stream 2 출구 온도</td></tr>
+</table>
+
+<!-- ============================== 3.9 mixer ============================== -->
+<h3 id="s39">3.9 mixer</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/mixer.jpg" alt="mixer object" class="object-thumb"></div>
   <div class="object-desc">mixer 오브젝트는 두 개의 Stream을 하나로 혼합하는 오브젝트이며, 배관 Tee 합류와 같은 역할로 혼합 후 압력/온도/엔탈피를 계산합니다.</div>
@@ -984,8 +1098,8 @@ s1_in ──────────── s1_out (출구)
   <tr><td>Flow Rate</td><td>kg/h</td><td>혼합 총 유량 (m1 + m2)</td></tr>
 </table>
 
-<!-- ============================== 3.9 VLSeperator ============================== -->
-<h3 id="s39">3.9 VLSeperator</h3>
+<!-- ============================== 3.10 VLSeperator ============================== -->
+<h3 id="s310">3.10 VLSeperator</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/vl_seperator.jpg" alt="VLSeperator object" class="object-thumb"></div>
   <div class="object-desc">VLSeperator 오브젝트는 하나의 입력 Stream을 기상(Vapor)과 액상(Liquid)으로 분리하는 오브젝트입니다. 단일 성분 유체에 대해서만 적용 가능합니다.</div>
@@ -1045,8 +1159,8 @@ s1_in → [VL Separator]
   <tr><td>Liquid Enthalpy</td><td>kcal/kg</td><td>액상 출구 엔탈피</td></tr>
 </table>
 
-<!-- ============================== 3.10 comp ============================== -->
-<h3 id="s310">3.10 comp</h3>
+<!-- ============================== 3.11 comp ============================== -->
+<h3 id="s311">3.11 comp</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/comp.jpg" alt="comp object" class="object-thumb"></div>
   <div class="object-desc">comp 오브젝트는 Compressor 및 Blower의 압축 계산을 수행하는 오브젝트로, 압축 방식(Adiabatic/Polytropic), 효율, 출구 압력 기준으로 출구 상태와 동력을 계산합니다.</div>
@@ -1102,8 +1216,8 @@ s1_in → [VL Separator]
   <tr><td>Comp Power</td><td>kW</td><td>소비 동력</td></tr>
 </table>
 
-<!-- ============================== 3.11 cooling_tower ============================== -->
-<h3 id="s311">3.11 cooling_tower</h3>
+<!-- ============================== 3.12 cooling_tower ============================== -->
+<h3 id="s312">3.12 cooling_tower</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/cooling_tower.jpg" alt="cooling_tower object" class="object-thumb"></div>
   <div class="object-desc">cooling_tower 오브젝트는 증발식 냉각탑의 냉각용량, 증발량, 드리프트, 블로다운, 보급수량을 계산하기 위한 오브젝트입니다.</div>
@@ -1196,8 +1310,8 @@ ct_in → [Cooling Tower] → ct_out  (냉각된 물 출구)
   <tr><td>Makeup</td><td>kg/h</td><td>보급수 필요량</td></tr>
 </table>
 
-<!-- ============================== 3.12 power_gen ============================== -->
-<h3 id="s312">3.12 power_gen</h3>
+<!-- ============================== 3.13 power_gen ============================== -->
+<h3 id="s313">3.13 power_gen</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/power_gen.jpg" alt="power_gen object" class="object-thumb"></div>
   <div class="object-desc">power_gen 오브젝트는 발전기(Gas Turbine, Engine 등)의 발전량과 배기가스 특성을 정의하여 출력 Stream을 제공하는 오브젝트입니다. 입력 포트 없이 출력 포트만 보유합니다.</div>
@@ -1259,8 +1373,8 @@ NOx 환산 (O₂ 기준 보정):
   <tr><td>NOx Emission</td><td>ppmv</td><td>NOx 배출 농도</td></tr>
 </table>
 
-<!-- ============================== 3.13 burner ============================== -->
-<h3 id="s313">3.13 burner</h3>
+<!-- ============================== 3.14 burner ============================== -->
+<h3 id="s314">3.14 burner</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/burner.jpg" alt="burner object" class="object-thumb"></div>
   <div class="object-desc">burner 오브젝트는 버너를 이용하여 연료의 연소 반응을 계산하는 오브젝트로 연료와 공기중의 산소를 이용하거나 배기가스의 산소를 이용하여 연소반응을 해석하고, 배기가스 조성, 유량, 온도를 계산하는 오브젝트입니다. 입력 Stream의 O2를 기준으로 완전 연소를 전제조건으로한 계산을 수행합니다.</div>
@@ -1388,8 +1502,8 @@ NOx 환산 (O₂ 기준 보정):
   <tr><td>Out Comp(vol)</td><td>%</td><td>연소 후 배기가스 체적 조성</td></tr>
 </table>
 
-<!-- ============================== 3.14 scr_urea ============================== -->
-<h3 id="s314">3.14 scr_urea</h3>
+<!-- ============================== 3.15 scr_urea ============================== -->
+<h3 id="s315">3.15 scr_urea</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/scr_urea.jpg" alt="scr_urea object" class="object-thumb"></div>
   <div class="object-desc">scr_urea 오브젝트는 Urea(요소수)를 이용한 SCR의 요소수 사용량과 NOx 저감 후 출구 상태를 계산하는 오브젝트입니다.</div>
@@ -1477,8 +1591,8 @@ NOx 표준 O₂로 보정하는 방법:
   <tr><td>Catalytic Area</td><td>m³</td><td>계산된 촉매 체적이며, 결과값에 적용된 SV (h⁻¹)가 함께 표시됩니다.</td></tr>
 </table>
 
-<!-- ============================== 3.15 scr_ammonia ============================== -->
-<h3 id="s315">3.15 scr_ammonia</h3>
+<!-- ============================== 3.16 scr_ammonia ============================== -->
+<h3 id="s316">3.16 scr_ammonia</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/scr_ammonia.jpg" alt="scr_ammonia object" class="object-thumb"></div>
   <div class="object-desc">scr_ammonia 오브젝트는 Ammonia(암모니아)를 이용한 SCR의 암모니아 사용량과 NOx 저감 후 출구 상태를 계산하는 오브젝트입니다.</div>
@@ -1568,8 +1682,8 @@ NOx 표준 O₂로 보정하는 방법:
   두 오브젝트 모두 출구 배기가스 온도는 수분 유입에 따른 혼합 엔탈피 계산으로부터 결정됩니다.
 </div>
 
-<!-- ============================== 3.16 note ============================== -->
-<h3 id="s316">3.16 note</h3>
+<!-- ============================== 3.17 note ============================== -->
+<h3 id="s317">3.17 note</h3>
 <div class="object-summary">
   <div class="object-visual">
     <svg class="object-thumb" viewBox="0 0 120 80" aria-label="note object icon" role="img">
@@ -1620,8 +1734,8 @@ NOx 표준 O₂로 보정하는 방법:
   <li>마우스 오른쪽 버튼을 클릭하면 노트의 회전, 맨앞으로 및 맨뒤로 위치를 설정할 수 있습니다.</li>
 </ul>
 
-<!-- ============================== 3.17 properties_table ============================== -->
-<h3 id="s317">3.17 properties_table</h3>
+<!-- ============================== 3.18 properties_table ============================== -->
+<h3 id="s318">3.18 properties_table</h3>
 <div class="object-summary">
   <div class="object-visual">
     <svg class="object-thumb" viewBox="0 0 120 80" aria-label="properties table object icon" role="img">
@@ -1663,6 +1777,68 @@ NOx 표준 O₂로 보정하는 방법:
   <li>마우스 드래그로 Flowsheet 내 자유롭게 이동할 수 있으며, 테두리를 드래그하여 크기 조절이 가능합니다.</li>
   <li>마우스 오른쪽 버튼을 클릭하면 properties_table의 회전, 맨앞으로 및 맨뒤로 위치를 설정할 수 있습니다.</li>
 </ul>
+
+<!-- ===================== 4. Case Study ===================== -->
+<h2 id="s4">4. Case Study</h2>
+<p>Case Study 창에서는 기준 Flowsheet를 기반으로 다양한 Case를 설정하여 각 Case별로 계산된 결과를 비교할 수 있도록 되어 있습니다.
+총 20개의 Case를 설정할 수 있으며, 입력값을 입력하는 Input Override 리스트와 각각의 오브젝트 계산결과를 볼 수 있는 Result 리스트로 구성되어 있습니다.</p>
+
+<div style="text-align:center; margin: 24px 0 30px;">
+  <img src="img/case_study.jpg" alt="case_study"
+       style="width:100%; max-width:950px; border:2px solid #2bab0d; border-radius:6px;
+              box-shadow:0 3px 14px rgba(0,0,0,0.18); display:inline-block;">
+  <p style="color:#555; font-size:12px; margin-top:8px; margin-bottom:0;">
+  </p>
+</div>
+
+<h3 id="s41">4.1 Case Study 사용설명</h3>
+<p> <h4>[Input Override]</h4> 
+    <h4> 1) Add Case </h4>
+    <ul>
+      <li>버튼을 누르면 Case가 추가되며, 최대 20개까지 Case를 생성할 수 있습니다.</li>
+    </ul>
+    <h4> 2) Remove Case </h4>
+      <ul>
+        <li>선택한 Case를 삭제합니다.</li>
+      </ul>
+    <h4> 3) Rename Case </h4>
+       <ul>
+         <li>선택한 Case의 이름을 변경할 수 있습니다.</li>
+       </ul>
+    <h4> 4) Add Input </h4>
+        <ul>
+          <li>선택한 Case에 새로운 Object 항목을 추가합니다.</li>
+        </ul>
+    <h4> 5) Remove Input </h4>
+        <ul>
+          <li>선택한 Case에서 Object 항목을 삭제합니다.</li>
+        </ul>
+    <h4>[Result]</h4>
+    <h4> 1) Add Result </h4>
+        <ul>
+          <li>선택한 Case에 새로운 Object 항목을 추가합니다.</li>
+        </ul>
+    <h4> 2) Remove Result </h4>
+        <ul>
+          <li>선택한 Case에서 Object 항목을 삭제합니다.</li>
+        </ul>
+    
+    <h4>[CASE STUDY 버튼]</h4>
+    <ul>
+      <li>CASE STUDY 버튼을 누르면 입력된 Case별로 계산이 수행되고, 결과가 Result 리스트에 업데이트됩니다.</li>
+    </ul>
+
+    <h4>[CSV 저장 버튼]</h4>
+    <ul>
+      <li>CSV 저장 버튼을 누르면 계산된 Result 리스트의 내용을 CSV 파일로 저장할 수 있습니다.</li>
+      <li>저장되는 CSV 파일은 각 Case별로 Object 항목과 계산 결과가 포함된 형태로 구성됩니다.</li>
+      <li>저장된 CSV 파일은 Excel 등에서 열어서 추가 분석이나 보고서 작성에 활용할 수 있습니다.</li>
+    </ul>
+
+    <h4>[참고사항]</h4>
+    <ul>
+      <li>Input Override와 Result 리스트의 행번호를 드레그하여 순서를 변경할 수 있습니다.</li>
+    </ul>
 
 <!-- ===================== 참고 ===================== -->
 <h2 id="sref">부록. 주요 단위 및 변환</h2>
