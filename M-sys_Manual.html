@@ -328,8 +328,10 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
         <li><a href="#s314">3.14 burner</a></li>
         <li><a href="#s315">3.15 scr_urea</a></li>
         <li><a href="#s316">3.16 scr_ammonia</a></li>
-        <li><a href="#s317">3.17 note</a></li>
-        <li><a href="#s318">3.18 properties_table</a></li>
+        <li><a href="#s317">3.17 control_adjust</a></li>
+        <li><a href="#s318">3.18 control_set</a></li>
+        <li><a href="#s319">3.19 note</a></li>
+        <li><a href="#s320">3.20 properties_table</a></li>
       </ul>
     </li>
     <li><a href="#s4">4. Case Study</a>
@@ -1031,7 +1033,7 @@ S1_in → Exchanger → S1_out
   <tr><td>Press Drop(S1)</td><td>0.1 kg/cm²</td><td>Stream 1 측 압력강하</td></tr>
   <tr><td>Press Drop(S2)</td><td>0.1 kg/cm²</td><td>Stream 2 측 압력강하</td></tr>
   <tr><td>Efficiency(%)</td><td>100</td><td>열교환 효율 (%)</td></tr>
-  <tr><td>Simulation </td><td>100</td><td>[ ] or [ ✓ ]</td></tr>
+  <tr><td>Simulation </td><td>100</td><td>[ ] : Design Mode &nbsp;&nbsp; [ ✓ ] : Simulation Mode</td></tr>
 </table>
   </div>
 </div>
@@ -1458,14 +1460,15 @@ NOx 환산 (O₂ 기준 보정):
 </div>
 
 <h4>2) 포트 구성</h4>
-<div class="port-diagram">배기가스 입력 포트 (s1_in) → [Burner] → 연소 후 배기가스 출력 포트 (s1_out)</div>
+<div class="port-diagram">배기가스 입력 포트 (s1_in) → [Burner] → 연소 후 배기가스 출력 포트 (s1_out) 
+                              |
+연료 입력 포트 (fuel_in) -------+
+</div>
 
 <h4>3) Object Input</h4>
 <div class="input-layout">
   <div class="input-capture">
     <div class="cap-title">Object Input</div>
-    <div class="cap-row"><div class="cap-name">Fuel Mass Flow</div><div class="cap-colon">:</div><div class="cap-box">450</div></div>
-    <div class="cap-row"><div class="cap-name">Fuel Composition</div><div class="cap-colon">:</div><div class="cap-box">ch4:90,c2h6:5,...</div></div>
     <div class="cap-row"><div class="cap-name">Efficiency</div><div class="cap-colon">:</div><div class="cap-box">100</div></div>
     <div class="cap-row"><div class="cap-name">NOx_Emis</div><div class="cap-colon">:</div><div class="cap-box blank">(optional)</div></div>
     <div class="cap-row"><div class="cap-name">O2 Conc.</div><div class="cap-colon">:</div><div class="cap-box blank">(optional)</div></div>
@@ -1473,10 +1476,6 @@ NOx 환산 (O₂ 기준 보정):
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>기본값</th><th>단위</th><th>설명</th></tr>
-  <tr><td>Fuel Mass Flow</td><td>-</td><td>kg/h</td><td>연료의 질량 유량</td></tr>
-  <tr><td>Fuel Composition(wt%)</td><td>-</td><td>-</td><td>연료 조성 직접 입력 (질량분율 또는 질량%)<br>
-          입력방법 : [성분]:[값] 형식, 쉼표 구분<br>
-          예) ch4:90,c2h6:5,c3h8:3,co2:1,n2:1</td></tr>
   <tr><td>Efficiency</td><td>100</td><td>%</td><td>버너 연소 효율 (0~100%)</td></tr>
   <tr><td>NOx_Emis</td><td>-</td><td>ppmv</td><td>NOx 배출 농도 직접 입력 <br>
          (입력하지 않을 경우 입력포트 값 적용)</td></tr>
@@ -1683,8 +1682,100 @@ NOx 표준 O₂로 보정하는 방법:
   두 오브젝트 모두 출구 배기가스 온도는 수분 유입에 따른 혼합 엔탈피 계산으로부터 결정됩니다.
 </div>
 
-<!-- ============================== 3.17 note ============================== -->
-<h3 id="s317">3.17 note</h3>
+<!-- ============================== 3.17 control_adjust ============================== -->
+<h3 id="s317">3.17 control_adjust</h3>
+<div class="object-summary">
+  <div class="object-visual"><img src="img/control_adjust.jpg" alt="control_adjust object" class="object-thumb"></div>
+  <div class="object-desc">control_adjust 오브젝트는 시스템 제어를 조정하는 기능을 제공합니다. <br>
+   주로 목표값 찾기 등에 사용될 수 있으며, 입력된 제어 변수에 따라 시스템의 특정 출력을 조정하는 역할을 합니다. <br>
+   예를 들어, 열교환기의 열교환후 온도값을 맞추기 위하여, control_object의 제어변수로 열교환기의 유량을 조정하는 시뮬레이션등에 활용할 수 있습니다. 
+  </div>
+</div>
+
+
+<h4>1) 포트 구성</h4>
+<div class="port-diagram">Manipulated Object → [ADJ] → Controlled Object</div>
+
+<h4>2) Object Input</h4>
+<div class="input-layout">
+  <div class="input-capture">
+    <div class="cap-title">Object Input</div>
+    <div class="cap-row"><div class="cap-name">Manipulated Object</div><div class="cap-colon">:</div><div class="cap-box">mass_stream_1</div></div>
+    <div class="cap-row"><div class="cap-name">Manipulated Prope</div><div class="cap-colon">:</div><div class="cap-box">Flow rate(kg/h)</div></div>
+    <div class="cap-row"><div class="cap-name">Manuipulated Min</div><div class="cap-colon">:</div><div class="cap-box">0</div></div>
+    <div class="cap-row"><div class="cap-name">Manipulated Max</div><div class="cap-colon">:</div><div class="cap-box">1000</div></div>
+    <div class="cap-row"><div class="cap-name">Controlled Object</div><div class="cap-colon">:</div><div class="cap-box">mass_stream_2</div></div>
+    <div class="cap-row"><div class="cap-name">Controlled Property</div><div class="cap-colon">:</div><div class="cap-box">Temp(°C)</div></div>
+    <div class="cap-row"><div class="cap-name">Target Value</div><div class="cap-colon">:</div><div class="cap-box">20</div></div>
+    <div class="cap-row"><div class="cap-name">Tolerance(%)</div><div class="cap-colon">:</div><div class="cap-box">0.1</div></div>
+  </div>
+  <div class="input-table">
+<table>
+  <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
+  <tr><td>Manipulated Object</td><td>-</td><td>조정하려는 오브젝트 (콤보박스 선택)</td></tr>
+  <tr><td>Manipulated Prop</td><td>-</td><td>오브젝트의 Properties를 선택</td></tr>
+  <tr><td>Manipulated Min</td><td>Var</td><td>조정할 Properties의 최소값</td></tr>
+  <tr><td>Manipulated Max</td><td>Var</td><td>조정 Properties의 최대값</td></tr>
+  <tr><td>Controlled Object</td><td>-</td><td>제어 대상 오브젝트 (콤보박스 선택)</td></tr>
+  <tr><td>Controlled Property</td><td>-</td><td>제어 대상 오브젝트의 Properties를 선택</td></tr>
+  <tr><td>Target Value</td><td>Var</td><td>목표값</td></tr>
+  <tr><td>Tolerance(%)</td><td>%</td><td>허용 오차</td></tr>
+</table>
+  </div>
+</div>
+
+
+
+<div class="note-box">
+  <b>control_adjust 설정</b><br>
+  control_adjust는 시스템 내에서 특정 제어 변수를 조정하여 목표값을 달성하는 기능을 제공합니다. <br>
+예를 들어, 열교환기의 출구 온도를 목표값으로 설정하고, control_adjust를 사용하여 열교환기의 유량을 조정하여 출구 온도가 목표값에 도달하도록 시뮬레이션할 수 있습니다. <br>
+control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 최적화하는 역할을 하며, 목표값과 허용 오차 범위 내에서 제어를 수행합니다. <br>
+실제 시뮬레이션에서는 control_adjust가 조정하는 변수의 범위와 시스템의 응답 특성을 고려하여 적절한 설정이 필요합니다. <br>
+<주의> <br>
+ control_adjust를 1개 이상 사용할 경우, control_object간 서로 간섭하여 시뮬레이션이 수렴하지 않을 수 있으므로 되도록이면 1개만 사용하시길 권장합니다. <br>
+</div>
+
+<!-- ============================== 3.18 control_set ============================== -->
+<h3 id="s318">3.18 control_set</h3>
+<div class="object-summary">
+  <div class="object-visual"><img src="img/control_set.jpg" alt="control_set object" class="object-thumb"></div>
+  <div class="object-desc">control_set 오브젝트는 Manipulated Object의 properties를 지정하고, 이 properties를 기반으로 Contorlled Object의 값을 지정하기 위한 오브젝트 입니다. <br>
+   주로 임의의 오브젝트의 특성값을 기준으로 다른 오브젝트의 입력값을 지정된 값 또는 회귀식으로 제어하기 위한 오브젝트입니다.
+  </div>
+</div>
+
+
+<h4>1) 포트 구성</h4>
+<div class="port-diagram">Manipulated Object → [SET] → Controlled Object</div>
+
+<h4>2) Object Input</h4>
+<div class="input-layout">
+  <div class="input-capture">
+    <div class="cap-title">Object Input</div>
+    <div class="cap-row"><div class="cap-name">Manipulated Object</div><div class="cap-colon">:</div><div class="cap-box">mass_stream_1</div></div>
+    <div class="cap-row"><div class="cap-name">Manipulated Prop</div><div class="cap-colon">:</div><div class="cap-box">Flow rate (kg/h)</div></div>
+    <div class="cap-row"><div class="cap-name">Controlled Object</div><div class="cap-colon">:</div><div class="cap-box">mass_stream_2</div></div>
+    <div class="cap-row"><div class="cap-name">Controlled Property</div><div class="cap-colon">:</div><div class="cap-box">Temp(°C)</div></div>
+    <div class="cap-row"><div class="cap-name">Set Value</div><div class="cap-colon">:</div><div class="cap-box">x</div></div>
+  </div>
+  <div class="input-table">
+<table>
+  <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
+  <tr><td>Manipulated Object</td><td>-</td><td>기준 오브젝트 (콤보박스 선택)</td></tr>
+  <tr><td>Manipulated Prop</td><td>%</td><td>기준 오브젝트의 속성 (콤보박스 선택)</td></tr>
+  <tr><td>Controlled Object</td><td>-</td><td>제어 대상 오브젝트 (콤보박스 선택)</td></tr>
+  <tr><td>Controlled Property</td><td>-</td><td>제어 대상 오브젝트의 속성 (콤보박스 선택)</td></tr>
+  <tr><td>Set Value</td><td>-</td><td>목표값
+  <br>예) 100 또는 y=x*0.5 등 회귀식 입력 가능</td>
+  </td></tr>
+</table>
+  </div>
+</div>
+
+
+<!-- ============================== 3.19 note ============================== -->
+<h3 id="s319">3.19 note</h3>
 <div class="object-summary">
   <div class="object-visual">
     <svg class="object-thumb" viewBox="0 0 120 80" aria-label="note object icon" role="img">
@@ -1735,8 +1826,8 @@ NOx 표준 O₂로 보정하는 방법:
   <li>마우스 오른쪽 버튼을 클릭하면 노트의 회전, 맨앞으로 및 맨뒤로 위치를 설정할 수 있습니다.</li>
 </ul>
 
-<!-- ============================== 3.18 properties_table ============================== -->
-<h3 id="s318">3.18 properties_table</h3>
+<!-- ============================== 3.20 properties_table ============================== -->
+<h3 id="s320">3.20 properties_table</h3>
 <div class="object-summary">
   <div class="object-visual">
     <svg class="object-thumb" viewBox="0 0 120 80" aria-label="properties table object icon" role="img">
