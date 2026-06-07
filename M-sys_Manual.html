@@ -341,9 +341,8 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 <!-- ===================== 1. 개요 ===================== -->
 <h2 id="s1">1. 개 요</h2>
 <p>
-본 프로그램은 다양한 오브젝트를 이용하여 Process를 Simulation 하기 위한 소프트웨어로서 각 단계별로
-공학적 이론을 바탕으로 한 계산을 수행 후 순차적으로 사용자가 계산하고자 하는 방향을 그림으로 표현한 후
-계산은 Simulator에 내장된 각각의 오브젝트에서 물성을 계산하여 연속계산을 하기 위한 범용 Software입니다.
+본 프로그램은 다양한 오브젝트를 이용하여 각 단계별로 공학적 이론을 바탕으로 Process를 Simulation 하기 위한 소프트웨어로서, 순차적으로 사용자가 계산하고자 하는 방향을 그림으로 표현한 후
+계산은 Simulator에 내장된 각각의 오브젝트의 계산 로직에 의하여 물성을 계산하여 연속계산을 하기 위한 범용 Software입니다.
 </p>
 <!-- ===================== 프로그램 개요 이미지 ===================== -->
 <div style="text-align:center; margin: 24px 0 30px;">
@@ -359,13 +358,13 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 <h3 id="s12">1.1 사용가능 오브젝트</h3>
 <ol>
   <li><b>mass_stream</b> : 물성 값의 정의 및 확인</li>
-  <li><b>turbine</b> : Steam Turbine의 발전량 및 출구상태 계산</li>
+  <li><b>turbine</b> : Turbine (Expander)의 발전량 및 출구상태 계산</li>
   <li><b>valve</b> : 밸브의 출구압력 설정 및 출구상태 계산</li>
   <li><b>splitter</b> : stream의 분기 정의 (배관의 Tee와 같은 역할)</li>
   <li><b>pipe</b> : 배관의 압력손실, 유속, 열손실, 출구의 상태 계산</li>
   <li><b>pump</b> : 펌프의 동력, NPSHav 및 출구상태 계산</li>
   <li><b>exchanger</b> : 열교환기의 열교환량 및 출구상태 계산</li>
-  <li><b>economizer</b> : Economizer의 Design Mod와 Simulation Mod 출구상태 계산</li>
+  <li><b>economizer</b> : Economizer의 Design Mode와 Simulation Mode별 출구상태 계산</li>
   <li><b>mixer</b> : 2개의 stream의 혼합 정의 (배관의 Tee와 같은 역할)</li>
   <li><b>VLSeperator</b> : stream의 기상과 액상의 분리 및 출구상태 계산</li>
   <li><b>comp</b> : compressor의 압축비 및 압축동력 등 계산 및 출구상태 계산</li>
@@ -386,51 +385,51 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 
 <!-- ===================== 2. 사용방법 ===================== -->
 <h2 id="s2">2.0 사용방법</h2>
-<p>본 프로그램을 처음 실행시키면 빈 Flowsheet가 나타나고 상단에 File, Print 메뉴가 구성되어 있습니다.</p>
+<p>본 프로그램을 처음 실행시키면 빈 Flowsheet가 나타나고 상단에 File, Print, Case Study, HELP 메뉴가 구성되어 있습니다.</p>
 
 <h3 id="s21">2.1 Menu</h3>
 <h4>1) File</h4>
-<p>File 메뉴에는 New, Open, Save, Save-AS, Exit의 5가지 메뉴가 Pull and Down 형식으로 되어 있습니다.
+<p>File 메뉴에는 New, Open, Save, Save-AS, Exit의 5가지 서브메뉴가 Pull and Down 형식으로 되어 있습니다.
 이 메뉴는 일반 프로그램과 똑같이 새로 시작, 기존 파일열기, 저장하기, 다른이름으로 저장하기, 프로그램 빠져나가기로 구성되어 있습니다.</p>
 
 <h4>2) Print</h4>
-<p>Print 메뉴에는 Flowsheet와 Report 메뉴가 있으며, Flowsheet 메뉴는 Flowsheet의 그림을 캡쳐하여 pdf파일로
-저장하기 위한 메뉴이며, Report 메뉴는 계산된 계산결과 및 Properties 등을 레포트 형태로 pdf파일로 저장하기 위한 메뉴입니다.</p>
+<p>Print 메뉴에는 Report와 Flowsheet 서브메뉴가 있으며, Report 메뉴는 계산된 계산결과 및 Properties 등을 레포트 형태로 pdf파일로 저장하기 위한 메뉴이며, Flowsheet 메뉴는 Flowsheet의 그림을 캡쳐하여 pdf파일로
+저장하기 위한 메뉴입니다. </p>
 
 <h4>3) Case Study</h4>
-<p>Case Study 메뉴에는 Open Case Study 메뉴가 있으며, 메뉴를 선택하면 별도의 창이 열립니다. <br>
+<p>Case Study 메뉴에는 Open Case Study 서브메뉴가 있으며, 서브메뉴를 선택하면 별도의 창이 열립니다. <br>
    Case Study 창에서는 기준 Flowsheet를 기반으로 다양한 Case를 설정하여 각 Case별로 계산된 결과를 비교할 수 있도록 되어 있습니다. <br>
    총 20개의 Case를 설정할 수 있으며, 입력값을 입력하는 Input Override 리스트와 각각의 오브젝트 계산결과를 볼 수 있는 Result 리스트로 구성되어 있습니다.
   </p>
 
-<h4>3) HELP</h4>
-<p>Help 메뉴에는 Manual, Cheat Sheet, Download의 3가지 서브메뉴가 있으며, 프로그램 사용에 대한 도움말을 볼 수 있습니다. <br>
-   메뉴를 선택하면 별도의 링크된 Web 페이지 창이 열립니다. <br>
+<h4>4) HELP</h4>
+<p>Help 메뉴에는 Manual, Cheat Sheet, Download의 3가지 서브메뉴가 있으며, 메뉴를 선택하면 별도의 링크된 Web 페이지 창이 열리며 프로그램사용에 대한 도움말을 볼 수 있습니다. <br>
+
    Manual : 프로그램 사용에 대한 자세한 설명이 담긴 매뉴얼 페이지로 연결됩니다. <br>
    Cheat Sheet : 프로그램 사용에 대한 간단한 설명이 담긴 치트 시트 페이지로 연결됩니다. <br>
    Download : 프로그램 설치 파일을 다운로드할 수 있는 페이지로 연결됩니다. <br>
   </p>
 
 <h3 id="s22">2.2 입력 및 출력</h3>
-<p>전체 화면은 첫번째 팔레트는 Object의 물성을 입력 및 출력, 계산결과를 나타낼 수 있도록 3개의 입출력 칸으로 구분되어 있습니다.</p>
+<p>전체 화면중 첫번째 팔레트는 Object의 물성입력, 물성출력 및 계산결과를 나타낼 수 있도록 3개의 입출력 칸으로 구분되어 있습니다.</p>
 <h4>1) Object Input</h4>
-<p>각각의 오브젝트의 입력값을 입력할 수 있는 입력필드로 구성되어 있으며, Flowsheet에서 오브젝트를 더블클릭하면 각각 해당되는 입력필드가 활성화 됩니다.</p>
+<p>각각의 오브젝트의 입력값을 입력할 수 있는 입력필드로 구성되어 있으며, Flowsheet에서 오브젝트를 더블클릭하면 각각 해당 입력필드가 활성화 됩니다.</p>
 <h4>2) Properties</h4>
-<p>Flowsheet에서 Simulation을 수행시 CALCULA 버튼을 누르면 해당 오브젝트 출구상태가 Properties에 Display됩니다.</p>
+<p>Flowsheet에서 Simulation을 계산시 CALCULA 버튼을 누르면 해당 오브젝트의 출구상태가 Properties 항목에 Display됩니다.</p>
 <h4>3) Simulation Result</h4>
-<p>CALCULA 버튼을 누른 후 각각의 오브젝트의 계산 결과 값을 나타내기 위한 곳으로 각각의 오브젝트별 계산결과
+<p>CALCULA 버튼을 누른 후 각각의 오브젝트의 계산결과 값을 나타내기 위한 곳으로 각각의 오브젝트별 계산결과
 값 및 에러시 에러에 대한 내용이 출력됩니다.</p>
 
 <h3 id="s23">2.3 Flowsheet</h3>
 <p>두번째 화면은 Simulation의 그림을 입력하기 위한 Flowsheet로서 모든 계산과정을 오브젝트를 이용하여 그림을 그린 후
-각각의 오브젝트에 입력값을 입력한 후 CALCULA 버튼을 누르면 계산이 이루어지게 됩니다.</p>
+각각의 오브젝트의 입력필드에 입력값을 입력한 후 CALCULA 버튼을 누르면 계산이 완료 됩니다.</p>
 <h4>1) 계산 후 계산 결과 확인</h4>
-<p>CALCULA 버튼을 누른 후 계산이 정상적으로 이루어져 수렴이 되었을 경우 오브젝트의 이름은 회색으로 변하지 않으나
-만일 계산이 에러가 발생한 경우 오브젝트의 이름이 빨간색으로 변하며 Simulation Result에 에러에 대한 상황이 Note됩니다.</p>
+<p>CALCULA 버튼을 누른 후 계산이 정상적으로 완료되어 수렴이 되었을 경우 오브젝트의 이름의 색깔은 변하지 않으나
+만일 계산에 에러가 발생한 경우에는 오브젝트의 이름이 빨간색으로 변하고 Simulation Result에 에러에 대한 상황이 Note됩니다.</p>
 <h4>2) 오브젝트의 Drag and Drop</h4>
 <p>오브젝트는 세번째 파레트에서 Drag and Drop하여 Flowsheet의 어느 위치에나 나타낼 수 있으며, 마우스로 드래그하면
 쉽게 Flowsheet를 그리고 보기 좋게 만들 수 있습니다.<br>
-마우스로 오브젝트를 클릭하면 오브젝트의 이름이 파란색으로 변하면 오브젝트가 선택된 것으로 인지할 수 있으며,
+마우스로 오브젝트를 클릭하면 오브젝트의 이름이 파란색으로 변하면 오브젝트가 선택된 것으로 인지하며,
 다수의 오브젝트를 동시에 선택하여 움직일 경우에는 Ctrl+왼쪽마우스버튼을 이용하여 드래그하면 사각형이 그려지는데
 이 범위에 들어간 오브젝트는 모두 선택이 됩니다.<br>
 오브젝트와 오브젝트 간 연결은 각각의 오브젝트의 입력 및 출력포트를 이용하며, 연결 활성화시 입출력 포트가 초록색으로 변합니다.
@@ -446,7 +445,7 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 
 <h3 id="s24">2.4 Object 정의</h3>
 <p>세번째 화면은 Flowsheet에 나타낼 오브젝트를 선택하기 위한 메뉴로서 여기에서 Drag한 후 Flowsheet에 Drop하면
-오브젝트가 생성됩니다. 화면의 맨 아래에서 현재 사용하고 있는 프로젝트의 저장파일의 디렉토리 및 파일의 이름을 확인할 수 있습니다.</p>
+오브젝트가 생성됩니다. 화면의 맨 아래는 현재 사용하고 있는 프로젝트의 디렉토리 및 파일의 이름을 확인할 수 있습니다.</p>
 
 <!-- ===================== 3. 오브젝트 ===================== -->
 <h2 id="s3">3. 오브젝트 (Object)</h2>
@@ -476,9 +475,9 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
   <tr><td>압력</td><td>kg/cm²</td><td>Stream의 절대압력 입력</td></tr>
-  <tr><td>온도</td><td>℃</td><td>Stream의 섭씨온도 (0℃ 이상 입력)와 압력과의 조합으로 나머지 Properties 계산</td></tr>
-  <tr><td>Dryness</td><td>-</td><td>Vapor Fraction(건도) 입력, 압력과 건도의 조합으로 Properties 계산 <br>
-         Dryness 입력 시 온도 입력필드는 공란</td></tr>
+  <tr><td>온도</td><td>℃</td><td>Stream의 섭씨온도와 압력과의 조합으로 나머지 Properties를 계산</td></tr>
+  <tr><td>Dryness</td><td>-</td><td>Vapor Fraction(건도) 입력, 압력과 건도의 조합으로 Properties를 계산 <br>
+         (Dryness 입력 시 온도 입력필드는 공란이어야 함)</td></tr>
   <tr><td>Flow Rate</td><td>kg/h</td><td>질량유량 입력, 유량값 앞에 <code>v</code> 첨자: 체적유량 인식, <code>s</code> 첨자: 표준상태 체적유량 인식<br>
           예) 질량유량 : 100, 체적유량 : v100, 표준유량 : s100</td></tr>
   <tr><td>Fluid_id</td><td>-</td><td>유체의 종류 입력(기본값: water), symbol 및 화학식 입력 가능 <br> (적용가능 물질 아래 표 참조)</td></tr>
@@ -488,30 +487,40 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 
 <h4>2) 적용 가능한 Fluid_id</h4>
 <table>
-  <tr><th>분류</th><th>Fluid_id</th><th>비고</th></tr>
-  <tr><td>물/증기</td><td>water (H2O)</td><td></td></tr>
-  <tr><td>공기/기체</td><td>Air, Nitrogen(N2), Oxygen(O2), Argon(Ar), Helium, Hydrogen(H2)</td><td></td></tr>
-  <tr><td>탄화수소류</td><td>Methane, Ethane, Propane, Butane, Isobutane, Pentane, Hexane, Heptane, Octane</td><td></td></tr>
-  <tr><td>알코올류</td><td>Methanol, Ethanol, Propanol, Butanol</td><td></td></tr>
-  <tr><td>암모니아/기타</td><td>Ammonia(NH3), SulfurDioxide, CarbonMonoxide(CO2)</td><td></td></tr>
-  <tr><td>혼합냉매</td><td>R404A, R407C, R410A, R507A</td><td></td></tr>
+  <tr><th>분류</th><th>Fluid_id (프로그램 입력 가능 이름 및 화학식)</th><th>비고</th></tr>
+  <tr><td>물/증기</td><td>Water (H2O)</td><td>이름과 화학식 모두 입력 가능 (고정밀 IAPWS-IF97 기준물질)</td></tr>
+  <tr><td>공기/기체</td><td>Air, Nitrogen (N2), Oxygen (O2), Argon (Ar), Helium (He), Hydrogen (H2)</td><td>공기는 혼합물이므로 화학식 없음. 가스류는 대소문자 필수 일치</td></tr>
+  <tr><td>공기/기체 (추가)</td><td>CarbonDioxide (CO2), NitrousOxide (N2O), HydrogenSulfide (H2S), OrthoHydrogen, ParaHydrogen</td><td>이산화탄소(CO2) 등은 이름과 화학식 모두 지원</td></tr>
+  <tr><td>탄화수소류</td><td>Methane (CH4), Ethane (C2H6), Propane (C3H8), n-Butane, IsoButane, n-Pentane, n-Hexane, n-Heptane, n-Octane</td><td>부탄 이상 탄화수소는 이성질체 구분을 위해 화학식 대신 명칭 필수 입력</td></tr>
+  <tr><td>탄화수소류 (추가)</td><td>Ethylene (C2H4), Propylene (C3H6), CycloHexane, Benzene, Toluene</td><td>에틸렌과 프로필렌은 화학식 지원, 고리형/방향족은 명칭 입력</td></tr>
+  <tr><td>알코올류</td><td>Methanol, Ethanol, 1-Propanol, 1-Butanol</td><td>알코올류는 화학식 입력 불가. 접두사가 포함된 공식 명칭 필수 입력</td></tr>
+  <tr><td>암모니아/기타</td><td>Ammonia (NH3), SulfurDioxide (SO2), CarbonMonoxide (CO)</td><td>암모니아(NH3) 및 주요 독성/연소 가스 이름 및 화학식 지원</td></tr>
+  <tr><td>혼합냉매</td><td>R404A, R407C, R410A, R507A</td><td>혼합물은 분자식이 없으므로 고유 ASHRAE 냉매 코드만 입력 가능</td></tr>
+  <tr><td>단일냉매 (추가)</td><td>R22, R134a, R32, R123, R125, R143a, R245fa</td><td>화학식(예: C2H2F4 등) 입력 시 에러 발생, 반드시 냉매 코드로 입력</td></tr>
+  <tr><td>HFO냉매 (추가)</td><td>R1233zd(E), R1234yf, R1234ze(E), R1234ze(Z)</td><td>대소문자 및 괄호(E), (Z) 기호가 완벽히 일치해야 인식됨</td></tr>
+  <tr><td>습공기 (특수)</td><td>HumidAir</td><td>HAPropsSI 전용 함수 매개변수 (공기조화 해석용)</td></tr>
+  <tr><td>브라인/오일 (특수)</td><td>EG-20%, PG-30%</td><td>Incompressible 백엔드 전용 수용액 명칭 <br> (예: EG-20%: 에틸렌글리콜 20%, PG-30%: 프로필렌글리콜 30%)</td></tr>
 </table>
+
+<div class="note-box">
+  <b>주의:</b> Fluid_id의 조성을 입력할 경우 되도록이면 화학식보다는 이름을 입력하는 것을 권장드립니다. 예를 들어, 탄화수소류의 경우 이성질체 구분이 필요한 경우가 많으므로 명칭 입력이 필수적입니다. 또한, 냉매류는 고유한 ASHRAE 코드로 입력해야 하며, 화학식 입력 시 인식 오류가 발생할 수 있습니다.
+</div>
 
 <h4>3) Properties (출력)</h4>
 <table>
-  <tr><th>항목</th><th>단위</th></tr>
-  <tr><td>Press</td><td>kg/cm²</td></tr>
-  <tr><td>Temp</td><td>℃</td></tr>
-  <tr><td>sp.vol</td><td>m³/kg</td></tr>
-  <tr><td>Density</td><td>kg/m³</td></tr>
-  <tr><td>Enthalpy</td><td>kcal/kg</td></tr>
-  <tr><td>Entropy</td><td>kcal/kg·℃</td></tr>
-  <tr><td>CP</td><td>kcal/kg·℃</td></tr>
-  <tr><td>Dryness</td><td>-</td></tr>
-  <tr><td>Inlet_energy</td><td>kcal/kg</td></tr>
-  <tr><td>Flow_rate</td><td>kg/h</td></tr>
-  <tr><td>Emis_NOx</td><td>ppmv</td></tr>
-  <tr><td>Emis_CO</td><td>ppmv</td></tr>
+  <tr><th>항목</th><th>단위</th><th>설명</th></tr>
+  <tr><td>Press</td><td>kg/cm²</td><td>Stream의 절대압력</td></tr>
+  <tr><td>Temp</td><td>℃</td><td>Stream의 섭씨온도</td></tr>
+  <tr><td>sp.vol</td><td>m³/kg</td><td>Stream의 비체적</td></tr>
+  <tr><td>Density</td><td>kg/m³</td><td>Stream의 밀도</td></tr>
+  <tr><td>Enthalpy</td><td>kcal/kg</td><td>Stream의 엔탈피</td></tr>
+  <tr><td>Entropy</td><td>kcal/kg·℃</td><td>Stream의 엔트로피</td></tr>
+  <tr><td>CP</td><td>kcal/kg·℃</td><td>Stream의 정압비열</td></tr>
+  <tr><td>Dryness</td><td>-</td><td>Stream의 건도</td></tr>
+  <tr><td>Inlet_energy</td><td>kcal/kg</td><td>Stream의 내부에너지</td></tr>
+  <tr><td>Flow_rate</td><td>kg/h</td><td>Stream의 유량</td></tr>
+  <tr><td>Emis_NOx</td><td>ppmv</td><td>Stream의 NOx 배출량</td></tr>
+  <tr><td>Emis_CO</td><td>ppmv</td><td>Stream의 CO 배출량</td></tr>
 </table>
 
 <!-- ============================== 3.2 turbine ============================== -->
@@ -546,7 +555,6 @@ h2' = h1 - (h1 - h2) × Eff
     <div class="cap-title">Object Input</div>
     <div class="cap-row"><div class="cap-name">Outlet_press</div><div class="cap-colon">:</div><div class="cap-box">5.0</div></div>
     <div class="cap-row"><div class="cap-name">Adabatic_eff</div><div class="cap-colon">:</div><div class="cap-box">57.28</div></div>
-    <div class="input-note">또는 y=-0.0000012*x**2+... 형태 회귀식 입력 가능</div>
   </div>
   <div class="input-table">
 <table>
@@ -616,12 +624,11 @@ h2' = h1 - (h1 - h2) × Eff
   <div class="input-capture">
     <div class="cap-title">Object Input</div>
     <div class="cap-row"><div class="cap-name">Split ratio</div><div class="cap-colon">:</div><div class="cap-box">0.20</div></div>
-    <div class="input-note">비율 입력(0~1), 실제 분배량 입력(kg/h 또는 F첨자)</div>
   </div>
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>Split ratio</td><td>0~1 또는 kg/h</td><td>Stream 2로 분기하는 유량 비율 또는 실제 분배량.<br>
+  <tr><td>Split ratio</td><td>0~1 또는 kg/h</td><td>분기하는 유량 비율 또는 실제 분배량.<br>
   [입력방법] <br>
   - 0~1 사이 입력 : 분배 비율로 인식 <br>
   - 1 이상 입력 : 실제 분배량 (kg/h)으로 인식 <br>
@@ -650,7 +657,7 @@ h2' = h1 - (h1 - h2) × Eff
 압력손실 (Head Loss):
   H_l = f × (l/d) × (rho x v² / 2)
   
-  h_l : 압력손실 (Pa)
+  H_l : 압력손실 (Pa)
   f  : 마찰계수 (Friction factor)
   l  : 등가 배관 길이 = l_p + l_e  (m)
   l_p : 배관의 직선 길이 (m)
@@ -714,11 +721,11 @@ Re 값이 2000이상 이면 천이 및 난류영역 (Colebrook-White 공식사�
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
   <tr><td>diameter</td><td>mm</td><td>배관의 내경. 직접 입력 또는 <code>ND</code> 첨자 뒤에 호칭경 기입(ND15~ND1000) 1000A 이상은 내경 직접 기입<br>예) 직접: 52.48 / 호칭경: ND50</td></tr>
   <tr><td>length</td><td>m</td><td>배관의 직선 길이</td></tr>
-  <tr><td>Equiv. Len</td><td>m</td><td>Fitting의 등가 길이 직접입력 가능 (Symbol 입력시 ":"+수량 입력) <br>
+  <tr><td>Equiv. Len</td><td>m</td><td>Fitting의 등가 길이 직접입력 가능 (Symbol + ":" + 수량 입력) <br>
           예) 직접입력 : 2.5 / Symbol 입력 : ELBOW:2,GATE:1 (90도 엘보 2개+게이트밸브 1개 적용)</td>
   </td></tr>
   <tr><td>Elevation</td><td>m</td><td>배관의 수직 Elevation <br> 
-    (배관의 배관의 시작점을 기준한 끝점까지의 높이)</td></tr>
+    (배관의 시작점부터 끝점까지의 수직높이)</td></tr>
   <tr><td>Roughness</td><td>mm</td><td>배관의 조도. 직접 입력 또는 Symbol 입력<br>예) 직접: 0.045 / Symbol: steel</td></tr>
   <tr><td>Thermal Resist.</td><td>m·h·℃/kcal</td><td>열저항 직접입력 및 열저항:외기온도 동시입력 가능<br> 
     열저항을 직접 입력 시 외기온도 10℃ 기준 열손실 계산<br>
@@ -782,10 +789,13 @@ Re 값이 2000이상 이면 천이 및 난류영역 (Colebrook-White 공식사�
 
 <h4>1) 계산 이론</h4>
 <div class="formula-box">
-소비 동력:
-  P  = m x g × h / (Eff_p × Eff_m)
+축 동 력 :  P_s  = m x g × h
+펌프동력 :  P_p = P_s / Eff_p
+모터동력 :  P_m = P_p / (Eff_m)
   
-  P      : 펌프 동력 (Watt)
+  P_s    : 축 동력 (Watt)
+  P_p    : 펌프 동력 (Watt)
+  P_m    : 모터 입력 (Watt)
   m      : 유체 질량 (kg/s)
   g      : 9.80665 m/s²
   h      : 양정 (m)
@@ -809,8 +819,15 @@ NPSH Available:
   hv : 유체의 포화증기압 수두 (m)
   hst : 유체의 정압 수두 (프로그램내에서는 이미계산되어 계산생략)
   hl : 입구측 압력손실 수두 ((프로그램내에는 이미 계산되어 계산생략))
-  권장: NPSH_av ≥ 1.1~1.3 × NPSH_re
+
+  * 권장: NPSH_av ≥ 1.1~1.3 × NPSH_re
+    - NPSH_re : 펌프의 NPSH Required (펌프 제조사에서 제공하는 최소 NPSH 값)
 </div>
+
+<div class="note-box">
+  <b>주의:</b> 펌프의 모터선정시에는 펌프동력의 1.1~1.2배 정도의 여유를 두고 이보다 큰 정격용량의 모터를 선정하는 것을 권장 드립니다. 또한 소비전력 계산시에는 모터입력을 기준으로 계산하시는 것을 권장드립니다. 
+</div>
+
 
 <h4>2) Object Input</h4>
 <div class="input-layout">
@@ -880,10 +897,10 @@ Approch Temperature (at Boiler)
 <p><b>[참고1] 열교환기(보일러)의 형식별 전열계수 (U값) 권장 범위</b></p>
 <table>
   <tr><th>열교환기 형식</th><th style="text-align:center;">U값 범위 (W/m²·K)</th><th style="text-align:center;">권장값 (W/m²·K)</th><th>특성 및 주의사항</th></tr>
-  <tr><td>Evaporator (고온부)</td><td style="text-align:center;">200~350</td><td style="text-align:center;">270</td><td>배기 고온 (&gt;400℃), 액체→증기 (Boiling), 제약: 배기측 h_o, 규모: 면적 작음</td></tr>
-  <tr><td>Economizer (저온부)</td><td style="text-align:center;">120~200</td><td style="text-align:center;">160</td><td>배기 저온 (150~250℃), 액체만 존재, 제약: 응축·오염, 규모: 면적 큼</td></tr>
-  <tr><td>Air Heater (공기가열)</td><td style="text-align:center;">80~150</td><td style="text-align:center;">110</td><td>배기→연소공기, 저 열전달율, 최대 응축 위험, 규모: 매우 큼</td></tr>
-  <tr><td>보조 증기발생기 (SG)</td><td style="text-align:center;">300~500</td><td style="text-align:center;">400</td><td>배기→물 (Boiling), 높은 열전달율, 제약: 응축 스케일, 규모: 작음</td></tr>
+  <tr><td>Evaporator </td><td style="text-align:center;">200~350</td><td style="text-align:center;">270</td><td>배기 고온 (&gt;400℃), 액체→증기 (Boiling)</td></tr>
+  <tr><td>Economizer </td><td style="text-align:center;">120~200</td><td style="text-align:center;">160</td><td>배기 저온 (150~250℃), 액체만 존재</td></tr>
+  <tr><td>Air Heater (공기가열)</td><td style="text-align:center;">80~150</td><td style="text-align:center;">110</td><td>배기→연소공기, 저 열전달율, 최대 응축 위험</td></tr>
+  <tr><td>보조 증기발생기 (SG)</td><td style="text-align:center;">300~500</td><td style="text-align:center;">400</td><td>배기→물 (Boiling), 높은 열전달율</td></tr>
 </table>
 
 <p><b>[참고2] 보일러에서의 Pinch 온도 및 Approch 온도 권장 범위</b></p>
@@ -991,11 +1008,11 @@ Design Mode에서 계산된 전열면적(A) 및 전열계수(U)값을 기반으�
 
 UA_op = UA_design x {0.85 x (m_gas_op / m_gas_design)^0.7 + 0.15 x (m_water_op / m_water_design)^0.8}
 
-  UA_op : Simulation Mode에서의 실제 UA값
-  UA_design : Design Mode에서 계산된 설계 UA값
-  m_gas_op : Simulation Mode에서의 배기가스 유량
-  m_gas_design : Design Mode에서의 설계 배기가스 유량
-  m_water_op : Simulation Mode에서의 급수 유량
+  UA_op          : Simulation Mode에서의 실제 UA값
+  UA_design      : Design Mode에서 계산된 설계 UA값
+  m_gas_op       : Simulation Mode에서의 배기가스 유량
+  m_gas_design   : Design Mode에서의 설계 배기가스 유량
+  m_water_op     : Simulation Mode에서의 급수 유량
   m_water_design : Design Mode에서의 설계 급수 유량
 
 </div>
@@ -1020,7 +1037,7 @@ S1_in → Exchanger → S1_out
     <div class="cap-row"><div class="cap-name">Press Drop(S1)</div><div class="cap-colon">:</div><div class="cap-box">0.1</div></div>
     <div class="cap-row"><div class="cap-name">Press Drop(S2)</div><div class="cap-colon">:</div><div class="cap-box">0.1</div></div>
     <div class="cap-row"><div class="cap-name">Efficiency(%)</div><div class="cap-colon">:</div><div class="cap-box">100</div></div>
-    <div class="cap-row"><div class="cap-name">Simulation </div><div class="cap-colon">:</div> [ ]</div>
+    <div class="cap-row"><div class="cap-name">Simulation </div><div class="cap-colon">:</div> □</div>
   </div>
   <div class="input-table">
 <table>
@@ -1033,7 +1050,7 @@ S1_in → Exchanger → S1_out
   <tr><td>Press Drop(S1)</td><td>0.1 kg/cm²</td><td>Stream 1 측 압력강하</td></tr>
   <tr><td>Press Drop(S2)</td><td>0.1 kg/cm²</td><td>Stream 2 측 압력강하</td></tr>
   <tr><td>Efficiency(%)</td><td>100</td><td>열교환 효율 (%)</td></tr>
-  <tr><td>Simulation </td><td>100</td><td>[ ] : Design Mode &nbsp;&nbsp; [ ✓ ] : Simulation Mode</td></tr>
+  <tr><td>Simulation </td><td>100</td><td> □  : Design Mode &nbsp;&nbsp; [ ✓ ] : Simulation Mode</td></tr>
 </table>
   </div>
 </div>
@@ -1128,7 +1145,7 @@ s1_in ──────────── s1_out (출구)
 </div>
 
 <div class="note-box">
-  <b>주의:</b> VLSeperator는 단일 성분 유체에만 적용 가능합니다. 혼합 조성(쉼표 포함)이 입력되면 계산이 중단됩니다.
+  <b>주의:</b> VLSeperator는 현재 Version에서는 단일 성분 유체에만 적용 가능합니다. 혼합 조성(쉼표 포함)이 입력되면 계산이 중단됩니다.
 </div>
 
 <h4>2) 포트 구성</h4>
@@ -1140,17 +1157,10 @@ s1_in → [VL Separator]
                  s2_out (Liquid, 하단)
 </div>
 
+
 <h4>3) Object Input</h4>
-<div class="input-layout">
-  <div class="input-capture">
-    <div class="cap-title">Object Input</div>
-    <div class="cap-row"><div class="cap-name">Auto Mode</div><div class="cap-colon">:</div><div class="cap-box">Dryness from Inlet</div></div>
-    <div class="input-note">입력필드 없음, inlet 건도값으로 자동 분리</div>
-  </div>
-  <div class="note-box" style="margin:0;">
-    별도의 입력 필드가 없습니다. 입력 Stream의 건도(Dryness) 값으로 자동 분리됩니다.
-  </div>
-</div>
+<p>별도의 입력필드가 없습니다. 입력 Stream의 건도(Dryness) 값으로 자동 분리됩니다.</p>
+
 
 <h4>4) Simulation Result</h4>
 <table>
@@ -1343,7 +1353,10 @@ NOx 환산 (O₂ 기준 보정):
 <div class="input-layout">
   <div class="input-capture">
     <div class="cap-title">Object Input</div>
-    <div class="cap-row"><div class="cap-name">Power Gen</div><div class="cap-colon">:</div><div class="cap-box">10000</div></div>
+    <div class="cap-row"><div class="cap-name">Outdoor Temp(℃)</div><div class="cap-colon">:</div><div class="cap-box">10</div></div>
+    <div class="cap-row"><div class="cap-name">Power Gen</div><div class="cap-colon">:</div><div class="cap-box">8400</div></div>
+    <div class="cap-row"><div class="cap-name">Aux.Power(kW)</div><div class="cap-colon">:</div><div class="cap-box">27.8</div></div>
+    <div class="cap-row"><div class="cap-name">Fuel Consum(kg/h)</div><div class="cap-colon">:</div><div class="cap-box">2368</div></div>
     <div class="cap-row"><div class="cap-name">EXH.Flow</div><div class="cap-colon">:</div><div class="cap-box">y=15.2*x+500</div></div>
     <div class="cap-row"><div class="cap-name">EXH.Press</div><div class="cap-colon">:</div><div class="cap-box">0.05</div></div>
     <div class="cap-row"><div class="cap-name">EXH.Temp</div><div class="cap-colon">:</div><div class="cap-box">515</div></div>
@@ -1354,11 +1367,14 @@ NOx 환산 (O₂ 기준 보정):
   <div class="input-table">
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
-  <tr><td>Power Gen</td><td>kW</td><td>발전기 출력 (발전량)</td></tr>
+  <tr><td>Outdoor Temp</td><td>℃</td><td>외기 온도 </td></tr>
+  <tr><td>Power Gen</td><td>kW</td><td>발전출력(발전량) 직접입력 또는 외기온도에 따른 회귀식 입력 가능 <br>예) 8400 /y=0.5*x+8000</td></tr>
+  <tr><td>Aux.Power</td><td>kW</td><td>보조전력 직접입력 또는 발전출력에 따른 회귀식 입력 가능 <br>예) 27.8 / y=0.1*x+27.8</td></tr>
+  <tr><td>Fuel Consum</td><td>kg/h</td><td>연료 소비량 직접입력 또는 발전출력에 따른 회귀식 입력 가능 <br>예) 2368 / y=0.2*x+2368</td></tr>
   <tr><td>EXH.Flow</td><td>kg/h</td><td>배기가스 유량, 직접입력 또는 발전량에 따른 회귀식 입력 가능<br>예) 10000 / y=15.2*x+500</td></tr>
   <tr><td>EXH.Press</td><td>kg/cm²</td><td>배기가스 출구 압력</td></tr>
-  <tr><td>EXH.Temp</td><td>℃</td><td>배기가스 출구 온도, 직접입력 또는 발전량에 따른 회귀식 입력 가능<br>예) 515 / y=0.05*x+480</td></tr>
-  <tr><td>EXH.Comp</td><td>-</td><td>배기가스 조성 (질량분율로 입력), [성분]:[값] 형식으로 쉼표 구분<br>예) CO2:4.99,O2:15.758,N2:74.107,H2O:3.887,Ar:1.258</td></tr>
+  <tr><td>EXH.Temp</td><td>℃</td><td>배기가스 출구 온도, 직접입력 또는 발전출력에 따른 회귀식 입력 가능<br>예) 515 / y=0.05*x+480</td></tr>
+  <tr><td>EXH.Comp</td><td>-</td><td>배기가스 조성은 [성분]:[값] 형식으로 쉼표 구분<br>질량분율 입력시 첨두어 : mass, 몰분율 입력시 첨두어 : volume <br>예) mass:CO2:4.99,O2:15.758,N2:74.107,H2O:3.887,Ar:1.258 <br> (mass 첨두어는 생략 가능합니다.)</td></tr>
   <tr><td>NOx Emission</td><td>ppmv</td><td>NOx 배출 농도 (사용자 입력 기준 O₂% 기준)</td></tr>
   <tr><td>O2 Conc.</td><td>%</td><td>NOx 기준 O₂ 농도 (건조, %)</td></tr>
 </table>
@@ -1380,41 +1396,41 @@ NOx 환산 (O₂ 기준 보정):
 <h3 id="s314">3.14 burner</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/burner.jpg" alt="burner object" class="object-thumb"></div>
-  <div class="object-desc">burner 오브젝트는 버너를 이용하여 연료의 연소 반응을 계산하는 오브젝트로 연료와 공기중의 산소를 이용하거나 배기가스의 산소를 이용하여 연소반응을 해석하고, 배기가스 조성, 유량, 온도를 계산하는 오브젝트입니다. 입력 Stream의 O2를 기준으로 완전 연소를 전제조건으로한 계산을 수행합니다.</div>
+  <div class="object-desc">burner 오브젝트는 버너를 이용하여 연료의 연소 반응을 계산하는 오브젝트로 연료와 공기중의 산소 또는 배기가스의 산소를 이용하여 연소반응을 해석하고, 배기가스 조성, 유량, 온도를 계산하는 오브젝트입니다. 배기가스 입력포트의 O2를 기준으로 완전 연소를 전제조건으로한 화학양론적 연소계산을 수행합니다.</div>
 </div>
 
 <h4>1) 계산 이론</h4>
 <div class="formula-box">
 [연소 화학양론]
   연료 성분별 연소:
-    탄화수소(CₙHₘ): CₙHₘ + (n + m/4)O₂ → nCO₂ + (m/2)H2O
+    탄화수소(CnHm): CnHm + (n + m/4)O2 → nCO2 + (m/2)H2O
     n : 탄소 원자 수
     m : 수소 원자 수
     
     [연소 생성물 예시]
-    메탄(CH4)    :        CH4 + 2O₂     → CO₂  + 2H2O
-    에탄(C2H6)   :        C2H6 + 3.5O₂  → 2CO₂ + 3H2O
-    프로판(C3H8) :        C3H8 + 5O₂    → 3CO₂ + 4H2O
-    부탄(C4H10)  :        C4H10 + 6.5O₂ → 4CO₂ + 5H2O  
-    펜탄(C5H12)  :        C5H12 + 8O₂   → 5CO₂ + 6H2O
-    질소(N2)     :        N2 + 0O₂      → N2 (NOx 생성)
+    메탄(CH4)    :        CH4 + 2O2     → CO2  + 2H2O
+    에탄(C2H6)   :        C2H6 + 3.5O2  → 2CO2 + 3H2O
+    프로판(C3H8) :        C3H8 + 5O2    → 3CO2 + 4H2O
+    부탄(C4H10)  :        C4H10 + 6.5O2 → 4CO2 + 5H2O  
+    펜탄(C5H12)  :        C5H12 + 8O2   → 5CO2 + 6H2O
+    질소(N2)     :        N2 + 0O2      → N2 (NOx 생성)
 
   이론산소량 계산:
-    O₂_theo = C + (H/4) - (O/2)
+    O2_theo = C + (H/4) - (O/2)
     C : C의 원소별 몰수
     H : H의 원소별 몰수
     O : O의 원소별 몰수
 
     [LNG연료 예시]
-    CH4   : O₂_theo = 1 +  (4/4) - 0 = 2 mol O₂   / mol CH4
-    C2H6  : O₂_theo = 2 +  (6/4) - 0 = 3.5 mol O₂ / mol C2H6
-    C3H8  : O₂_theo = 3 +  (8/4) - 0 = 5 mol O₂   / mol C3H8
-    C4H10 : O₂_theo = 4 + (10/4) - 0 = 6.5 mol O₂ / mol C4H10
-    C5H12 : O₂_theo = 5 + (12/4) - 0 = 8 mol O₂   / mol C5H12
-    N2    : O₂_theo = 0 +  (2/4) - 0 = 0.5 mol O₂ / mol H2
+    CH4   : O2_theo = 1 +  (4/4) - 0 = 2 mol O2   / mol CH4
+    C2H6  : O2_theo = 2 +  (6/4) - 0 = 3.5 mol O2 / mol C2H6
+    C3H8  : O2_theo = 3 +  (8/4) - 0 = 5 mol O2   / mol C3H8
+    C4H10 : O2_theo = 4 + (10/4) - 0 = 6.5 mol O2 / mol C4H10
+    C5H12 : O2_theo = 5 + (12/4) - 0 = 8 mol O2   / mol C5H12
+    N2    : O2_theo = 0 +  (2/4) - 0 = 0.5 mol O2 / mol H2
  
   위 내용중 CH4를 정리하면
-  CH4 1mole을 연소시키려면 2 mol O₂가 필요하며, 이때 CO2 1 mol과 H2O 2 mol이 생성됩니다.
+  CH4 1mole을 연소시키려면 2 mol O2가 필요하며, 이때 CO2 1 mol과 H2O 2 mol이 생성됩니다.
 
 [연료의 발열량 기준]
   발열량: 연료의 조성별 발열량 (ISO 6976 기준)
@@ -1513,9 +1529,9 @@ NOx 환산 (O₂ 기준 보정):
 <div class="formula-box">
 SCR 반응식 (Urea 기반):
   [반응식]
-  1) CO(NH₂)₂ + H₂O → 2NH₃ + CO₂                 (요소수 열분해)
-  2) CO(NH₂)₂ + 2NO + 0.5O₂ → 2N₂ + CO₂ + 2H₂O  (요소수 직접 반응)
-  3) NH₃ + 4NO + O₂ → 4N₂ + 6H₂O                  (SCR 반응)
+  1) CO(NH2)2 + H2O → 2NH3 + CO2                 (요소수 열분해)
+  2) CO(NH2)2 + 2NO + 0.5O2 → 2N2 + CO2 + 2H2O   (요소수 직접 반응)
+  3) NH3 + 4NO + O2 → 4N2 + 6H2O                 (SCR 반응)
 
 위 반응식중 95%이상 반응이 이어나는 2)번 반응식 기준으로 계산 수행
 
@@ -1523,9 +1539,9 @@ NOx 제거량:
   NO_removed = (NOx_in - NOx_out) × Q_dry / 1,000,000 / 22.414  (kmol/h)
   
   NO_removed : 제거된 NOx 몰수 (kmol/h)
-  NOx_in  : 입구 NOx 농도 (ppmv, 표준 O₂ 기준)
-  NOx_out : 출구 NOx 농도 (ppmv, 표준 O₂
-  Q_dry : 건조 배기가스 체적 유량 (Nm³/h)
+  NOx_in     : 입구 NOx 농도 (ppmv, 표준 O2 기준)
+  NOx_out    : 출구 NOx 농도 (ppmv, 표준 O2 기준)
+  Q_dry      : 건조 배기가스 체적 유량 (Nm³/h)
 
 NO 제거를 위한 Urea 몰수
   Urea_mol = NO_removed/2 (kmol/h)
@@ -1601,15 +1617,15 @@ NOx 표준 O₂로 보정하는 방법:
 <h4>1) 계산 이론</h4>
 <div class="formula-box">
 SCR 반응식 (Ammonia 기반):
-  2NO + 2NH₃ + ½O₂ → 2N₂ + 3H₂O
+  2NO + 2NH3 + ½O2 → 2N2 + 3H2O
 
 NOx 제거량:
   NO_removed = (NOx_in - NOx_out) × Q_dry / 1,000,000 / 22.414  (kmol/h)
 
   NO_removed : 제거된 NOx 몰수 (kmol/h)
-  NOx_in  : 입구 NOx 농도 (ppmv, 표준 O₂ 기준)
-  NOx_out : 출구 NOx 농도 (ppmv, 표준 O₂
-  Q_dry : 건조 배기가스 체적 유량 (Nm³/h)
+  NOx_in     : 입구 NOx 농도 (ppmv, 표준 O2 기준)
+  NOx_out    : 출구 NOx 농도 (ppmv, 표준 O2 기준)
+  Q_dry      : 건조 배기가스 체적 유량 (Nm³/h)
 
 NO 제거를 위한 NH₃ 몰수
   NH₃_mol = NO_removed (kmol/h)
@@ -1686,7 +1702,7 @@ NOx 표준 O₂로 보정하는 방법:
 <h3 id="s317">3.17 control_adjust</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/control_adjust.jpg" alt="control_adjust object" class="object-thumb"></div>
-  <div class="object-desc">control_adjust 오브젝트는 시스템 제어를 조정하는 기능을 제공합니다. <br>
+  <div class="object-desc">control_adjust 오브젝트는 시스템 데이터를 조정하는 기능을 제공합니다. <br>
    주로 목표값 찾기 등에 사용될 수 있으며, 입력된 제어 변수에 따라 시스템의 특정 출력을 조정하는 역할을 합니다. <br>
    예를 들어, 열교환기의 열교환후 온도값을 맞추기 위하여, control_object의 제어변수로 열교환기의 유량을 조정하는 시뮬레이션등에 활용할 수 있습니다. 
   </div>
@@ -1713,11 +1729,11 @@ NOx 표준 O₂로 보정하는 방법:
 <table>
   <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
   <tr><td>Manipulated Object</td><td>-</td><td>조정하려는 오브젝트 (콤보박스 선택)</td></tr>
-  <tr><td>Manipulated Prop</td><td>-</td><td>오브젝트의 Properties를 선택</td></tr>
-  <tr><td>Manipulated Min</td><td>Var</td><td>조정할 Properties의 최소값</td></tr>
-  <tr><td>Manipulated Max</td><td>Var</td><td>조정 Properties의 최대값</td></tr>
+  <tr><td>Manipulated Prop</td><td>-</td><td>조정하려는 오브젝트의 Property를 선택</td></tr>
+  <tr><td>Manipulated Min</td><td>Var</td><td>조정할 Property의 최소값</td></tr>
+  <tr><td>Manipulated Max</td><td>Var</td><td>조정할 Property의 최대값</td></tr>
   <tr><td>Controlled Object</td><td>-</td><td>제어 대상 오브젝트 (콤보박스 선택)</td></tr>
-  <tr><td>Controlled Property</td><td>-</td><td>제어 대상 오브젝트의 Properties를 선택</td></tr>
+  <tr><td>Controlled Property</td><td>-</td><td>제어 대상 오브젝트의 Property를 선택</td></tr>
   <tr><td>Target Value</td><td>Var</td><td>목표값</td></tr>
   <tr><td>Tolerance(%)</td><td>%</td><td>허용 오차</td></tr>
 </table>
@@ -1740,7 +1756,7 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
 <h3 id="s318">3.18 control_set</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/control_set.jpg" alt="control_set object" class="object-thumb"></div>
-  <div class="object-desc">control_set 오브젝트는 Manipulated Object의 properties를 지정하고, 이 properties를 기반으로 Contorlled Object의 값을 지정하기 위한 오브젝트 입니다. <br>
+  <div class="object-desc">control_set 오브젝트는 Manipulated Object의 property를 지정하고, 이 property를 기반으로 Contorlled Object의 값을 지정하기 위한 오브젝트 입니다. <br>
    주로 임의의 오브젝트의 특성값을 기준으로 다른 오브젝트의 입력값을 지정된 값 또는 회귀식으로 제어하기 위한 오브젝트입니다.
   </div>
 </div>
@@ -1873,7 +1889,7 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
 <!-- ===================== 4. Case Study ===================== -->
 <h2 id="s4">4. Case Study</h2>
 <p>Case Study 창에서는 기준 Flowsheet를 기반으로 다양한 Case를 설정하여 각 Case별로 계산된 결과를 비교할 수 있도록 되어 있습니다.
-총 20개의 Case를 설정할 수 있으며, 입력값을 입력하는 Input Override 리스트와 각각의 오브젝트 계산결과를 볼 수 있는 Result 리스트로 구성되어 있습니다.</p>
+총 20개의 Case를 설정할 수 있으며, 입력값을 입력하는 Input Overrides 리스트와 각각의 오브젝트 계산결과를 볼 수 있는 Result 리스트로 구성되어 있습니다.</p>
 
 <div style="text-align:center; margin: 24px 0 30px;">
   <img src="img/case_study.jpg" alt="case_study"
@@ -1884,7 +1900,7 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
 </div>
 
 <h3 id="s41">4.1 Case Study 사용설명</h3>
-<p> <h4>[Input Override]</h4> 
+<p> <h4>[Input Overrides]</h4> 
     <h4> 1) Add Case </h4>
     <ul>
       <li>버튼을 누르면 Case가 추가되며, 최대 20개까지 Case를 생성할 수 있습니다.</li>
@@ -1929,7 +1945,7 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
 
     <h4>[참고사항]</h4>
     <ul>
-      <li>Input Override와 Result 리스트의 행번호를 드레그하여 순서를 변경할 수 있습니다.</li>
+      <li>Input Overrides와 Result 리스트의 행번호를 드레그하여 순서를 변경할 수 있습니다.</li>
     </ul>
 
 <!-- ===================== 참고 ===================== -->
