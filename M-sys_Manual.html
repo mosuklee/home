@@ -320,18 +320,19 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
         <li><a href="#s36">3.6 pump</a></li>
         <li><a href="#s37">3.7 exchanger</a></li>
         <li><a href="#s38">3.8 economizer</a></li>
-        <li><a href="#s39">3.9 mixer</a></li>
-        <li><a href="#s310">3.10 VLSeperator</a></li>
-        <li><a href="#s311">3.11 comp</a></li>
-        <li><a href="#s312">3.12 cooling_tower</a></li>
-        <li><a href="#s313">3.13 power_gen</a></li>
-        <li><a href="#s314">3.14 burner</a></li>
-        <li><a href="#s315">3.15 scr_urea</a></li>
-        <li><a href="#s316">3.16 scr_ammonia</a></li>
-        <li><a href="#s317">3.17 control_adjust</a></li>
-        <li><a href="#s318">3.18 control_set</a></li>
-        <li><a href="#s319">3.19 note</a></li>
-        <li><a href="#s320">3.20 properties_table</a></li>
+        <li><a href="#s39">3.9 evaporator</a></li>
+        <li><a href="#s310">3.10 mixer</a></li>
+        <li><a href="#s311">3.11 VLSeperator</a></li>
+        <li><a href="#s312">3.12 comp</a></li>
+        <li><a href="#s313">3.13 cooling_tower</a></li>
+        <li><a href="#s314">3.14 power_gen</a></li>
+        <li><a href="#s315">3.15 burner</a></li>
+        <li><a href="#s316">3.16 scr_urea</a></li>
+        <li><a href="#s317">3.17 scr_ammonia</a></li>
+        <li><a href="#s318">3.18 control_adjust</a></li>
+        <li><a href="#s319">3.19 control_set</a></li>
+        <li><a href="#s320">3.20 note</a></li>
+        <li><a href="#s321">3.21 properties_table</a></li>
       </ul>
     </li>
     <li><a href="#s4">4. Case Study</a>
@@ -365,6 +366,7 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
   <li><b>pump</b> : 펌프의 동력, NPSHav 및 출구상태 계산</li>
   <li><b>exchanger</b> : 열교환기의 열교환량 및 출구상태 계산</li>
   <li><b>economizer</b> : Economizer의 Design Mode와 Simulation Mode별 출구상태 계산</li>
+  <li><b>evaporator</b> : Evaporator의 Design Mode와 Simulation Mode별 출구상태 계산</li>
   <li><b>mixer</b> : 2개의 stream의 혼합 정의 (배관의 Tee와 같은 역할)</li>
   <li><b>VLSeperator</b> : stream의 기상과 액상의 분리 및 출구상태 계산</li>
   <li><b>comp</b> : compressor의 압축비 및 압축동력 등 계산 및 출구상태 계산</li>
@@ -389,8 +391,11 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 
 <h3 id="s21">2.1 Menu</h3>
 <h4>1) File</h4>
-<p>File 메뉴에는 New, Open, Save, Save-AS, Exit의 5가지 서브메뉴가 Pull and Down 형식으로 되어 있습니다.
-이 메뉴는 일반 프로그램과 똑같이 새로 시작, 기존 파일열기, 저장하기, 다른이름으로 저장하기, 프로그램 빠져나가기로 구성되어 있습니다.</p>
+<p>File 메뉴에는 New, Open, Open Sample, Save, Save-AS, Open Recent, Exit의 7가지 서브메뉴가 Pull and Down 형식으로 되어 있습니다.
+이 메뉴는 일반 프로그램과 똑같이 새로 시작, 기존 파일열기, 샘플 파일 열기, 저장하기, 다른이름으로 저장하기, 최근 파일 열기, 프로그램 빠져나가기로 구성되어 있습니다.</p>
+프로그램 시작시나 파일 오픈시에는 이전디렉토리를 기억하고 있으므로, 이전에 열었던 디렉토리에서 바로 파일을 선택하여 열 수 있습니다. <br>
+Open Sample : 샘플 파일 열기 메뉴를 선택하면 별도의 창이 열리며, 제작자가 제공하는 샘플 파일을 선택하여 열 수 있습니다. <br>
+Open Recent : 최근 파일 열기 메뉴를 선택하면 별도의 창이 열리며, 최근에 사용한 5개의 파일중 하나를 선택하여 열 수 있습니다. <br>
 
 <h4>2) Print</h4>
 <p>Print 메뉴에는 Report와 Flowsheet 서브메뉴가 있으며, Report 메뉴는 계산된 계산결과 및 Properties 등을 레포트 형태로 pdf파일로 저장하기 위한 메뉴이며, Flowsheet 메뉴는 Flowsheet의 그림을 캡쳐하여 pdf파일로
@@ -505,6 +510,56 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 <div class="note-box">
   <b>주의:</b> Fluid_id의 조성을 입력할 경우 되도록이면 화학식보다는 이름을 입력하는 것을 권장드립니다. 예를 들어, 탄화수소류의 경우 이성질체 구분이 필요한 경우가 많으므로 명칭 입력이 필수적입니다. 또한, 냉매류는 고유한 ASHRAE 코드로 입력해야 하며, 화학식 입력 시 인식 오류가 발생할 수 있습니다.
 </div>
+
+<p><b>[참고1] 자주 사용하는 화학식 Mapping List</b></p>
+
+<table>
+  <colgroup>
+    <col>
+    <col style="text-align:center; border-right: double 3px rgb(74, 129, 6);">
+    <col>
+    <col>
+  </colgroup>
+  <tr>
+    <th align="center" style="width: 25%;">Name</th><th align="center" style="width: 25%;">Mapping</th>
+    <th align="center" style="width: 25%;">Name</th><th align="center" style="width: 25%;">Mapping</th>
+  </tr>
+  <tr>
+    <td align="center">CarbonDioxide</td><td align="center">CO2</td>
+    <td align="center">Butane</td><td align="center">C4H10</td>
+  </tr>
+  <tr>
+    <td align="center">Oxygen</td><td align="center">O2</td>
+    <td align="center">Isobutane</td><td align="center">C4H10, iC4H10</td>
+
+  </tr>
+  <tr>
+    <td align="center">Nitrogen</td><td align="center">N2</td>
+    <td align="center">Pentane</td><td align="center">C5H12</td>
+  </tr>
+  <tr>
+    <td align="center">Water</td><td align="center">H2O</td>
+    <td align="center">Hydrogen</td><td align="center">H2</td>
+  </tr>
+  <tr>
+    <td align="center">Argon</td><td align="center">Ar, AR</td>
+    <td align="center">Helium</td><td align="center">He, HE</td>
+  </tr>
+  <tr>
+    <td align="center">Methane</td><td align="center">CH4</td>
+    <td align="center">Neon</td><td align="center">Ne, NE</td>
+  </tr>
+  <tr>
+    <td align="center">Ethane</td><td align="center">C2H6</td>
+    <td align="center">CarbonMonoxide</td><td align="center">CO</td>
+  </tr>
+  <tr>
+    <td align="center">Propane</td><td align="center">C3H8</td>
+    <td align="center">SulfurDioxide</td><td align="center">SO2</td>
+  </tr>
+</table>
+
+
 
 <h4>3) Properties (출력)</h4>
 <table>
@@ -997,12 +1052,8 @@ S1_in → Exchanger → S1_out
 <table>
   <tr><th>항목</th><th>단위</th><th>설명</th></tr>
   <tr><td>Heat Duty</td><td>kW</td><td>실제 열교환량</td></tr>
-  <tr><td>Heat Duty (Ideal)</td><td>kW</td><td>효율 100% 기준 이상적 열교환량</td></tr>
-  <tr><td>Heat Loss (Eff)</td><td>kW</td><td>효율에 의한 열손실</td></tr>
-  <tr><td>Efficiency</td><td>%</td><td>열교환 효율</td></tr>
-  <tr><td>Type</td><td>-</td><td>유동 형태 (counter / parallel)</td></tr>
+  <tr><td>Area</td><td>m²</td><td>필요 전열면적</td></tr>
   <tr><td>LMTD</td><td>℃</td><td>대수 평균 온도차</td></tr>
-  <tr><td>A Required</td><td>m²</td><td>필요 전열면적</td></tr>
   <tr><td>UA Required</td><td>W/K</td><td>UA값 (열관류율 × 면적)</td></tr>
   <tr><td>Temp(S1_out)</td><td>℃</td><td>Stream 1 출구 온도</td></tr>
   <tr><td>Temp(S2_out)</td><td>℃</td><td>Stream 2 출구 온도</td></tr>
@@ -1011,7 +1062,7 @@ S1_in → Exchanger → S1_out
 <!-- ============================== 3.8 economizer ============================== -->
 <h3 id="s38">3.8 economizer</h3>
 <div class="object-summary">
-  <div class="object-visual"><img src="img/exchanger.jpg" alt="economizer object" class="object-thumb"></div>
+  <div class="object-visual"><img src="img/econo.jpg" alt="economizer object" class="object-thumb"></div>
   <div class="object-desc">economizer 오브젝트는 보일러의 급수를 가열하기 위한 열교환기로써 Design Mode와 Simulation Mode를 지원합니다. <br>
                            Design Mode에서는 설계 값을 계산하며, Simulation Mode에서는 Design Mode에서 계산된 값을 기반으로 변경후의 실제 열교환량과 출구 온도를 계산합니다.
   </div>
@@ -1060,11 +1111,11 @@ UA_op = UA_design x {0.85 x (m_gas_op / m_gas_design)^0.7 + 0.15 x (m_water_op /
 
 <h4>2) 포트 구성</h4>
 <div class="port-diagram">
-        S2_in
-          ↓
-S1_in → Exchanger → S1_out
-          ↓
-        S2_out
+          S2_in
+            ↓
+S1_in → Economizer → S1_out
+            ↓
+          S2_out
 </div>
 
 <h4>3) Object Input</h4>
@@ -1091,7 +1142,7 @@ S1_in → Exchanger → S1_out
   <tr><td>Press Drop(S1)</td><td>0.1 kg/cm²</td><td>Stream 1 측 압력강하</td></tr>
   <tr><td>Press Drop(S2)</td><td>0.1 kg/cm²</td><td>Stream 2 측 압력강하</td></tr>
   <tr><td>Efficiency(%)</td><td>100</td><td>열교환 효율 (%)</td></tr>
-  <tr><td>Simulation </td><td>100</td><td> □  : Design Mode &nbsp;&nbsp; [ ✓ ] : Simulation Mode</td></tr>
+  <tr><td>Simulation </td><td>□</td><td> □  : Design Mode &nbsp;&nbsp; [ ✓ ] : Simulation Mode</td></tr>
 </table>
   </div>
 </div>
@@ -1099,15 +1150,194 @@ S1_in → Exchanger → S1_out
 <h4>4) Simulation Result</h4>
 <table>
   <tr><th>항목</th><th>단위</th><th>설명</th></tr>
-  <tr><td>Heat Duty</td><td>kW</td><td>실제 열교환량</td></tr>
+  <tr><td>[Design Mod]</td><td>  </td><td>  </td></tr>
+  <tr><td>Heat Duty</td><td>kW</td><td>설계 열교환량</td></tr>
   <tr><td>LMTD</td><td>℃</td><td>대수 평균 온도차</td></tr>
   <tr><td>UA Required</td><td>W/K</td><td>UA값 (열관류율 × 면적)</td></tr>
   <tr><td>Temp(S1_out)</td><td>℃</td><td>Stream 1 출구 온도</td></tr>
   <tr><td>Temp(S2_out)</td><td>℃</td><td>Stream 2 출구 온도</td></tr>
+  <tr><td>[Simulation Mod]</td><td>  </td><td>  </td></tr>
+  <tr><td>Heat Duty</td><td>kW</td><td>실제 열교환량</td></tr>
+  <tr><td>LMTD</td><td>℃</td><td>대수 평균 온도차</td></tr>
+  <tr><td>UA Operation</td><td>W/K</td><td>운전 UA값 (열관류율 × 면적)</td></tr>
+  <tr><td>Temp(S1_out)</td><td>℃</td><td>Stream 1 출구 온도</td></tr>
+  <tr><td>Temp(S2_out)</td><td>℃</td><td>Stream 2 출구 온도</td></tr>
+
+
 </table>
 
-<!-- ============================== 3.9 mixer ============================== -->
-<h3 id="s39">3.9 mixer</h3>
+<!-- ============================== 3.9 evaporator ============================== -->
+<h3 id="s39">3.9 evaporator</h3>
+<div class="object-summary">
+  <div class="object-visual"><img src="img/evapo.jpg" alt="evaporator object" class="object-thumb"></div>
+  <div class="object-desc">evaporator 오브젝트는 스팀을 생산하기 위한 열교환기로써 Design Mode와 Simulation Mode를 지원합니다. <br>
+                           Design Mode에서는 설계 값을 계산하며, Simulation Mode에서는 Design Mode에서 계산된 값을 기반으로 변경후의 실제 열교환량과 출구 온도를 계산합니다.
+  </div>
+                           
+</div>
+
+<h4>1) 계산 이론</h4>
+<div class="formula-box">
+Evaporator 기본 계산 (열교환기 기본 계산과 동일):
+  Q = U × A × LMTD × Eff
+
+  Q    : 열교환량 (W)
+  U    : 전열계수 (W/m²·K)
+  A    : 전열면적 (m²)
+  LMTD : 대수 평균 온도차 (℃)
+  Eff  : 열교환 효율 (0~1)
+
+LMTD 계산 :
+  LMTD = (ΔT1 - ΔT2) / ln(ΔT1 / ΔT2)
+
+  Parallel Flow:
+    ΔT1 = T_s1_in - T_s2_in,  ΔT2 = T_s1_out - T_s2_out
+
+  Counter Flow:
+    ΔT1 = T_s1_in - T_s2_out,  ΔT2 = T_s1_out - T_s2_in
+
+Pinch Temperature (at Boiler)
+  Pinch T = Exhaust Gas Outlet Temperature - Steam Saturation Temperature
+
+[Blowdown 계산 (급수 분리)]
+급수는 포화 스팀(x=1.0, S4)과 블로우다운(x=0, S5)으로 분리됩니다.
+
+급수 분리 비율:
+  m_steam = m_feedwater × (1 - f_blowdown)
+  m_blowdown = m_feedwater × f_blowdown
+
+  여기서:
+    m_steam: 생산되는 스팀 유량 (kg/h)
+    m_blowdown: 블로우다운 유량 (kg/h)
+    m_feedwater: 급수 유량 (kg/h)
+    f_blowdown: 블로우다운 분율 = min(blowdown(%) / 100, 0.99)
+
+스팀과 블로우다운의 상태:
+  S4 (스팀): 포화증기 (x=1.0), P_out에서의 포화온도 및 포화증기 엔탈피
+  S5 (블로우다운): 포화액 (x=0.0), P_out에서의 포화온도 및 포화액 엔탈피
+
+열교환량 분해:
+  Q_steam = m_steam × (h_steam - h_feedwater_inlet)
+  Q_blowdown = m_blowdown × (h_blowdown - h_feedwater_inlet)
+  Q_total_water = Q_steam + Q_blowdown
+
+  여기서:
+    Q_steam: 스팀 생산 열량 (kW)
+    Q_blowdown: 블로우다운 열량 (kW)
+    h_steam: S4에서의 포화증기 엔탈피 (kcal/kg)
+    h_blowdown: S5에서의 포화액 엔탈피 (kcal/kg)
+    h_feedwater_inlet: 급수 입구 엔탈피 (kcal/kg)
+
+효율 손실:
+  Q_gas = Q_total_water / Eff
+  Q_loss = Q_gas - Q_total_water
+
+[Design Mode]
+위의 계산이론을 기반으로 설계 기준에 따른 필요 전열면적과 전열계수 등을 계산합니다.
+
+[Simulation Mode]
+Design Mode에서 계산된 전열면적(A) 및 전열계수(U)값을 기반으로 다음 수식을 기준으로 변경후의 실제 UA_op 값을 계산한 후 급수의 출구온도를 추정 계산합니다.
+
+1. UA_op 계산
+UA_op = UA_design x (m_gas_op / m_gas_design)^0.6 
+
+  UA_op          : Simulation Mode에서의 실제 UA값
+  UA_design      : Design Mode에서 계산된 설계 UA값
+  m_gas_op       : Simulation Mode에서의 배기가스 유량
+  m_gas_design   : Design Mode에서의 설계 배기가스 유량
+
+2. NTU 계산
+NTU = UA_op / C_min
+C_min = m_gas_op x Cp_gas
+
+3. 유용도(효율) 계산
+유용도(Eff) = 1 - exp(-NTU)
+           = Q_actual / Q_max
+
+4. 열평형 계산
+Q_actual = Cp_gas x (T_gas_in - T_gas_out)
+Q_max    = Cp_gas x (T_gas_in - T_water_in)
+
+위의 열평형식을 이용하여 Evaporator의 출구온도(T_gas_out)을 계산합니다.
+* 출구온도는 항상 포화온도 이상이어야 하며, 어떠한 경우라도 Evaporator의 출구온도는 포화온도 이하로 계산될 수 없습니다.
+  Design Mode에서 주의할 점은 Evaporator의 후단에 SCR이 설치될 경우 SCR의 촉매온도를 고려하여 Evaporator의 출구온도를 설정해야 한다는 점입니다. 
+
+</div>
+
+<h4>2) 포트 구성</h4>
+<div class="port-diagram">
+              S4_out (스팀)  S3_in (급수입구)
+                        ↑    ↓
+S1_in(배기입구)   →    Evaporator    → S2_out (배기가스출구)
+                          ↓
+                  S5_out (블로우다운)
+</div>
+
+<h4>3) Object Input</h4>
+<div class="input-layout">
+  <div class="input-capture">
+    <div class="cap-title">Object Input</div>
+    <div class="cap-row"><div class="cap-name">Design Basis</div><div class="cap-colon">:</div><div class="cap-box">Stream4:급수출구건도</div></div>
+    <div class="cap-row"><div class="cap-name">Outlet Value</div><div class="cap-colon">:</div><div class="cap-box">1.0</div></div>
+    <div class="cap-row"><div class="cap-name">U (W/m2K)</div><div class="cap-colon">:</div><div class="cap-box">270</div></div>
+    <div class="cap-row"><div class="cap-name">Type</div><div class="cap-colon">:</div><div class="cap-box">counter</div></div>
+    <div class="cap-row"><div class="cap-name">Press Drop(S1)</div><div class="cap-colon">:</div><div class="cap-box">0.1</div></div>
+    <div class="cap-row"><div class="cap-name">Press Drop(S2)</div><div class="cap-colon">:</div><div class="cap-box">0.1</div></div>
+    <div class="cap-row"><div class="cap-name">Efficiency(%)</div><div class="cap-colon">:</div><div class="cap-box">100</div></div>
+    <div class="cap-row"><div class="cap-name">Blowdown(%)</div><div class="cap-colon">:</div><div class="cap-box">3.0</div></div>
+    <div class="cap-row"><div class="cap-name">Simulation </div><div class="cap-colon">:</div> □</div>
+  </div>
+  <div class="input-table">
+<table>
+  <tr><th>필드명</th><th>기본값</th><th>설명</th></tr>
+  <tr><td>Design Basis</td><td>Stream4:급수출구건도</td><td>Evaporator 이므로 항상 일정(선택 없음) <br>
+  </td></tr>
+  <tr><td>Outlet Value</td><td>1.0</td><td>Evaporator 스팀 출구 건도</td></tr>
+  <tr><td>U (W/m²·K)</td><td>270</td><td>열관류율 (전열계수)</td></tr>
+  <tr><td>Type</td><td>counter</td><td>유동 형태: <code>Counter Flow</code>또는 <code>Parallel Flow</code></td></tr>
+  <tr><td>Press Drop(S1)</td><td>0.1 kg/cm²</td><td>Stream 1 측 압력강하</td></tr>
+  <tr><td>Press Drop(S2)</td><td>0.1 kg/cm²</td><td>Stream 2 측 압력강하</td></tr>
+  <tr><td>Efficiency(%)</td><td>100</td><td>열교환 효율 (%)</td></tr>
+  <tr><td>Blowdown(%)</td><td>3.0</td><td>블로우다운 비율 (%)</td></tr>
+  <tr><td>Simulation </td><td>□</td><td> □  : Design Mode &nbsp;&nbsp; [ ✓ ] : Simulation Mode</td></tr>
+</table>
+  </div>
+</div>
+
+<h4>4) Simulation Result</h4>
+<table>
+  <tr><th>항목</th><th>단위</th><th>설명</th></tr>
+  <tr><td>[Design Mod]</td><td>  </td><td>  </td></tr>
+  <tr><td>Total Heat Duty</td><td>kW</td><td>설계 열교환량</td></tr>
+  <tr><td>Gas-side Heat Duty</td><td>kW</td><td>가스의 순수 열교환량</td></tr>
+  <tr><td>Useful Heat Duty</td><td>kW</td><td>유효 열교환량 (스팀 생산량 기준)</td></tr>
+  <tr><td>Blowdown Heat Duty</td><td>kW</td><td>블로우다운 열량</td></tr>
+  <tr><td>Heat Loss</td><td>kW</td><td>열 손실량 (효율 손실)</td></tr>
+  <tr><td>Area</td><td>m²</td><td>열교환 면적</td></tr>
+  <tr><td>LMTD</td><td>℃</td><td>대수 평균 온도차</td></tr>
+  <tr><td>UA_design</td><td>W/K</td><td>설계 UA값 (열관류율 × 면적)</td></tr>
+  <tr><td>Temp(S1_out)</td><td>℃</td><td>배기가스 출구 온도</td></tr>
+  <tr><td>Temp(S4_out)</td><td>℃</td><td>스팀 출구 온도 (포화온도)</td></tr>
+  <tr><td>Required Feed Water</td><td>kg/h</td><td>필요한 급수량</td></tr>
+  <tr><td>[Simulation Mod]</td><td>  </td><td>  </td></tr>
+  <tr><td>Total Heat Duty</td><td>kW</td><td>운전 열교환량</td></tr>
+  <tr><td>Gas-side Heat Duty</td><td>kW</td><td>가스의 순수 열교환량</td></tr>
+  <tr><td>Useful Heat Duty</td><td>kW</td><td>유효 열교환량 (스팀 생산량 기준)</td></tr>
+  <tr><td>Blowdown Heat Duty</td><td>kW</td><td>블로우다운 열량</td></tr>
+  <tr><td>Heat Loss</td><td>kW</td><td>열 손실량 (효율 손실)</td></tr>
+  <tr><td>LMTD</td><td>℃</td><td>대수 평균 온도차</td></tr>
+  <tr><td>UA_actual</td><td>W/K</td><td>운전 UA값</td></tr>
+  <tr><td>Temp(S1_out)</td><td>℃</td><td>배기가스 출구 온도</td></tr>
+  <tr><td>Temp(S4_out)</td><td>℃</td><td>스팀 출구 온도 (포화온도)</td></tr>
+  <tr><td>Required Feed Water</td><td>kg/h</td><td>필요 급수량</td></tr>
+  <tr><td>Steam Flow</td><td>kg/h</td><td>생산되는 스팀 유량</td></tr>
+  <tr><td>Blowdown Flow</td><td>kg/h</td><td>블로우다운 유량</td></tr>
+  <tr><td>Inner Iterations</td><td>  </td><td>내부 반복 횟수</td></tr>
+  <tr><td>Required Actual Residual</td><td>kg/h</td><td>필요급수량과 실제급수량 차이</td></tr>
+</table>
+
+<!-- ============================== 3.10 mixer ============================== -->
+<h3 id="s310">3.10 mixer</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/mixer.jpg" alt="mixer object" class="object-thumb"></div>
   <div class="object-desc">mixer 오브젝트는 두 개의 Stream을 하나로 혼합하는 오브젝트이며, 배관 Tee 합류와 같은 역할로 혼합 후 압력/온도/엔탈피를 계산합니다.</div>
@@ -1159,8 +1389,8 @@ s1_in ──────────── s1_out (출구)
   <tr><td>Flow Rate</td><td>kg/h</td><td>혼합 총 유량 (m1 + m2)</td></tr>
 </table>
 
-<!-- ============================== 3.10 VLSeperator ============================== -->
-<h3 id="s310">3.10 VLSeperator</h3>
+<!-- ============================== 3.11 VLSeperator ============================== -->
+<h3 id="s311">3.11 VLSeperator</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/vl_seperator.jpg" alt="VLSeperator object" class="object-thumb"></div>
   <div class="object-desc">VLSeperator 오브젝트는 하나의 입력 Stream을 기상(Vapor)과 액상(Liquid)으로 분리하는 오브젝트입니다. 단일 성분 유체에 대해서만 적용 가능합니다.</div>
@@ -1213,8 +1443,8 @@ s1_in → [VL Separator]
   <tr><td>Liquid Enthalpy</td><td>kcal/kg</td><td>액상 출구 엔탈피</td></tr>
 </table>
 
-<!-- ============================== 3.11 comp ============================== -->
-<h3 id="s311">3.11 comp</h3>
+<!-- ============================== 3.12 comp ============================== -->
+<h3 id="s312">3.12 comp</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/comp.jpg" alt="comp object" class="object-thumb"></div>
   <div class="object-desc">comp 오브젝트는 Compressor 및 Blower의 압축 계산을 수행하는 오브젝트로, 압축 방식(Adiabatic/Polytropic), 효율, 출구 압력 기준으로 출구 상태와 동력을 계산합니다.</div>
@@ -1270,8 +1500,8 @@ s1_in → [VL Separator]
   <tr><td>Comp Power</td><td>kW</td><td>소비 동력</td></tr>
 </table>
 
-<!-- ============================== 3.12 cooling_tower ============================== -->
-<h3 id="s312">3.12 cooling_tower</h3>
+<!-- ============================== 3.13 cooling_tower ============================== -->
+<h3 id="s313">3.13 cooling_tower</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/cooling_tower.jpg" alt="cooling_tower object" class="object-thumb"></div>
   <div class="object-desc">cooling_tower 오브젝트는 증발식 냉각탑의 냉각용량, 증발량, 드리프트, 블로다운, 보급수량을 계산하기 위한 오브젝트입니다.</div>
@@ -1364,8 +1594,8 @@ ct_in → [Cooling Tower] → ct_out  (냉각된 물 출구)
   <tr><td>Makeup</td><td>kg/h</td><td>보급수 필요량</td></tr>
 </table>
 
-<!-- ============================== 3.13 power_gen ============================== -->
-<h3 id="s313">3.13 power_gen</h3>
+<!-- ============================== 3.14 power_gen ============================== -->
+<h3 id="s314">3.14 power_gen</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/power_gen.jpg" alt="power_gen object" class="object-thumb"></div>
   <div class="object-desc">power_gen 오브젝트는 발전기(Gas Turbine, Engine 등)의 발전량과 배기가스 특성을 정의하여 출력 Stream을 제공하는 오브젝트입니다. 입력 포트 없이 출력 포트만 보유합니다.</div>
@@ -1433,8 +1663,8 @@ NOx 환산 (O₂ 기준 보정):
   <tr><td>NOx Emission</td><td>ppmv</td><td>NOx 배출 농도</td></tr>
 </table>
 
-<!-- ============================== 3.14 burner ============================== -->
-<h3 id="s314">3.14 burner</h3>
+<!-- ============================== 3.15 burner ============================== -->
+<h3 id="s315">3.15 burner</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/burner.jpg" alt="burner object" class="object-thumb"></div>
   <div class="object-desc">burner 오브젝트는 버너를 이용하여 연료의 연소 반응을 계산하는 오브젝트로 연료와 공기중의 산소 또는 배기가스의 산소를 이용하여 연소반응을 해석하고, 배기가스 조성, 유량, 온도를 계산하는 오브젝트입니다. 배기가스 입력포트의 O2를 기준으로 완전 연소를 전제조건으로한 화학양론적 연소계산을 수행합니다.</div>
@@ -1559,8 +1789,8 @@ NOx 환산 (O₂ 기준 보정):
   <tr><td>Out Comp(vol)</td><td>%</td><td>연소 후 배기가스 체적 조성</td></tr>
 </table>
 
-<!-- ============================== 3.15 scr_urea ============================== -->
-<h3 id="s315">3.15 scr_urea</h3>
+<!-- ============================== 3.16 scr_urea ============================== -->
+<h3 id="s316">3.16 scr_urea</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/scr_urea.jpg" alt="scr_urea object" class="object-thumb"></div>
   <div class="object-desc">scr_urea 오브젝트는 Urea(요소수)를 이용한 SCR의 요소수 사용량과 NOx 저감 후 출구 상태를 계산하는 오브젝트입니다.</div>
@@ -1648,8 +1878,8 @@ NOx 표준 O₂로 보정하는 방법:
   <tr><td>Catalytic Area</td><td>m³</td><td>계산된 촉매 체적이며, 결과값에 적용된 SV (h⁻¹)가 함께 표시됩니다.</td></tr>
 </table>
 
-<!-- ============================== 3.16 scr_ammonia ============================== -->
-<h3 id="s316">3.16 scr_ammonia</h3>
+<!-- ============================== 3.17 scr_ammonia ============================== -->
+<h3 id="s317">3.17 scr_ammonia</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/scr_ammonia.jpg" alt="scr_ammonia object" class="object-thumb"></div>
   <div class="object-desc">scr_ammonia 오브젝트는 Ammonia(암모니아)를 이용한 SCR의 암모니아 사용량과 NOx 저감 후 출구 상태를 계산하는 오브젝트입니다.</div>
@@ -1809,8 +2039,8 @@ NOx 표준 O₂로 보정하는 방법:
   두 오브젝트 모두 출구 배기가스 온도는 수분 유입에 따른 혼합 엔탈피 계산으로부터 결정됩니다.
 </div>
 
-<!-- ============================== 3.17 control_adjust ============================== -->
-<h3 id="s317">3.17 control_adjust</h3>
+<!-- ============================== 3.18 control_adjust ============================== -->
+<h3 id="s318">3.18 control_adjust</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/control_adjust.jpg" alt="control_adjust object" class="object-thumb"></div>
   <div class="object-desc">control_adjust 오브젝트는 시스템 데이터를 조정하는 기능을 제공합니다. <br>
@@ -1863,8 +2093,8 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
  control_adjust를 1개 이상 사용할 경우, control_object간 서로 간섭하여 시뮬레이션이 수렴하지 않을 수 있으므로 되도록이면 1개만 사용하시길 권장합니다. <br>
 </div>
 
-<!-- ============================== 3.18 control_set ============================== -->
-<h3 id="s318">3.18 control_set</h3>
+<!-- ============================== 3.19 control_set ============================== -->
+<h3 id="s319">3.19 control_set</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/control_set.jpg" alt="control_set object" class="object-thumb"></div>
   <div class="object-desc">control_set 오브젝트는 Manipulated Object의 property를 지정하고, 이 property를 기반으로 Contorlled Object의 값을 지정하기 위한 오브젝트 입니다. <br>
@@ -1901,8 +2131,8 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
 </div>
 
 
-<!-- ============================== 3.19 note ============================== -->
-<h3 id="s319">3.19 note</h3>
+<!-- ============================== 3.20 note ============================== -->
+<h3 id="s320">3.20 note</h3>
 <div class="object-summary">
   <div class="object-visual">
     <svg class="object-thumb" viewBox="0 0 120 80" aria-label="note object icon" role="img">
@@ -1953,8 +2183,8 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
   <li>마우스 오른쪽 버튼을 클릭하면 노트의 회전, 맨앞으로 및 맨뒤로 위치를 설정할 수 있습니다.</li>
 </ul>
 
-<!-- ============================== 3.20 properties_table ============================== -->
-<h3 id="s320">3.20 properties_table</h3>
+<!-- ============================== 3.21 properties_table ============================== -->
+<h3 id="s321">3.21 properties_table</h3>
 <div class="object-summary">
   <div class="object-visual">
     <svg class="object-thumb" viewBox="0 0 120 80" aria-label="properties table object icon" role="img">
