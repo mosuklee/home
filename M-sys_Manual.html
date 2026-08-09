@@ -331,8 +331,9 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
         <li><a href="#s317">3.17 scr_ammonia</a></li>
         <li><a href="#s318">3.18 control_adjust</a></li>
         <li><a href="#s319">3.19 control_set</a></li>
-        <li><a href="#s320">3.20 note</a></li>
-        <li><a href="#s321">3.21 properties_table</a></li>
+        <li><a href="#s320">3.20 control_recycle</a></li>
+        <li><a href="#s321">3.21 note</a></li>
+        <li><a href="#s322">3.22 properties_table</a></li>
       </ul>
     </li>
     <li><a href="#s4">4. Case Study</a>
@@ -2045,7 +2046,7 @@ NOx 표준 O₂로 보정하는 방법:
   <div class="object-visual"><img src="img/control_adjust.jpg" alt="control_adjust object" class="object-thumb"></div>
   <div class="object-desc">control_adjust 오브젝트는 시스템 데이터를 조정하는 기능을 제공합니다. <br>
    주로 목표값 찾기 등에 사용될 수 있으며, 입력된 제어 변수에 따라 시스템의 특정 출력을 조정하는 역할을 합니다. <br>
-   예를 들어, 열교환기의 열교환후 온도값을 맞추기 위하여, control_object의 제어변수로 열교환기의 유량을 조정하는 시뮬레이션등에 활용할 수 있습니다. 
+   예를 들어, 열교환기의 열교환후 온도값을 맞추기 위하여, control_adjust의 제어변수로 열교환기의 유량을 조정하는 시뮬레이션등에 활용할 수 있습니다.
   </div>
 </div>
 
@@ -2097,7 +2098,7 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
 <h3 id="s319">3.19 control_set</h3>
 <div class="object-summary">
   <div class="object-visual"><img src="img/control_set.jpg" alt="control_set object" class="object-thumb"></div>
-  <div class="object-desc">control_set 오브젝트는 Manipulated Object의 property를 지정하고, 이 property를 기반으로 Contorlled Object의 값을 지정하기 위한 오브젝트 입니다. <br>
+  <div class="object-desc">control_set 오브젝트는 Manipulated Object의 property를 지정하고, 이 property를 기반으로 Controlled Object의 값을 지정하기 위한 오브젝트 입니다. <br>
    주로 임의의 오브젝트의 특성값을 기준으로 다른 오브젝트의 입력값을 지정된 값 또는 회귀식으로 제어하기 위한 오브젝트입니다.
   </div>
 </div>
@@ -2130,9 +2131,39 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
   </div>
 </div>
 
+<!-- ============================== 3.20 control_Recycle ============================== -->
+<h3 id="s320">3.20 control_Recycle</h3>
+<div class="object-summary">
+  <div class="object-visual"><img src="img/control_recycle.jpg" alt="control_recycle object" class="object-thumb"></div>
+  <div class="object-desc">control_recycle 오브젝트는 Manipulated Object의 Properties 값을, Controlled Object의 Properties값으로 전달하기 위한 오브젝트 입니다. <br>
+   주로 순환참조를 방지하기 위하여 사용하는 Rycycle 오브젝트 입니다..
+  </div>
+</div>
 
-<!-- ============================== 3.20 note ============================== -->
-<h3 id="s320">3.20 note</h3>
+
+<h4>1) 포트 구성</h4>
+<div class="port-diagram">Manipulated Object → [RECYCLE] → Controlled Object</div>
+
+<h4>2) Object Input</h4>
+<div class="input-layout">
+  <div class="input-capture">
+    <div class="cap-title">Object Input</div>
+    <div class="cap-row"><div class="cap-name">Manipulated Object</div><div class="cap-colon">:</div><div class="cap-box">mass_stream_1</div></div>
+    <div class="cap-row"><div class="cap-name">Controlled Object</div><div class="cap-colon">:</div><div class="cap-box">mass_stream_2</div></div>
+  </div>
+  <div class="input-table">
+<table>
+  <tr><th>필드명</th><th>단위</th><th>설명</th></tr>
+  <tr><td>Manipulated Object</td><td>-</td><td>기준 오브젝트 (콤보박스 선택)</td></tr>
+  <tr><td>Controlled Object</td><td>-</td><td>제어 대상 오브젝트 (콤보박스 선택)</td></tr>
+  </td></tr>
+</table>
+  </div>
+</div>
+
+
+<!-- ============================== 3.21 note ============================== -->
+<h3 id="s321">3.21 note</h3>
 <div class="object-summary">
   <div class="object-visual">
     <svg class="object-thumb" viewBox="0 0 120 80" aria-label="note object icon" role="img">
@@ -2183,8 +2214,8 @@ control_adjust는 시스템의 동적 응답을 고려하여 조정 변수를 �
   <li>마우스 오른쪽 버튼을 클릭하면 노트의 회전, 맨앞으로 및 맨뒤로 위치를 설정할 수 있습니다.</li>
 </ul>
 
-<!-- ============================== 3.21 properties_table ============================== -->
-<h3 id="s321">3.21 properties_table</h3>
+<!-- ============================== 3.22 properties_table ============================== -->
+<h3 id="s322">3.22 properties_table</h3>
 <div class="object-summary">
   <div class="object-visual">
     <svg class="object-thumb" viewBox="0 0 120 80" aria-label="properties table object icon" role="img">
