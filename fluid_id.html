@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>M-sys 적용가능물질 데이터베이스</title>
+<style>
+  /* ── A4 가로(Landscape) 1장 완벽 고정 규격 ── */
+  @page {
+    size: A4 landscape;
+    margin: 4mm 6mm 3mm 6mm;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    font-family: "Malgun Gothic", "맑은 고딕", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #111;
+    background-color: #f4f6f9;
+  }
+
+  .page {
+    width: 285mm;
+    max-height: 200mm;
+    margin: 0 auto;
+    padding: 1mm 0;
+    background: #fff;
+    overflow: hidden;
+  }
+  @media screen {
+    .page {
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+  }
+
+  /* 상단 네이비 타이틀 배너 */
+  .title-banner {
+    background-color: #2b4c7e;
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 3.5px 0;
+    border-radius: 4px;
+    letter-spacing: 0.8px;
+    margin-bottom: 3px;
+  }
+
+  /* 5단 고밀도 그리드 */
+  .grid-5 {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr 1fr 1fr 1.05fr;
+    gap: 3.5px;
+  }
+
+  /* 카드 박스 */
+  .card {
+    border: 1px solid #555;
+    border-radius: 4px;
+    background: #ffffff;
+    padding: 2.5px 3.5px;
+    margin-bottom: 3px;
+    font-size: 7.6px;
+    line-height: 1.25;
+  }
+
+  /* 헤더 캡슐 */
+  .header-pill {
+    background-color: #1b8a38;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 6px;
+    padding: 1.5px 0;
+    margin-bottom: 2.5px;
+    font-size: 8.8px;
+    letter-spacing: 0.3px;
+  }
+  .header-pill.blue { background-color: #1a5fb4; }
+  .header-pill.amber { background-color: #b58900; }
+  .header-pill.purple { background-color: #5c3566; }
+
+  /* 초정밀 미니 테이블 */
+  table.mini-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.4px;
+  }
+  table.mini-table th, table.mini-table td {
+    border: 0.6px solid #666;
+    padding: 1px 2px;
+  }
+  table.mini-table th {
+    background-color: #e2e8f0;
+    font-weight: bold;
+    text-align: center;
+  }
+  table.mini-table td.center { text-align: center; }
+  table.mini-table td.num { text-align: right; font-family: "Courier New", monospace; }
+
+  /* M-sys 전용 태그 */
+  .msys-tag {
+    color: #c0392b;
+    font-weight: bold;
+    font-size: 7.2px;
+  }
+  .info-bar {
+    background: #eef2f7;
+    border-left: 2px solid #2b4c7e;
+    padding: 1.5px 3px;
+    margin-top: 2px;
+    font-size: 7.3px;
+    line-height: 1.2;
+  }
+
+  /* 푸터 */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 1px;
+    padding: 0 1.5mm;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="title-banner">M-sys 적용가능물질 데이터베이스 (CoolProp 120+ 및 M-sys 확장 물질)</div>
+
+  <div class="grid-5">
+    <!-- ── COLUMN 1: 물/증기 + 공기/영구가스 + 무기화합물 ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">물 & 영구가스 (Water & Gases)</div>
+        <table class="mini-table">
+          <tr><th>유체명 (Fluid_id)</th><th>화학식</th><th>MW</th><th>Tc(℃)</th><th>Pc(bar)</th></tr>
+          <tr><td><b>Water</b>, H2O</td><td class="center">H₂O</td><td class="num">18.015</td><td class="num">373.95</td><td class="num">220.64</td></tr>
+          <tr><td><b>HeavyWater</b></td><td class="center">D₂O</td><td class="num">20.028</td><td class="num">370.70</td><td class="num">216.71</td></tr>
+          <tr><td><b>Air</b></td><td class="center">-</td><td class="num">28.965</td><td class="num">-140.6</td><td class="num">37.86</td></tr>
+          <tr><td><b>Nitrogen</b>, N2</td><td class="center">N₂</td><td class="num">28.013</td><td class="num">-146.9</td><td class="num">33.96</td></tr>
+          <tr><td><b>Oxygen</b>, O2</td><td class="center">O₂</td><td class="num">31.999</td><td class="num">-118.6</td><td class="num">50.43</td></tr>
+          <tr><td><b>Argon</b>, Ar</td><td class="center">Ar</td><td class="num">39.948</td><td class="num">-122.5</td><td class="num">48.63</td></tr>
+          <tr><td><b>CarbonDioxide</b>, CO2</td><td class="center">CO₂</td><td class="num">44.010</td><td class="num">31.0</td><td class="num">73.77</td></tr>
+          <tr><td><b>CarbonMonoxide</b>, CO</td><td class="center">CO</td><td class="num">28.010</td><td class="num">-140.3</td><td class="num">34.94</td></tr>
+          <tr><td><b>Hydrogen</b>, H2</td><td class="center">H₂</td><td class="num">2.016</td><td class="num">-240.0</td><td class="num">12.96</td></tr>
+          <tr><td><b>OrthoHydrogen</b></td><td class="center">o-H₂</td><td class="num">2.016</td><td class="num">-239.9</td><td class="num">13.04</td></tr>
+          <tr><td><b>ParaHydrogen</b></td><td class="center">p-H₂</td><td class="num">2.016</td><td class="num">-240.2</td><td class="num">12.86</td></tr>
+          <tr><td><b>Deuterium</b>, D2</td><td class="center">D₂</td><td class="num">4.028</td><td class="num">-234.8</td><td class="num">16.65</td></tr>
+          <tr><td><b>Helium</b>, He</td><td class="center">He</td><td class="num">4.003</td><td class="num">-267.9</td><td class="num">2.28</td></tr>
+          <tr><td><b>Neon</b>, Ne</td><td class="center">Ne</td><td class="num">20.180</td><td class="num">-228.7</td><td class="num">27.56</td></tr>
+          <tr><td><b>Krypton</b>, Kr</td><td class="center">Kr</td><td class="num">83.798</td><td class="num">-63.7</td><td class="num">55.25</td></tr>
+          <tr><td><b>Xenon</b>, Xe</td><td class="center">Xe</td><td class="num">131.29</td><td class="num">16.6</td><td class="num">58.42</td></tr>
+          <tr><td><b>Fluorine</b>, F2</td><td class="center">F₂</td><td class="num">37.997</td><td class="num">-129.0</td><td class="num">51.72</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="header-pill purple">무기 / 산성 / 특수가스</div>
+        <table class="mini-table">
+          <tr><th>유체명 (Fluid_id)</th><th>화학식</th><th>MW</th><th>Tc(℃)</th><th>Pc(bar)</th></tr>
+          <tr><td><b>Ammonia</b>, NH3</td><td class="center">NH₃</td><td class="num">17.031</td><td class="num">132.25</td><td class="num">113.33</td></tr>
+          <tr><td><b>SulfurDioxide</b>, SO2</td><td class="center">SO₂</td><td class="num">64.066</td><td class="num">157.50</td><td class="num">78.84</td></tr>
+          <tr><td><b>HydrogenSulfide</b>, H2S</td><td class="center">H₂S</td><td class="num">34.082</td><td class="num">100.40</td><td class="num">89.63</td></tr>
+          <tr><td><b>NitrousOxide</b>, N2O</td><td class="center">N₂O</td><td class="num">44.013</td><td class="num">36.42</td><td class="num">72.45</td></tr>
+          <tr><td><b>HydrogenChloride</b>, HCl</td><td class="center">HCl</td><td class="num">36.461</td><td class="num">51.40</td><td class="num">83.10</td></tr>
+          <tr><td><b>CarbonylSulfide</b>, COS</td><td class="center">COS</td><td class="num">60.075</td><td class="num">105.60</td><td class="num">63.70</td></tr>
+          <tr><td><b>SulfurHexafluoride</b>, SF6</td><td class="center">SF₆</td><td class="num">146.06</td><td class="num">45.55</td><td class="num">37.55</td></tr>
+          <tr style="background:#fff3f3;"><td><b>NO <span class="msys-tag">(M-sys)</span></b></td><td class="center">NO</td><td class="num">30.006</td><td class="num">-93.00</td><td class="num">64.80</td></tr>
+          <tr style="background:#fff3f3;"><td><b>NO2 <span class="msys-tag">(M-sys)</span></b></td><td class="center">NO₂</td><td class="num">46.005</td><td class="num">158.00</td><td class="num">101.32</td></tr>
+        </table>
+        <div class="info-bar">
+          • <span class="msys-tag">(M-sys)</span>: CoolProp 미지원이나 M-sys PR-EOS 엔진으로 자체 지원
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 2: 탄화수소 알칸류 ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">탄화수소 (Alkanes / Paraffins)</div>
+        <table class="mini-table">
+          <tr><th>유체명 (Fluid_id)</th><th>별칭</th><th>MW</th><th>Tc(℃)</th><th>Pc(bar)</th></tr>
+          <tr><td><b>Methane</b>, CH4</td><td class="center">C1</td><td class="num">16.043</td><td class="num">-82.59</td><td class="num">45.99</td></tr>
+          <tr><td><b>Ethane</b>, C2H6</td><td class="center">C2</td><td class="num">30.070</td><td class="num">32.17</td><td class="num">48.72</td></tr>
+          <tr><td><b>Propane</b>, C3H8</td><td class="center">C3</td><td class="num">44.096</td><td class="num">96.74</td><td class="num">42.51</td></tr>
+          <tr><td><b>n-Butane</b>, C4H10</td><td class="center">NC4</td><td class="num">58.122</td><td class="num">151.97</td><td class="num">37.96</td></tr>
+          <tr><td><b>IsoButane</b>, IC4H10</td><td class="center">iC4</td><td class="num">58.122</td><td class="num">134.66</td><td class="num">36.29</td></tr>
+          <tr><td><b>n-Pentane</b>, C5H12</td><td class="center">NC5</td><td class="num">72.150</td><td class="num">196.55</td><td class="num">33.70</td></tr>
+          <tr><td><b>Isopentane</b>, IPentane</td><td class="center">iC5</td><td class="num">72.150</td><td class="num">187.20</td><td class="num">33.78</td></tr>
+          <tr><td><b>Neopentane</b></td><td class="center">-</td><td class="num">72.150</td><td class="num">160.59</td><td class="num">31.96</td></tr>
+          <tr><td><b>n-Hexane</b>, C6H14</td><td class="center">NC6</td><td class="num">86.178</td><td class="num">234.67</td><td class="num">30.34</td></tr>
+          <tr><td><b>Isohexane</b></td><td class="center">iC6</td><td class="num">86.178</td><td class="num">224.55</td><td class="num">30.40</td></tr>
+          <tr><td><b>n-Heptane</b>, C7H16</td><td class="center">NC7</td><td class="num">100.20</td><td class="num">266.98</td><td class="num">27.36</td></tr>
+          <tr><td><b>n-Octane</b>, C8H18</td><td class="center">NC8</td><td class="num">114.23</td><td class="num">296.17</td><td class="num">24.97</td></tr>
+          <tr><td><b>n-Nonane</b>, C9H20</td><td class="center">NC9</td><td class="num">128.26</td><td class="num">321.40</td><td class="num">22.81</td></tr>
+          <tr><td><b>n-Decane</b>, C10H22</td><td class="center">NC10</td><td class="num">142.28</td><td class="num">344.55</td><td class="num">21.03</td></tr>
+          <tr><td><b>n-Undecane</b>, C11H24</td><td class="center">NC11</td><td class="num">156.31</td><td class="num">365.60</td><td class="num">19.90</td></tr>
+          <tr><td><b>n-Dodecane</b>, C12H26</td><td class="center">NC12</td><td class="num">170.34</td><td class="num">384.95</td><td class="num">18.17</td></tr>
+          <tr><td><b>CycloPentane</b></td><td class="center">c-C5</td><td class="num">70.134</td><td class="num">238.57</td><td class="num">45.15</td></tr>
+          <tr><td><b>CycloHexane</b></td><td class="center">c-C6</td><td class="num">84.160</td><td class="num">280.45</td><td class="num">40.75</td></tr>
+          <tr><td><b>CycloPropane</b></td><td class="center">c-C3</td><td class="num">42.081</td><td class="num">125.15</td><td class="num">55.79</td></tr>
+        </table>
+        <div class="info-bar">
+          • 석유화학 표준 약어(NC4, NC5, NC8 등) 완벽 지원
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">알코올류 & 에테르 (Alcohols & Ethers)</div>
+        <table class="mini-table">
+          <tr><th>유체명 (Fluid_id)</th><th>화학식</th><th>MW</th><th>Tc(℃)</th><th>Pc(bar)</th></tr>
+          <tr><td><b>Methanol</b>, CH3OH</td><td class="center">CH₃OH</td><td class="num">32.042</td><td class="num">239.49</td><td class="num">80.97</td></tr>
+          <tr><td><b>Ethanol</b>, C2H5OH</td><td class="center">C₂H₅OH</td><td class="num">46.069</td><td class="num">240.77</td><td class="num">61.48</td></tr>
+          <tr><td><b>DimethylEther</b>, DME</td><td class="center">C₂H₆O</td><td class="num">46.069</td><td class="num">127.20</td><td class="num">53.70</td></tr>
+          <tr><td><b>DiethylEther</b></td><td class="center">C₄H₁₀O</td><td class="num">74.122</td><td class="num">193.55</td><td class="num">36.37</td></tr>
+          <tr><td><b>DimethylCarbonate</b></td><td class="center">C₃H₆O₃</td><td class="num">90.078</td><td class="num">284.85</td><td class="num">46.30</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 3: 알켄, 방향족 & 실록산 ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">알켄, 알킨 & 방향족 화합물</div>
+        <table class="mini-table">
+          <tr><th>유체명 (Fluid_id)</th><th>구분</th><th>MW</th><th>Tc(℃)</th><th>Pc(bar)</th></tr>
+          <tr><td><b>Ethylene</b></td><td class="center">Alkene</td><td class="num">28.054</td><td class="num">9.20</td><td class="num">50.42</td></tr>
+          <tr><td><b>Propylene</b></td><td class="center">Alkene</td><td class="num">42.081</td><td class="num">91.75</td><td class="num">46.65</td></tr>
+          <tr><td><b>1-Butene</b></td><td class="center">Alkene</td><td class="num">56.106</td><td class="num">146.14</td><td class="num">40.05</td></tr>
+          <tr><td><b>IsoButene</b></td><td class="center">Alkene</td><td class="num">56.106</td><td class="num">144.94</td><td class="num">40.01</td></tr>
+          <tr><td><b>Cis-2-Butene</b></td><td class="center">Alkene</td><td class="num">56.106</td><td class="num">162.60</td><td class="num">42.26</td></tr>
+          <tr><td><b>Trans-2-Butene</b></td><td class="center">Alkene</td><td class="num">56.106</td><td class="num">155.46</td><td class="num">40.27</td></tr>
+          <tr><td><b>Propyne</b></td><td class="center">Alkyne</td><td class="num">40.064</td><td class="num">129.23</td><td class="num">56.26</td></tr>
+          <tr><td><b>Benzene</b></td><td class="center">Aromatic</td><td class="num">78.114</td><td class="num">288.90</td><td class="num">48.95</td></tr>
+          <tr><td><b>Toluene</b></td><td class="center">Aromatic</td><td class="num">92.141</td><td class="num">318.60</td><td class="num">41.08</td></tr>
+          <tr><td><b>p-Xylene</b>, P-XYLENE</td><td class="center">Aromatic</td><td class="num">106.17</td><td class="num">343.00</td><td class="num">35.11</td></tr>
+          <tr><td><b>m-Xylene</b>, M-XYLENE</td><td class="center">Aromatic</td><td class="num">106.17</td><td class="num">343.90</td><td class="num">35.35</td></tr>
+          <tr><td><b>o-Xylene</b>, O-XYLENE</td><td class="center">Aromatic</td><td class="num">106.17</td><td class="num">357.10</td><td class="num">37.38</td></tr>
+          <tr><td><b>EthylBenzene</b>, EBENZENE</td><td class="center">Aromatic</td><td class="num">106.17</td><td class="num">344.00</td><td class="num">36.06</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">실록산 및 유기 열매체유 (ORC Fluids)</div>
+        <table class="mini-table">
+          <tr><th>유체명 (Fluid_id)</th><th>구분</th><th>MW</th><th>Tc(℃)</th><th>Pc(bar)</th></tr>
+          <tr><td><b>MM</b></td><td class="center">Siloxane</td><td class="num">162.38</td><td class="num">245.60</td><td class="num">19.39</td></tr>
+          <tr><td><b>MDM</b></td><td class="center">Siloxane</td><td class="num">236.53</td><td class="num">290.94</td><td class="num">14.15</td></tr>
+          <tr><td><b>MD2M</b></td><td class="center">Siloxane</td><td class="num">310.69</td><td class="num">326.25</td><td class="num">12.25</td></tr>
+          <tr><td><b>MD3M</b></td><td class="center">Siloxane</td><td class="num">384.84</td><td class="num">355.27</td><td class="num">9.45</td></tr>
+          <tr><td><b>MD4M</b></td><td class="center">Siloxane</td><td class="num">458.99</td><td class="num">380.00</td><td class="num">8.77</td></tr>
+          <tr><td><b>D4</b></td><td class="center">Cyclic</td><td class="num">296.62</td><td class="num">313.35</td><td class="num">13.32</td></tr>
+          <tr><td><b>D5</b></td><td class="center">Cyclic</td><td class="num">370.77</td><td class="num">346.00</td><td class="num">11.60</td></tr>
+          <tr><td><b>D6</b></td><td class="center">Cyclic</td><td class="num">444.92</td><td class="num">372.60</td><td class="num">9.61</td></tr>
+          <tr><td><b>Acetone</b></td><td class="center">Ketone</td><td class="num">58.079</td><td class="num">234.95</td><td class="num">47.00</td></tr>
+          <tr><td><b>EthyleneOxide</b></td><td class="center">Epoxide</td><td class="num">44.053</td><td class="num">195.80</td><td class="num">71.90</td></tr>
+          <tr><td><b>Dichloroethane</b></td><td class="center">Solvent</td><td class="num">98.960</td><td class="num">288.00</td><td class="num">53.70</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 4: 단일 냉매 (CFC, HCFC, HFC) ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">단일 냉매 (HFC & HCFC)</div>
+        <table class="mini-table">
+          <tr><th>냉매명</th><th>구분</th><th>MW</th><th>Tc(℃)</th><th>Pc(bar)</th></tr>
+          <tr><td><b>R11</b></td><td class="center">CFC</td><td class="num">137.37</td><td class="num">197.96</td><td class="num">44.08</td></tr>
+          <tr><td><b>R12</b></td><td class="center">CFC</td><td class="num">120.91</td><td class="num">111.97</td><td class="num">41.36</td></tr>
+          <tr><td><b>R13</b></td><td class="center">CFC</td><td class="num">104.46</td><td class="num">28.85</td><td class="num">38.79</td></tr>
+          <tr><td><b>R14</b></td><td class="center">PFC</td><td class="num">88.00</td><td class="num">-45.64</td><td class="num">37.50</td></tr>
+          <tr><td><b>R21</b></td><td class="center">HCFC</td><td class="num">102.92</td><td class="num">178.50</td><td class="num">51.81</td></tr>
+          <tr><td><b>R22</b></td><td class="center">HCFC</td><td class="num">86.47</td><td class="num">96.15</td><td class="num">49.90</td></tr>
+          <tr><td><b>R23</b></td><td class="center">HFC</td><td class="num">70.01</td><td class="num">26.14</td><td class="num">48.32</td></tr>
+          <tr><td><b>R32</b></td><td class="center">HFC</td><td class="num">52.02</td><td class="num">78.11</td><td class="num">57.82</td></tr>
+          <tr><td><b>R40</b></td><td class="center">-</td><td class="num">50.49</td><td class="num">143.10</td><td class="num">66.80</td></tr>
+          <tr><td><b>R41</b></td><td class="center">HFC</td><td class="num">34.03</td><td class="num">44.13</td><td class="num">58.97</td></tr>
+          <tr><td><b>R113</b></td><td class="center">CFC</td><td class="num">187.38</td><td class="num">214.06</td><td class="num">34.39</td></tr>
+          <tr><td><b>R114</b></td><td class="center">CFC</td><td class="num">170.92</td><td class="num">145.68</td><td class="num">32.57</td></tr>
+          <tr><td><b>R115</b></td><td class="center">CFC</td><td class="num">154.47</td><td class="num">79.95</td><td class="num">31.29</td></tr>
+          <tr><td><b>R116</b></td><td class="center">PFC</td><td class="num">138.01</td><td class="num">19.88</td><td class="num">30.48</td></tr>
+          <tr><td><b>R123</b></td><td class="center">HCFC</td><td class="num">152.93</td><td class="num">183.68</td><td class="num">36.68</td></tr>
+          <tr><td><b>R124</b></td><td class="center">HCFC</td><td class="num">136.48</td><td class="num">122.28</td><td class="num">36.24</td></tr>
+          <tr><td><b>R125</b></td><td class="center">HFC</td><td class="num">120.02</td><td class="num">66.02</td><td class="num">36.18</td></tr>
+          <tr><td><b>R134a</b></td><td class="center">HFC</td><td class="num">102.03</td><td class="num">101.06</td><td class="num">40.59</td></tr>
+          <tr><td><b>R141b</b></td><td class="center">HCFC</td><td class="num">116.95</td><td class="num">204.35</td><td class="num">42.12</td></tr>
+          <tr><td><b>R142b</b></td><td class="center">HCFC</td><td class="num">100.50</td><td class="num">137.11</td><td class="num">40.55</td></tr>
+          <tr><td><b>R143a</b></td><td class="center">HFC</td><td class="num">84.04</td><td class="num">72.71</td><td class="num">37.61</td></tr>
+          <tr><td><b>R152a</b></td><td class="center">HFC</td><td class="num">66.05</td><td class="num">113.26</td><td class="num">45.20</td></tr>
+          <tr><td><b>R161</b></td><td class="center">HFC</td><td class="num">48.06</td><td class="num">102.10</td><td class="num">50.10</td></tr>
+          <tr><td><b>R218</b></td><td class="center">PFC</td><td class="num">188.02</td><td class="num">71.87</td><td class="num">26.40</td></tr>
+          <tr><td><b>R227ea</b></td><td class="center">HFC</td><td class="num">170.03</td><td class="num">101.75</td><td class="num">29.26</td></tr>
+          <tr><td><b>R236ea</b></td><td class="center">HFC</td><td class="num">152.04</td><td class="num">139.29</td><td class="num">35.02</td></tr>
+          <tr><td><b>R236fa</b></td><td class="center">HFC</td><td class="num">152.04</td><td class="num">124.92</td><td class="num">32.00</td></tr>
+          <tr><td><b>R245ca</b></td><td class="center">HFC</td><td class="num">134.05</td><td class="num">174.42</td><td class="num">39.40</td></tr>
+          <tr><td><b>R245fa</b></td><td class="center">HFC</td><td class="num">134.05</td><td class="num">154.01</td><td class="num">36.51</td></tr>
+          <tr><td><b>R365mfc</b></td><td class="center">HFC</td><td class="num">148.07</td><td class="num">186.85</td><td class="num">32.66</td></tr>
+          <tr><td><b>RC318</b></td><td class="center">PFC</td><td class="num">200.03</td><td class="num">115.23</td><td class="num">27.78</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 5: HFO 친환경 냉매 + 혼합냉매 + 바이오디젤 ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">HFO 저GWP 친환경 냉매</div>
+        <table class="mini-table">
+          <tr><th>냉매명</th><th>구분</th><th>MW</th><th>Tc(℃)</th><th>Pc(bar)</th></tr>
+          <tr><td><b>R1234yf</b></td><td class="center">HFO</td><td class="num">114.04</td><td class="num">94.70</td><td class="num">33.82</td></tr>
+          <tr><td><b>R1234ze(E)</b></td><td class="center">HFO</td><td class="num">114.04</td><td class="num">109.36</td><td class="num">36.35</td></tr>
+          <tr><td><b>R1234ze(Z)</b></td><td class="center">HFO</td><td class="num">114.04</td><td class="num">150.12</td><td class="num">35.33</td></tr>
+          <tr><td><b>R1233zd(E)</b></td><td class="center">HCFO</td><td class="num">130.50</td><td class="num">166.45</td><td class="num">36.24</td></tr>
+          <tr><td><b>R1243zf</b></td><td class="center">HFO</td><td class="num">96.05</td><td class="num">103.78</td><td class="num">35.17</td></tr>
+          <tr><td><b>R13I1</b></td><td class="center">FIC</td><td class="num">195.91</td><td class="num">67.44</td><td class="num">39.53</td></tr>
+          <tr><td><b>HFE143m</b></td><td class="center">HFE</td><td class="num">100.02</td><td class="num">104.90</td><td class="num">36.31</td></tr>
+          <tr><td><b>SES36</b></td><td class="center">-</td><td class="num">184.51</td><td class="num">177.55</td><td class="num">28.49</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">혼합 냉매 (Predefined Blends)</div>
+        <table class="mini-table">
+          <tr><th>혼합냉매명</th><th>공인 조성비 (wt%)</th><th>MW</th><th>Tc(℃)</th></tr>
+          <tr><td><b>R410A</b></td><td>R32:0.5, R125:0.5</td><td class="num">72.58</td><td class="num">71.36</td></tr>
+          <tr><td><b>R404A</b></td><td>R125:44, R143a:52, R134a:4</td><td class="num">97.60</td><td class="num">72.05</td></tr>
+          <tr><td><b>R407C</b></td><td>R32:23, R125:25, R134a:52</td><td class="num">86.20</td><td class="num">86.03</td></tr>
+          <tr><td><b>R507A</b></td><td>R125:50, R143a:50 (공비)</td><td class="num">98.86</td><td class="num">70.62</td></tr>
+          <tr style="background:#fff3f3;"><td><b>R513A <span class="msys-tag">(M-sys)</span></b></td><td>R1234yf:56, R134a:44 (공비)</td><td class="num">108.4</td><td class="num">96.50</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="header-pill amber">바이오디젤 (FAME / Biodiesel)</div>
+        <table class="mini-table">
+          <tr><th>유체명 (Fluid_id)</th><th>구분</th><th>MW</th><th>Tc(℃)</th></tr>
+          <tr><td><b>MethylOleate</b></td><td class="center">C18:1</td><td class="num">296.49</td><td class="num">507.85</td></tr>
+          <tr><td><b>MethylLinoleate</b></td><td class="center">C18:2</td><td class="num">294.47</td><td class="num">514.85</td></tr>
+          <tr><td><b>MethylPalmitate</b></td><td class="center">C16:0</td><td class="num">270.45</td><td class="num">496.85</td></tr>
+          <tr><td><b>MethylStearate</b></td><td class="center">C18:0</td><td class="num">298.51</td><td class="num">523.85</td></tr>
+          <tr><td><b>MethylLinolenate</b></td><td class="center">C18:3</td><td class="num">292.46</td><td class="num">521.85</td></tr>
+        </table>
+      </div>
+
+      <div class="card" style="margin-bottom:0;">
+        <div class="header-pill blue">열역학 패키지 스마트 분기</div>
+        <div class="info-bar" style="font-size:7.2px;">
+          • <b>IAPWS-IF97</b>: 물/스팀 전용 오차 0.00%<br>
+          • <b>CoolProp HEOS</b>: 비극성/탄화수소/냉매<br>
+          • <b>PR-EOS</b>: 물-가스, 극성계 (k_ij 자동 적용)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>M-sys Simulation Program v8.x &copy; 2026</span>
+    <span>데이터 출처: CoolProp v8.0 / NIST REFPROP / DWSIM v8.8 / IAPWS-IF97 (총 125개 유체 수록)</span>
+    <span>mosuklee@gmail.com</span>
+  </div>
+</div>
+
+</body>
+</html>

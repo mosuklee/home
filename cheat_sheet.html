@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>M-sys Cheat Sheet</title>
+<style>
+  /* ── A4 가로(Landscape) 인쇄 및 화면 공통 스타일 ── */
+  @page {
+    size: A4 landscape;
+    margin: 8mm 10mm 6mm 10mm;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    font-family: "Malgun Gothic", "맑은 고딕", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #222;
+    background-color: #f4f6f9;
+  }
+
+  /* 페이지 컨테이너 */
+  .page {
+    width: 277mm;
+    min-height: 190mm;
+    margin: 0 auto 10mm auto;
+    padding: 2mm 0;
+    background: #fff;
+    page-break-after: always;
+    position: relative;
+  }
+  @media screen {
+    .page {
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      margin-top: 10px;
+    }
+  }
+
+  /* 상단 네이비 타이틀 배너 */
+  .title-banner {
+    background-color: #2b4c7e;
+    color: #ffffff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 0;
+    border-radius: 6px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  /* 하단 푸터 */
+  .footer {
+    text-align: right;
+    font-size: 10px;
+    color: #444;
+    font-weight: bold;
+    margin-top: 3px;
+    padding-right: 2mm;
+  }
+
+  /* 다단 그리드 레이아웃 */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 1.05fr 1fr;
+    gap: 5px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+  }
+
+  /* 단위 기기 카드 박스 */
+  .card {
+    border: 1.2px solid #555;
+    border-radius: 5px;
+    background: #ffffff;
+    padding: 4px 6px;
+    margin-bottom: 5px;
+    font-size: 9.5px;
+    line-height: 1.35;
+  }
+
+  /* 녹색 캡슐 헤더 */
+  .header-pill {
+    background-color: #1b8a38;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    padding: 2.5px 0;
+    margin-bottom: 4px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  .header-pill.blue {
+    background-color: #1a5fb4;
+  }
+  .header-pill.amber {
+    background-color: #b58900;
+  }
+
+  /* 파라미터 리스트 */
+  .param-row {
+    display: flex;
+    margin-bottom: 1.5px;
+  }
+  .param-name {
+    font-weight: bold;
+    color: #111;
+    white-space: nowrap;
+  }
+  .param-desc {
+    color: #333;
+    margin-left: 4px;
+  }
+
+  /* Remarks 서브 섹션 */
+  .remarks-box {
+    margin-top: 4px;
+    padding-top: 3px;
+    border-top: 1px dashed #888;
+    font-size: 8.8px;
+    color: #222;
+  }
+  .remarks-title {
+    font-weight: bold;
+    color: #0b6623;
+    margin-bottom: 1.5px;
+  }
+
+  /* 치트시트 미니 테이블 */
+  table.mini-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5px;
+    margin-top: 3px;
+  }
+  table.mini-table th, table.mini-table td {
+    border: 1px solid #777;
+    padding: 1.5px 3px;
+    text-align: left;
+  }
+  table.mini-table th {
+    background-color: #e2e8f0;
+    font-weight: bold;
+    text-align: center;
+  }
+  table.mini-table td.center {
+    text-align: center;
+  }
+  table.mini-table td.num {
+    text-align: right;
+  }
+
+  /* 수식 박스 강조 */
+  .formula-badge {
+    background: #eef2f7;
+    border-left: 3px solid #2b4c7e;
+    padding: 2px 4px;
+    margin: 2px 0;
+    font-family: "Courier New", monospace;
+    font-size: 8.5px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═════════════════════════════════════════════════════════════
+     PAGE 1: 스트림, 배관 수력학, 열교환기, 펌프 & 터빈
+     ═════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="title-banner">M-sys Cheat Sheet</div>
+
+  <div class="grid-4">
+    <!-- ── COLUMN 1: mass_stream, 사용가능 유체 ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">mass_stream</div>
+        <div class="param-row"><span class="param-name">Press(kg/cm2)</span>: <span class="param-desc">절대압력 (0.0 초과, 1atm=1.03323)</span></div>
+        <div class="param-row"><span class="param-name">Temp(℃)</span>: <span class="param-desc">Celsius 온도 (건도 역산 시 빈 칸)</span></div>
+        <div class="param-row"><span class="param-name">Dryness(-)</span>: <span class="param-desc">0~1 사이 건도 (0:포화액, 1:포화증기)</span></div>
+        <div class="param-row"><span class="param-name">Flow rate(kg/h)</span>: <span class="param-desc">유량 입력 (m**, v**, s**)</span></div>
+        <div class="param-row"><span class="param-name">fluid_id</span>: <span class="param-desc">유체명 또는 조성 (기본값: water)</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          • <b>Input port 없을 때만</b> 수동 입력 유효 (연결 시 pass-through)<br>
+          • <b>숫자</b> 또는 <b>m+숫자</b>: 질량유량 (kg/h)<br>
+          • <b>v+숫자</b>: 운전 체적유량 (m³/h, ρ 연동 변환)<br>
+          • <b>s+숫자</b>: 표준 체적유량 (Nm³/h, 0℃, 1atm 기준)<br>
+          • <b>다성분 건도 역산</b>: Temp를 비우고 Dryness=1.0 입력 시 이슬점 T_dew 자동 도출
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">사용가능 물질 (Fluid_id)</div>
+        <table class="mini-table">
+          <tr><th>분류</th><th>지원 Fluid_id 문자열</th></tr>
+          <tr><td><b>물/증기</b></td><td>Water, H2O, Steam (IAPWS-IF97)</td></tr>
+          <tr><td><b>공기/기체</b></td><td>Air, Nitrogen(N2), Oxygen(O2), Argon(Ar), Helium, Hydrogen(H2), CO2, CO</td></tr>
+          <tr><td><b>탄화수소</b></td><td>Methane(CH4), Ethane(C2H6), Propane(C3H8), Butane(C4H10), Isobutane, Pentane, Hexane, Octane(NC8)</td></tr>
+          <tr><td><b>방향족</b></td><td>Benzene, Toluene, p-Xylene, m-Xylene, o-Xylene, Ethylbenzene(EBENZENE)</td></tr>
+          <tr><td><b>알코올</b></td><td>Methanol(CH3OH), Ethanol(C2H5OH), Propanol, Butanol</td></tr>
+          <tr><td><b>단일냉매</b></td><td>R134a, R1234yf, R1234ze, R125, R32, R22</td></tr>
+          <tr><td><b>혼합냉매</b></td><td>R404A, R407C, R410A, R507A</td></tr>
+          <tr><td><b>무기/기타</b></td><td>Ammonia(NH3), SulfurDioxide(SO2), H2S</td></tr>
+        </table>
+        <div class="remarks-box">
+          • <b>체적(몰)분율 지정</b>: <code>volume:</code> 접두어 사용<br>
+          &nbsp;&nbsp;예) <code>volume:CH4:93.5, C2H6:4.1, N2:0.2</code>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">Splitter</div>
+        <div class="param-row"><span class="param-name">Split ratio(0~1)</span>: <span class="param-desc">stream2 분배율 / 유량</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          • <b>0 ~ 1 숫자</b>: Stream 2의 유량 비율 (예: 0.3 → 30% 분기)<br>
+          • <b>1 초과 숫자</b> 또는 <b>F:숫자</b>: Stream 2 절대유량 직접 지정 (kg/h)
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 2: Pipe, 상당장 표, 조도 표 ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">Pipe</div>
+        <div class="param-row"><span class="param-name">Diameter(mm)</span>: <span class="param-desc">배관 내경, ND호칭경</span></div>
+        <div class="param-row"><span class="param-name">Length(m)</span>: <span class="param-desc">배관 직관부 길이 (10m 적분)</span></div>
+        <div class="param-row"><span class="param-name">Equiv.Len</span>: <span class="param-desc">부속 상당장 [ELBOW:2,GATE:1]</span></div>
+        <div class="param-row"><span class="param-name">Elevation(m)</span>: <span class="param-desc">배관 고저차 (높이차)</span></div>
+        <div class="param-row"><span class="param-name">Roughness(mm)</span>: <span class="param-desc">배관 조도, [steel]</span></div>
+        <div class="param-row"><span class="param-name">Thermal Resist.</span>: <span class="param-desc">열저항 [R:2.2, T:10]</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          1. <b>Diameter</b>: <code>nd</code>+호칭경 입력 시 Sch.STD 규격 내경 자동 계산 (예: <code>nd300</code> → 307.04mm)<br>
+          2. <b>Equiv.Len</b>: <code>Fitting:수량, Fitting:수량</code> 입력 시 L/D 상당장 자동 계산<br>
+          3. <b>Roughness</b>: 재질 입력 시 조도 자동 매핑<br>
+          4. <b>Thermal Resist</b>: 빈 칸=완전 단열 (Q_loss=0, 줄-톰슨 팽창) / <code>R:열저항, T:온도</code> 입력 시 외기 방열 계산
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">Equivalent Length (L/D)</div>
+        <table class="mini-table">
+          <tr><th>Fitting Name</th><th>Symbol</th><th>L/D</th></tr>
+          <tr><td>Gate Valve</td><td><code>GATE</code></td><td class="num">8</td></tr>
+          <tr><td>Globe Valve</td><td><code>GLOBE</code></td><td class="num">340</td></tr>
+          <tr><td>Angle Valve</td><td><code>ANGLE</code></td><td class="num">150</td></tr>
+          <tr><td>Check (Swing)</td><td><code>CHECK_SWING</code></td><td class="num">100</td></tr>
+          <tr><td>Check (Lift)</td><td><code>CHECK_LIFT</code></td><td class="num">250</td></tr>
+          <tr><td>Ball Valve</td><td><code>BALL</code></td><td class="num">20</td></tr>
+          <tr><td>Butterfly Valve</td><td><code>BUTTERFLY</code></td><td class="num">35</td></tr>
+          <tr><td>Y-Strainer</td><td><code>Y_STRAINER</code></td><td class="num">150</td></tr>
+          <tr><td>Basket Strainer</td><td><code>BASKET_STRAINER</code></td><td class="num">200</td></tr>
+          <tr><td>True Tee</td><td><code>TEE</code>, <code>TEE_TRUE</code></td><td class="num">20</td></tr>
+          <tr><td>Branch Tee</td><td><code>TEE_BRANCH</code></td><td class="num">60</td></tr>
+          <tr><td>Standard Elbow(90)</td><td><code>ELBOW</code>, <code>ELBOW_90</code></td><td class="num">30</td></tr>
+          <tr><td>Standard Elbow(45)</td><td><code>ELBOW_45</code></td><td class="num">16</td></tr>
+          <tr><td>Long Bend (r/d=1.5)</td><td><code>ELBOW_L</code></td><td class="num">12</td></tr>
+          <tr><td>Short Bend (r/d=1.0)</td><td><code>ELBOW_S</code></td><td class="num">20</td></tr>
+          <tr><td>Reducer / Union</td><td><code>RED</code> / <code>UNION</code></td><td class="num">10 / 2</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">Pipe Roughness</div>
+        <table class="mini-table">
+          <tr><th>Symbol</th><th>Roughness(mm)</th><th>Remarks</th></tr>
+          <tr><td><code>steel</code></td><td class="center">0.045</td><td>탄소강관 (Commercial steel)</td></tr>
+          <tr><td><code>copper</code></td><td class="center">0.0015</td><td>동관 (Smooth tubing)</td></tr>
+          <tr><td><code>galva</code></td><td class="center">0.15</td><td>아연도금강관 (Galvanized)</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 3: pump, mixer, Valve ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">pump</div>
+        <div class="param-row"><span class="param-name">Head(m)</span>: <span class="param-desc">펌프 양정 (m), 성능 곡선식</span></div>
+        <div class="param-row"><span class="param-name">Pump Eff.(%)</span>: <span class="param-desc">펌프 효율 (%), 곡선 수식</span></div>
+        <div class="param-row"><span class="param-name">Motor Eff.(%)</span>: <span class="param-desc">모터 효율 (%)</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          1. <b>Head / Eff 수식 지원</b>:<br>
+          <div class="formula-badge">y = a*x**2 + b*x + c (x = Flow rate kg/h)</div>
+          2. <b>모터 효율 미입력 시</b>:<br>
+          효성 고효율 모터 표준 사양 자동 적용 (0.75kW 82.5% ~ 160kW 95.0%)<br>
+          3. <b>NPSHa 계산</b>:<br>
+          <div class="formula-badge">NPSHa = (P_in - P_sat) / (ρ * g) [m]</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">mixer</div>
+        <div class="param-row"><span class="param-name">Pressure Basis</span>: <span class="param-desc">Mixing 압력 기준 (min / max)</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          • <b>min</b>: 유입 스트림 중 최소 압력 기준 (기본값)<br>
+          • <b>max</b>: 최대 압력 기준<br>
+          • 감온수 혼합 시 <b>포화 2상 습증기(0 &lt; x &lt; 1) 에너지 및 질량 수지 완벽 보존</b>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">Valve</div>
+        <div class="param-row"><span class="param-name">Outlet_press</span>: <span class="param-desc">출구 절대압력 (kg/cm².a)</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          • 줄-톰슨 등엔탈피 팽창 (H_out = H_in)<br>
+          • 공기/과열증기/습증기/과냉액 <b>건도(VF) 엄밀 판정</b>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">VLSeperator (기액분리기)</div>
+        <div class="remarks-box">
+          • 2상 플래시 드럼 (별도 입력값 없음)<br>
+          • 상단 포트(s1_out): <b>기상 100% 분리 (Q=1.0)</b><br>
+          • 하단 포트(s2_out): <b>액상 100% 분리 (Q=0.0)</b><br>
+          • 다성분 VLE 기액 평형 조성 분리 지원
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 4: exchanger, Turbine ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">exchanger</div>
+        <div class="param-row"><span class="param-name">Design Basis</span>: <span class="param-desc">출구 상태 기준 (콤보박스)</span></div>
+        <div class="param-row"><span class="param-name">Outlet Value</span>: <span class="param-desc">목표치 (온도 ℃ 또는 건도 VF)</span></div>
+        <div class="param-row"><span class="param-name">U(W/m²K)</span>: <span class="param-desc">총괄열전달계수 (Default: 280)</span></div>
+        <div class="param-row"><span class="param-name">Type</span>: <span class="param-desc">counter(대향류) / parallel(병류)</span></div>
+        <div class="param-row"><span class="param-name">Press Drop</span>: <span class="param-desc">S1 / S2 차압 (kg/cm²)</span></div>
+        <div class="param-row"><span class="param-name">Efficiency(%)</span>: <span class="param-desc">열교환 효율 (Default: 100%)</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Design Basis 옵션</div>
+          • <b>S1_Outlet_T / S2_Outlet_T</b>: 출구온도 지정<br>
+          • <b>S1_Outlet_X / S2_Outlet_X</b>: 출구 건도(VF) 지정 (0.0:완전응축, 1.0:완전증발)<br>
+          • <b>Hot/Cold 스트림 자동 판정</b> 및 LMTD 온도교차 자동 검증
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">Turbine</div>
+        <div class="param-row"><span class="param-name">outlet_press</span>: <span class="param-desc">팽창 출구 절대압력 (kg/cm².a)</span></div>
+        <div class="param-row"><span class="param-name">Adiabatic_eff(%)</span>: <span class="param-desc">단열팽창효율 (%), 곡선식</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          • <b>스팀 습증기 2상 팽창</b> 및 <b>고온 가스터빈 배가스 팽창</b> 분기 자동 처리<br>
+          • 터빈 성능곡선 스케일링 수식 지원:<br>
+          <div class="formula-badge">N_FLOW:630, R_FLOW:630, y = a*x**2 + b*x + c</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">comp (압축기)</div>
+        <div class="param-row"><span class="param-name">Calculation Mode</span>: <span class="param-desc">Adiabatic / Polytropic</span></div>
+        <div class="param-row"><span class="param-name">Outlet Pressure</span>: <span class="param-desc">토출 압력 (kg/cm².a)</span></div>
+        <div class="param-row"><span class="param-name">Calc. Efficiency</span>: <span class="param-desc">압축 효율 (%)</span></div>
+        <div class="remarks-box">
+          • ds/dT = Cp/T 초고속 수렴 알고리즘 적용
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">mosuklee@gmail.com</div>
+</div>
+
+
+<!-- ═════════════════════════════════════════════════════════════
+     PAGE 2: 발전기, 연소기, SCR, 제어 블록 & HRSG 보일러
+     ═════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="title-banner">M-sys Cheat Sheet (Power, Combustion & Control)</div>
+
+  <div class="grid-4">
+    <!-- ── COLUMN 1: Cooling Tower, Power Gen ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">Cooling Tower</div>
+        <div class="param-row"><span class="param-name">Wet Bulb(air)</span>: <span class="param-desc">외기 습구온도 [27] ℃</span></div>
+        <div class="param-row"><span class="param-name">Approach</span>: <span class="param-desc">접근온도차 [5] ℃ (T_out = WB + App)</span></div>
+        <div class="param-row"><span class="param-name">Circul.Water flow</span>: <span class="param-desc">순환수량 (kg/h, 공백시 s1 계승)</span></div>
+        <div class="param-row"><span class="param-name">Evaporate Rate</span>: <span class="param-desc">증발 효율 [0.75]</span></div>
+        <div class="param-row"><span class="param-name">Concentration Factor</span>: <span class="param-desc">농축 배율 C [5]</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">수지 계산식</div>
+          • 증발량: <code>m_evap = (Q_cool * η_evap) / L_v</code><br>
+          • 블로다운: <code>m_bd = m_evap / (C - 1)</code><br>
+          • 드리프트: <code>m_drift = m_circ * 0.002%</code><br>
+          • 보급수량: <code>m_makeup = m_evap + m_bd + m_drift</code>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">Power Gen (가스엔진/가스터빈)</div>
+        <div class="param-row"><span class="param-name">Outdoor Temp(℃)</span>: <span class="param-desc">외기온도 (기본: 0℃)</span></div>
+        <div class="param-row"><span class="param-name">Power Gen(kW)</span>: <span class="param-desc">발전출력 또는 y=f(x) 수식</span></div>
+        <div class="param-row"><span class="param-name">Aux. Power(kW)</span>: <span class="param-desc">소내 소비전력 (수식 지원)</span></div>
+        <div class="param-row"><span class="param-name">Fuel Consum(kg/h)</span>: <span class="param-desc">연료 소비량 (수식 지원)</span></div>
+        <div class="param-row"><span class="param-name">EXH.Flow(kg/h)</span>: <span class="param-desc">배가스 유량 또는 y=f(x) 식</span></div>
+        <div class="param-row"><span class="param-name">EXH.Press(kg/cm2)</span>: <span class="param-desc">배가스 압력 (kg/cm².a)</span></div>
+        <div class="param-row"><span class="param-name">EXH.Temp(℃)</span>: <span class="param-desc">배가스 온도 (℃)</span></div>
+        <div class="param-row"><span class="param-name">EXH.Comp(-)</span>: <span class="param-desc">배가스 조성 (질량기준)</span></div>
+        <div class="param-row"><span class="param-name">NOx Emission(ppm)</span>: <span class="param-desc">배가스 NOx 농도 (dry base)</span></div>
+        <div class="param-row"><span class="param-name">O2 Conc.(%)</span>: <span class="param-desc">배가스 산소 농도 (dry base)</span></div>
+        <div class="remarks-box">
+          • Power Gen 수식: <code>y = a*x**2 + b*x + c</code> (x=Outdoor Temp)<br>
+          • EXH.Flow 수식: <code>y = a*x**2 + b*x + c</code> (x=Power Gen)
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 2: Burner, SCR (Urea & Ammonia) ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill">Burner (덕트버너 / 가열기)</div>
+        <div class="param-row"><span class="param-name">(연료 유입)</span>: <span class="param-desc">하단 <code>fuel_in</code> 포트에 스트림 연결</span></div>
+        <div class="param-row"><span class="param-name">Efficiency(%)</span>: <span class="param-desc">버너 연소 효율 (Default: 100%)</span></div>
+        <div class="param-row"><span class="param-name">NOx_Emis(ppmv)</span>: <span class="param-desc">버너 생성 NOx 배출농도</span></div>
+        <div class="param-row"><span class="param-name">O2 Conc.(%)</span>: <span class="param-desc">기준 산소 농도 (통상 15%)</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          • LHV/HHV 및 배가스 생성량(O2 소비/CO2 생성) 자동 해석<br>
+          • <b>안전 가드</b>: 연료 스트림에 가연성 가스(CH4 등) 부재 시 또는 산소 부족 시 명확한 한글 경고 자동 출력
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">SCR_urea / SCR_ammonia</div>
+        <div class="param-row"><span class="param-name">NOx_Emis(ppmv)</span>: <span class="param-desc">보증 배출 농도 (dry base)</span></div>
+        <div class="param-row"><span class="param-name">O2 Conc.(%)</span>: <span class="param-desc">보증 기준 산소 농도 (통상 15%)</span></div>
+        <div class="param-row"><span class="param-name">Urea/Ammonia Conc</span>: <span class="param-desc">요소수(32.5%)/암모니아수 농도</span></div>
+        <div class="param-row"><span class="param-name">Equiv_Ratio(-)</span>: <span class="param-desc">투입 당량비 (통상 1.05 ~ 1.2)</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          • 실제 운전 O2 농도 기준 환산 NOx 질량 배출량(kg/h) 엄밀 계산식 탑재
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">evaporator & economizer (HRSG)</div>
+        <div class="remarks-box">
+          • <b>evaporator</b>: 폐열보일러 증발기, 실시간 필요 급수량(<code>required_feed_water_kgph</code>) 및 블로우다운 분기 자동 도출<br>
+          • <b>economizer</b>: 절탄기, Design 모드(UA 스냅샷) ↔ Simulation 모드(UA_op 운전 스케일링) 지원
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 3: 고급 제어 블록 (Control Blocks) ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill blue">control_adjust (DWSIM Adjust)</div>
+        <div class="param-row"><span class="param-name">Manipulated Object</span>: <span class="param-desc">조작 대상 기기/스트림</span></div>
+        <div class="param-row"><span class="param-name">Manipulated Property</span>: <span class="param-desc">조작 변수 (예: Flow rate)</span></div>
+        <div class="param-row"><span class="param-name">Manipulated Min/Max</span>: <span class="param-desc">조작 변수 허용 하한 / 상한</span></div>
+        <div class="param-row"><span class="param-name">Controlled Object</span>: <span class="param-desc">제어 감시 대상 기기/스트림</span></div>
+        <div class="param-row"><span class="param-name">Controlled Property</span>: <span class="param-desc">제어 감시 속성 (예: Temp)</span></div>
+        <div class="param-row"><span class="param-name">Target Value</span>: <span class="param-desc">목표치 수치 또는 회귀 수식</span></div>
+        <div class="param-row"><span class="param-name">Tolerance(%)</span>: <span class="param-desc">수렴 허용 오차 (Default: 0.1%)</span></div>
+        <div class="remarks-box">
+          <div class="remarks-title">Secant 감도 추적 엔진</div>
+          • <b>기울기 자동 감지</b>: 가열(양의 기울기) 및 냉각/증발(음의 기울기)을 스스로 판단해 수렴 방향 전진<br>
+          • 회귀 목표식 지원: <code>y = a*x**2 + b*x + c</code> (x=조작값)
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill blue">control_set (Set Block)</div>
+        <div class="param-row"><span class="param-name">Deactivate</span>: <span class="param-desc">일시 비활성화 체크박스</span></div>
+        <div class="param-row"><span class="param-name">Manipulated Source</span>: <span class="param-desc">Properties / Simulation Result</span></div>
+        <div class="param-row"><span class="param-name">Set Value</span>: <span class="param-desc">주입 수식 (예: <code>x</code>, <code>y = a*x + b</code>)</span></div>
+        <div class="remarks-box">
+          • <b>스마트 대입</b>: 1e-5 이내 동일 값이면 쓰기를 건너뛰어 하류 캐시 파괴 방지
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill blue">control_recycle (Recycle)</div>
+        <div class="remarks-box">
+          • 폐루프 순환참조 수렴 블록 (포트 없음, 참조선 연결)<br>
+          • <b>1패스 1이완(0.5 Relaxation) 전달</b>로 DWSIM/HYSYS 표준 수렴 속도 보장
+        </div>
+      </div>
+    </div>
+
+    <!-- ── COLUMN 4: 테이블, 주석 & 단축키 치트시트 ── -->
+    <div>
+      <div class="card">
+        <div class="header-pill amber">properties_table</div>
+        <div class="remarks-box">
+          • DWSIM Master Properties Table 스타일 위젯<br>
+          • <b>더블클릭</b>: 한 화면당 표시할 가로 스트림 칼럼 수 분할 다이얼로그 호출<br>
+          • <b>표시 물성 7종</b>: Temperature, Pressure, <b>Dryness(-)</b>, Density, Enthalpy, Entropy, Flow Rate<br>
+          • 드래그 이동 및 우측/하단 테두리 자유 리사이즈 지원
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill amber">Note, Inst & Equip (주석/라벨)</div>
+        <div class="remarks-box">
+          • <b>note</b>: 플로우시트 내 다중행 텍스트 주석 (서식 보존)<br>
+          • <b>instrument</b>: 특정 mass_stream 물성 실시간 표시<br>
+          • <b>equip</b>: 단위 장치 계산 결과(전력, 열량 등) PFD 부착 표시
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">단축키 및 마우스 조작 (Shortcuts)</div>
+        <table class="mini-table">
+          <tr><th>기능</th><th>단축키 / 조작법</th></tr>
+          <tr><td><b>새 파일 / 열기</b></td><td><code>Ctrl + N</code> / <code>Ctrl + O</code></td></tr>
+          <tr><td><b>저장 / 샘플열기</b></td><td><code>Ctrl + S</code> / <code>Ctrl + Shift + S</code></td></tr>
+          <tr><td><b>실행취소/다시실행</b></td><td><code>Ctrl + Z</code> / <code>Ctrl + Y</code> (최대 5회)</td></tr>
+          <tr><td><b>복사 / 붙여넣기</b></td><td><code>Ctrl + C</code> / <code>Ctrl + V</code> (라인 포함)</td></tr>
+          <tr><td><b>선택 항목 삭제</b></td><td><code>Delete</code> 키</td></tr>
+          <tr><td><b>줌 인 / 줌 아웃</b></td><td><code>Ctrl + 마우스 휠</code></td></tr>
+          <tr><td><b>캔버스 이동 (Pan)</b></td><td><code>휠 클릭 드래그</code> or <code>빈 공간 드래그</code></td></tr>
+          <tr><td><b>영역 다중 선택</b></td><td><code>Ctrl + 좌클릭 드래그 (러버밴드)</code></td></tr>
+          <tr><td><b>우클릭 메뉴</b></td><td>90도 회전, 좌우반전, 맨앞/뒤로, RENUM</td></tr>
+          <tr><td><b>보고서 / 도면 PDF</b></td><td><code>Print -> Report</code> / <code>Flowsheet</code></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">mosuklee@gmail.com</div>
+</div>
+
+</body>
+</html>
