@@ -293,39 +293,32 @@
           <div class="formula-badge">y = a*x**2 + b*x + c (x = Flow rate kg/h)</div>
           2. <b>모터 효율 미입력 시</b>:<br>
           효성 고효율 모터 표준 사양 자동 적용 (0.75kW 82.5% ~ 160kW 95.0%)<br>
-          3. <b>NPSHa 계산</b>:<br>
-          <div class="formula-badge">NPSHa = (P_in - P_sat) / (ρ * g) [m]</div>
         </div>
       </div>
-
       <div class="card">
-        <div class="header-pill">mixer</div>
-        <div class="param-row"><span class="param-name">Pressure Basis</span>: <span class="param-desc">Mixing 압력 기준 (min / max)</span></div>
+        <div class="header-pill">Turbine</div>
+        <div class="param-row"><span class="param-name">outlet_press</span>: <span class="param-desc">팽창 출구 절대압력 (kg/cm².a)</span></div>
+        <div class="param-row"><span class="param-name">Adiabatic_eff(%)</span>: <span class="param-desc">단열팽창효율 (%), 곡선식</span></div>
         <div class="remarks-box">
           <div class="remarks-title">Remarks</div>
-          • <b>min</b>: 유입 스트림 중 최소 압력 기준 (기본값)<br>
-          • <b>max</b>: 최대 압력 기준<br>
-          • 감온수 혼합 시 <b>포화 2상 습증기(0 &lt; x &lt; 1) 에너지 및 질량 수지 완벽 보존</b>
+          • <b>스팀 습증기 2상 팽창</b> 및 <b>고온 가스터빈 배가스 팽창</b> 분기 자동 처리<br>
+          • 터빈 성능곡선 스케일링 수식 지원:<br>
+          <div class="formula-badge">
+              [수식 예]<br>
+              N_FLOW:630,R_FLOW:630,y=a*x**2+b*x+c <br>
+               * N_FLOW : 신규 스케일 용량, <br>
+               &nbsp;&nbsp;R_FLOW : 기준 스케일 용량(회기식 기준)
+          </div>
         </div>
       </div>
 
       <div class="card">
-        <div class="header-pill">Valve</div>
-        <div class="param-row"><span class="param-name">Outlet_press</span>: <span class="param-desc">출구 절대압력 (kg/cm².a)</span></div>
+        <div class="header-pill">comp (압축기)</div>
+        <div class="param-row"><span class="param-name">Calculation Mode</span>: <span class="param-desc">Adiabatic / Polytropic</span></div>
+        <div class="param-row"><span class="param-name">Outlet Pressure</span>: <span class="param-desc">토출 압력 (kg/cm².a)</span></div>
+        <div class="param-row"><span class="param-name">Calc. Efficiency</span>: <span class="param-desc">압축 효율 (%)</span></div>
         <div class="remarks-box">
-          <div class="remarks-title">Remarks</div>
-          • 줄-톰슨 등엔탈피 팽창 (H_out = H_in)<br>
-          • 공기/과열증기/습증기/과냉액 <b>건도(VF) 엄밀 판정</b>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="header-pill">VLSeperator (기액분리기)</div>
-        <div class="remarks-box">
-          • 2상 플래시 드럼 (별도 입력값 없음)<br>
-          • 상단 포트(s1_out): <b>기상 100% 분리 (Q=1.0)</b><br>
-          • 하단 포트(s2_out): <b>액상 100% 분리 (Q=0.0)</b><br>
-          • 다성분 VLE 기액 평형 조성 분리 지원
+          • ds/dT = Cp/T 초고속 수렴 알고리즘 적용
         </div>
       </div>
     </div>
@@ -349,24 +342,31 @@
       </div>
 
       <div class="card">
-        <div class="header-pill">Turbine</div>
-        <div class="param-row"><span class="param-name">outlet_press</span>: <span class="param-desc">팽창 출구 절대압력 (kg/cm².a)</span></div>
-        <div class="param-row"><span class="param-name">Adiabatic_eff(%)</span>: <span class="param-desc">단열팽창효율 (%), 곡선식</span></div>
+        <div class="header-pill">mixer</div>
+        <div class="param-row"><span class="param-name">Pressure Basis</span>: <span class="param-desc">Mixing 압력 기준 (min / max)</span></div>
         <div class="remarks-box">
           <div class="remarks-title">Remarks</div>
-          • <b>스팀 습증기 2상 팽창</b> 및 <b>고온 가스터빈 배가스 팽창</b> 분기 자동 처리<br>
-          • 터빈 성능곡선 스케일링 수식 지원:<br>
-          <div class="formula-badge">N_FLOW:630, R_FLOW:630, y = a*x**2 + b*x + c</div>
+          • <b>min</b>: 유입 스트림 중 최소 압력 기준 (기본값)<br>
+          • <b>max</b>: 최대 압력 기준<br>
         </div>
       </div>
 
       <div class="card">
-        <div class="header-pill">comp (압축기)</div>
-        <div class="param-row"><span class="param-name">Calculation Mode</span>: <span class="param-desc">Adiabatic / Polytropic</span></div>
-        <div class="param-row"><span class="param-name">Outlet Pressure</span>: <span class="param-desc">토출 압력 (kg/cm².a)</span></div>
-        <div class="param-row"><span class="param-name">Calc. Efficiency</span>: <span class="param-desc">압축 효율 (%)</span></div>
+        <div class="header-pill">Valve</div>
+        <div class="param-row"><span class="param-name">Outlet_press</span>: <span class="param-desc">출구 절대압력 (kg/cm².a)</span></div>
         <div class="remarks-box">
-          • ds/dT = Cp/T 초고속 수렴 알고리즘 적용
+          <div class="remarks-title">Remarks</div>
+          • 줄-톰슨 등엔탈피 팽창 (H_out = H_in)<br>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="header-pill">VLSeperator (기액분리기)</div>
+        <div class="remarks-box">
+          • 2상 플래시 드럼 (별도 입력값 없음)<br>
+          • 상단 포트(s1_out): <b>기상 100% 분리 (Q=1.0)</b><br>
+          • 하단 포트(s2_out): <b>액상 100% 분리 (Q=0.0)</b><br>
+          • 다성분 VLE 기액 평형 조성 분리 지원
         </div>
       </div>
     </div>
@@ -414,8 +414,10 @@
         <div class="param-row"><span class="param-name">NOx Emission(ppm)</span>: <span class="param-desc">배가스 NOx 농도 (dry base)</span></div>
         <div class="param-row"><span class="param-name">O2 Conc.(%)</span>: <span class="param-desc">배가스 산소 농도 (dry base)</span></div>
         <div class="remarks-box">
-          • Power Gen 수식: <code>y = a*x**2 + b*x + c</code> (x=Outdoor Temp)<br>
-          • EXH.Flow 수식: <code>y = a*x**2 + b*x + c</code> (x=Power Gen)
+          • Power Gen 수식: <code>y=a*x**2+b*x+c</code> (x=Outdoor Temp)<br>
+          • EXH.Flow 수식: <code>y=a*x**2+b*x+c</code> (x=Power Gen) <br>
+          • Fuel Consum 수식: <code>y=a*x**2+b*x+c</code> (x=Power Gen) <br>
+          • Aux. Power 수식: <code>y=a*x**2+b*x+c</code> (x=Power Gen) <br>
         </div>
       </div>
     </div>
@@ -427,20 +429,19 @@
         <div class="param-row"><span class="param-name">(연료 유입)</span>: <span class="param-desc">하단 <code>fuel_in</code> 포트에 스트림 연결</span></div>
         <div class="param-row"><span class="param-name">Efficiency(%)</span>: <span class="param-desc">버너 연소 효율 (Default: 100%)</span></div>
         <div class="param-row"><span class="param-name">NOx_Emis(ppmv)</span>: <span class="param-desc">버너 생성 NOx 배출농도</span></div>
-        <div class="param-row"><span class="param-name">O2 Conc.(%)</span>: <span class="param-desc">기준 산소 농도 (통상 15%)</span></div>
+        <div class="param-row"><span class="param-name">O2 Conc.(%)</span>: <span class="param-desc">기준 산소 농도</span></div>
         <div class="remarks-box">
           <div class="remarks-title">Remarks</div>
-          • LHV/HHV 및 배가스 생성량(O2 소비/CO2 생성) 자동 해석<br>
-          • <b>안전 가드</b>: 연료 스트림에 가연성 가스(CH4 등) 부재 시 또는 산소 부족 시 명확한 한글 경고 자동 출력
+          • O2 기준산소 농도 : 대기배환경보전법/시행규칙/별표8<br>
         </div>
       </div>
 
       <div class="card">
         <div class="header-pill">SCR_urea / SCR_ammonia</div>
         <div class="param-row"><span class="param-name">NOx_Emis(ppmv)</span>: <span class="param-desc">보증 배출 농도 (dry base)</span></div>
-        <div class="param-row"><span class="param-name">O2 Conc.(%)</span>: <span class="param-desc">보증 기준 산소 농도 (통상 15%)</span></div>
-        <div class="param-row"><span class="param-name">Urea/Ammonia Conc</span>: <span class="param-desc">요소수(32.5%)/암모니아수 농도</span></div>
-        <div class="param-row"><span class="param-name">Equiv_Ratio(-)</span>: <span class="param-desc">투입 당량비 (통상 1.05 ~ 1.2)</span></div>
+        <div class="param-row"><span class="param-name">O2 Conc.(%)</span>: <span class="param-desc">보증 기준 산소 농도 </span></div>
+        <div class="param-row"><span class="param-name">Urea/Ammonia Conc</span>: <span class="param-desc">요소수/암모니아수 농도</span></div>
+        <div class="param-row"><span class="param-name">Equiv_Ratio(-)</span>: <span class="param-desc">투입 당량비 (Urea:1.2/ NH3:1.05)</span></div>
         <div class="remarks-box">
           <div class="remarks-title">Remarks</div>
           • 실제 운전 O2 농도 기준 환산 NOx 질량 배출량(kg/h) 엄밀 계산식 탑재
@@ -453,7 +454,14 @@
           • <b>evaporator</b>: 폐열보일러 증발기, 실시간 필요 급수량(<code>required_feed_water_kgph</code>) 및 블로우다운 분기 자동 도출<br>
           • <b>economizer</b>: 절탄기, Design 모드(UA 스냅샷) ↔ Simulation 모드(UA_op 운전 스케일링) 지원
         </div>
+                <div class="remarks-box">
+          <div class="remarks-title">Remarks</div>
+          • Evaporator와 Economizer는 Design Mode와 Simulation <br>&nbsp;&nbsp;Mode를 지원</code><br>
+          &nbsp;• Design Mode : LMTD 계산법에 의한 설계 값 계산</code><br>
+          &nbsp;• Simulation Mode : NTU법에 의한 Simulation 값 계산<br>
+        </div>
       </div>
+
     </div>
 
     <!-- ── COLUMN 3: 고급 제어 블록 (Control Blocks) ── -->
@@ -498,19 +506,22 @@
       <div class="card">
         <div class="header-pill amber">properties_table</div>
         <div class="remarks-box">
-          • DWSIM Master Properties Table 스타일 위젯<br>
-          • <b>더블클릭</b>: 한 화면당 표시할 가로 스트림 칼럼 수 분할 다이얼로그 호출<br>
-          • <b>표시 물성 7종</b>: Temperature, Pressure, <b>Dryness(-)</b>, Density, Enthalpy, Entropy, Flow Rate<br>
-          • 드래그 이동 및 우측/하단 테두리 자유 리사이즈 지원
+          • <b>더블클릭</b>: 한 화면당 표시할 가로 스트림 칼럼 수 분할 <br>&nbsp;&nbsp;&nbsp;&nbsp;다이얼로그 호출<br>
+          • <b>표시 물성 7종</b>: Temperature, Pressure, <b>Dryness(-),<br></b>&nbsp;&nbsp;&nbsp;&nbsp; Density, Enthalpy, Entropy, Flow Rate<br>
+          • <b>드래그</b>: Flow sheet내에 자유 이동 <br>
+          • <b>마우스 오른쪽 클릭</b> : 맨앞에, 맨뒤에, RENUM, 삭제 선택<br>
+            &nbsp;&nbsp;- <b>맨앞에/맨뒤에</b> : Flow 다른 오브젝트와 겹쳐졌을 경우<br>
+            &nbsp;&nbsp;- <b>RENUM</b> : 오브젝트 번호 재설정<br>
+            &nbsp;&nbsp;- <b>삭제</b> : Properties Table 삭제
         </div>
       </div>
 
       <div class="card">
         <div class="header-pill amber">Note, Inst & Equip (주석/라벨)</div>
         <div class="remarks-box">
-          • <b>note</b>: 플로우시트 내 다중행 텍스트 주석 (서식 보존)<br>
-          • <b>instrument</b>: 특정 mass_stream 물성 실시간 표시<br>
-          • <b>equip</b>: 단위 장치 계산 결과(전력, 열량 등) PFD 부착 표시
+          • <b>note</b> : 플로우시트 내 다중행 텍스트 주석<br>
+          • <b>instrument</b> : mass_stream 물성 실시간 표시<br>&nbsp;&nbsp;(Pressure,Temperature,Flow Rate중 선택)<br>
+          • <b>equip</b> : mass_stream외의 오브젝트 Simulation Result<br>&nbsp;&nbsp;표시 (Simulation Result중 선택)
         </div>
       </div>
 
@@ -526,8 +537,7 @@
           <tr><td><b>줌 인 / 줌 아웃</b></td><td><code>Ctrl + 마우스 휠</code></td></tr>
           <tr><td><b>캔버스 이동 (Pan)</b></td><td><code>휠 클릭 드래그</code> or <code>빈 공간 드래그</code></td></tr>
           <tr><td><b>영역 다중 선택</b></td><td><code>Ctrl + 좌클릭 드래그 (러버밴드)</code></td></tr>
-          <tr><td><b>우클릭 메뉴</b></td><td>90도 회전, 좌우반전, 맨앞/뒤로, RENUM</td></tr>
-          <tr><td><b>보고서 / 도면 PDF</b></td><td><code>Print -> Report</code> / <code>Flowsheet</code></td></tr>
+          <tr><td><b>우클릭 메뉴</b></td><td><code>90도 회전, 좌우반전, 맨앞/뒤로, RENUM</code></td></tr>
         </table>
       </div>
     </div>
