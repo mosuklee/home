@@ -193,7 +193,7 @@
           • <b>숫자</b> 또는 <b>m+숫자</b>: 질량유량 (kg/h)<br>
           • <b>v+숫자</b>: 운전 체적유량 (m³/h, ρ 연동 변환)<br>
           • <b>s+숫자</b>: 표준 체적유량 (Nm³/h, 0℃, 1atm 기준)<br>
-          • <b>다성분 건도 역산</b>: Temp를 비우고 Dryness=1.0 입력 시 이슬점 T_dew 자동 도출
+          • <b>다성분 건도 역산</b>: 온도 비우고 건도 입력 시 포화온도 자동계산
         </div>
       </div>
 
@@ -268,7 +268,10 @@
           <tr><td>Reducer / Union</td><td><code>RED</code> / <code>UNION</code></td><td class="num">10 / 2</td></tr>
         </table>
       </div>
+    </div>
 
+    <!-- ── COLUMN 3: pump, mixer, Valve ── -->
+    <div>
       <div class="card">
         <div class="header-pill">Pipe Roughness</div>
         <table class="mini-table">
@@ -278,10 +281,6 @@
           <tr><td><code>galva</code></td><td class="center">0.15</td><td>아연도금강관 (Galvanized)</td></tr>
         </table>
       </div>
-    </div>
-
-    <!-- ── COLUMN 3: pump, mixer, Valve ── -->
-    <div>
       <div class="card">
         <div class="header-pill">pump</div>
         <div class="param-row"><span class="param-name">Head(m)</span>: <span class="param-desc">펌프 양정 (m), 성능 곡선식</span></div>
