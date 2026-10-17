@@ -61,6 +61,14 @@
         .hill-system-notice strong {
             color: var(--primary);
         }
+        .hill-system-notice .badge {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: var(--accent);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-right: 4px;
+        }
 
         .summary-bar {
             display: flex;
@@ -125,18 +133,21 @@
 
     <div class="card">
         <div class="search-box">
-            <input type="text" id="search-input" placeholder="검색어 입력 (엔터 또는 빈칸 검색 시 전체 목록 출력)..." autofocus>
+            <input type="text" id="search-input" placeholder="검색어 입력 (예: C2H5OH, CH3COOH, C6H6, H2O, 메탄올, CAS 번호)..." autofocus>
             <button onclick="searchCompound()">확인 (검색)</button>
         </div>
 
         <div class="status-bar">
             <span id="db-status">⏳ msys_data 데이터 로딩 중...</span>
-            <span style="font-size: 13px; color: #94a3b8;">(검색어: 화학식, 이름, CAS 번호)</span>
+            <span style="font-size: 13px; color: #94a3b8;">(검색어: 일반 화학식, 힐 표기식, 물질명, CAS 번호)</span>
         </div>
 
-        <!-- 💡 힐 시스템(Hill System) 규칙 안내 문구 -->
+        <!-- 💡 힐 시스템(Hill System) 규칙 및 자동 변환 안내 -->
         <div class="hill-system-notice">
-            📌 <strong>화학식 표기방법 :</strong> '힐 시스템(Hill System)'이라는 국제적인 화학식 표기 규칙을 따름. 표기방법은 탄소(C)가 있으면 C를 먼저, 그다음은 수소(H)를 나타내고, 그 외의 원소는 알파벳 순서로 차례대로 나열합니다. (단, 탄소가 없는 화합물은 모든 원소를 알파벳 순서로만 나열합니다.)
+            <span class="badge">힐 시스템 자동 변환 지원</span>
+            <strong>화학식 표기 규칙 :</strong> 본 DB는 국제 표준 '힐 시스템(Hill System)'을 따릅니다. 
+            탄소(C)가 포함된 경우 <strong>C $\rightarrow$ H $\rightarrow$ 나머지 원소(알파벳순)</strong>로 표기되며, 탄소가 없으면 <strong>모든 원소를 알파벳순</strong>으로 표기합니다.<br>
+            💡 <em>검색창에 <code>CH3COOH</code>, <code>C2H5OH</code>, <code>CH3OH</code>, <code>H2SO4</code> 등 일상적인 화학식을 그대로 입력하셔도 힐 표기식으로 자동 변환하여 찾아줍니다.</em>
         </div>
     </div>
 
@@ -148,7 +159,127 @@
     let bipDB = [];
 
     // ─────────────────────────────────────────────────────────────
-    // ★ [핵심 패치] 따옴표 안의 쉼표를 완벽히 보존하는 표준 CSV 분리기
+    // 주기율표 공인 118개 원소 기호 세트 (힐 파서용)
+    // ─────────────────────────────────────────────────────────────
+    const PERIODIC_TABLE = new Set([
+        "H","He","Li","Be","B","C","N","O","F","Ne","Na","Mg","Al","Si","P","S","Cl","Ar",
+        "K","Ca","Sc","Ti","V","Cr","Mn","Fe","Co","Ni","Cu","Zn","Ga","Ge","As","Se","Br","Kr",
+        "Rb","Sr","Y","Zr","Nb","Mo","Tc","Ru","Rh","Pd","Ag","Cd","In","Sn","Sb","Te","I","Xe",
+        "Cs","Ba","La","Ce","Pr","Nd","Pm","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm","Yb","Lu",
+        "Hf","Ta","W","Re","Os","Ir","Pt","Au","Hg","Tl","Pb","Bi","Po","At","Rn",
+        "Fr","Ra","Ac","Th","Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm","Md","No","Lr"
+    ]);
+
+    // ─────────────────────────────────────────────────────────────
+    // ★ [핵심 기능] 임의의 화학식을 힐 시스템(Hill System) 분자식으로 변환
+    // 예: CH3COOH -> C2H4O2, C2H5OH -> C2H6O, (CH3)2CO -> C3H6O, H2SO4 -> H2O4S
+    // ─────────────────────────────────────────────────────────────
+    function convertToHillFormula(rawFormula) {
+        if (!rawFormula || typeof rawFormula !== "string") return null;
+        let s = rawFormula.trim();
+        if (!s) return null;
+
+        // 소문자 전용 입력(예: c2h5oh, ch3cooh) 처리 보정
+        const hasUpper = /[A-Z]/.test(s);
+        if (!hasUpper) {
+            // 흔한 2글자 원소 우선 대소문자 변환
+            const twoLetterMap = ["cl","br","na","mg","al","si","fe","cu","zn","ca","ti","cr","mn","ni","pb","hg"];
+            twoLetterMap.forEach(el => {
+                const reg = new RegExp(el, 'g');
+                s = s.replace(reg, el.charAt(0).toUpperCase() + el.charAt(1).toLowerCase());
+            });
+            // 나머지 1글자 원소 대문자 변환
+            s = s.replace(/[a-z]/g, m => m.toUpperCase());
+        }
+
+        const stack = [{}];
+        let i = 0;
+        const len = s.length;
+
+        while (i < len) {
+            const ch = s[i];
+
+            if (ch === '(' || ch === '[' || ch === '{') {
+                stack.push({});
+                i++;
+            } else if (ch === ')' || ch === ']' || ch === '}') {
+                if (stack.length <= 1) return null; // 잘못된 괄호 쌍
+                i++;
+                let numStr = "";
+                while (i < len && /\d/.test(s[i])) {
+                    numStr += s[i];
+                    i++;
+                }
+                const multiplier = numStr ? parseInt(numStr, 10) : 1;
+                const popped = stack.pop();
+                const top = stack[stack.length - 1];
+                for (const elem in popped) {
+                    top[elem] = (top[elem] || 0) + popped[elem] * multiplier;
+                }
+            } else if (/[A-Z]/.test(ch)) {
+                let elem = ch;
+                i++;
+                if (i < len && /[a-z]/.test(s[i])) {
+                    elem += s[i];
+                    i++;
+                }
+                if (!PERIODIC_TABLE.has(elem)) {
+                    return null; // 공인 원소가 아니면 일반 텍스트 검색으로 넘김
+                }
+                let numStr = "";
+                while (i < len && /\d/.test(s[i])) {
+                    numStr += s[i];
+                    i++;
+                }
+                const count = numStr ? parseInt(numStr, 10) : 1;
+                const top = stack[stack.length - 1];
+                top[elem] = (top[elem] || 0) + count;
+            } else if (/\s/.test(ch)) {
+                i++;
+            } else {
+                return null;
+            }
+        }
+
+        if (stack.length !== 1) return null;
+        const counts = stack[0];
+        if (Object.keys(counts).length === 0) return null;
+
+        // 힐 시스템 규칙에 따른 정렬 및 포맷팅
+        let hillStr = "";
+        const hasCarbon = "C" in counts;
+
+        if (hasCarbon) {
+            // 1. 탄소(C) 먼저
+            const cCount = counts["C"];
+            hillStr += "C" + (cCount > 1 ? cCount : "");
+
+            // 2. 수소(H)가 있으면 두 번째
+            if ("H" in counts) {
+                const hCount = counts["H"];
+                hillStr += "H" + (hCount > 1 ? hCount : "");
+            }
+
+            // 3. 나머지 원소는 기호 알파벳 순
+            const others = Object.keys(counts).filter(e => e !== "C" && e !== "H").sort();
+            for (const elem of others) {
+                const cnt = counts[elem];
+                hillStr += elem + (cnt > 1 ? cnt : "");
+            }
+        } else {
+            // 탄소가 없는 화합물은 모든 원소를 알파벳 순서대로 나열
+            const allElems = Object.keys(counts).sort();
+            for (const elem of allElems) {
+                const cnt = counts[elem];
+                hillStr += elem + (cnt > 1 ? cnt : "");
+            }
+        }
+
+        return hillStr;
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // ★ 따옴표 안의 쉼표를 보존하는 표준 CSV 분리기
     // ─────────────────────────────────────────────────────────────
     function parseCSVLine(line) {
         const result = [];
@@ -177,7 +308,6 @@
         let compoundsLoaded = false;
         let bipLoaded = false;
 
-        // 1. 순수 화합물 데이터 (msys_data/compounds.js)
         if (typeof PURE_COMPOUNDS_CSV !== 'undefined') {
             compoundsDB = parseCompoundsCSV(PURE_COMPOUNDS_CSV);
             compoundsLoaded = true;
@@ -186,7 +316,6 @@
             compoundsLoaded = true;
         }
 
-        // 2. 이성분 상호작용 파라미터 데이터 (msys_data/eos_bip.js)
         if (typeof EOS_BIP_CSV !== 'undefined') {
             bipDB = parseBIPCSV(EOS_BIP_CSV);
             bipLoaded = true;
@@ -206,7 +335,6 @@
             statusEl.style.color = "#ef4444";
         }
 
-        // 전체 목록 자동 렌더링
         searchCompound();
     }
 
@@ -229,21 +357,19 @@
         if (idxMW === -1) idxMW = 3;
         if (idxTc === -1) idxTc = 4;
         if (idxPc === -1) idxPc = 5;
-        if (idxOmega === -1) idxOmega = 7; // pure_compounds.csv 표준: 6은 Vc, 7이 omega
+        if (idxOmega === -1) idxOmega = 7;
 
         let db = [];
         for (let i = 1; i < lines.length; i++) {
             const line = lines[i].trim();
             if (!line) continue;
             
-            // 💡 표준 CSV 분리기 호출로 쉼표 포함 이름 완벽 보호
             const cols = parseCSVLine(line);
             if (cols.length >= 4) {
                 let nameVal = cols[idxName] || "";
                 let formulaVal = cols[idxFormula] || "";
                 let casVal = cols[idxCAS] || "";
 
-                // CAS와 화학식 형태 자동 감지 및 위치 교정 (순서 뒤바뀜 안전망)
                 const isCasLike = (str) => /^\d{2,7}-\d{2}-\d$/.test(str);
                 if (isCasLike(formulaVal) && !isCasLike(casVal)) {
                     let tmp = formulaVal; formulaVal = casVal; casVal = tmp;
@@ -257,7 +383,7 @@
 
                 db.push({
                     Name: nameVal, Formula: formulaVal, CAS: casVal,
-                    MW: mwVal, Tc: tcVal, Pc: pcVal, Omega: omegaVal, Aliases: []
+                    MW: mwVal, Tc: tcVal, Pc: pcVal, Omega: omegaVal
                 });
             }
         }
@@ -285,11 +411,12 @@
     document.getElementById("search-input").addEventListener("keypress", (e) => { if (e.key === "Enter") searchCompound(); });
 
     // ─────────────────────────────────────────────────────────────
-    // 검색 및 일체형 카드 렌더링
+    // ★ 힐 시스템 자동 변환 연동 검색 함수
     // ─────────────────────────────────────────────────────────────
     function searchCompound() {
-        const rawQuery = document.getElementById("search-input").value.trim().toLowerCase();
-        const query = rawQuery.replace(/[\s\-_]/g, ""); // 공백, 하이픈 제거 정규화
+        const rawQuery = document.getElementById("search-input").value.trim();
+        const queryLower = rawQuery.toLowerCase();
+        const cleanQuery = queryLower.replace(/[\s\-_]/g, "");
         const resultArea = document.getElementById("result-area");
         resultArea.innerHTML = "";
 
@@ -300,15 +427,36 @@
             matched = compoundsDB;
             summaryText = `📋 <strong>전체 등록 물질 목록</strong> (총 <strong>${matched.length}</strong>종) | 순수 물성과 이성분 상호작용 파라미터(BIP)가 함께 표시됩니다.`;
         } else {
+            // 💡 입력된 문자열을 힐 시스템 규칙에 따라 자동 변환 시도
+            let hillFormula = null;
+            try {
+                hillFormula = convertToHillFormula(rawQuery);
+            } catch (err) {
+                hillFormula = null;
+            }
+
+            const cleanHill = hillFormula ? hillFormula.toLowerCase().replace(/[\s\-_]/g, "") : "";
+
             matched = compoundsDB.filter(c => {
                 const cleanName = (c.Name || "").toLowerCase().replace(/[\s\-_]/g, "");
                 const cleanForm = (c.Formula || "").toLowerCase().replace(/[\s\-_]/g, "");
                 const cleanCAS  = (c.CAS || "").toLowerCase().replace(/[\s\-_]/g, "");
                 
-                // 화학식 검색 시 C4H8 등 분자식 정확 일치 우선 및 이름/CAS 부분일치 지원
-                return cleanName.includes(query) || cleanForm === query || cleanCAS.includes(query);
+                // 1. 기존 표준 검색 (이름 포함, 화학식 일치, CAS 포함)
+                const basicMatch = cleanName.includes(cleanQuery) || cleanForm === cleanQuery || cleanCAS.includes(cleanQuery);
+                
+                // 2. 힐 시스템 자동 변환 일치 검사
+                const hillMatch = cleanHill && (cleanForm === cleanHill);
+
+                return basicMatch || hillMatch;
             });
-            summaryText = `🔍 <strong>"${rawQuery}"</strong> 검색 결과: 총 <strong>${matched.length}</strong>개 일치`;
+
+            // 변환 여부에 따른 안내 요약 메시지 구성
+            if (hillFormula && cleanHill !== cleanQuery) {
+                summaryText = `🔍 <strong>"${rawQuery}"</strong> $\rightarrow$ 힐 시스템 변환: <strong style="color: #10b981;">"${hillFormula}"</strong> 검색 결과: 총 <strong>${matched.length}</strong>개 일치`;
+            } else {
+                summaryText = `🔍 <strong>"${rawQuery}"</strong> 검색 결과: 총 <strong>${matched.length}</strong>개 일치`;
+            }
         }
 
         if (matched.length === 0) {
@@ -331,7 +479,7 @@
             const upperName = c.Name.toUpperCase();
             const normName = upperName.replace(/[\s\-_]/g, "");
             
-            // 이 물질과 연결된 이성분 상호작용(BIP: k_ij) 조회 (공백/하이픈 유연 매칭)
+            // 이성분 상호작용 파라미터(BIP) 매핑
             const relatedBIP = bipDB.filter(b => {
                 const b1 = b.c1.replace(/[\s\-_]/g, "");
                 const b2 = b.c2.replace(/[\s\-_]/g, "");
@@ -387,7 +535,7 @@
         });
     }
 
-    // 로컬 file:// 환경 100% 호환 클립보드 복사 함수
+    // 클립보드 복사 함수
     function copyFluidID(text, btnElement) {
         if (navigator.clipboard && window.isSecureContext) {
             navigator.clipboard.writeText(text).then(() => {
