@@ -333,6 +333,8 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
       </ul>
     </li>
     <li><a href="#s4">4. Case Study</a></li>
+    <li><a href="#s5">5. H-Curve</a></li>
+    <li><a href="#s6">6. H-Curve</a></li>
     <li><a href="#sref">부록 1. 주요 단위 및 변환</a></li>
     <li><a href="#sref2">부록 2. 적용 가능 물성표</a></li>
   </ul>
@@ -390,15 +392,17 @@ The copyright of this program and logo belongs to mosuklee@gmail.com.
 
 <!-- ===================== 2. 사용방법 ===================== -->
 <h2 id="s2">2.0 사용방법</h2>
-<p>본 프로그램을 처음 실행시키면 빈 Flowsheet가 나타나고 상단에 File, Print, Case Study, HELP 메뉴가 구성되어 있습니다.</p>
+<p>본 프로그램을 처음 실행시키면 빈 Flowsheet가 나타나고 상단에 File, Edit, Case Study, Tools, Print, HELP 메뉴가 구성되어 있습니다.</p>
 
 <h3 id="s21">2.1 Menu</h3>
 <h4>1) File</h4>
 <p>File 메뉴에는 New, Open, Open Sample, Save, Save-AS, Open Recent, Exit의 7가지 서브메뉴가 Pull and Down 형식으로 되어 있습니다.
 이 메뉴는 일반 프로그램과 똑같이 새로 시작, 기존 파일열기, 샘플 파일 열기, 저장하기, 다른이름으로 저장하기, 최근 파일 열기, 프로그램 빠져나가기로 구성되어 있습니다.</p>
 프로그램 시작시나 파일 오픈시에는 이전디렉토리를 기억하고 있으므로, 이전에 열었던 디렉토리에서 바로 파일을 선택하여 열 수 있습니다. <br>
-Open Sample : 샘플 파일 열기 메뉴를 선택하면 별도의 창이 열리며, 제작자가 제공하는 샘플 파일을 선택하여 열 수 있습니다. <br>
-Open Recent : 최근 파일 열기 메뉴를 선택하면 별도의 창이 열리며, 최근에 사용한 5개의 파일중 하나를 선택하여 열 수 있습니다. <br>
+<ul>
+  <li>Open Sample : 샘플 파일 열기 메뉴를 선택하면 별도의 창이 열리며, 제작자가 제공하는 샘플 파일을 선택하여 열 수 있습니다. </li>
+  <li>Open Recent : 최근 파일 열기 메뉴를 선택하면 별도의 창이 열리며, 최근에 사용한 5개의 파일중 하나를 선택하여 열 수 있습니다. </li>
+</ul>
 
 <h4>2) Edit</h4>
 <p>Edit 메뉴에는 Undo, Redo, Delete, Copy, Paste 총 선택의 5가지 서브메뉴가 Pull and Down 형식으로 되어 있습니다. <br>
@@ -417,14 +421,25 @@ Edit의 서브메뉴는 각각 다음과 같은 기능을 가지고 있으며, �
    총 20개의 Case를 설정할 수 있으며, 입력값을 입력하는 Input Override 리스트와 각각의 오브젝트 계산결과를 볼 수 있는 Result 리스트로 구성되어 있습니다.
 </p>
 
-<h4>4) Print</h4>
+<h4>4) Tools</h4>
+<p>Tools 메뉴에는 H-Curve 추출 (Property table)..., Powergen Vendor Data, Auto Fluid_ID 목록,  Compounds Finder (thermodynamics DB)등 다양한 도구들이 포함되어 있으며, 사용자가 Simulation을 보다 효율적으로 수행할 수 있도록 지원합니다. </p>
+<ul>
+  <li>Hcurve 추출 (Property table)... : 지정 오브젝트의 물성 데이터를 기반으로 열교환기 설계용 H-Curve를 추출하기 위한 도구입니다. </li>
+  <li>Powergen Vendor Data : 발전기기(가스터빈 또는 가스엔진등)의 정격 특성 또는 외기온도별 회귀식을 Powergen 오브젝트와 Case Study에 각각 데이터를 전송하여 사용자가 DB에 저장된 발전기 자료를 사용할 수 있도록 하기 위한 기능 입니다.. </li>
+  <li>Auto Fluid_ID 목록 : 열역학 방정식을 Auto로 설정하였을 경우 사용가능한 물질을 확인하기 위한 메뉴입니다. 표의 형태로 정리되어 있습니다.</li>
+  <li>Compounds Finder (thermodynamics DB) : 열역학 방정식을 Auto 이외로 설정할 경우 DB에 저장된 물질을 읽어와 계산하는데 이때 DB에 저장된 몰질을 검색하기 위한 메뉴입니다. 총 1400종 이상의 물질의 사용 및 검색이 가능합니다.</li>
+</ul>  
+
+<h4>5) Print</h4>
 <p>Print 메뉴에는 Report와 Flowsheet 서브메뉴가 있으며, Report 메뉴는 계산된 계산결과 및 Properties 등을 레포트 형태로 pdf파일로 저장하기 위한 메뉴이며, Flowsheet 메뉴는 Flowsheet의 그림을 캡쳐하여 pdf파일로 저장하기 위한 메뉴입니다.</p>
 
-<h4>5) HELP</h4>
+<h4>6) HELP</h4>
 <p>Help 메뉴에는 Manual, Cheat Sheet, Download의 3가지 서브메뉴가 있으며, 메뉴를 선택하면 별도의 링크된 Web 페이지 창이 열리며 프로그램사용에 대한 도움말을 볼 수 있습니다. <br>
-   Manual : 프로그램 사용에 대한 자세한 설명이 담긴 매뉴얼 페이지로 연결됩니다. <br>
-   Cheat Sheet : 프로그램 사용에 대한 간단한 설명이 담긴 치트 시트 페이지로 연결됩니다. <br>
-   Download : 프로그램 설치 파일을 다운로드할 수 있는 페이지로 연결됩니다.
+<ul>
+  <li>Manual : 프로그램 사용에 대한 자세한 설명이 담긴 매뉴얼 페이지로 연결됩니다. </li>
+  <li>Cheat Sheet : 프로그램 사용에 대한 간단한 설명이 담긴 치트 시트 페이지로 연결됩니다. </li>
+  <li>Download : 프로그램 설치 파일을 다운로드할 수 있는 페이지로 연결됩니다. </li>
+</ul>
 </p>
 
 <h3 id="s22">2.2 입력 및 출력</h3>
@@ -2153,37 +2168,225 @@ NOx 제거량:
 
 <h3 id="s41">4.1 Case Study 사용설명</h3>
 <p> 
-<h4>[Input Overrides]</h4> 
+<h4>1. Input Overrides</h4> 
+<ul>
 <h4>1) Add Case</h4>
 <ul><li>버튼을 누르면 Case가 추가되며, 최대 20개까지 Case를 생성할 수 있습니다.</li></ul>
-<h4>2) Remove Case</h4>
-<ul><li>선택한 Case를 삭제합니다.</li></ul>
-<h4>3) Rename Case</h4>
-<ul><li>선택한 Case의 이름을 변경할 수 있습니다.</li></ul>
-<h4>4) Add Input</h4>
-<ul><li>선택한 Case에 새로운 Object 항목을 추가합니다.</li></ul>
-<h4>5) Remove Input</h4>
-<ul><li>선택한 Case에서 Object 항목을 삭제합니다.</li></ul>
-
-<h4>[Result]</h4>
-<h4>1) Add Result</h4>
-<ul><li>선택한 Case에 새로운 Object 항목을 추가합니다.</li></ul>
-<h4>2) Remove Result</h4>
-<ul><li>선택한 Case에서 Object 항목을 삭제합니다.</li></ul>
-
-<h4>[CASE STUDY 버튼]</h4>
-<ul><li>CASE STUDY 버튼을 누르면 입력된 Case별로 계산이 수행되고, 결과가 Result 리스트에 업데이트됩니다.</li></ul>
-
-<h4>[CSV 저장 버튼]</h4>
-<ul>
-  <li>CSV 저장 버튼을 누르면 계산된 Result 리스트의 내용을 CSV 파일로 저장할 수 있습니다.</li>
-  <li>저장되는 CSV 파일은 각 Case별로 Object 항목과 계산 결과가 포함된 형태로 구성됩니다.</li>
-  <li>저장된 CSV 파일은 Excel 등에서 열어서 추가 분석이나 보고서 작성에 활용할 수 있습니다.</li>
 </ul>
 
+<ul>
+ <h4>2) Remove Case</h4>
+ <ul><li>선택한 Case를 삭제합니다.</li></ul>
+</ul>
+
+<ul>
+ <h4>3) Rename Case</h4>
+ <ul><li>선택한 Case의 이름을 변경할 수 있습니다.</li></ul>
+</ul>
+
+<ul>
+ <h4>4) Add Input</h4>
+ <ul><li>선택한 Case에 새로운 Object 항목을 추가합니다.</li></ul>
+</ul>
+
+<ul>
+ <h4>5) Remove Input</h4>
+ <ul><li>선택한 Case에서 Object 항목을 삭제합니다.</li></ul>
+</ul>
+
+<h4>2. Result</h4>
+<ul>
+ <h4>1) Add Result</h4>
+ <ul><li>선택한 Case에 새로운 Object 항목을 추가합니다.</li></ul>
+</ul>
+
+<ul>
+<h4>2) Remove Result</h4>
+ <ul><li>선택한 Case에서 Object 항목을 삭제합니다.</li></ul>
+</ul>
+
+<h4>3. Button</h4>
+
+<ul>
+ <h4>1) 탭의 추가/삭제/이름변경</h4>
+ <ul>
+  <li>Add Case : 버튼을 누르면 탭이 한개씩 추가됩니다.</li>
+  <li>Remove Case : 선택한 탭을 삭제합니다.</li>
+  <li>Rename Case : 선택한 탭의 이름을 변경할 수 있습니다.</li>
+  <li>탭의 이동 : 탭을 드래그하면 탭의 이동을 통해 순서를 변경할 수 있습니다.</li>
+ </ul>
+</ul>
+
+<ul>
+ <h4>2) CASE STUDY</h4>
+ <ul><li>CASE STUDY 버튼을 누르면 입력된 Case별로 계산이 수행되고, 결과가 Result 리스트에 업데이트됩니다. 이때 전체 체크박스가 선택되어 있으면 모든 Case에 대해 계산이 수행됩니다.(체크박스가 선택되지 않으면 해당 Case에 대해 계산 수행)</li></ul>
+</ul>
+
+<ul>
+<h4>3) CSV 저장 버튼</h4>
+  <ul>
+    <li>CSV 저장 버튼을 누르면 계산된 Result 리스트의 내용을 CSV 파일로 저장할 수 있습니다.</li>
+    <li>저장되는 CSV 파일은 각 Case별로 Object 항목과 계산 결과가 포함된 형태로 구성됩니다.</li>
+    <li>저장된 CSV 파일은 Excel 등에서 열어서 추가 분석이나 보고서 작성에 활용할 수 있습니다.</li>
+  </ul>
+</ul>
+
+
 <h4>[참고사항]</h4>
-<ul><li>Input Overrides와 Result 리스트의 행번호를 드래그하여 순서를 변경할 수 있습니다.</li></ul>
+  <ul>
+   <li>Input Overrides와 Result 리스트의 행번호를 드래그하면 Object 항목의 순서를 변경할 수 있습니다.</li>
+   <li>오브젝트 항목은 첫번째 탭의 순서를 기준으로 다른 탭에도 동일하게 적용되며, Add Case를 눌렀을 때에도 첫번째 탭을 기준으로 Input Field의 값이 생성됩니다.</li>
+  </ul>
+
 </p>
+
+<!-- ===================== 5. H-Curve ===================== -->
+<h2 id="s5">5. H-Curve</h2>
+<p> H-curve는 열교환기 설계 프로그램인 HTRI에 제공하는 열교환기 설계 곡선으로, 열교환기의 성능을 평가하고 최적화하는 데 사용됩니다. Simulation을 한 후에 압력 및 온도변화에 따른
+  유체의 특성 변화를 분석하여 HTRI 11대 물성 변화량을 계산하여 열교환기 설계에 사용할 경우 이 기능을 사용할 수 있습니다. <br>
+  H-Curve의 윈도우에는 Design (설정)과 Performance (결과 내보내기) 탭으로 구성되어 있으며, Design 탭에서는 분석 대상 스트림과 열교환기 태그, 독립변수 및 종속물성을 설정할 수 있으며, Performance 탭에서는 계산된 H-Curve 결과를 확인하고 내보낼 수 있습니다.
+</p>
+<h3 id="s41">5.1 H-Curve 사용설명</h3>
+<p> 
+<h4>[Design (설정)]</h4> 
+<div style="text-align:center; margin: 24px 0 30px;">
+  <img src="img/h-curve_1.jpg" alt="H-Curve"
+       style="width:100%; max-width:950px; border:2px solid #2bab0d; border-radius:6px;
+              box-shadow:0 3px 14px rgba(0,0,0,0.18); display:inline-block;">
+</div>
+<h4>1. Connection (대상 스트림 및 기기 태그 설정)</h4>
+<ul>
+  <li>Variable 1 (Pressure)
+    <ul><li>Target Stream : 분석 대상이 되는 유체 스트림을 선택합니다. 일반적으로 열교환기에 유입되는 스트림을 선택합니다.</li>
+        <li>Exchanger Tag : 분석대상이 되는 열교환기의 고유 태그를 입력합니다. 사용자가 임의로 지정할 수 있습니다.</li>
+        <li>Thermodynamics : Target Stream의 선택을 마치면 해당 열역학 모델과 Fluid의 composition이 자동으로 나타납니다..</li>
+    </ul>
+  </li>
+</ul>
+<h4>2. Independent Variables (독립변수 설정)</h4>
+<ul>
+  <li>Variable 1 (Pressure)
+    <ul>
+      <li>State Pressure(s) [kg/cm2.A] : 분석대상 스트림의 압력을 입력합니다. 쉼표(,)를 입력하여 복수의 압력을 지정할 수 있습니다. 일반적으로 최소 2개의 압력을 지정하며 (열교환기 입구/출구) 그외 더욱 정밀한 분석을 위하여 중간 압력도 추가 지정할 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<ul>
+  <li>Variable 2 (temperature)
+    <ul><li>이슬점/기포점 자동 범위 탐색 [V] : 체크하면 이슬점과 기포점 범위를 자동으로 탐색하며, Phase를 Liquid 2개, Vapor 2개의 구간을 포함한 Lower Bound와 Upper Bound 온도를 자동으로 설정합니다.</li>
+        <li>Lower Bound : 고온/입구 온도를 입력합니다. (이슬점/기포점 자동 범위 탐색 체크시 비활성화)</li>
+        <li>Upper Bound : 저온/출구 온도를 입력합니다. (이슬점/기포점 자동 범위 탐색 체크시 비활성화)</li>
+        <li># of Increments (구간수) : 온도변수의 구간수를 입력합니다. 예 15를 입력하면 15개 구간으로 총 16개의 온도값이 생성됩니다.</li>
+    </ul>
+  </li>
+</ul>
+<h4>3. Dependent Properties (HTRI 11대 필수 물성 - 자동선택됨)</h4>
+<ul>
+  <h4>1) HTRI 11대 필수 지원가능 물성</h4>
+  <ul>
+  <li>Phase Surface Tension (Liquid) [V]</li>
+  <li>Liquid / Vapour Mass Density [V]</li>
+  <li>Liquid / Vapour Viscosity [V]</li>
+  <li>Liquid / Vapour Thermal Conductivity [V]</li>
+  <li>Liquid / Vapour Heat Capacity [V]</li>
+  <li>Vap Frac on a Mass Basis  [V]</li>
+  </ul>
+</ul>
+<ul>
+<h4>2) 추가 지원 가능 물성</h4>
+<ul>
+  <li>11대 추가 지원 가능물성은 체크박스를 통해 선택이 가능하며 Default 로는 모두 선택되어 나타납니다.</li>
+</ul>
+</ul>
+
+
+<h4>4. 계산 버튼  </h4>
+<ul><li>Calculate  (H-Curve 계산실행) 버튼을 누르면 위의 설정된 독립변수와 종속물성을 기반으로 H-Curve 계산이 수행되며 계산결과가 Performance (결과 내보내개) 탭에 타나나며 계산과정이 아래의 Status Bar에 나타납니다. 계산이 완료되면 자동으로 결과 값이 Performance 탭에 표시됩니다.</li></ul>
+
+<h4>[Performance (결과 내보내기)]</h4>
+<div style="text-align:center; margin: 24px 0 30px;">
+  <img src="img/h-curve_2.jpg" alt="H-Curve Performance"
+       style="width:100%; max-width:950px; border:2px solid #2bab0d; border-radius:6px;
+              box-shadow:0 3px 14px rgba(0,0,0,0.18); display:inline-block;">
+</div>
+
+<h4>1. 독립변수 (압력) 선택
+<ul>
+   <li>입력 격자 선택 : 콤보박스를 선택하면 Desgn(설정)탭의 Status Pressure(s)에서 입력된 압력을 기준으로 계산결과 값을 표시합니다.</li>
+</ul>
+
+<h4>2. 클립보드로 테이블 복사
+<ul>
+   <li>클립보드로 복사 (Excel Ctrl+V 호환) : 이 버튼을 누르면 Ctrl+C를 누른 것과 동일하게 클립보드로 아래의 테이블이 복사되며, Excel 등에서 Ctrl+V로 붙여넣기 할 수 있습니다.</li>
+</ul>
+
+<h4>3. 계산결과 내보내기 (CSV)</h4>
+<ul>
+   <li>결과 내보내기 : Performance 탭에서 계산된 결과를 확인하고, CSV 파일로 저장할 수 있습니다.</li>
+</ul>
+
+<!-- ===================== 6. Powergen Vendor Data ===================== -->
+<h2 id="s6">6. Powergen Vendor Data</h2>
+<p> Power Gen Vendor Data는 Powergen에서 제공하는 발전기의 특성 데이터로 Powergen Object에 압력자료를 자동으로 복사하여 입력하고, Case Study의 Main Tab에 DB에 저장된 회귀식 또는 특성데이터를 자동으로 입력하여 원활한 Case Study를 할 수 있도록 도와주는 기능입니다.</p>
+<h3 id="s61">6.1 Powergen Vendor Data 사용설명</h3>
+
+<div style="text-align:left; margin: 24px 0 30px;">
+  <img src="img/powergen_data.jpg" alt="H-Curve"
+       style="width:80%; max-width:500px; border:2px solid #2bab0d; border-radius:6px;
+              box-shadow:0 3px 14px rgba(0,0,0,0.18); display:inline-block;">
+</div>
+
+  <h4>1. 오브젝트 및 모델 선택</h4>
+
+  <ul>
+    <li>Object : Flowsheet에 사용된 Powergen Object를 선택합니다.</li>
+    <li>Maker : DB에 저장된 발전기 제조사를 선택합니다.</li>
+    <li>Model : DB에 저장된 발전기 모델을 선택합니다.</li>
+  </ul>
+
+  <h4>2. Power Generator 사양 (정격용량)</h4>
+    <ul>
+      <li>Outdoor Temp (℃) : 발전기의 표준 외부 온도가 입력됩니다. (일반적으로 가스터빈은 15℃), 가스엔진은 25℃ 입니다.</li>
+      <li>Power Gen(kW) : 발전기의 발전 정격 출력이 입력됩니다.</li>
+      <li>Aux Power(kW) : 발전기의 보조 전력 입력이 입력됩니다.</li>
+      <li>Fuel Consumption : 발전기의 연료 소비량이 입력됩니다.</li>
+      <li>EXH. Flow (kg/h) : 발전기의 배기 유량이 입력됩니다.</li>
+      <li>EXH. Press (kg/cm2) : 발전기의 배기 압력이 입력됩니다.</li>
+      <li>EXH. Temp(℃) : 발전기의 배기 온도가 입력됩니다.</li>
+      <li>EXH. Comp (-) : 배기가스의 성분비가 입력됩니다.</li>
+      <li>NOx Emission (ppm) : 발전기의 NOx 배출량이 입력됩니다.</li>
+      <li>O2 Conc.(%) : NOx Emission의 기준 산소량(%)이 입력됩니다.</li>
+      <li>Remarks : Power Generator에 대한 추가적인 비고 사항이 입력됩니다.</li>
+   </ul>
+</ul>
+
+<h4>3. 계산 버튼</h4>
+    <ul><li>Calculation : 발전기의 표준 외부 온도를 기준으로 100%부하일 경우의 Power gen 특성을 계산 입력합니다.</li>
+        <li>Power Gen : 지정된 Powergen 오브젝트의 입력필드에 계산된 정격출력 값을 복사합니다.</li>
+        <li>Case Study : Case Study 창이 열리며, 탭의 맨 우측의 입력필드에 회귀식 또는 정격출력 값이 자동으로 입력됩니다.</li>
+        <li>닫기 : Powergen Vendor Data 창을 닫습니다.</li>
+   </ul>
+
+<h4>4. 정격용량 및 회귀식 적용 기준</h4>
+    <ul><li>Powergen으로 복사된 정격출력값은 DB에 저장된 정격출력 값을 기준으로 입력되며 (현재 윈도우에도 정격출력으로 입력), Case Study에서는 회귀식 또는 정격출력 값이 자동으로 입력됩니다.</li>
+   </ul>
+
+<table>
+  <tr><th>구분</th><th>Powergen</th><th>Case Study</th></tr>
+  <tr><td>Outdoor Temp (℃)</td><td> 정격출력 값</td><td>발전기 표준 온도</td></tr>
+  <tr><td>Power Gen (kW)</td><td>정격출력 값</td><td>Outdoor Temp를 기준으로 한 회귀식 또는 정격출력 값</td></tr>
+  <tr><td>Aux. Power (kW)</td><td>0</td><td>Power Gen 기준 회귀식 또는 정격출력 값</td></tr>
+  <tr><td>Fuel Consum(kg/h)</td><td>정격출력 값</td><td>Power Gen 기준 회귀식 또는 정격출력 값</td></tr>
+  <tr><td>EXH. Flow (kg/h)</td><td>정격출력 값</td><td>Power Gen 기준 회귀식 또는 정격출력 값</td></tr>
+  <tr><td>EXH. Press (kg/cm2)</td><td>정격출력 값</td><td>정격출력 값</td></tr>
+  <tr><td>EXH. Temp (℃)</td><td>정격출력 값</td><td>Power Gen 기준 회귀식 또는 정격출력 값</td></tr>
+  <tr><td>EXH. Comp (-)</td><td>정격출력시 Composition</td><td>정격출력시 Composition</td></tr>
+  <tr><td>NOx Emission (ppm)</td><td>정격출력 값</td><td>정격출력 값</td></tr>
+  <tr><td>O2 Conc.(%)</td><td>NOx Emission 정격출력시 O2 함유율 기준</td><td>NOx Emission 정격출력시 O2 함유율 기준</td></tr>
+</table>
+
+
 
 <!-- ===================== 참고1 ===================== -->
 <h2 id="sref">부록 1. 주요 단위 및 변환</h2>
